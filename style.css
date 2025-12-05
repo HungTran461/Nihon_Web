@@ -220,7 +220,7 @@ nav a:hover, nav a.active {
 .vocab-table-header {
     display: grid;
     /* Tỷ lệ: Kanji(1) - Đọc(1) - Nghĩa(1.5) - Nút(50px) */
-    grid-template-columns: 1fr 1fr 1.5fr 50px; 
+    grid-template-columns: 1fr 1fr 2fr 60px; 
     background: var(--secondary); color: white; padding: 15px;
     border-radius: 15px; margin-bottom: 15px; font-weight: bold; text-align: center;
     box-shadow: 0 5px 15px rgba(161, 140, 209, 0.3);
@@ -246,9 +246,9 @@ nav a:hover, nav a.active {
     box-shadow: 0 5px 15px rgba(255, 154, 158, 0.2);
 }
 
-.cell-kanji { font-size: 1.4rem; font-weight: 800; color: #444; text-align: center; }
+.cell-kanji { font-size: 1.4rem; font-weight: 800; color: var(--secondary); text-align: left;margin-bottom: 4px;line-height: 1.2;word-wrap: break-word; }
 .cell-reading { font-size: 1.1rem; color: var(--primary-dark); font-weight: bold; text-align: center; }
-.cell-mean { font-size: 1rem; color: #666; text-align: left; padding-left: 20px; border-left: 2px solid #eee; }
+.cell-mean { font-size: 1rem; color: #555; text-align: left; padding-left: 20px; border-left: 2px solid #eee; line-height: 1.4;}
 .no-kanji { color: #eee; font-size: 2rem; line-height: 0; }
 
 .btn-vocab-speak {
@@ -560,7 +560,7 @@ footer { text-align: center; margin-top: 3rem; color: #aaa; font-size: 0.9rem; }
 
 .flashcard {
     background-color: transparent;
-    width: 300px; height: 200px;
+    width: 500px; height: 300px;
     cursor: pointer;
 }
 
@@ -585,10 +585,10 @@ footer { text-align: center; margin-top: 3rem; color: #aaa; font-size: 0.9rem; }
 
 .flashcard-back { transform: rotateY(180deg); background: #fff5f7; }
 
-.fc-main { font-size: 3rem; font-weight: 800; color: var(--text); }
-.fc-sub { font-size: 1.2rem; color: var(--primary); margin-top: 5px; }
+.fc-main { font-size: 3.5rem; font-weight: 800; color: var(--text); line-height: 1.2; padding: 0 10px; word-break: keep-all;}
+.fc-sub { font-size: 1.2rem; color: var(--primary); margin-top: 5px; font-weight: bold;}
 .fc-hint { font-size: 0.8rem; color: #ccc; position: absolute; bottom: 10px; }
-.fc-mean { font-size: 1.5rem; font-weight: bold; color: var(--secondary); padding: 10px; }
+.fc-mean { font-size: 1.3rem;font-weight: bold;color: var(--secondary); padding: 0 15px; line-height: 1.4; max-height: 120px; overflow-y: auto; display: flex; align-items: center; justify-content: center; }
 .fc-audio-btn { 
     width: 40px; height: 40px; border-radius: 50%; background: var(--accent); color: white;
     display: flex; align-items: center; justify-content: center; margin-top: 15px;
@@ -672,4 +672,104 @@ footer { text-align: center; margin-top: 3rem; color: #aaa; font-size: 0.9rem; }
     .options-grid { grid-template-columns: 1fr; }
     .flashcard { width: 100%; }
     .quiz-config-grid { grid-template-columns: 1fr; }
+}
+
+/* =========================================
+   GRAMMAR SECTION STYLES
+   ========================================= */
+
+.grammar-container {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    padding-bottom: 20px;
+}
+
+/* Thẻ chứa 1 điểm ngữ pháp */
+.grammar-card {
+    background: white;
+    border: 2px solid #fff0f5;
+    border-radius: 20px;
+    padding: 20px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.03);
+    transition: 0.2s;
+    position: relative;
+    overflow: hidden;
+}
+
+.grammar-card:hover {
+    transform: translateY(-3px);
+    border-color: var(--primary);
+    box-shadow: 0 8px 20px rgba(255, 154, 158, 0.2);
+}
+
+/* Dải màu trang trí bên trái */
+.grammar-card::before {
+    content: '';
+    position: absolute;
+    left: 0; top: 0; bottom: 0;
+    width: 6px;
+    background: var(--secondary);
+    border-radius: 5px 0 0 5px;
+}
+
+/* Tiêu đề cấu trúc (Công thức) */
+.gp-title {
+    font-size: 1.3rem;
+    font-weight: 800;
+    color: var(--primary-dark);
+    background: #fff5f7;
+    padding: 10px 15px;
+    border-radius: 12px;
+    display: inline-block;
+    margin-bottom: 10px;
+}
+
+/* Ý nghĩa */
+.gp-mean {
+    font-size: 1.1rem;
+    font-weight: bold;
+    color: #555;
+    margin-bottom: 10px;
+}
+
+/* Giải thích */
+.gp-note {
+    font-size: 0.95rem;
+    color: #666;
+    font-style: italic;
+    margin-bottom: 15px;
+    line-height: 1.5;
+}
+
+/* Khu vực ví dụ */
+.gp-examples {
+    background: #f9f9f9;
+    border-radius: 12px;
+    padding: 15px;
+}
+
+.gp-ex-item {
+    margin-bottom: 10px;
+    border-bottom: 1px dashed #eee;
+    padding-bottom: 8px;
+}
+.gp-ex-item:last-child { margin-bottom: 0; border-bottom: none; }
+
+.ex-jp {
+    font-weight: bold;
+    color: var(--text);
+    font-size: 1rem;
+    margin-bottom: 2px;
+}
+
+.ex-vn {
+    font-size: 0.9rem;
+    color: #888;
+}
+
+/* Responsive */
+@media (max-width: 600px) {
+    .gp-title { font-size: 1.1rem; width: 100%; text-align: center; }
+    .grammar-card { padding: 15px; }
 }

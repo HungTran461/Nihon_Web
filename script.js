@@ -94,29 +94,100 @@ const katakanaVocab = {
 // --- 1.3 Dữ liệu Minna no Nihongo (Bài 1 & 2) ---
 const minnaData = {
     '1': [
-        {k:'私',r:'わたし',m:'Tôi'}, {k:'私たち',r:'わたしたち',m:'Chúng tôi'}, {k:'あなた',r:'あなた',m:'Bạn'},
-        {k:'あの人',r:'あのひと',m:'Người kia'}, {k:'あの方',r:'あのかた',m:'Vị kia'}, {k:'先生',r:'せんせい',m:'Giáo viên'},
-        {k:'教師',r:'きょうし',m:'Giáo viên (nghề)'}, {k:'学生',r:'がくせい',m:'Học sinh'}, {k:'会社員',r:'かいしゃいん',m:'NV công ty'},
-        {k:'社員',r:'しゃいん',m:'NV công ty ~'}, {k:'銀行員',r:'ぎんこういん',m:'NV ngân hàng'}, {k:'医者',r:'いしゃ',m:'Bác sĩ'},
-        {k:'研究者',r:'けんきゅうしゃ',m:'Nhà nghiên cứu'}, {k:'エンジニア',r:'エンジニア',m:'Kỹ sư'}, {k:'大学',r:'だいがく',m:'Đại học'},
-        {k:'病院',r:'びょういん',m:'Bệnh viện'}, {k:'電気',r:'でんき',m:'Điện'}, {k:'だれ',r:'だれ',m:'Ai?'},
-        {k:'どなた',r:'どなた',m:'Vị nào?'}, {k:'歳',r:'～さい',m:'Tuổi'}, {k:'何歳',r:'なんさい',m:'Mấy tuổi?'},
-        {k:'はい',r:'はい',m:'Vâng'}, {k:'いいえ',r:'いいえ',m:'Không'}, {k:'初めまして',r:'はじめまして',m:'Chào lần đầu'},
-        {k:'日本',r:'にほん',m:'Nhật Bản'}, {k:'ベトナム',r:'ベトナム',m:'Việt Nam'}, {k:'アメリカ',r:'アメリカ',m:'Mỹ'},
-        {k:'～さん',r:'～さん',m:'Ông/Bà'}, {k:'～ちゃん',r:'～ちゃん',m:'Bé gái'}, {k:'～くん',r:'～くん',m:'Bé trai'},
-        {k:'～人',r:'～じん',m:'Người nước~'}, {k:'失礼ですが',r:'しつれいですが',m:'Xin lỗi...'}, {k:'お名前は？',r:'おなまえは',m:'Tên bạn là?'},
-        {k:'～から来ました',r:'～からきました',m:'Đến từ~'}, {k:'どうぞよろしく',r:'どうぞよろしく',m:'Mong giúp đỡ'}
+        // --- Đại từ & Con người ---
+        { k: '私', r: 'わたし', m: 'Tôi' },
+        { k: '私たち', r: 'わたしたち', m: 'Chúng tôi' },
+        { k: 'あなた', r: 'あなた', m: 'Bạn / Anh / Chị' },
+        { k: 'あの人', r: 'あのひと', m: 'Người kia' },
+        { k: 'あの方', r: 'あのかた', m: 'Vị kia (Lịch sự)' },
+        { k: '～さん', r: '～さん', m: 'Ông/Bà/Anh/Chị (Hậu tố)' },
+        { k: '～ちゃん', r: '～ちゃん', m: 'Bé (gái)' },
+        { k: '～くん', r: '～くん', m: 'Bé (trai)' },
+        { k: '～人', r: '～じん', m: 'Người nước ~' },
+
+        // --- Nghề nghiệp ---
+        { k: '先生', r: 'せんせい', m: 'Giáo viên (Gọi người khác)' },
+        { k: '教師', r: 'きょうし', m: 'Giáo viên (Nói về mình)' },
+        { k: '学生', r: 'がくせい', m: 'Học sinh, Sinh viên' },
+        { k: '会社員', r: 'かいしゃいん', m: 'Nhân viên công ty' },
+        { k: '社員', r: 'しゃいん', m: 'Nhân viên công ty' },
+        { k: '銀行員', r: 'ぎんこういん', m: 'Nhân viên ngân hàng' },
+        { k: '医者', r: 'いしゃ', m: 'Bác sĩ' },
+        { k: '研究者', r: 'けんきゅうしゃ', m: 'Nhà nghiên cứu' },
+        { k: 'エンジニア', r: 'エンジニア', m: 'Kỹ sư' },
+
+        // --- Địa điểm & Khác ---
+        { k: '大学', r: 'だいがく', m: 'Trường đại học' },
+        { k: '病院', r: 'びょういん', m: 'Bệnh viện' },
+        { k: '電気', r: 'でんき', m: 'Điện / Đèn điện' },
+
+        // --- Từ để hỏi & Tuổi ---
+        { k: 'だれ', r: 'だれ', m: 'Ai?' },
+        { k: 'どなた', r: 'どなた', m: 'Vị nào? (Lịch sự)' },
+        { k: '歳', r: '～さい', m: '～ tuổi' },
+        { k: '何歳', r: 'なんさい', m: 'Mấy tuổi?' },
+        { k: 'おいくつ', r: 'おいくつ', m: 'Bao nhiêu tuổi? (Lịch sự)' },
+
+        // --- Chào hỏi & Giao tiếp (Rất quan trọng) ---
+        { k: 'はい', r: 'はい', m: 'Vâng / Dạ' },
+        { k: 'いいえ', r: 'いいえ', m: 'Không' },
+        { k: '失礼ですが', r: 'しつれいですが', m: 'Xin cho hỏi' },
+        { k: 'お名前は？', r: 'おなまえは', m: 'Tên bạn là gì?' },
+        { k: '初めまして', r: 'はじめまして', m: 'Chào lần đầu gặp' },
+        { k: '～から来ました', r: '～からきました', m: 'Đến từ ～' },
+        { k: 'どうぞよろしく', r: 'どうぞ よろしく', m: 'Rất mong được giúp đỡ' },
+        { k: 'お願いします', r: 'おねがいします', m: 'Làm ơn / Nhờ bạn' },
+
+        // --- Tên các nước (Katakana) ---
+        { k: 'アメリカ', r: 'アメリカ', m: 'Mỹ' },
+        { k: 'イギリス', r: 'イギリス', m: 'Anh' },
+        { k: 'インド', r: 'インド', m: 'Ấn Độ' },
+        { k: 'インドネシア', r: 'インドネシア', m: 'Indonesia' },
+        { k: '韓国', r: 'かんこく', m: 'Hàn Quốc' },
+        { k: 'タイ', r: 'タイ', m: 'Thái Lan' },
+        { k: '中国', r: 'ちゅうごく', m: 'Trung Quốc' },
+        { k: 'ドイツ', r: 'ドイツ', m: 'Đức' },
+        { k: '日本', r: 'にほん', m: 'Nhật Bản' },
+        { k: 'フランス', r: 'フランス', m: 'Pháp' },
+        { k: 'ブラジル', r: 'ブラジル', m: 'Brazil' },
+        { k: 'ベトナム', r: 'ベトナム', m: 'Việt Nam' }
     ],
     '2': [
-        {k:'これ',r:'これ',m:'Cái này'}, {k:'それ',r:'それ',m:'Cái đó'}, {k:'あれ',r:'あれ',m:'Cái kia'},
-        {k:'この',r:'この',m:'~này'}, {k:'その',r:'その',m:'~đó'}, {k:'あの',r:'あの',m:'~kia'},
-        {k:'本',r:'ほん',m:'Sách'}, {k:'辞書',r:'じしょ',m:'Từ điển'}, {k:'雑誌',r:'ざっし',m:'Tạp chí'},
-        {k:'新聞',r:'しんぶん',m:'Báo'}, {k:'ノート',r:'ノート',m:'Vở'}, {k:'手帳',r:'てちょう',m:'Sổ tay'},
-        {k:'名刺',r:'めいし',m:'Danh thiếp'}, {k:'カード',r:'カード',m:'Thẻ'}, {k:'鉛筆',r:'えんぴつ',m:'Bút chì'},
-        {k:'時計',r:'とけい',m:'Đồng hồ'}, {k:'傘',r:'かさ',m:'Ô'}, {k:'鞄',r:'かばん',m:'Cặp'},
-        {k:'テレビ',r:'テレビ',m:'Tivi'}, {k:'カメラ',r:'カメラ',m:'Máy ảnh'}, {k:'机',r:'つくえ',m:'Bàn'},
-        {k:'椅子',r:'いす',m:'Ghế'}, {k:'コーヒー',r:'コーヒー',m:'Cà phê'}, {k:'英語',r:'えいご',m:'Tiếng Anh'},
-        {k:'日本語',r:'にほんご',m:'Tiếng Nhật'}, {k:'何',r:'なん',m:'Cái gì'}, {k:'そうです',r:'そうです',m:'Đúng rồi'}
+        { k: 'これ', r: 'これ', m: 'Cái này (gần người nói)' },
+        { k: 'それ', r: 'それ', m: 'Cái đó (gần người nghe)' },
+        { k: 'あれ', r: 'あれ', m: 'Cái kia (xa cả hai)' },
+        { k: 'この～', r: 'この', m: '～ này' },
+        { k: 'その～', r: 'その', m: '～ đó' },
+        { k: 'あの～', r: 'あの', m: '～ kia' },
+        { k: '本', r: 'ほん', m: 'Sách' },
+        { k: '辞書', r: 'じしょ', m: 'Từ điển' },
+        { k: '雑誌', r: 'ざっし', m: 'Tạp chí' },
+        { k: '新聞', r: 'しんぶん', m: 'Báo' },
+        { k: 'ノート', r: 'ノート', m: 'Vở' },
+        { k: '手帳', r: 'てちょう', m: 'Sổ tay' },
+        { k: '名刺', r: 'めいし', m: 'Danh thiếp' },
+        { k: 'カード', r: 'カード', m: 'Thẻ (Card)' },
+        { k: '鉛筆', r: 'えんぴつ', m: 'Bút chì' },
+        { k: 'ボールペン', r: 'ボールペン', m: 'Bút bi' },
+        { k: '時計', r: 'とけい', m: 'Đồng hồ' },
+        { k: '傘', r: 'かさ', m: 'Cái ô' },
+        { k: '鞄', r: 'かばん', m: 'Cặp sách, túi xách' },
+        { k: 'テープ', r: 'テープ', m: 'Băng cassette/Băng dính' },
+        { k: 'レコーダー', r: 'レコーダー', m: 'Máy ghi âm' },
+        { k: 'テレビ', r: 'テレビ', m: 'Tivi' },
+        { k: 'ラジオ', r: 'ラジオ', m: 'Radio' },
+        { k: 'カメラ', r: 'カメラ', m: 'Máy ảnh' },
+        { k: 'コンピューター', r: 'コンピューター', m: 'Máy vi tính' },
+        { k: '自動車', r: 'じどうしゃ', m: 'Ô tô' },
+        { k: '机', r: 'つくえ', m: 'Cái bàn' },
+        { k: '椅子', r: 'いす', m: 'Cái ghế' },
+        { k: 'チョコレート', r: 'チョコレート', m: 'Sô cô la' },
+        { k: 'コーヒー', r: 'コーヒー', m: 'Cà phê' },
+        { k: '英語', r: 'えいご', m: 'Tiếng Anh' },
+        { k: '日本語', r: 'にほんご', m: 'Tiếng Nhật' },
+        { k: '～語', r: '～ご', m: 'Tiếng ～' },
+        { k: '何', r: 'なん', m: 'Cái gì' },
+        { k: 'そうです', r: 'そうです', m: 'Đúng rồi / Vậy đó' }
     ]
 };
 
@@ -244,6 +315,85 @@ const radicalsData = [
     {c:'爿',h:'TƯỜNG',m:'Mảnh'}, {c:'片',h:'PHIẾN',m:'Tấm'}, {c:'牛',h:'NGƯU',m:'Trâu'}, {c:'犬',h:'KHUYỂN',m:'Chó'}
 ];
 
+const grammarData = {
+    '1': [
+        {
+            title: 'N1 は N2 です。',
+            mean: 'N1 là N2',
+            note: 'Dùng để giới thiệu tên, nghề nghiệp, quốc tịch. "は" đọc là "wa".',
+            ex: [
+                { j: 'わたしは マイク・ミラーです。', v: 'Tôi là Mike Miller.' },
+                { j: 'わたしは かいしゃいんです。', v: 'Tôi là nhân viên công ty.' }
+            ]
+        },
+        {
+            title: 'N1 は N2 じゃありません / ではありません。',
+            mean: 'N1 không phải là N2',
+            note: 'Phủ định của "desu". Văn nói thường dùng "Ja arimasen", văn viết dùng "Dewa arimasen".',
+            ex: [
+                { j: 'サントスさんは がくせいじゃありません。', v: 'Anh Santos không phải là sinh viên.' },
+                { j: 'わたしは いしゃじゃありません。', v: 'Tôi không phải là bác sĩ.' }
+            ]
+        },
+        {
+            title: 'N1 は N2 ですか。',
+            mean: 'N1 là N2 phải không?',
+            note: 'Thêm "ka" vào cuối câu khẳng định để tạo thành câu hỏi. Lên giọng ở cuối câu.',
+            ex: [
+                { j: 'ミラーさんは かいしゃいんですか。', v: 'Anh Miller có phải là nhân viên công ty không?' },
+                { j: '...はい、かいしゃいんです。', v: '...Vâng, là nhân viên công ty.' }
+            ]
+        },
+        {
+            title: 'N も',
+            mean: 'N cũng...',
+            note: 'Dùng trợ từ "mo" thay cho "wa" khi chủ đề giống với câu trước đó.',
+            ex: [
+                { j: 'ミラーさんは かいしゃいんです。', v: 'Anh Miller là nhân viên công ty.' },
+                { j: 'グプタさんも かいしゃいんです。', v: 'Anh Gupta cũng là nhân viên công ty.' }
+            ]
+        }
+    ],
+    '2': [
+        {
+            title: 'これ / それ / あれ',
+            mean: 'Cái này / Cái đó / Cái kia',
+            note: 'Đại từ chỉ định, đóng vai trò là chủ ngữ. <br>これ (Gần người nói), それ (Gần người nghe), あれ (Xa cả hai).',
+            ex: [
+                { j: 'これは じしょです。', v: 'Cái này là từ điển.' },
+                { j: 'それは わたしの かさです。', v: 'Cái đó là cái ô của tôi.' }
+            ]
+        },
+        {
+            title: 'この N / その N / あの N',
+            mean: 'Cái N này / Cái N đó / Cái N kia',
+            note: 'Bổ nghĩa cho danh từ đi ngay sau nó.',
+            ex: [
+                { j: 'このほんは わたしのです。', v: 'Quyển sách này là của tôi.' },
+                { j: 'あのかたは どなたですか。', v: 'Vị kia là ai vậy?' }
+            ]
+        },
+        {
+            title: 'そうです / そうじゃありません',
+            mean: 'Đúng vậy / Không phải vậy',
+            note: 'Dùng để trả lời câu hỏi xác nhận danh từ.',
+            ex: [
+                { j: 'それは テレホンカードですか。', v: 'Đó là thẻ điện thoại phải không?' },
+                { j: '...はい、そうです。', v: '...Vâng, đúng vậy.' }
+            ]
+        },
+        {
+            title: 'N1 の N2',
+            mean: 'N2 của N1 / N2 thuộc về N1',
+            note: 'Trợ từ "no" nối 2 danh từ. N1 bổ nghĩa cho N2 (Sở hữu, xuất xứ, nội dung...).',
+            ex: [
+                { j: 'これは コンピューターのほんです。', v: 'Đây là sách về máy tính.' },
+                { j: 'これは わたしのほんです。', v: 'Đây là sách của tôi.' }
+            ]
+        }
+    ]
+};
+
 /* =========================================
    2. TRẠNG THÁI & LOGIC ĐIỀU HƯỚNG
    ========================================= */
@@ -298,6 +448,13 @@ function openSection(id) {
     }
     else if (id === 'gameSection') {
         switchGameTab('flashcard', { target: document.querySelector('#gameSection .tab-btn') });
+    }
+    else if (id === 'grammarSection') {
+        renderGrammar('1');
+        // Reset Tab về Bài 1
+        const tabs = document.querySelectorAll('#grammarSection .tab-btn');
+        tabs.forEach(t => t.classList.remove('active'));
+        if(tabs[0]) tabs[0].classList.add('active');
     }
 }
 
@@ -717,3 +874,51 @@ function resetQuizInfo() {
 window.onload = function() {
     // Không làm gì cả, chờ người dùng bấm menu
 };
+
+/* =========================================
+   8. LOGIC NGỮ PHÁP (GRAMMAR)
+   ========================================= */
+
+
+function switchGrammarTab(lessonId, event) {
+    // Đổi màu nút
+    const btns = document.querySelectorAll('#grammarSection .tab-btn');
+    btns.forEach(b => b.classList.remove('active'));
+    event.target.classList.add('active');
+
+    renderGrammar(lessonId);
+}
+
+function renderGrammar(lessonId) {
+    const container = document.getElementById('grammarListContainer');
+    container.innerHTML = ''; // Xóa cũ
+
+    const list = grammarData[lessonId];
+    if (!list) return;
+
+    list.forEach(item => {
+        // Tạo HTML cho từng ví dụ
+        let examplesHTML = '';
+        item.ex.forEach(e => {
+            examplesHTML += `
+                <div class="gp-ex-item">
+                    <div class="ex-jp"><i class="fas fa-caret-right" style="color:var(--primary)"></i> ${e.j}</div>
+                    <div class="ex-vn">${e.v}</div>
+                </div>
+            `;
+        });
+
+        // Tạo thẻ Card
+        const card = document.createElement('div');
+        card.className = 'grammar-card';
+        card.innerHTML = `
+            <div class="gp-title">${item.title}</div>
+            <div class="gp-mean">${item.mean}</div>
+            <div class="gp-note">${item.note}</div>
+            <div class="gp-examples">
+                ${examplesHTML}
+            </div>
+        `;
+        container.appendChild(card);
+    });
+}
