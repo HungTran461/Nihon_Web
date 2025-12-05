@@ -1,0 +1,359 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nihongo Cute - Học Tiếng Nhật N5</title>
+    <link href="https://fonts.googleapis.com/css2?family=M+PLUS+Rounded+1c:wght@400;700;800&family=Nunito:wght@600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <header>
+        <div class="logo">
+            <i class="fas fa-torii-gate"></i> Nihongo<span style="color:var(--primary)">Cute</span>
+        </div>
+        <nav>
+            <ul>
+                <li><a href="#" onclick="closeSection()">Trang chủ</a></li>
+                <li><a href="#" onclick="alert('Chức năng đang phát triển!')">Bảng xếp hạng</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <section class="hero" id="heroSection">
+        <div class="mascot-container">
+            <div class="mascot-circle">
+                <span style="font-size: 4rem; line-height: 1;">🐇</span>
+            </div>
+        </div>
+        <h1>Học Tiếng Nhật thật vui!</h1>
+        <p>Khám phá Hiragana, Katakana và Kanji.</p>
+    </section>
+
+    <div class="container">
+        
+        <div class="card-grid" id="mainMenu">
+            <div class="card" onclick="openSection('kanaSection')">
+                <div class="card-icon"><i class="fas fa-font"></i></div>
+                <h3>Bảng Chữ Cái</h3>
+                <p>Học bảng chữ Hi-Ka</p>
+                <div class="card-badge">Cơ bản</div>
+            </div>
+
+            <div class="card" onclick="openSection('vocabSection')">
+                <div class="card-icon"><i class="fas fa-book-open"></i></div>
+                <h3>Từ vựng N5</h3>
+                <p>Từ mới theo bài học</p>
+                <div class="card-badge">Nền tảng</div>
+            </div>
+
+            <div class="card" onclick="openSection('kanjiSection')">
+                <div class="card-icon"><i class="fas fa-pen-nib"></i></div>
+                <h3>Hán Tự - Bộ thủ</h3>
+                <p>Học bộ thủ và Kanji</p>
+                <div class="card-badge">Nâng cao</div>
+            </div>
+            <div class="card" onclick="openSection('gameSection')">
+                <div class="card-icon"><i class="fas fa-book"></i></div>
+                <h3>Luyện Tập</h3>
+                <p>Hỗ trợ luyện tập</p>
+                <div class="card-badge">HOT</div>
+            </div>
+        </div>
+
+        <div id="kanaSection" class="section-content">
+            <div class="section-header">
+                <h2><i class="fas fa-star" style="color:var(--accent)"></i> Bảng Chữ Cái</h2>
+                <button class="btn-back" onclick="closeSection()"><i class="fas fa-arrow-left"></i> Quay lại</button>
+            </div>
+
+            <div class="kana-tabs">
+                <button class="tab-btn active" onclick="switchTab('hiragana', event)">Hiragana (ひらがな)</button>
+                <button class="tab-btn" onclick="switchTab('katakana', event)">Katakana (カタカナ)</button>
+            </div>
+
+            <div class="kana-grid" id="gridContainer"></div>
+        </div>
+
+        <div id="vocabSection" class="section-content">
+            <div class="section-header">
+                <h2><i class="fas fa-book" style="color:var(--accent)"></i> Từ vựng Minna</h2>
+                <button class="btn-back" onclick="closeSection()"><i class="fas fa-arrow-left"></i> Quay lại</button>
+            </div>
+            
+            <div class="lesson-control-bar">
+                <label for="lessonSelect">Chọn bài học:</label>
+                <div class="select-wrapper">
+                    <select id="lessonSelect" onchange="changeLesson()">
+                        <option value="1">Bài 1: Giới thiệu bản thân</option>
+                        <option value="2">Bài 2: Đồ vật xung quanh</option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="table-scroll-wrapper">
+                
+                <div class="vocab-table-header">
+                    <div class="col-header">Kanji</div>
+                    <div class="col-header">Cách đọc</div>
+                    <div class="col-header">Ý nghĩa</div>
+                    <div class="col-header">Nghe</div>
+                </div>
+
+                <div id="vocabListContainer" class="vocab-list-container">
+                    </div>
+
+            </div> </div>
+
+        <div id="kanjiSection" class="section-content">
+            <div class="section-header">
+                <h2><i class="fas fa-fire" style="color:var(--accent)"></i> Hán Tự & Bộ Thủ</h2>
+                <button class="btn-back" onclick="closeSection()"><i class="fas fa-arrow-left"></i> Quay lại</button>
+            </div>
+
+            <div class="kana-tabs">
+                <button class="tab-btn active" onclick="switchKanjiTab('radicals', event)">214 Bộ Thủ</button>
+                <button class="tab-btn" onclick="switchKanjiTab('n5', event)">Kanji N5 (80 chữ)</button>
+            </div>
+
+            <div id="kanjiListContainer" class="kanji-grid-container">
+                </div>
+        </div>
+
+        <div id="gameSection" class="section-content">
+            <div class="section-header">
+                <h2><i class="fas fa-book" style="color:var(--accent)"></i> Luyện tập</h2>
+                <button class="btn-back" onclick="closeSection()"><i class="fas fa-arrow-left"></i> Quay lại</button>
+            </div>
+
+            <div class="kana-tabs">
+                <button class="tab-btn active" onclick="switchGameTab('flashcard', event)">Flashcard (Lật thẻ)</button>
+                <button class="tab-btn" onclick="switchGameTab('quiz', event)">Trắc nghiệm (Quiz)</button>
+            </div>
+
+            <div id="gameFlashcardArea">
+                <div class="practice-controls">
+                    <label>Chọn bộ thẻ:</label>
+                    <div class="select-wrapper">
+                        <select id="flashcardDeck" onchange="initFlashcards()">
+                            <!-- Nhóm Minna -->
+                            <optgroup label="Giáo trình Minna">
+                                <option value="minna_1">Minna Bài 1</option>
+                                <option value="minna_2">Minna Bài 2</option>
+                            </optgroup>
+
+                            <!-- Nhóm Hiragana -->
+                            <optgroup label="Hiragana (Bảng mềm)">
+                                <option value="hira_basic">Hiragana (Cơ bản)</option>
+                                <option value="hira_daku">Hiragana (Biến âm)</option>
+                                <option value="hira_yoon">Hiragana (Ảo âm)</option>   <!-- Đã thêm -->
+                                <option value="hira_full">Hiragana (TỔNG HỢP)</option> <!-- Đã thêm -->
+                            </optgroup>
+
+                            <!-- Nhóm Katakana -->
+                            <optgroup label="Katakana (Bảng cứng)">
+                                <option value="kata_basic">Katakana (Cơ bản)</option>
+                                <option value="kata_daku">Katakana (Biến âm)</option>
+                                <option value="kata_yoon">Katakana (Ảo âm)</option>   <!-- Đã thêm -->
+                                <option value="kata_full">Katakana (TỔNG HỢP)</option> <!-- Đã thêm -->
+                            </optgroup>
+
+                            <!-- Nhóm Kanji -->
+                            <optgroup label="Hán Tự">
+                                <option value="n5_kanji">Kanji N5</option>
+                            </optgroup>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="flashcard-container">
+                    <div class="flashcard" onclick="flipCard()">
+                        <div class="flashcard-inner" id="flashcardInner">
+                            <div class="flashcard-front">
+                                <div class="fc-main" id="fcFrontMain">私</div>
+                                <div class="fc-sub" id="fcFrontSub">わたし</div>
+                                <div class="fc-hint"><i class="fas fa-sync-alt"></i> Chạm để lật</div>
+                            </div>
+                            <div class="flashcard-back">
+                                <div class="fc-mean" id="fcBackMean">Tôi</div>
+                                <div class="fc-audio-btn" onclick="playFlashcardAudio(event)">
+                                    <i class="fas fa-volume-up"></i>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="flashcard-nav">
+                    <button class="btn-nav" onclick="prevCard()"><i class="fas fa-chevron-left"></i> Trước</button>
+                    <span id="fcCounter">1 / 20</span>
+                    <button class="btn-nav" onclick="nextCard()">Sau <i class="fas fa-chevron-right"></i></button>
+                </div>
+            </div>
+
+            <div id="gameQuizArea" style="display:none;">
+
+                <div id="quizSetup" class="quiz-setup-box">
+                    <h3>Cấu hình bài thi</h3>
+                    <div class="quiz-config-grid">
+                        <div class="config-item">
+                            <label>Chủ đề:</label>
+                            <select id="quizTopic">
+                                <option value="minna_1">Minna Bài 1</option>
+                                <option value="minna_2">Minna Bài 2</option>
+                                <optgroup label="Hiragana">
+                                    <option value="hira_basic">Hiragana (Cơ bản)</option>
+                                    <option value="hira_daku">Hiragana (Biến âm)</option> 
+                                    <option value="hira_yoon">Hiragana (Ảo âm)</option>   
+                                    <option value="hira_full">Hiragana (TỔNG HỢP)</option> 
+                                </optgroup>
+                                <optgroup label="Katakana">
+                                    <option value="kata_basic">Katakana (Cơ bản)</option>
+                                    <option value="kata_daku">Katakana (Biến âm)</option> 
+                                    <option value="kata_yoon">Katakana (Ảo âm)</option>   
+                                    <option value="kata_full">Katakana (TỔNG HỢP)</option> 
+                                </optgroup>
+                                <option value="n5_kanji">Kanji N5</option>
+                            </select>
+                        </div>
+                        <div class="config-item">
+                            <label>Số câu hỏi:</label>
+                            <select id="quizCount">
+                                <option value="5">5 câu</option>
+                                <option value="10" selected>10 câu</option>
+                                <option value="20">20 câu</option>
+                                <option value="30">30 câu</option>
+                                <option value="40">40 câu</option>
+                            </select>
+                        </div>
+                        <div class="config-item">
+                            <label>Thời gian/câu:</label>
+                            <select id="quizTime">
+                                <option value="3">3 giây (Siêu khó)</option>
+                                <option value="5">5 giây (Khó)</option>
+                                <option value="10" selected>10 giây (Vừa)</option>
+                                <option value="15">15 giây (Dễ)</option>
+                            </select>
+                        </div>
+                        <div class="config-item">
+                            <label>Số đáp án:</label>
+                            <select id="quizOptionsCount">
+                                <option value="2">2 đáp án</option>
+                                <option value="3">3 đáp án</option>
+                                <option value="4" selected>4 đáp án</option>
+                                <option value="6">6 đáp án</option>
+                            </select>
+                        </div>
+                    </div>
+                    <button class="btn-start-quiz" onclick="startQuiz()">Bắt đầu làm bài</button>
+                </div>
+
+                <div id="quizPlay" style="display:none;">
+                    <div class="quiz-header-bar">
+                        <div class="quiz-progress">Câu: <span id="quizCurrent">1</span>/<span id="quizTotal">10</span></div>
+                        <div class="quiz-score-live">Điểm: <span id="quizScoreLive">0</span></div>
+                    </div>
+                    
+                    <div class="timer-container">
+                        <div class="timer-bar" id="timerBar"></div>
+                    </div>
+
+                    <div class="question-box">
+                        <div class="question-text" id="quizQuestion">?</div>
+                    </div>
+
+                    <div class="options-grid" id="quizOptions">
+                        </div>
+
+                    <button class="btn-end-early" onclick="endQuizEarly()">
+                        <i class="fas fa-flag-checkered"></i> Nộp bài ngay
+                    </button>
+                </div>
+
+                <div id="quizResult" style="display:none;">
+                    <div class="result-summary">
+                        <div class="result-score-circle" id="finalScore">8/10</div>
+                        <h3>Kết quả bài làm</h3>
+                        <button class="btn-restart" onclick="resetQuizInfo()">Trở lại</button>
+                    </div>
+
+                    <div class="result-details" id="resultDetailsList">
+                        </div>
+                </div>
+
+            </div>
+        </div>
+
+        <div id="charModal" class="modal-overlay">
+            <div class="modal-content">
+                <button class="modal-close" onclick="closeModal()">&times;</button>
+                
+                <div class="modal-body">
+                    <div class="modal-left">
+                        <div class="big-char" id="modalChar">字</div>
+                        <div class="romaji-tag" id="modalRomaji">JI</div> <button onclick="playAudioFromModal()" class="btn-audio-large">
+                            <i class="fas fa-volume-up"></i> Nghe
+                        </button>
+
+                        <div class="stroke-order-container">
+                            <p>Thứ tự nét viết:</p>
+                            <div class="stroke-box-static">
+                                <img id="strokeImage" src="" alt="..." onerror="this.src='https://via.placeholder.com/150?text=No+Data'">
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="modal-right">
+                        <div id="kanjiReadings" style="display:none; margin-bottom: 15px;">
+                            <div class="reading-row">
+                                <span class="reading-label label-onyomi">Âm On:</span>
+                                <span id="modalOnyomi" class="reading-content">-</span>
+                            </div>
+                            <div class="reading-row">
+                                <span class="reading-label label-kunyomi">Âm Kun:</span>
+                                <span id="modalKunyomi" class="reading-content">-</span>
+                            </div>
+                        </div>
+
+                        <h3><i class="fas fa-lightbulb"></i> Nghĩa & Từ vựng:</h3>
+                        <ul class="example-list" id="modalExamples">
+                            </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <footer>
+        <p>© 2025 Nihongo Cute. Học mỗi ngày nhé!</p>
+    </footer>
+
+    <div id="charModal" class="modal-overlay">
+        <div class="modal-content">
+            <button class="modal-close" onclick="closeModal()">&times;</button>
+            
+            <div class="modal-body">
+                <div class="modal-left">
+                    <div class="big-char" id="modalChar">あ</div>
+                    <div class="romaji-tag" id="modalRomaji">a</div>
+                    
+                    <button onclick="playAudioFromModal()" class="btn-audio-large">
+                        <i class="fas fa-volume-up"></i> Nghe phát âm
+                    </button>
+                </div>
+
+                <div class="modal-right">
+                    <h3><i class="fas fa-lightbulb"></i> Từ vựng gợi ý:</h3>
+                    <ul class="example-list" id="modalExamples">
+                        </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
