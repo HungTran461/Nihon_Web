@@ -293,26 +293,252 @@ const n5KanjiData = [
 ];
 
 const radicalsData = [
-    {c:'一',h:'NHẤT',m:'Một'}, {c:'丨',h:'CỔN',m:'Sổ'}, {c:'丶',h:'CHỦ',m:'Chấm'}, {c:'丿',h:'PHIỆT',m:'Phẩy'},
-    {c:'乙',h:'ẤT',m:'Can Ất'}, {c:'亅',h:'QUYẾT',m:'Móc'}, {c:'二',h:'NHỊ',m:'Hai'}, {c:'亠',h:'ĐẦU',m:'Đầu'},
-    {c:'人',h:'NHÂN',m:'Người'}, {c:'儿',h:'NHI',m:'Trẻ con'}, {c:'入',h:'NHẬP',m:'Vào'}, {c:'八',h:'BÁT',m:'Tám'},
-    {c:'冂',h:'QUYNH',m:'Vùng biên'}, {c:'冖',h:'MỊCH',m:'Trùm'}, {c:'冫',h:'BĂNG',m:'Nước đá'}, {c:'几',h:'KỶ',m:'Ghế'},
-    {c:'刀',h:'ĐAO',m:'Dao'}, {c:'力',h:'LỰC',m:'Sức'}, {c:'勹',h:'BAO',m:'Bao bọc'}, {c:'匕',h:'CHỦY',m:'Thìa'},
-    {c:'口',h:'KHẨU',m:'Miệng'}, {c:'囗',h:'VI',m:'Vây'}, {c:'土',h:'THỔ',m:'Đất'}, {c:'士',h:'SĨ',m:'Kẻ sĩ'},
-    {c:'夂',h:'TRUY',m:'Theo sau'}, {c:'夕',h:'TỊCH',m:'Đêm'}, {c:'大',h:'ĐẠI',m:'To'}, {c:'女',h:'NỮ',m:'Nữ'},
-    {c:'子',h:'TỬ',m:'Con'}, {c:'宀',h:'MIÊN',m:'Mái nhà'}, {c:'寸',h:'THỐN',m:'Tấc'}, {c:'小',h:'TIỂU',m:'Nhỏ'},
-    {c:'尸',h:'THI',m:'Xác'}, {c:'山',h:'SƠN',m:'Núi'}, {c:'川',h:'XUYÊN',m:'Sông'}, {c:'工',h:'CÔNG',m:'Thợ'},
-    {c:'已',h:'KỶ',m:'Bản thân'}, {c:'巾',h:'CÂN',m:'Khăn'}, {c:'干',h:'CAN',m:'Can thiệp'}, {c:'幺',h:'YÊU',m:'Nhỏ'},
-    {c:'广',h:'NGHIỄM',m:'Mái nhà'}, {c:'廴',h:'DẪN',m:'Bước dài'}, {c:'廾',h:'CỦNG',m:'Chắp tay'}, {c:'弋',h:'DẶC',m:'Bắn'},
-    {c:'弓',h:'CUNG',m:'Cung'}, {c:'彡',h:'SAM',m:'Lông'}, {c:'彳',h:'XÍCH',m:'Bước'}, {c:'心',h:'TÂM',m:'Tim'},
-    {c:'戈',h:'QUA',m:'Mác'}, {c:'户',h:'HỘ',m:'Cửa'}, {c:'手',h:'THỦ',m:'Tay'}, {c:'支',h:'CHI',m:'Cành'},
-    {c:'攴',h:'PHỘC',m:'Đánh'}, {c:'文',h:'VĂN',m:'Văn'}, {c:'斗',h:'ĐẨU',m:'Đấu'}, {c:'斤',h:'CÂN',m:'Rìu'},
-    {c:'方',h:'PHƯƠNG',m:'Vuông'}, {c:'无',h:'VÔ',m:'Không'}, {c:'日',h:'NHẬT',m:'Ngày'}, {c:'曰',h:'VIẾT',m:'Nói'},
-    {c:'月',h:'NGUYỆT',m:'Tháng'}, {c:'木',h:'MỘC',m:'Gỗ'}, {c:'欠',h:'KHIẾM',m:'Thiếu'}, {c:'止',h:'CHỈ',m:'Dừng'},
-    {c:'歹',h:'ĐÃI',m:'Xấu'}, {c:'殳',h:'THÙ',m:'Binh khí'}, {c:'毋',h:'VÔ',m:'Chớ'}, {c:'比',h:'TỶ',m:'So sánh'},
-    {c:'毛',h:'MAO',m:'Lông'}, {c:'氏',h:'THỊ',m:'Họ'}, {c:'气',h:'KHÍ',m:'Khí'}, {c:'水',h:'THỦY',m:'Nước'},
-    {c:'火',h:'HỎA',m:'Lửa'}, {c:'爪',h:'TRẢO',m:'Vuốt'}, {c:'父',h:'PHỤ',m:'Cha'}, {c:'爻',h:'HÀO',m:'Hào'},
-    {c:'爿',h:'TƯỜNG',m:'Mảnh'}, {c:'片',h:'PHIẾN',m:'Tấm'}, {c:'牛',h:'NGƯU',m:'Trâu'}, {c:'犬',h:'KHUYỂN',m:'Chó'}
+    // --- 1 NÉT (6 bộ) ---
+    {c:'一', h:'NHẤT', m:'Số một'},
+    {c:'丨', h:'CỔN', m:'Nét sổ thẳng'},
+    {c:'丶', h:'CHỦ', m:'Điểm, chấm'},
+    {c:'丿', h:'PHIỆT', m:'Nét phẩy, xiên trái'},
+    {c:'乙', h:'ẤT', m:'Can Ất, nét cong'},
+    {c:'亅', h:'QUYẾT', m:'Nét móc'},
+
+    // --- 2 NÉT (23 bộ) ---
+    {c:'二', h:'NHỊ', m:'Số hai'},
+    {c:'亠', h:'ĐẦU', m:'Đầu, nắp, mái'},
+    {c:'人', h:'NHÂN', m:'Người'},
+    {c:'儿', h:'NHI', m:'Trẻ con, đi bằng 2 chân'},
+    {c:'入', h:'NHẬP', m:'Vào'},
+    {c:'八', h:'BÁT', m:'Số tám'},
+    {c:'冂', h:'QUYNH', m:'Vùng biên giới, hoang địa'},
+    {c:'冖', h:'MỊCH', m:'Trùm khăn lên'},
+    {c:'冫', h:'BĂNG', m:'Nước đá, lạnh'},
+    {c:'几', h:'KỶ', m:'Cái ghế'},
+    {c:'凵', h:'KHẢM', m:'Há miệng, hố sâu'},
+    {c:'刀', h:'ĐAO', m:'Con dao, vũ khí'},
+    {c:'力', h:'LỰC', m:'Sức lực'},
+    {c:'勹', h:'BAO', m:'Bao bọc'},
+    {c:'匕', h:'CHỦY', m:'Cái thìa (muỗng)'},
+    {c:'匚', h:'PHƯƠNG', m:'Tủ đựng, vật vuông'},
+    {c:'匸', h:'HỆ', m:'Che đậy, giấu giếm'},
+    {c:'十', h:'THẬP', m:'Số mười'},
+    {c:'卜', h:'BỐC', m:'Xem bói'},
+    {c:'卩', h:'TIẾT', m:'Đốt tre'},
+    {c:'厂', h:'HÁN', m:'Sườn núi'},
+    {c:'厶', h:'KHƯ', m:'Riêng tư'},
+    {c:'又', h:'HỰU', m:'Lại nữa, cái tay'},
+
+    // --- 3 NÉT (31 bộ) ---
+    {c:'口', h:'KHẨU', m:'Cái miệng'},
+    {c:'囗', h:'VI', m:'Vây quanh (bức tường)'},
+    {c:'土', h:'THỔ', m:'Đất'},
+    {c:'士', h:'SĨ', m:'Kẻ sĩ, người có học'},
+    {c:'夂', h:'TRUY', m:'Đến sau'},
+    {c:'夊', h:'TUY', m:'Đi chậm'},
+    {c:'夕', h:'TỊCH', m:'Đêm tối'},
+    {c:'大', h:'ĐẠI', m:'To lớn'},
+    {c:'女', h:'NỮ', m:'Phụ nữ'},
+    {c:'子', h:'TỬ', m:'Con cái'},
+    {c:'宀', h:'MIÊN', m:'Mái nhà'},
+    {c:'寸', h:'THỐN', m:'Tấc (đo lường), một chút'},
+    {c:'小', h:'TIỂU', m:'Nhỏ bé'},
+    {c:'尢', h:'UÔNG', m:'Yếu đuối, què'},
+    {c:'尸', h:'THI', m:'Xác chết'},
+    {c:'屮', h:'TRIỆT', m:'Mầm non, cỏ'},
+    {c:'山', h:'SƠN', m:'Núi'},
+    {c:'巛', h:'XUYÊN', m:'Sông ngòi'},
+    {c:'工', h:'CÔNG', m:'Thợ, công việc'},
+    {c:'己', h:'KỶ', m:'Bản thân'},
+    {c:'巾', h:'CÂN', m:'Cái khăn'},
+    {c:'干', h:'CAN', m:'Can thiệp, khô, thiên can'},
+    {c:'幺', h:'YÊU', m:'Nhỏ nhắn, yêu ớt'},
+    {c:'广', h:'NGHIỄM', m:'Mái nhà rộng, sườn núi'},
+    {c:'廴', h:'DẪN', m:'Bước dài'},
+    {c:'廾', h:'CỦNG', m:'Chắp tay (nâng vật)'},
+    {c:'弋', h:'DẶC', m:'Bắn tên, cọc gỗ'},
+    {c:'弓', h:'CUNG', m:'Cái cung'},
+    {c:'彐', h:'KỆ', m:'Đầu con heo'},
+    {c:'彡', h:'SAM', m:'Lông tóc, vằn'},
+    {c:'彳', h:'XÍCH', m:'Bước chân trái'},
+
+    // --- 4 NÉT (34 bộ) ---
+    {c:'心', h:'TÂM', m:'Tim, tấm lòng'},
+    {c:'戈', h:'QUA', m:'Cây giáo, mác'},
+    {c:'戶', h:'HỘ', m:'Cửa một cánh'},
+    {c:'手', h:'THỦ', m:'Tay'},
+    {c:'支', h:'CHI', m:'Cành cây'},
+    {c:'攴', h:'PHỘC', m:'Đánh khẽ'},
+    {c:'文', h:'VĂN', m:'Văn chương, vẻ đẹp'},
+    {c:'斗', h:'ĐẨU', m:'Cái đấu (đo lường)'},
+    {c:'斤', h:'CÂN', m:'Cái rìu'},
+    {c:'方', h:'PHƯƠNG', m:'Vuông, phương hướng'},
+    {c:'无', h:'VÔ', m:'Không có'},
+    {c:'日', h:'NHẬT', m:'Mặt trời, ngày'},
+    {c:'曰', h:'VIẾT', m:'Nói rằng'},
+    {c:'月', h:'NGUYỆT', m:'Mặt trăng, tháng'},
+    {c:'木', h:'MỘC', m:'Cây, gỗ'},
+    {c:'欠', h:'KHIẾM', m:'Thiếu, nợ, khiếm khuyết'},
+    {c:'止', h:'CHỈ', m:'Dừng lại'},
+    {c:'歹', h:'ĐÃI', m:'Xấu xa, tệ hại, chết'},
+    {c:'殳', h:'THÙ', m:'Binh khí dài'},
+    {c:'毋', h:'VÔ', m:'Chớ, đừng (ngăn cấm)'},
+    {c:'比', h:'TỶ', m:'So sánh'},
+    {c:'毛', h:'MAO', m:'Lông'},
+    {c:'氏', h:'THỊ', m:'Họ tên, dòng họ'},
+    {c:'气', h:'KHÍ', m:'Không khí, hơi nước'},
+    {c:'水', h:'THỦY', m:'Nước'},
+    {c:'火', h:'HỎA', m:'Lửa'},
+    {c:'爪', h:'TRẢO', m:'Móng vuốt'},
+    {c:'父', h:'PHỤ', m:'Cha'},
+    {c:'爻', h:'HÀO', m:'Hào (trong bát quái)'},
+    {c:'爿', h:'TƯỜNG', m:'Mảnh gỗ (bên trái)'},
+    {c:'片', h:'PHIẾN', m:'Mảnh, tấm (bên phải)'},
+    {c:'牛', h:'NGƯU', m:'Con trâu'},
+    {c:'犬', h:'KHUYỂN', m:'Con chó'},
+
+    // --- 5 NÉT (23 bộ) ---
+    {c:'玄', h:'HUYỀN', m:'Màu đen, huyền bí'},
+    {c:'玉', h:'NGỌC', m:'Đá quý'},
+    {c:'瓜', h:'QUA', m:'Quả dưa'},
+    {c:'瓦', h:'NGÕI', m:'Viên ngói'},
+    {c:'甘', h:'CAM', m:'Ngọt'},
+    {c:'生', h:'SINH', m:'Sinh đẻ, sống'},
+    {c:'用', h:'DỤNG', m:'Dùng'},
+    {c:'田', h:'ĐIỀN', m:'Ruộng'},
+    {c:'疋', h:'SƠ', m:'Đơn vị đo vải, cái chân'},
+    {c:'疒', h:'NẠCH', m:'Bệnh tật'},
+    {c:'癶', h:'BÁT', m:'Gạt ra, bước đi'},
+    {c:'白', h:'BẠCH', m:'Màu trắng'},
+    {c:'皮', h:'BÌ', m:'Da'},
+    {c:'皿', h:'MÃNH', m:'Bát đĩa'},
+    {c:'目', h:'MỤC', m:'Mắt'},
+    {c:'矛', h:'MÂU', m:'Cây giáo'},
+    {c:'矢', h:'THỈ', m:'Mũi tên'},
+    {c:'石', h:'THẠCH', m:'Đá'},
+    {c:'示', h:'THỊ', m:'Chỉ thị, thần đất'},
+    {c:'禸', h:'NHỰU', m:'Vết chân thú'},
+    {c:'禾', h:'HÒA', m:'Lúa'},
+    {c:'穴', h:'HUYỆT', m:'Hang lỗ'},
+    {c:'立', h:'LẬP', m:'Đứng'},
+
+    // --- 6 NÉT (29 bộ) ---
+    {c:'竹', h:'TRÚC', m:'Tre trúc'},
+    {c:'米', h:'MỄ', m:'Gạo'},
+    {c:'糸', h:'MỊCH', m:'Sợi tơ'},
+    {c:'缶', h:'PHẪU', m:'Đồ sành'},
+    {c:'网', h:'VÕNG', m:'Cái lưới'},
+    {c:'羊', h:'DƯƠNG', m:'Con dê'},
+    {c:'羽', h:'VŨ', m:'Lông vũ'},
+    {c:'老', h:'LÃO', m:'Già'},
+    {c:'而', h:'NHI', m:'Mà, râu'},
+    {c:'耒', h:'LỖI', m:'Cái cày'},
+    {c:'耳', h:'NHĨ', m:'Tai'},
+    {c:'聿', h:'DUẬT', m:'Cây bút'},
+    {c:'肉', h:'NHỤC', m:'Thịt'},
+    {c:'臣', h:'THẦN', m:'Bề tôi'},
+    {c:'自', h:'TỰ', m:'Tự mình'},
+    {c:'至', h:'CHÍ', m:'Đến'},
+    {c:'臼', h:'CỐI', m:'Cái cối'},
+    {c:'舌', h:'THIỆT', m:'Cái lưỡi'},
+    {c:'舛', h:'SUYỄN', m:'Sai lầm, trái ngược'},
+    {c:'舟', h:'CHU', m:'Cái thuyền'},
+    {c:'艮', h:'CẤN', m:'Bền cứng, quẻ Cấn'},
+    {c:'色', h:'SẮC', m:'Màu sắc'},
+    {c:'艸', h:'THẢO', m:'Cỏ'},
+    {c:'虍', h:'HÔ', m:'Vằn hổ'},
+    {c:'虫', h:'TRÙNG', m:'Côn trùng, sâu bọ'},
+    {c:'血', h:'HUYẾT', m:'Máu'},
+    {c:'行', h:'HÀNH', m:'Đi, thi hành'},
+    {c:'衣', h:'Y', m:'Áo'},
+    {c:'襾', h:'Á', m:'Che đậy'},
+
+    // --- 7 NÉT (20 bộ) ---
+    {c:'見', h:'KIẾN', m:'Nhìn thấy'},
+    {c:'角', h:'GIÁC', m:'Sừng, góc'},
+    {c:'言', h:'NGÔN', m:'Lời nói'},
+    {c:'谷', h:'CỐC', m:'Khe suối, thung lũng'},
+    {c:'豆', h:'ĐẬU', m:'Hạt đậu, cái bát'},
+    {c:'豕', h:'THỈ', m:'Con heo'},
+    {c:'豸', h:'TRÃI', m:'Loài sâu không chân'},
+    {c:'貝', h:'BỐI', m:'Vỏ sò, bảo bối, tiền'},
+    {c:'赤', h:'XÍCH', m:'Màu đỏ'},
+    {c:'走', h:'TẨU', m:'Chạy'},
+    {c:'足', h:'TÚC', m:'Chân'},
+    {c:'身', h:'THÂN', m:'Thân thể'},
+    {c:'車', h:'XA', m:'Xe'},
+    {c:'辛', h:'TÂN', m:'Cay, vất vả'},
+    {c:'辰', h:'THẦN', m:'Can Thần, thời gian'},
+    {c:'辵', h:'SƯỚC', m:'Bước đi, chợt đi chợt dừng'},
+    {c:'邑', h:'ẤP', m:'Vùng đất, ấp'},
+    {c:'酉', h:'DẬU', m:'Men rượu, can Dậu'},
+    {c:'釆', h:'BIỆN', m:'Phân biệt'},
+    {c:'里', h:'LÝ', m:'Dặm, làng xóm'},
+
+    // --- 8 NÉT (9 bộ) ---
+    {c:'金', h:'KIM', m:'Vàng, kim loại'},
+    {c:'長', h:'TRƯỜNG', m:'Dài, lớn'},
+    {c:'門', h:'MÔN', m:'Cửa 2 cánh'},
+    {c:'阜', h:'PHỤ', m:'Đống đất, gò'},
+    {c:'隶', h:'ĐÃI', m:'Kịp, theo kịp'},
+    {c:'隹', h:'CHUY', m:'Chim đuôi ngắn'},
+    {c:'雨', h:'VŨ', m:'Mưa'},
+    {c:'青', h:'THANH', m:'Màu xanh'},
+    {c:'非', h:'PHI', m:'Không phải'},
+
+    // --- 9 NÉT (11 bộ) ---
+    {c:'面', h:'DIỆN', m:'Mặt'},
+    {c:'革', h:'CÁCH', m:'Da thú (đã thuộc)'},
+    {c:'韋', h:'VI', m:'Da thuộc (mềm)'},
+    {c:'韭', h:'CỬU', m:'Rau hẹ'},
+    {c:'音', h:'ÂM', m:'Âm thanh'},
+    {c:'頁', h:'HIỆT', m:'Trang giấy, cái đầu'},
+    {c:'風', h:'PHONG', m:'Gió'},
+    {c:'飛', h:'PHI', m:'Bay'},
+    {c:'食', h:'THỰC', m:'Ăn'},
+    {c:'首', h:'THỦ', m:'Đầu'},
+    {c:'香', h:'HƯƠNG', m:'Mùi thơm'},
+
+    // --- 10 NÉT (8 bộ) ---
+    {c:'馬', h:'MÃ', m:'Con ngựa'},
+    {c:'骨', h:'CỐT', m:'Xương'},
+    {c:'高', h:'CAO', m:'Cao'},
+    {c:'髟', h:'TIÊU', m:'Tóc dài'},
+    {c:'鬥', h:'ĐẤU', m:'Đánh nhau'},
+    {c:'鬯', h:'SƯỞNG', m:'Rượu nếp'},
+    {c:'鬲', h:'CÁCH', m:'Nồi, đỉnh (nấu ăn)'},
+    {c:'鬼', h:'QUỶ', m:'Con ma'},
+
+    // --- 11 NÉT (6 bộ) ---
+    {c:'魚', h:'NGƯ', m:'Con cá'},
+    {c:'鳥', h:'ĐIỂU', m:'Con chim (đuôi dài)'},
+    {c:'鹵', h:'LỖ', m:'Đất mặn'},
+    {c:'鹿', h:'LỘC', m:'Con hươu'},
+    {c:'麥', h:'MẠCH', m:'Lúa mạch'},
+    {c:'麻', h:'MA', m:'Cây gai'},
+
+    // --- 12 NÉT (4 bộ) ---
+    {c:'黃', h:'HOÀNG', m:'Màu vàng'},
+    {c:'黍', h:'THỬ', m:'Lúa nếp'},
+    {c:'黑', h:'HẮC', m:'Màu đen'},
+    {c:'黹', h:'CHỈ', m:'May vá'},
+
+    // --- 13 NÉT (4 bộ) ---
+    {c:'黽', h:'MÃNH', m:'Con ếch'},
+    {c:'鼎', h:'ĐỈNH', m:'Cái đỉnh (vạc)'},
+    {c:'鼓', h:'CỔ', m:'Cái trống'},
+    {c:'鼠', h:'THỬ', m:'Con chuột'},
+
+    // --- 14 NÉT (2 bộ) ---
+    {c:'鼻', h:'TỴ', m:'Cái mũi'},
+    {c:'齊', h:'TỀ', m:'Ngang bằng, tề chỉnh'},
+
+    // --- 15 NÉT (1 bộ) ---
+    {c:'齒', h:'XỈ', m:'Răng'},
+
+    // --- 16 NÉT (2 bộ) ---
+    {c:'龍', h:'LONG', m:'Con rồng'},
+    {c:'龜', h:'QUY', m:'Con rùa'},
+
+    // --- 17 NÉT (1 bộ) ---
+    {c:'龠', h:'DƯỢC', m:'Sáo 3 lỗ'}
 ];
 
 const grammarData = {
@@ -558,7 +784,7 @@ const kaiwaData = {
             dialogue: [
                 { role: 'A', name: '佐藤 (Satou)', text: 'おはよう ございます。', mean: 'Chào buổi sáng.', icon: 'Image/Av_Girl_BlackHair.png', side: 'left', gender: 'female' },
                 { role: 'B', name: '山田 (Yamada)', text: 'おはよう ございます。\n佐藤さん、こちらは ミラーさんです。', mean: 'Chào buổi sáng. Chị Satou, đây là anh Miller.', icon: 'Image/Av_Boy_BlackHair.png', side: 'left', gender: 'male'  },
-                { role: 'C', name: 'ミラー (Miller)', text: '初めまして。マイク・ミラーです。\nアメリカから 来ました。\nどうぞ よろしく。', mean: 'Rất hân hạnh. Tôi là Mike Miller. Tôi đến từ Mỹ. Rất mong được giúp đỡ.', icon: 'Image/Av_Boy_YellowHair.png', side: 'right' , gender: 'male' },
+                { role: 'C', name: 'ミラー (Miller)', text: '初めまして。マイク ミラーです。\nアメリカから 来ました。\nどうぞ よろしく。', mean: 'Rất hân hạnh. Tôi là Mike Miller. Tôi đến từ Mỹ. Rất mong được giúp đỡ.', icon: 'Image/Av_Boy_YellowHair.png', side: 'right' , gender: 'male' },
                 { role: 'A', name: '佐藤 (Satou)', text: '佐藤けいこです。\nどうぞ よろしく。', mean: 'Tôi là Satou Keiko. Rất mong được giúp đỡ.', icon: 'Image/Av_Girl_BlackHair.png', side: 'left', gender: 'female'  }
             ]
         },
@@ -799,7 +1025,12 @@ function openKanjiModal(item, type) {
         readingsBox.style.display = 'block';
         document.getElementById('modalOnyomi').innerText = item.on || '-';
         document.getElementById('modalKunyomi').innerText = item.kun || '-';
-        if(audioBtn) audioBtn.style.display = 'inline-block';
+        if(audioBtn) {
+            audioBtn.style.display = 'inline-block';
+            audioBtn.onclick = function() {
+                speak(item.c); 
+            };
+        }
         speak(item.c);
     } else {
         readingsBox.style.display = 'none';
@@ -821,8 +1052,12 @@ function openKanjiModal(item, type) {
 function openModal(char, romaji) {
     const modal = document.getElementById('charModal');
     const audioBtn = document.querySelector('.btn-audio-large');
-    if(audioBtn) audioBtn.style.display = 'inline-block';
-
+    if(audioBtn) {
+        audioBtn.style.display = 'inline-block';
+        audioBtn.onclick = function() {
+            speak(char);
+        };
+    }
     document.getElementById('modalChar').innerText = char;
     document.getElementById('modalRomaji').innerText = romaji.replace('_d', '');
     document.querySelector('.stroke-order-container').style.display = 'none';
