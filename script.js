@@ -352,6 +352,15 @@ const grammarData = {
                 { j: 'ミラーさんは かいしゃいんです。', v: 'Anh Miller là nhân viên công ty.' },
                 { j: 'グプタさんも かいしゃいんです。', v: 'Anh Gupta cũng là nhân viên công ty.' }
             ]
+        },
+        {
+            title: 'N1 の N2',
+            mean: 'N2 của N1',
+            note: 'Trợ từ "no" nối 2 danh từ. N1 bổ nghĩa cho N2 để chỉ sự sỡ hữu.',
+            ex: [
+                { j: 'グプタさんは IMCのしゃいんです。', v: 'Anh Gupta là nhân viên của công ty AKC.' },
+                { j: 'ワンさんは こうべびょういんのいしゃです。', v: 'Chị Y là bác sĩ của bệnh viện Kobe.' }
+            ]
         }
     ],
     '2': [
@@ -384,8 +393,8 @@ const grammarData = {
         },
         {
             title: 'N1 の N2',
-            mean: 'N2 của N1 / N2 thuộc về N1',
-            note: 'Trợ từ "no" nối 2 danh từ. N1 bổ nghĩa cho N2 (Sở hữu, xuất xứ, nội dung...).',
+            mean: 'N2 thuộc về N1',
+            note: 'Trợ từ "no" nối 2 danh từ. N1 bổ nghĩa cho N2 để chỉ xuất xứ, nội dung...',
             ex: [
                 { j: 'これは コンピューターのほんです。', v: 'Đây là sách về máy tính.' },
                 { j: 'これは わたしのほんです。', v: 'Đây là sách của tôi.' }
@@ -394,6 +403,196 @@ const grammarData = {
     ]
 };
 
+
+// --- 1.6 Dữ liệu Bài tập (Exercises) - Đã cập nhật định dạng "Kana(Kanji)" ---
+const exercisesData = {
+    '1': [
+        {
+            // Cũ: わたし
+            // Mới: わたし(私)
+            q: 'わたし(私) ＿ マイク・ミラーです。', 
+            opts: ['は', 'の', 'も'],
+            ans: 0 
+        },
+        {
+            // Cũ: あの人
+            q: 'あのひと(あの人) ＿ どなたですか。',
+            opts: ['わ', 'は', 'が'],
+            ans: 1 
+        },
+        {
+            // Cũ: しゃいん
+            q: 'IMCの しゃいん(社員) ＿ です。',
+            opts: ['は', 'の', 'も'], // Ở đây đáp án là trợ từ nên không có Kanji
+            ans: 1 // Đáp án: の (Nhân viên CỦA IMC - Xin lỗi code trước tôi để nhầm câu hỏi, đây là câu sửa lại cho đúng ngữ pháp)
+            // Hoặc nếu câu gốc là "IMC _ 社員です" (Là nhân viên IMC) thì đáp án là の
+        },
+        {
+            q: 'A: わたし(私)は ベトナムじん(人)です。<br>B: グプタさん ＿ ベトナムじん(人)ですか。',
+            opts: ['は', 'の', 'も'],
+            ans: 2 
+        },
+        {
+
+            q: 'はじめまして(初めまして)。どうぞ ＿。',
+            opts: ['おねがいします(お願いします)', 'よろしく', 'しつれいします(失礼します)'],
+            ans: 1 
+        }
+    ],
+    '2': [
+        {
+            q: '＿ は じしょ(辞書)です。',
+            opts: ['これ', 'それ', 'あれ'],
+            ans: 0
+        },
+        {
+            q: 'それは ＿ の かさ(傘)ですか。',
+            opts: ['だれ(誰)', 'なん(何)', 'どなた'],
+            ans: 0
+        },
+        {
+            q: 'この ＿ は わたし(私)のです。',
+            opts: ['ほん(本)', 'これ', 'それ'],
+            ans: 0 
+        },
+        {
+
+            q: 'そうです ＿。',
+            opts: ['か', 'ね', 'じゃありません'],
+            ans: 2
+        },
+        {
+            q: 'これは 「9」ですか、「7」ですか。<br>...＿ です。',
+            opts: ['はい、9', 'いいえ、7', '9'],
+            ans: 2 
+        }
+    ]
+};
+
+const extraData = {
+    'school': [
+        {k:'教室', r:'きょうしつ', m:'Lớp học'},
+        {k:'食堂', r:'しょくどう', m:'Nhà ăn'},
+        {k:'事務所', r:'じむしょ', m:'Văn phòng'},
+        {k:'会議室', r:'かいぎしつ', m:'Phòng họp'},
+        {k:'受付', r:'うけつけ', m:'Quầy lễ tân'},
+        {k:'廊下', r:'ろうか', m:'Hành lang'},
+        {k:'トイレ', r:'トイレ', m:'Nhà vệ sinh'},
+        {k:'階段', r:'かいだん', m:'Cầu thang'},
+        {k:'エレベーター', r:'エレベーター', m:'Thang máy'},
+        {k:'自動販売機', r:'じどうはんばいき', m:'Máy bán hàng tự động'},
+        {k:'黒板', r:'こくばん', m:'Bảng đen'},
+        {k:'消しゴム', r:'けしゴム', m:'Cục tẩy'}
+    ],
+    'toilet': [
+        {k:'お手洗い', r:'おてあらい', m:'Nhà vệ sinh (Lịch sự)'},
+        {k:'トイレットペーパー', r:'トイレットペーパー', m:'Giấy vệ sinh'},
+        {k:'シャワー', r:'シャワー', m:'Vòi hoa sen'},
+        {k:'お風呂', r:'おふろ', m:'Bồn tắm'},
+        {k:'石鹸', r:'せっけん', m:'Xà phòng'},
+        {k:'シャンプー', r:'シャンプー', m:'Dầu gội'},
+        {k:'鏡', r:'かがみ', m:'Gương'},
+        {k:'タオル', r:'タオル', m:'Khăn tắm'},
+        {k:'洗面台', r:'せんめんだい', m:'Bồn rửa mặt'}
+    ],
+    'time': [
+        {k:'今', r:'いま', m:'Bây giờ'},
+        {k:'～時', r:'～じ', m:'～ Giờ'},
+        {k:'～分', r:'～ふん', m:'～ Phút'},
+        {k:'半', r:'はん', m:'Rưỡi (30 phút)'},
+        {k:'午前', r:'ごぜん', m:'Buổi sáng (AM)'},
+        {k:'午後', r:'ごご', m:'Buổi chiều (PM)'},
+        {k:'朝', r:'あさ', m:'Sáng'},
+        {k:'昼', r:'ひる', m:'Trưa'},
+        {k:'晩', r:'ばん', m:'Tối'},
+        {k:'昨日', r:'きのう', m:'Hôm qua'},
+        {k:'今日', r:'きょう', m:'Hôm nay'},
+        {k:'明日', r:'あした', m:'Ngày mai'},
+        {k:'何時', r:'なんじ', m:'Mấy giờ'}
+    ],
+    'week': [
+        {k:'月曜日', r:'げつようび', m:'Thứ 2'},
+        {k:'火曜日', r:'かようび', m:'Thứ 3'},
+        {k:'水曜日', r:'すいようび', m:'Thứ 4'},
+        {k:'木曜日', r:'もくようび', m:'Thứ 5'},
+        {k:'金曜日', r:'きんようび', m:'Thứ 6'},
+        {k:'土曜日', r:'どようび', m:'Thứ 7'},
+        {k:'日曜日', r:'にちようび', m:'Chủ nhật'},
+        {k:'何曜日', r:'なんようび', m:'Thứ mấy'}
+    ],
+    'number': [ // Nhóm Số đếm
+        {k:'零', r:'ゼロ', m:'Số 0'},
+        {k:'一', r:'いち', m:'Số 1'},
+        {k:'二', r:'に', m:'Số 2'},
+        {k:'三', r:'san', m:'Số 3'},
+        {k:'四', r:'よん', m:'Số 4'},
+        {k:'五', r:'ご', m:'Số 5'},
+        {k:'六', r:'ろく', m:'Số 6'},
+        {k:'七', r:'なな', m:'Số 7'},
+        {k:'八', r:'はち', m:'Số 8'},
+        {k:'九', r:'きゅう', m:'Số 9'},
+        {k:'十', r:'じゅう', m:'Số 10'},
+        {k:'百', r:'ひゃく', m:'100 (Trăm)'},
+        {k:'千', r:'せん', m:'1000 (Nghìn)'},
+        {k:'一万', r:'いちまん', m:'10.000 (Vạn)'}
+    ],
+
+    'age': [ // Nhóm Tuổi tác
+        {k:'一歳', r:'いっさい', m:'1 tuổi'},
+        {k:'八歳', r:'はっさい', m:'8 tuổi'},
+        {k:'十歳', r:'じゅっさい', m:'10 tuổi'},
+        {k:'二十歳', r:'はたち', m:'20 tuổi (Đặc biệt)'},
+        {k:'何歳', r:'なんさい', m:'Mấy tuổi?'},
+        {k:'おいくつ', r:'おいくつ', m:'Bao nhiêu tuổi (Lịch sự)'}
+    ]
+};
+
+// --- 1.7 Dữ liệu Hội thoại (Kaiwa) ---
+
+const kaiwaData = {
+    '1': [ // Bài 1 là một Mảng gồm nhiều hội thoại
+        {
+            name: 'Kaiwa Chính', // Tên nút hiển thị
+            title: '初めまして (Rất hân hạnh)',
+            img: 'Image/Kaiwa_B1_1.png',
+            dialogue: [
+                { role: 'A', name: '佐藤 (Satou)', text: 'おはよう ございます。', mean: 'Chào buổi sáng.', icon: '👩', side: 'left' },
+                { role: 'B', name: '山田 (Yamada)', text: 'おはよう ございます。\n佐藤さん、こちらは ミラーさんです。', mean: 'Chào buổi sáng. Chị Satou, đây là anh Miller.', icon: '👨', side: 'left' },
+                { role: 'C', name: 'ミラー (Miller)', text: '初めまして。マイク・ミラーです。\nアメリカから 来ました。\nどうぞ よろしく。', mean: 'Rất hân hạnh. Tôi là Mike Miller. Tôi đến từ Mỹ. Rất mong được giúp đỡ.', icon: '👱', side: 'right' },
+                { role: 'A', name: '佐藤 (Satou)', text: '佐藤けいこです。\nどうぞ よろしく。', mean: 'Tôi là Satou Keiko. Rất mong được giúp đỡ.', icon: '👩', side: 'left' }
+            ]
+        },
+        {
+            name: 'Renshuu C-1', // Hội thoại phụ
+            title: 'Hỏi tên (お名前は)',
+            img: 'Image/Kaiwa_B1_2.png',
+            dialogue: [
+                { role: 'A', name: 'A', text: '失礼ですが、お名前は？', mean: 'Xin lỗi, tên anh/chị là gì?', icon: '👨',side: 'left' },
+                { role: 'B', name: 'B', text: 'イーです。', mean: 'Tôi là Y.', icon: '👱',side: 'right' },
+                { role: 'A', name: 'A', text: 'リーさんですか。', mean: 'Anh Lee phải không?', icon: '👨', side: 'left' },
+                { role: 'B', name: 'B', text: 'いいえ、イーです。', mean: 'Không, là Y.', icon: '👱', side: 'right' }
+            ]
+        }
+    ],
+    '2': [
+        {
+            name: 'Kaiwa Chính',
+            title: 'ほんの気持ちです (Chút lòng thành)',
+            img: 'Image/Kaiwa_B2_1.png',
+            dialogue: [
+                { role: 'A', name: '山田 (Yamada)', text: 'はい。どなたですか。', mean: 'Vâng. Ai đấy ạ?', icon: '👨',side: 'left' },
+                { role: 'B', name: 'サントス (Santos)', text: '４０８の サントスです。', mean: 'Tôi là Santos ở phòng 408.', icon: '🧔', side: 'right' },
+                { role: 'A', name: '山田 (Yamada)', text: 'こんにちは。サントスさん。', mean: 'Chào anh Santos.', icon: '👨', side: 'left' },
+                { role: 'B', name: 'サントス (Santos)', text: 'これから お世話に なります。\nどうぞ よろしく お願いします。', mean: 'Từ nay mong anh giúp đỡ. Rất mong được làm quen.', icon: '🧔', side: 'right' },
+                { role: 'A', name: '山田 (Yamada)', text: 'こちらこそ よろしく。', mean: 'Chính tôi mới cần anh giúp đỡ.', icon: '👨', side: 'left' },
+                { role: 'B', name: 'サントス (Santos)', text: 'あのう、これ、ほんの気持ちです。', mean: 'À, cái này... là chút lòng thành.', icon: '🧔', side: 'right' },
+                { role: 'A', name: '山田 (Yamada)', text: 'あ、どうも……何ですか。', mean: 'Ái chà, cảm ơn... Cái gì thế?', icon: '👨', side: 'left' },
+                { role: 'B', name: 'サントス (Santos)', text: 'コーヒーです。どうぞ。', mean: 'Là cà phê ạ. Xin mời.', icon: '🧔', side: 'right' },
+                { role: 'A', name: '山田 (Yamada)', text: 'どうも ありがとうございます。', mean: 'Cảm ơn anh rất nhiều.', icon: '👨', side: 'left' }
+            ]
+        }
+    ]
+};
 /* =========================================
    2. TRẠNG THÁI & LOGIC ĐIỀU HƯỚNG
    ========================================= */
@@ -455,6 +654,14 @@ function openSection(id) {
         const tabs = document.querySelectorAll('#grammarSection .tab-btn');
         tabs.forEach(t => t.classList.remove('active'));
         if(tabs[0]) tabs[0].classList.add('active');
+    }
+    else if (id === 'exerciseSection') {
+        renderExercises('1'); // Mặc định load Bài 1
+        resetTabs('#exerciseSection', 0);
+    }
+    if (id === 'kaiwaSection') {
+        // Gọi hàm này sẽ kích hoạt chuỗi: Tạo nút con -> Tự bấm nút đầu tiên -> Hiện chat
+        switchKaiwaTab('1'); 
     }
 }
 
@@ -530,24 +737,29 @@ function changeLesson() {
 function renderVocabList(id) {
     const container = document.getElementById('vocabListContainer');
     container.innerHTML = '';
-    const list = minnaData[id];
+    const list = minnaData[id] || extraData[id];
     if (list && list.length > 0) {
         list.forEach(word => {
+            // Xử lý hiển thị Kanji (nếu giống Hiragana thì hiện gạch ngang)
             const kanjiDisplay = word.k === word.r ? '<span class="no-kanji">-</span>' : word.k;
+            
             const row = document.createElement('div');
             row.className = 'vocab-row';
+            
             row.innerHTML = `
                 <div class="cell-kanji">${kanjiDisplay}</div>
                 <div class="cell-reading">${word.r}</div>
                 <div class="cell-mean">${word.m}</div>
                 <div class="cell-audio">
-                    <button class="btn-vocab-speak" onclick="speak('${word.r}')"><i class="fas fa-volume-up"></i></button>
+                    <button class="btn-vocab-speak" onclick="speak('${word.r}')" title="Nghe phát âm">
+                        <i class="fas fa-volume-up"></i>
+                    </button>
                 </div>
             `;
             container.appendChild(row);
         });
     } else {
-        container.innerHTML = '<div style="text-align:center;padding:20px;">Chưa có dữ liệu.</div>';
+        container.innerHTML = '<div style="text-align:center; padding:20px; color:#999">Chưa có dữ liệu cho mục này.</div>';
     }
 }
 
@@ -658,18 +870,35 @@ function playAudioFromModal() {
    ========================================= */
 function getGameData(key) {
     let rawData = [];
-    // Minna (Tự động)
+    
+    // 1. Minna (Cũ)
     if (key.startsWith('minna_')) {
         const lesson = key.split('_')[1];
         if (minnaData[lesson]) {
-            return minnaData[lesson].map(i => ({ front: (i.k===i.r?i.k:`${i.k}\n(${i.r})`), back: i.m, read: i.r, type:'vocab' }));
+            return minnaData[lesson].map(i => ({ 
+                front: (i.k===i.r?i.k:`${i.k}\n(${i.r})`), // Kanji (Hiragana)
+                back: i.m, read: i.r, type:'vocab' 
+            }));
         }
     }
-    // Kanji
+
+    // 2. SAIBA - TỪ VỰNG BỔ SUNG (MỚI)
+    if (key.startsWith('extra_')) {
+        const topic = key.split('_')[1];
+        if (extraData[topic]) {
+            return extraData[topic].map(i => ({ 
+                front: (i.k===i.r?i.k:`${i.k}\n(${i.r})`), // Kanji (Hiragana)
+                back: i.m, read: i.r, type:'vocab' 
+            }));
+        }
+    }
+
+    // 3. Kanji N5 (Cũ)
     if (key === 'n5_kanji') {
         return n5KanjiData.map(i => ({ front: i.c, back: `${i.h} - ${i.m}`, read: i.c, type:'kanji' }));
     }
-    // Kana (Logic gộp)
+
+    // 4. Kana (Cũ)
     if (key.includes('hira_') || key.includes('kata_')) {
         const sys = key.includes('hira') ? 'hiragana' : 'katakana';
         const map = charMaps[sys];
@@ -920,5 +1149,221 @@ function renderGrammar(lessonId) {
             </div>
         `;
         container.appendChild(card);
+    });
+}
+
+/* =========================================
+   9. LOGIC BÀI TẬP (EXERCISES)
+   ========================================= */
+
+let currentExerciseList = [];
+
+function switchExerciseTab(lessonId, event) {
+    const btns = document.querySelectorAll('#exerciseSection .tab-btn');
+    btns.forEach(b => b.classList.remove('active'));
+    event.target.classList.add('active');
+    
+    renderExercises(lessonId);
+}
+
+function formatText(text) {
+    // Tìm đoạn văn bản dạng "abc(xyz)" và bọc "xyz" vào thẻ span màu xám
+    return text.replace(/\(([^)]+)\)/g, '<span style="color:#999; font-size:0.9em; font-weight:normal">($1)</span>');
+}
+
+function renderExercises(lessonId) {
+    const container = document.getElementById('exerciseContainer');
+    container.innerHTML = ''; // Xóa cũ
+    document.getElementById('exerciseScore').innerText = ''; // Xóa điểm cũ
+    
+    // Bật lại nút chấm điểm nếu bị disable
+    const checkBtn = document.querySelector('.btn-check-answer');
+    if(checkBtn) {
+        checkBtn.disabled = false;
+        checkBtn.style.opacity = '1';
+        checkBtn.innerHTML = '<i class="fas fa-check-circle"></i> Chấm điểm';
+    }
+
+    currentExerciseList = exercisesData[lessonId] || [];
+    
+    if (currentExerciseList.length === 0) {
+        container.innerHTML = '<div style="text-align:center;">Chưa có bài tập.</div>';
+        return;
+    }
+
+    currentExerciseList.forEach((item, index) => {
+        const exBox = document.createElement('div');
+        exBox.className = 'ex-item';
+        exBox.id = `ex-q-${index}`; // Đánh dấu ID để lát chấm điểm
+
+        // Tạo HTML các nút đáp án
+        let optionsHTML = '';
+        item.opts.forEach((opt, optIndex) => {
+            // Áp dụng formatText cho đáp án
+            optionsHTML += `
+                <div class="ex-opt-btn" onclick="selectOption(${index}, ${optIndex}, this)">
+                    ${formatText(opt)}
+                </div>
+            `;
+        });
+
+        exBox.innerHTML = `
+            <div class="ex-question-text">Câu ${index + 1}: ${formatText(item.q)}</div>
+            <div class="ex-options-grid" id="opts-${index}">
+                ${optionsHTML}
+            </div>
+        `;
+        container.appendChild(exBox);
+    });
+}
+
+function selectOption(qIndex, optIndex, btnElement) {
+    // 1. Tìm trong câu hỏi đó, bỏ chọn các nút khác
+    const parent = document.getElementById(`opts-${qIndex}`);
+    const allBtns = parent.querySelectorAll('.ex-opt-btn');
+    allBtns.forEach(b => b.classList.remove('selected'));
+
+    // 2. Chọn nút hiện tại
+    btnElement.classList.add('selected');
+    
+    // 3. Lưu đáp án tạm thời vào thuộc tính data của cha
+    parent.setAttribute('data-selected', optIndex);
+}
+
+function checkExerciseResult() {
+    let score = 0;
+    let total = currentExerciseList.length;
+    
+    currentExerciseList.forEach((item, index) => {
+        const optsDiv = document.getElementById(`opts-${index}`);
+        const userSelect = optsDiv.getAttribute('data-selected');
+        const allBtns = optsDiv.querySelectorAll('.ex-opt-btn');
+
+        // Reset màu cũ
+        allBtns.forEach(b => {
+            b.classList.remove('correct', 'wrong');
+            b.onclick = null; // Khóa không cho chọn lại
+        });
+
+        // Xử lý kết quả
+        if (userSelect !== null) {
+            if (parseInt(userSelect) === item.ans) {
+                // Đúng
+                allBtns[userSelect].classList.add('correct');
+                score++;
+            } else {
+                // Sai
+                allBtns[userSelect].classList.add('wrong');
+                // Hiện đáp án đúng
+                allBtns[item.ans].classList.add('correct');
+            }
+        } else {
+            // Chưa làm -> Hiện đáp án đúng
+            allBtns[item.ans].classList.add('correct');
+        }
+    });
+
+    // Hiển thị điểm số
+    const scoreDiv = document.getElementById('exerciseScore');
+    scoreDiv.innerHTML = `Bạn làm đúng: <span style="color:red">${score}/${total}</span> câu`;
+    
+    // Disable nút chấm điểm
+    const checkBtn = document.querySelector('.btn-check-answer');
+    checkBtn.disabled = true;
+    checkBtn.style.opacity = '0.6';
+    checkBtn.innerText = 'Đã hoàn thành';
+}
+
+/* =========================================
+   10. LOGIC HỘI THOẠI (KAIWA)
+   ========================================= */
+
+let currentKaiwaLesson = '1';
+
+// 1. Hàm chuyển Tab bài học (Bài 1, Bài 2)
+function switchKaiwaTab(lessonId, event) {
+    // Đổi màu nút Tab bài học
+    const btns = document.querySelectorAll('#kaiwaSection > .kana-tabs .tab-btn');
+    btns.forEach(b => b.classList.remove('active'));
+    
+    // Nếu có sự kiện click thì dùng target, nếu không (gọi tự động) thì tìm nút tương ứng
+    if(event) {
+        event.target.classList.add('active');
+    } else {
+        // Tự động active nút đầu tiên hoặc nút tương ứng lessonId
+        // (Logic đơn giản: Bài 1 là nút 0, Bài 2 là nút 1)
+        const index = parseInt(lessonId) - 1; 
+        if(btns[index]) btns[index].classList.add('active');
+    }
+    
+    currentKaiwaLesson = lessonId;
+    
+    // Gọi hàm tạo menu con
+    renderKaiwaSubNav(lessonId);
+}
+
+// 2. Hàm tạo Menu con (Kaiwa Chính, Renshuu C...)
+function renderKaiwaSubNav(lessonId) {
+    const dataList = kaiwaData[lessonId];
+    const navContainer = document.getElementById('kaiwaSubNav');
+    navContainer.innerHTML = ''; // Xóa nút cũ
+
+    if (!dataList || dataList.length === 0) {
+        document.getElementById('kaiwaContainer').innerHTML = 'Chưa có dữ liệu.';
+        return;
+    }
+
+    // Tạo các nút con
+    dataList.forEach((item, index) => {
+        const btn = document.createElement('button');
+        btn.className = 'btn-sub-kaiwa';
+        btn.innerText = item.name; 
+        btn.onclick = () => renderKaiwaContent(lessonId, index);
+        navContainer.appendChild(btn);
+    });
+
+    // === QUAN TRỌNG: TỰ ĐỘNG LOAD CÁI ĐẦU TIÊN ===
+    // Ngay sau khi tạo nút xong, gọi luôn hàm hiển thị nội dung số 0
+    renderKaiwaContent(lessonId, 0);
+}
+
+// 3. Hàm hiển thị nội dung chat
+function renderKaiwaContent(lessonId, index) {
+    // Highlight nút sub-nav đang chọn
+    const btns = document.querySelectorAll('.btn-sub-kaiwa');
+    btns.forEach(b => b.classList.remove('active'));
+    if(btns[index]) btns[index].classList.add('active');
+
+    // Lấy dữ liệu
+    const data = kaiwaData[lessonId][index];
+    const container = document.getElementById('kaiwaContainer');
+    const imgEl = document.getElementById('kaiwaImage');
+
+    // Cập nhật ảnh
+    if(data.img) imgEl.src = data.img;
+    
+    container.innerHTML = ''; // Xóa chat cũ
+
+    // Render từng dòng chat
+    data.dialogue.forEach(line => {
+        const row = document.createElement('div');
+        
+        const isRight = (line.side === 'right');
+        // ==============================
+        
+        row.className = `chat-row ${isRight ? 'right' : 'left'}`;
+        
+        row.innerHTML = `
+            <div class="chat-avatar">${line.icon}</div>
+            <div class="chat-bubble">
+                <div class="chat-name">${line.name}</div>
+                <div class="chat-jp">
+                    ${line.text.replace(/\n/g, '<br>')} 
+                    <i class="fas fa-volume-up btn-chat-audio" onclick="speak('${line.text.replace(/\n/g, ' ')}')"></i>
+                </div>
+                <div class="chat-vn">${line.mean}</div>
+            </div>
+        `;
+        container.appendChild(row);
     });
 }

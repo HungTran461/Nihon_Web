@@ -62,10 +62,25 @@
                 <p>Học bộ thủ và Kanji</p>
                 <div class="card-badge">Nâng cao</div>
             </div>
+
+            <div class="card" onclick="openSection('exerciseSection')">
+                <div class="card-icon"><i class="fas fa-pencil-alt"></i></div>
+                <h3>Bài tập</h3>
+                <p>Củng cố bài học</p>
+                <div class="card-badge">Kiểm tra</div>
+            </div>
+
+            <div class="card" onclick="openSection('kaiwaSection')">
+                <div class="card-icon"><i class="fas fa-comments"></i></div>
+                <h3>Hội thoại</h3>
+                <p>Luyện nghe & nói</p>
+                <div class="card-badge">Hay</div>
+            </div>
+
             <div class="card" onclick="openSection('gameSection')">
                 <div class="card-icon"><i class="fas fa-book"></i></div>
                 <h3>Luyện Tập</h3>
-                <p>Hỗ trợ luyện tập</p>
+                <p>Chức năng hỗ trợ</p>
                 <div class="card-badge">HOT</div>
             </div>
         </div>
@@ -94,8 +109,19 @@
                 <label for="lessonSelect">Chọn bài học:</label>
                 <div class="select-wrapper">
                     <select id="lessonSelect" onchange="changeLesson()">
-                        <option value="1">Bài 1: Giới thiệu bản thân</option>
-                        <option value="2">Bài 2: Đồ vật xung quanh</option>
+                        <optgroup label="Giáo trình Minna">
+                        <option value="1">Minna Bài 1</option>
+                        <option value="2">Minna Bài 2</option>
+                    </optgroup>
+
+                    <optgroup label="Saiba (Bổ trợ)">
+                        <option value="school">Đồ vật trong trường</option>
+                        <option value="toilet">Đồ dùng nhà vệ sinh</option>
+                        <option value="time">Thời gian & Giờ giấc</option>
+                        <option value="week">Thứ trong tuần</option>
+                        <option value="number">Số đếm</option>
+                        <option value="age">Tuổi tác</option>
+                    </optgroup>
                     </select>
                 </div>
             </div>
@@ -145,6 +171,14 @@
                     <label>Chọn bộ thẻ:</label>
                     <div class="select-wrapper">
                         <select id="flashcardDeck" onchange="initFlashcards()">
+                            <!-- Nhóm Sabai -->
+                            <optgroup label="Saiba (Từ vựng bổ sung)">
+                                <option value="extra_school">Đồ vật trong trường</option>
+                                <option value="extra_toilet">Đồ dùng nhà vệ sinh</option>
+                                <option value="extra_time">Thời gian & Giờ giấc</option>
+                                <option value="extra_week">Thứ trong tuần</option>
+                                <option value="extra_number">Số đếm</option> <option value="extra_age">Tuổi tác</option>   
+                            </optgroup>
                             <!-- Nhóm Minna -->
                             <optgroup label="Giáo trình Minna">
                                 <option value="minna_1">Minna Bài 1</option>
@@ -208,6 +242,13 @@
                         <div class="config-item">
                             <label>Chủ đề:</label>
                             <select id="quizTopic">
+                                <optgroup label="Saiba (Từ vựng bổ sung)">
+                                    <option value="extra_school">Đồ vật trong trường</option>
+                                    <option value="extra_toilet">Đồ dùng nhà vệ sinh</option>
+                                    <option value="extra_time">Thời gian & Giờ giấc</option>
+                                    <option value="extra_week">Thứ trong tuần</option>
+                                    <option value="extra_number">Số đếm</option> <option value="extra_age">Tuổi tác</option>   
+                                </optgroup>
                                 <option value="minna_1">Minna Bài 1</option>
                                 <option value="minna_2">Minna Bài 2</option>
                                 <optgroup label="Hiragana">
@@ -333,7 +374,7 @@
         </div>
         <div id="grammarSection" class="section-content">
             <div class="section-header">
-                <h2><i class="fas fa-magic" style="color:var(--accent)"></i> Ngữ pháp Minna</h2>
+                <h2><i class="fas fa-magic" style="color:var(--accent)"></i> Ngữ pháp</h2>
                 <button class="btn-back" onclick="closeSection()"><i class="fas fa-arrow-left"></i> Quay lại</button>
             </div>
 
@@ -344,6 +385,47 @@
 
             <div id="grammarListContainer" class="grammar-container">
                 </div>
+        </div>
+        <div id="exerciseSection" class="section-content">
+            <div class="section-header">
+                <h2><i class="fas fa-edit" style="color:var(--accent)"></i> Bài tập thực hành</h2>
+                <button class="btn-back" onclick="closeSection()"><i class="fas fa-arrow-left"></i> Quay lại</button>
+            </div>
+
+            <div class="kana-tabs">
+                <button class="tab-btn active" onclick="switchExerciseTab('1', event)">Bài 1</button>
+                <button class="tab-btn" onclick="switchExerciseTab('2', event)">Bài 2</button>
+            </div>
+
+            <div id="exerciseContainer" class="exercise-wrapper">
+                </div>
+
+            <div class="exercise-footer">
+                <button class="btn-check-answer" onclick="checkExerciseResult()">
+                    <i class="fas fa-check-circle"></i> Chấm điểm
+                </button>
+                <div id="exerciseScore" class="exercise-score"></div>
+            </div>
+        </div>
+        <div id="kaiwaSection" class="section-content">
+            <div class="section-header">
+                <h2><i class="fas fa-comments" style="color:var(--accent)"></i> Hội thoại Kaiwa</h2>
+                <button class="btn-back" onclick="closeSection()"><i class="fas fa-arrow-left"></i> Quay lại</button>
+            </div>
+
+            <div class="kana-tabs">
+                <button class="tab-btn active" onclick="switchKaiwaTab('1', event)">Bài 1</button>
+                <button class="tab-btn" onclick="switchKaiwaTab('2', event)">Bài 2</button>
+            </div>
+
+            <div id="kaiwaSubNav" class="kaiwa-sub-nav">
+                </div>
+
+            <div class="kaiwa-illustration">
+                <img id="kaiwaImage" src="" alt="Kaiwa Image">
+            </div>
+
+            <div id="kaiwaContainer" class="kaiwa-chat-box"></div>
         </div>
     </div>
 

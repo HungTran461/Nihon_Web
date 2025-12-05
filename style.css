@@ -188,6 +188,8 @@ nav a:hover, nav a.active {
     border-radius: 20px; border: 2px dashed var(--accent);
 }
 .lesson-control-bar label { font-weight: bold; color: var(--secondary); }
+
+
 .select-wrapper { width: 100%; max-width: 300px; }
 .select-wrapper select {
     width: 100%;
@@ -772,4 +774,361 @@ footer { text-align: center; margin-top: 3rem; color: #aaa; font-size: 0.9rem; }
 @media (max-width: 600px) {
     .gp-title { font-size: 1.1rem; width: 100%; text-align: center; }
     .grammar-card { padding: 15px; }
+}
+
+/* =========================================
+   EXERCISE SECTION STYLES
+   ========================================= */
+
+.exercise-wrapper {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    padding-bottom: 20px;
+}
+
+/* Khung một câu hỏi */
+.ex-item {
+    background: white;
+    border: 2px solid #f0f0f0;
+    border-radius: 15px;
+    padding: 20px;
+    transition: 0.3s;
+}
+
+.ex-question-text {
+    font-size: 1.1rem;
+    font-weight: 700;
+    color: var(--text);
+    margin-bottom: 15px;
+    border-left: 4px solid var(--primary);
+    padding-left: 10px;
+}
+
+/* Lưới đáp án A, B, C */
+.ex-options-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+    gap: 10px;
+}
+
+/* Nút chọn đáp án */
+.ex-opt-btn {
+    padding: 10px;
+    border: 2px solid #eee;
+    border-radius: 10px;
+    background: white;
+    color: #555;
+    font-weight: bold;
+    cursor: pointer;
+    text-align: center;
+    transition: 0.2s;
+}
+
+.ex-opt-btn:hover {
+    background: #f9f9f9;
+    border-color: var(--secondary);
+}
+
+/* Trạng thái được chọn */
+.ex-opt-btn.selected {
+    background: var(--secondary);
+    color: white;
+    border-color: var(--secondary);
+    box-shadow: 0 4px 8px rgba(161, 140, 209, 0.3);
+}
+
+/* Trạng thái Đúng / Sai (Khi chấm điểm) */
+.ex-opt-btn.correct {
+    background: #28a745 !important;
+    color: white !important;
+    border-color: #28a745 !important;
+}
+
+.ex-opt-btn.wrong {
+    background: #dc3545 !important;
+    color: white !important;
+    border-color: #dc3545 !important;
+    opacity: 0.6;
+}
+
+/* Nút chấm điểm */
+.exercise-footer {
+    text-align: center;
+    margin-top: 20px;
+    border-top: 2px dashed #eee;
+    padding-top: 20px;
+}
+
+.btn-check-answer {
+    padding: 12px 30px;
+    background: var(--primary);
+    color: white;
+    border: none;
+    border-radius: 25px;
+    font-size: 1.1rem;
+    font-weight: bold;
+    cursor: pointer;
+    box-shadow: 0 4px 10px rgba(255, 154, 158, 0.4);
+    transition: 0.2s;
+}
+
+.btn-check-answer:hover {
+    background: var(--primary-dark);
+    transform: scale(1.05);
+}
+
+.exercise-score {
+    margin-top: 15px;
+    font-size: 1.5rem;
+    font-weight: 800;
+    color: var(--primary);
+}
+
+/* =========================================
+   CUSTOM DROPDOWN (Giao diện chọn đẹp)
+   ========================================= */
+
+/* 1. Căn giữa khung chứa cho cả Từ vựng và Game */
+.lesson-control-bar, 
+.practice-controls {
+    display: flex;
+    flex-direction: column;
+    align-items: center;       /* Căn giữa theo chiều ngang */
+    justify-content: center;   /* Căn giữa theo chiều dọc */
+    background: #fff;
+    padding: 20px;
+    border-radius: 20px;
+    margin-bottom: 25px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.03);
+    border: 2px dashed #ffe0e6; /* Viền nét đứt màu hồng nhạt */
+}
+
+/* 2. Label (Chữ tiêu đề nhỏ bên trên) */
+.lesson-control-bar label, 
+.practice-controls label {
+    font-weight: 800;
+    color: var(--secondary);
+    font-size: 1rem;
+    margin-bottom: 10px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+/* 3. Wrapper (Khung bao quanh thẻ Select) */
+.select-wrapper {
+    position: relative;
+    width: 100%;
+    max-width: 350px; /* Giới hạn chiều rộng để không bị bè ra quá to */
+    margin: 0 auto;   /* Buộc căn giữa */
+}
+
+/* 4. Thẻ Select (Ô chọn chính) */
+.select-wrapper select {
+    width: 100%;
+    /* Padding: Trên/Dưới 12px, Phải 50px (chừa chỗ cho mũi tên), Trái 20px */
+    padding: 12px 50px 12px 20px; 
+    
+    font-family: inherit;
+    font-size: 1rem;
+    font-weight: 700;
+    color: var(--text);
+    
+    background-color: white;
+    border: 2px solid var(--primary); /* Viền hồng đậm */
+    border-radius: 50px;              /* Bo tròn hình viên thuốc */
+    
+    outline: none;
+    cursor: pointer;
+    text-align: center;               /* Căn giữa chữ bên trong */
+    text-align-last: center;          /* Hỗ trợ căn giữa trên một số trình duyệt */
+    
+    box-shadow: 0 5px 15px rgba(255, 154, 158, 0.2); /* Đổ bóng hồng nhẹ */
+    transition: all 0.3s ease;
+
+    /* Ẩn mũi tên mặc định xấu xí của trình duyệt */
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+
+    /* Thêm mũi tên Custom (Icon trái tim hoặc mũi tên hồng) */
+    background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%23ff9a9e'%3e%3cpath d='M7.41 8.59L12 13.17l4.59-4.58L18 10l-6 6-6-6 1.41-1.41z'/%3e%3c/svg%3e");
+    background-repeat: no-repeat;
+    background-position: right 15px center; /* Đặt icon bên phải */
+    background-size: 24px;
+}
+
+/* Hiệu ứng khi di chuột vào */
+.select-wrapper select:hover {
+    border-color: var(--secondary);
+    transform: translateY(-2px);
+    box-shadow: 0 8px 20px rgba(161, 140, 209, 0.3);
+}
+
+/* Hiệu ứng khi bấm vào */
+.select-wrapper select:focus {
+    border-color: var(--secondary);
+}
+
+/* 5. Tùy chỉnh các Option bên trong (Chỉ hiện trên một số trình duyệt) */
+.select-wrapper option {
+    background: white;
+    color: #333;
+    padding: 10px;
+}
+
+.select-wrapper optgroup {
+    color: var(--primary);
+    font-weight: 800;
+    font-style: normal;
+}
+
+/* =========================================
+   KAIWA SECTION (CHAT STYLE)
+   ========================================= */
+
+.kaiwa-illustration {
+    width: 100%;
+    margin-bottom: 20px;
+    border-radius: 15px;
+    overflow: hidden;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+    border: 3px solid white;
+}
+
+.kaiwa-illustration img {
+    width: 100%;
+    height: auto;
+    display: block;
+    object-fit: cover;
+}
+
+/* Khung chat tổng */
+.kaiwa-chat-box {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    padding-bottom: 20px;
+}
+
+/* Một dòng chat (bao gồm Avatar + Bong bóng) */
+.chat-row {
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+}
+
+/* Dòng chat bên Trái (Người A) */
+.chat-row.left {
+    flex-direction: row;
+}
+
+/* Dòng chat bên Phải (Người B - Ví dụ: Nhân vật chính) */
+.chat-row.right {
+    flex-direction: row-reverse;
+}
+
+/* Avatar nhân vật */
+.chat-avatar {
+    width: 50px;
+    height: 50px;
+    background: #eee;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.5rem;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    flex-shrink: 0;
+    border: 2px solid white;
+}
+
+.chat-row.left .chat-avatar { background: #e0f7fa; color: #006064; } /* Xanh nhạt */
+.chat-row.right .chat-avatar { background: #fff9c4; color: #f57f17; } /* Vàng nhạt */
+
+/* Bong bóng chat */
+.chat-bubble {
+    max-width: 80%;
+    padding: 12px 15px;
+    border-radius: 15px;
+    position: relative;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+    line-height: 1.5;
+}
+
+.chat-row.left .chat-bubble {
+    background: white;
+    border-top-left-radius: 0;
+    border: 1px solid #eee;
+}
+
+.chat-row.right .chat-bubble {
+    background: var(--primary); /* Màu hồng chủ đạo */
+    color: white;
+    border-top-right-radius: 0;
+}
+
+/* Nội dung chat */
+.chat-name {
+    font-size: 0.8rem;
+    font-weight: bold;
+    margin-bottom: 4px;
+    color: #888;
+}
+.chat-row.right .chat-name { text-align: right; color: var(--primary-dark); }
+
+.chat-jp {
+    font-size: 1.1rem;
+    font-weight: bold;
+    margin-bottom: 5px;
+}
+
+.chat-vn {
+    font-size: 0.9rem;
+    font-style: italic;
+    opacity: 0.9;
+    border-top: 1px dashed rgba(0,0,0,0.1);
+    padding-top: 5px;
+}
+.chat-row.right .chat-vn { border-top-color: rgba(255,255,255,0.3); }
+
+/* Nút loa nhỏ trong chat */
+.btn-chat-audio {
+    margin-left: 5px;
+    cursor: pointer;
+    font-size: 1rem;
+    color: var(--secondary);
+}
+.chat-row.right .btn-chat-audio { color: white; }
+
+/* --- Thêm vào cuối file style.css --- */
+
+.kaiwa-sub-nav {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    margin-bottom: 20px;
+    flex-wrap: wrap;
+}
+
+.btn-sub-kaiwa {
+    padding: 8px 16px;
+    border: 1px solid var(--secondary);
+    background: white;
+    color: var(--secondary);
+    border-radius: 15px;
+    cursor: pointer;
+    font-size: 0.9rem;
+    font-weight: bold;
+    transition: 0.2s;
+}
+
+.btn-sub-kaiwa:hover {
+    background: #f3e5f5;
+}
+
+.btn-sub-kaiwa.active {
+    background: var(--secondary);
+    color: white;
+    box-shadow: 0 4px 10px rgba(161, 140, 209, 0.4);
 }
