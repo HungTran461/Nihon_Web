@@ -556,10 +556,10 @@ const kaiwaData = {
             title: '初めまして (Rất hân hạnh)',
             img: 'Image/Kaiwa_B1_1.png',
             dialogue: [
-                { role: 'A', name: '佐藤 (Satou)', text: 'おはよう ございます。', mean: 'Chào buổi sáng.', icon: '👩', side: 'left' },
-                { role: 'B', name: '山田 (Yamada)', text: 'おはよう ございます。\n佐藤さん、こちらは ミラーさんです。', mean: 'Chào buổi sáng. Chị Satou, đây là anh Miller.', icon: '👨', side: 'left' },
-                { role: 'C', name: 'ミラー (Miller)', text: '初めまして。マイク・ミラーです。\nアメリカから 来ました。\nどうぞ よろしく。', mean: 'Rất hân hạnh. Tôi là Mike Miller. Tôi đến từ Mỹ. Rất mong được giúp đỡ.', icon: '👱', side: 'right' },
-                { role: 'A', name: '佐藤 (Satou)', text: '佐藤けいこです。\nどうぞ よろしく。', mean: 'Tôi là Satou Keiko. Rất mong được giúp đỡ.', icon: '👩', side: 'left' }
+                { role: 'A', name: '佐藤 (Satou)', text: 'おはよう ございます。', mean: 'Chào buổi sáng.', icon: 'Image/Av_Girl_BlackHair.png', side: 'left', gender: 'female' },
+                { role: 'B', name: '山田 (Yamada)', text: 'おはよう ございます。\n佐藤さん、こちらは ミラーさんです。', mean: 'Chào buổi sáng. Chị Satou, đây là anh Miller.', icon: 'Image/Av_Boy_BlackHair.png', side: 'left', gender: 'male'  },
+                { role: 'C', name: 'ミラー (Miller)', text: '初めまして。マイク・ミラーです。\nアメリカから 来ました。\nどうぞ よろしく。', mean: 'Rất hân hạnh. Tôi là Mike Miller. Tôi đến từ Mỹ. Rất mong được giúp đỡ.', icon: 'Image/Av_Boy_YellowHair.png', side: 'right' , gender: 'male' },
+                { role: 'A', name: '佐藤 (Satou)', text: '佐藤けいこです。\nどうぞ よろしく。', mean: 'Tôi là Satou Keiko. Rất mong được giúp đỡ.', icon: 'Image/Av_Girl_BlackHair.png', side: 'left', gender: 'female'  }
             ]
         },
         {
@@ -567,10 +567,10 @@ const kaiwaData = {
             title: 'Hỏi tên (お名前は)',
             img: 'Image/Kaiwa_B1_2.png',
             dialogue: [
-                { role: 'A', name: 'A', text: '失礼ですが、お名前は？', mean: 'Xin lỗi, tên anh/chị là gì?', icon: '👨',side: 'left' },
-                { role: 'B', name: 'B', text: 'イーです。', mean: 'Tôi là Y.', icon: '👱',side: 'right' },
-                { role: 'A', name: 'A', text: 'リーさんですか。', mean: 'Anh Lee phải không?', icon: '👨', side: 'left' },
-                { role: 'B', name: 'B', text: 'いいえ、イーです。', mean: 'Không, là Y.', icon: '👱', side: 'right' }
+                { role: 'A', name: 'A', text: '失礼ですが、お名前は？', mean: 'Xin lỗi, tên anh/chị là gì?', icon: 'Image/Av_Boy_BlackHair.png',side: 'left' , gender: 'male' },
+                { role: 'B', name: 'B', text: 'イーです。', mean: 'Tôi là Y.', icon: 'Image/Av_Girl_BlackHair.png',side: 'right', gender: 'female'  },
+                { role: 'A', name: 'A', text: 'リーさんですか。', mean: 'Bạn Lee phải không?', icon: 'Image/Av_Boy_BlackHair.png', side: 'left' , gender: 'male' },
+                { role: 'B', name: 'B', text: 'いいえ、イーです。', mean: 'Không, là Y.', icon: 'Image/Av_Girl_BlackHair.png', side: 'right', gender: 'female'  }
             ]
         }
     ],
@@ -580,15 +580,15 @@ const kaiwaData = {
             title: 'ほんの気持ちです (Chút lòng thành)',
             img: 'Image/Kaiwa_B2_1.png',
             dialogue: [
-                { role: 'A', name: '山田 (Yamada)', text: 'はい。どなたですか。', mean: 'Vâng. Ai đấy ạ?', icon: '👨',side: 'left' },
-                { role: 'B', name: 'サントス (Santos)', text: '４０８の サントスです。', mean: 'Tôi là Santos ở phòng 408.', icon: '🧔', side: 'right' },
-                { role: 'A', name: '山田 (Yamada)', text: 'こんにちは。サントスさん。', mean: 'Chào anh Santos.', icon: '👨', side: 'left' },
-                { role: 'B', name: 'サントス (Santos)', text: 'これから お世話に なります。\nどうぞ よろしく お願いします。', mean: 'Từ nay mong anh giúp đỡ. Rất mong được làm quen.', icon: '🧔', side: 'right' },
-                { role: 'A', name: '山田 (Yamada)', text: 'こちらこそ よろしく。', mean: 'Chính tôi mới cần anh giúp đỡ.', icon: '👨', side: 'left' },
-                { role: 'B', name: 'サントス (Santos)', text: 'あのう、これ、ほんの気持ちです。', mean: 'À, cái này... là chút lòng thành.', icon: '🧔', side: 'right' },
-                { role: 'A', name: '山田 (Yamada)', text: 'あ、どうも……何ですか。', mean: 'Ái chà, cảm ơn... Cái gì thế?', icon: '👨', side: 'left' },
-                { role: 'B', name: 'サントス (Santos)', text: 'コーヒーです。どうぞ。', mean: 'Là cà phê ạ. Xin mời.', icon: '🧔', side: 'right' },
-                { role: 'A', name: '山田 (Yamada)', text: 'どうも ありがとうございます。', mean: 'Cảm ơn anh rất nhiều.', icon: '👨', side: 'left' }
+                { role: 'A', name: '山田 (Yamada)', text: 'はい。どなたですか。', mean: 'Vâng. Ai đấy ạ?', icon: 'Image/Av_Boy_BlueHair.png',side: 'left', gender: 'male' },
+                { role: 'B', name: 'サントス (Santos)', text: '４０８の サントスです。', mean: 'Tôi là Santos ở phòng 408.', icon: 'Image/Av_Boy_BlackHair.png', side: 'right', gender: 'male' },
+                { role: 'A', name: '山田 (Yamada)', text: 'こんにちは。サントスさん。', mean: 'Chào anh Santos.', icon: 'Image/Av_Boy_BlueHair.png', side: 'left', gender: 'male' },
+                { role: 'B', name: 'サントス (Santos)', text: 'これから お世話に なります。\nどうぞ よろしく お願いします。', mean: 'Từ nay mong anh giúp đỡ. Rất mong được làm quen.', icon: 'Image/Av_Boy_BlackHair.png', side: 'right', gender: 'male' },
+                { role: 'A', name: '山田 (Yamada)', text: 'こちらこそ よろしく。', mean: 'Chính tôi mới cần anh giúp đỡ.', icon: 'Image/Av_Boy_BlueHair.png', side: 'left', gender: 'male' },
+                { role: 'B', name: 'サントス (Santos)', text: 'あのう、これ、ほんの気持ちです。', mean: 'À, cái này... là chút lòng thành.', icon: 'Image/Av_Boy_BlackHair.png', side: 'right', gender: 'male' },
+                { role: 'A', name: '山田 (Yamada)', text: 'あ、どうも……何ですか。', mean: 'Ái chà, cảm ơn... Cái gì thế?', icon: 'Image/Av_Boy_BlueHair.png', side: 'left', gender: 'male' },
+                { role: 'B', name: 'サントス (Santos)', text: 'コーヒーです。どうぞ。', mean: 'Là cà phê ạ. Xin mời.', icon: 'Image/Av_Boy_BlackHair.png', side: 'right', gender: 'male' },
+                { role: 'A', name: '山田 (Yamada)', text: 'どうも ありがとうございます。', mean: 'Cảm ơn anh rất nhiều.', icon: 'Image/Av_Boy_BlueHair.png', side: 'left', gender: 'male' }
             ]
         }
     ]
@@ -853,16 +853,68 @@ window.onclick = function(e) {
     if(e.target === document.getElementById('charModal')) closeModal();
 }
 
-function speak(text) {
-    if ('speechSynthesis' in window) {
-        window.speechSynthesis.cancel();
-        const u = new SpeechSynthesisUtterance(text);
-        u.lang = 'ja-JP'; u.rate = 0.8;
-        window.speechSynthesis.speak(u);
-    }
+/* --- THAY THẾ HÀM speak CŨ BẰNG HÀM NÀY --- */
+
+let voices = [];
+// Load danh sách giọng khi trình duyệt sẵn sàng
+if (window.speechSynthesis) {
+    window.speechSynthesis.onvoiceschanged = () => {
+        voices = window.speechSynthesis.getVoices();
+    };
 }
-function playAudioFromModal() {
-    speak(document.getElementById('modalChar').innerText);
+
+function speak(text, gender = 'female') {
+    if (!('speechSynthesis' in window)) return;
+
+    window.speechSynthesis.cancel(); // Dừng câu đang nói dở
+    const u = new SpeechSynthesisUtterance(text);
+    u.lang = 'ja-JP';
+    
+    // Cập nhật lại danh sách giọng nếu chưa có
+    if (voices.length === 0) {
+        voices = window.speechSynthesis.getVoices();
+    }
+
+    // Lọc ra các giọng tiếng Nhật
+    const jaVoices = voices.filter(v => v.lang.includes('ja'));
+
+    if (jaVoices.length > 0) {
+        // Mặc định chọn giọng đầu tiên tìm thấy
+        let selectedVoice = jaVoices[0];
+
+        // LOGIC CHỌN GIỌNG (Heuristic)
+        if (gender === 'male') {
+            // Cố tìm giọng có tên "Ichiro", "Kenji", "Male"...
+            const maleVoice = jaVoices.find(v => 
+                v.name.includes('Ichiro') || 
+                v.name.includes('Kenji') || 
+                v.name.includes('Male') ||
+                v.name.includes('Otoya')
+            );
+            if (maleVoice) selectedVoice = maleVoice;
+            
+            // Tinh chỉnh âm thanh cho Nam (Trầm hơn)
+            u.pitch = 0.8; 
+            u.rate = 0.9;  // Nói chậm hơn chút cho giống đàn ông
+        } else {
+            // Cố tìm giọng có tên "Ayumi", "Haruka", "Kyoko", "Female"...
+            const femaleVoice = jaVoices.find(v => 
+                v.name.includes('Ayumi') || 
+                v.name.includes('Haruka') || 
+                v.name.includes('Kyoko') ||
+                v.name.includes('Female')
+            );
+            if (femaleVoice) selectedVoice = femaleVoice;
+
+            // Tinh chỉnh âm thanh cho Nữ (Thanh hơn)
+            u.pitch = 1.1; 
+            u.rate = 1.0;
+        }
+
+        u.voice = selectedVoice;
+    }
+
+    window.speechSynthesis.speak(u);
 }
 
 /* =========================================
@@ -1354,12 +1406,16 @@ function renderKaiwaContent(lessonId, index) {
         row.className = `chat-row ${isRight ? 'right' : 'left'}`;
         
         row.innerHTML = `
-            <div class="chat-avatar">${line.icon}</div>
+            <img src="${line.icon}" class="chat-avatar" alt="${line.name}">
             <div class="chat-bubble">
                 <div class="chat-name">${line.name}</div>
                 <div class="chat-jp">
                     ${line.text.replace(/\n/g, '<br>')} 
-                    <i class="fas fa-volume-up btn-chat-audio" onclick="speak('${line.text.replace(/\n/g, ' ')}')"></i>
+                    
+                    <i class="fas fa-volume-up btn-chat-audio" 
+                    onclick="speak('${line.text.replace(/\n/g, ' ')}', '${line.gender || 'female'}')">
+                    </i>
+
                 </div>
                 <div class="chat-vn">${line.mean}</div>
             </div>

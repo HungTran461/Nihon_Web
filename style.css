@@ -71,7 +71,21 @@ nav a:hover, nav a.active {
     border: 5px solid var(--primary); display: flex; align-items: center; justify-content: center;
     font-size: 3.5rem; color: var(--primary); box-shadow: var(--shadow);
     animation: float 3s ease-in-out infinite;
+    overflow: hidden; 
+    padding: 0;
 }
+.mascot-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* Giúp ảnh luôn lấp đầy hình tròn mà không bị méo */
+    display: block;
+}
+.mascot-container:hover .mascot-circle {
+    transform: scale(1.1) rotate(5deg);
+    border-color: var(--primary);
+    transition: 0.3s;
+}
+
 @keyframes float { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-10px); } }
 .hero h1 { color: var(--secondary); margin-bottom: 5px; }
 
@@ -1131,4 +1145,17 @@ footer { text-align: center; margin-top: 3rem; color: #aaa; font-size: 0.9rem; }
     background: var(--secondary);
     color: white;
     box-shadow: 0 4px 10px rgba(161, 140, 209, 0.4);
+}
+
+/* --- Sửa class .chat-avatar trong style.css --- */
+
+.chat-avatar {
+    width: 55px;           /* Tăng kích thước lên xíu cho rõ mặt */
+    height: 55px;
+    border-radius: 50%;    /* Bo tròn thành hình tròn */
+    object-fit: cover;     /* Cắt ảnh vừa khung, không bị méo */
+    border: 3px solid white;
+    box-shadow: 0 3px 6px rgba(0,0,0,0.15);
+    flex-shrink: 0;        /* Không bị co lại khi màn hình nhỏ */
+    background: #fff;      /* Màu nền dự phòng */
 }
