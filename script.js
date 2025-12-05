@@ -918,55 +918,74 @@ function speak(text, gender = 'female') {
 }
 
 /* =========================================
-   7. GAME ENGINE (FLASHCARD & QUIZ)
+   7. GAME ENGINE
    ========================================= */
+/* --- Thay thế hàm getGameData cũ bằng hàm này --- */
 function getGameData(key) {
     let rawData = [];
     
-    // 1. Minna (Cũ)
-    if (key.startsWith('minna_')) {
-        const lesson = key.split('_')[1];
-        if (minnaData[lesson]) {
-            return minnaData[lesson].map(i => ({ 
-                front: (i.k===i.r?i.k:`${i.k}\n(${i.r})`), // Kanji (Hiragana)
+    // 1. Minna & Saiba
+    if (key.startsWith('minna_') || key.startsWith('extra_')) {
+        let list = [];
+        if (key.startsWith('minna_')) list = minnaData[key.split('_')[1]];
+        if (key.startsWith('extra_')) list = extraData[key.split('_')[1]];
+        
+        if (list) {
+            return list.map(i => ({ 
+                front: (i.k===i.r?i.r:`${i.r}\n(${i.k})`), // Ưu tiên Kana to
                 back: i.m, read: i.r, type:'vocab' 
             }));
         }
     }
-
-    // 2. SAIBA - TỪ VỰNG BỔ SUNG (MỚI)
-    if (key.startsWith('extra_')) {
-        const topic = key.split('_')[1];
-        if (extraData[topic]) {
-            return extraData[topic].map(i => ({ 
-                front: (i.k===i.r?i.k:`${i.k}\n(${i.r})`), // Kanji (Hiragana)
-                back: i.m, read: i.r, type:'vocab' 
-            }));
-        }
-    }
-
-    // 3. Kanji N5 (Cũ)
+    
+    // 2. Kanji N5
     if (key === 'n5_kanji') {
-        return n5KanjiData.map(i => ({ front: i.c, back: `${i.h} - ${i.m}`, read: i.c, type:'kanji' }));
+        return n5KanjiData.map(i => ({ front: i.c, back: `${i.h} - ${i.m}`, read: i.kun!=='-'?i.kun:i.on, type:'kanji' }));
     }
 
-    // 4. Kana (Cũ)
-    if (key.includes('hira_') || key.includes('kata_')) {
-        const sys = key.includes('hira') ? 'hiragana' : 'katakana';
-        const map = charMaps[sys];
+    // 3. KANA & MIX (Logic mới)
+    // Kiểm tra các từ khóa
+    const isHira = key.includes('hira');
+    const isKata = key.includes('kata');
+    const isMix  = key.includes('mix'); // Mới
+
+    if (isHira || isKata || isMix) {
         let rows = [];
+        
+        // Logic chọn hàng dữ liệu
         if (key.includes('basic')) rows = basicRows;
         else if (key.includes('daku')) rows = dakutenRows;
         else if (key.includes('yoon')) rows = yoonRows;
         else if (key.includes('full')) rows = [...basicRows, ...dakutenRows, ...yoonRows];
-
-        rows.forEach(r => {
-            r.forEach(romaji => {
-                if(romaji) {
-                    rawData.push({ front: map[romaji], back: romaji.replace('_d',''), read: map[romaji], type:'kana' });
-                }
+        
+        // Hàm Helper để push dữ liệu
+        const addData = (system, rowList) => {
+            const map = charMaps[system];
+            rowList.forEach(r => {
+                r.forEach(romaji => {
+                    if(romaji) {
+                        rawData.push({ 
+                            front: map[romaji], 
+                            back: romaji.replace('_d',''), 
+                            read: map[romaji], 
+                            type: 'kana' 
+                        });
+                    }
+                });
             });
-        });
+        };
+
+        // Thực thi dựa trên loại bảng
+        if (isHira) addData('hiragana', rows);
+        if (isKata) addData('katakana', rows);
+        if (isMix) {
+            // Nếu là Mix thì mặc định lấy Full (hoặc tùy biến nếu muốn)
+            // Ở đây ta giả định Mix là lấy Full cả 2 bảng
+            const fullRows = [...basicRows, ...dakutenRows, ...yoonRows];
+            addData('hiragana', fullRows);
+            addData('katakana', fullRows);
+        }
+
         return rawData;
     }
     return [];
@@ -1422,4 +1441,88 @@ function renderKaiwaContent(lessonId, index) {
         `;
         container.appendChild(row);
     });
+}
+
+/* =========================================
+   11. GAME PHẢN XẠ (REFLEX)
+   ========================================= */
+
+let reflexTimer = null;
+let reflexDataList = [];
+
+function switchGameTab(tab, event) {
+    // 1. Ẩn tất cả các khu vực game
+    document.getElementById('gameFlashcardArea').style.display = 'none';
+    document.getElementById('gameQuizArea').style.display = 'none';
+    document.getElementById('gameReflexArea').style.display = 'none';
+    
+    // 2. Hiển thị khu vực được chọn
+    if (tab === 'flashcard') document.getElementById('gameFlashcardArea').style.display = 'block';
+    if (tab === 'quiz') document.getElementById('gameQuizArea').style.display = 'block';
+    if (tab === 'reflex') document.getElementById('gameReflexArea').style.display = 'block';
+
+    // 3. Đổi màu nút Tab
+    document.querySelectorAll('#gameSection .tab-btn').forEach(b => b.classList.remove('active'));
+    if(event) event.target.classList.add('active');
+    
+    // Dừng game phản xạ nếu đang chạy mà chuyển tab
+    if (tab !== 'reflex') stopReflexGame();
+    if (tab === 'flashcard') initFlashcards();
+}
+
+function startReflexGame() {
+    const topic = document.getElementById('reflexTopic').value;
+    const speed = parseInt(document.getElementById('reflexSpeed').value);
+    
+    // Lấy dữ liệu
+    reflexDataList = getGameData(topic);
+    
+    if (reflexDataList.length === 0) {
+        alert("Chưa có dữ liệu!");
+        return;
+    }
+
+    // Chuyển giao diện
+    document.getElementById('reflexSetup').style.display = 'none';
+    document.getElementById('reflexPlay').style.display = 'block';
+
+    // Bắt đầu vòng lặp
+    runReflexLoop(speed);
+}
+
+function runReflexLoop(speed) {
+    // Hiển thị chữ đầu tiên ngay lập tức
+    showRandomReflexChar();
+
+    // Cài đặt lặp lại
+    reflexTimer = setInterval(() => {
+        showRandomReflexChar();
+    }, speed);
+}
+
+function showRandomReflexChar() {
+    const charEl = document.getElementById('reflexChar');
+    const romajiEl = document.getElementById('reflexRomaji');
+    
+    // Lấy ngẫu nhiên
+    const randomItem = reflexDataList[Math.floor(Math.random() * reflexDataList.length)];
+    
+    // Gán nội dung
+    charEl.innerText = randomItem.front;
+    romajiEl.innerText = randomItem.back; // Romaji
+    
+    // Thêm hiệu ứng animation
+    charEl.classList.remove('animate-pop');
+    void charEl.offsetWidth; // Trigger reflow để chạy lại animation
+    charEl.classList.add('animate-pop');
+    
+    // Đổi màu ngẫu nhiên cho sinh động (Optional)
+    const colors = ['#ff9a9e', '#a18cd1', '#333', '#fbc2eb', '#4facfe'];
+    charEl.style.color = colors[Math.floor(Math.random() * colors.length)];
+}
+
+function stopReflexGame() {
+    clearInterval(reflexTimer);
+    document.getElementById('reflexSetup').style.display = 'flex'; // Flex để căn giữa do CSS cũ
+    document.getElementById('reflexPlay').style.display = 'none';
 }

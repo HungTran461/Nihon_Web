@@ -1312,3 +1312,133 @@ footer { text-align: center; margin-top: 3rem; color: #aaa; font-size: 0.9rem; }
     justify-content: center;
     line-height: 1.4;
 }
+
+/* =========================================
+   GAME PHẢN XẠ (REFLEX)
+   ========================================= */
+
+.reflex-card {
+    background: white;
+    border-radius: 30px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+    width: 100%;
+    max-width: 400px;
+    height: 400px;
+    margin: 0 auto 30px auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    border: 5px solid var(--primary);
+    position: relative;
+    overflow: hidden;
+}
+
+.reflex-char {
+    font-size: 8rem; /* Chữ cực to */
+    font-weight: 800;
+    color: var(--text);
+    line-height: 1;
+    transition: transform 0.1s;
+}
+
+.reflex-romaji {
+    font-size: 2rem;
+    color: #999;
+    font-weight: bold;
+    margin-top: 10px;
+    opacity: 0.6;
+}
+
+.btn-stop {
+    background: #ff6b6b;
+    color: white;
+    border: none;
+    padding: 12px 30px;
+    font-size: 1.2rem;
+    border-radius: 50px;
+    cursor: pointer;
+    box-shadow: 0 5px 15px rgba(255, 107, 107, 0.4);
+    transition: 0.2s;
+}
+.btn-stop:hover { background: #ff5252; transform: scale(1.05); }
+
+/* Hiệu ứng nảy khi đổi chữ */
+@keyframes popIn {
+    0% { transform: scale(0.5); opacity: 0; }
+    70% { transform: scale(1.1); }
+    100% { transform: scale(1); opacity: 1; }
+}
+
+.animate-pop {
+    animation: popIn 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+/* =========================================
+   STYLE NÚT "BẮT ĐẦU LUYỆN"
+   ========================================= */
+#reflexSetup {
+    display: flex;
+    flex-direction: column; /* Xếp dọc */
+    align-items: center;    /* Căn giữa toàn bộ nội dung */
+    gap: 20px;              /* Tạo khoảng cách 20px giữa các ô chọn và nút */
+    width: 100%;
+}
+
+.btn-start {
+    /* --- CÁC THAY ĐỔI QUAN TRỌNG ĐỂ NÚT NHỎ LẠI --- */
+    width: auto !important;       /* Bỏ width: 100% để nút tự co lại */
+    min-width: 200px;             /* Chiều rộng tối thiểu để nút không quá bé */
+    display: inline-flex;         /* Giúp căn giữa nội dung bên trong nút */
+    justify-content: center;
+    align-items: center;
+    margin-top: 10px;             /* Khoảng cách phía trên */
+    padding: 12px 35px;           /* Độ dày nút vừa phải */
+
+    /* --- GIỮ NGUYÊN STYLE ĐẸP CŨ CỦA BẠN --- */
+    /* Màu nền Gradient hồng dễ thương */
+    background: linear-gradient(135deg, #ff9a9e 0%, #fecfef 100%);
+    
+    /* Chữ */
+    color: white;
+    font-size: 1.2rem;            /* Giảm nhẹ cỡ chữ cho tinh tế */
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    
+    /* Hình dáng */
+    border: none;
+    border-radius: 50px;
+    cursor: pointer;
+    position: relative;
+    overflow: hidden;
+    
+    /* Hiệu ứng bóng đổ */
+    box-shadow: 0 8px 15px rgba(255, 154, 158, 0.4);
+    transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+}
+
+/* Hiệu ứng khi di chuột vào (Hover) */
+.btn-start:hover {
+    transform: translateY(-3px) scale(1.05); /* Nổi lên nhẹ */
+    box-shadow: 0 12px 20px rgba(255, 154, 158, 0.6);
+    background: linear-gradient(135deg, #ff758c 0%, #ff7eb3 100%); /* Đậm màu hơn */
+}
+
+/* Hiệu ứng khi bấm xuống (Active) */
+.btn-start:active {
+    transform: translateY(2px) scale(0.95); /* Lún xuống */
+    box-shadow: 0 4px 8px rgba(255, 154, 158, 0.4);
+}
+
+/* Icon tia sét động */
+.btn-start i {
+    margin-right: 10px;
+    animation: pulse 1.5s infinite;
+}
+
+@keyframes pulse {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.2); }
+    100% { transform: scale(1); }
+}

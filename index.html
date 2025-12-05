@@ -161,9 +161,10 @@
                 <button class="btn-back" onclick="closeSection()"><i class="fas fa-arrow-left"></i> Quay lại</button>
             </div>
 
-            <div class="kana-tabs">
-                <button class="tab-btn active" onclick="switchGameTab('flashcard', event)">Flashcard (Lật thẻ)</button>
-                <button class="tab-btn" onclick="switchGameTab('quiz', event)">Trắc nghiệm (Quiz)</button>
+           <div class="kana-tabs">
+                <button class="tab-btn active" onclick="switchGameTab('flashcard', event)">Flashcard</button>
+                <button class="tab-btn" onclick="switchGameTab('quiz', event)">Trắc nghiệm</button>
+                <button class="tab-btn" onclick="switchGameTab('reflex', event)">⚡ Phản xạ</button>
             </div>
 
             <div id="gameFlashcardArea">
@@ -331,6 +332,58 @@
                         </div>
                 </div>
 
+            </div>
+            <div id="gameReflexArea" style="display:none;">
+                <div id="reflexSetup" class="game-controls">
+                    <label>1. Chọn bảng chữ</label>
+                    <div class="select-wrapper">
+                        <select id="reflexTopic">
+                            <optgroup label="Hiragana (Chữ mềm)">
+                                <option value="hira_basic">Âm Cơ Bản (あ, い, う...)</option>
+                                <option value="hira_daku">Biến âm (が, ざ, だ...)</option>
+                                <option value="hira_yoon">Ảo âm (きゃ, しゃ...)</option>
+                                <option value="hira_full">Tất cả Hiragana</option>
+                            </optgroup>
+
+                            <optgroup label="Katakana (Chữ cứng)">
+                                <option value="kata_basic">Âm Cơ Bản (ア, イ, ウ...)</option>
+                                <option value="kata_daku">Biến âm (ガ, ザ, ダ...)</option>
+                                <option value="kata_yoon">Ảo âm (キャ, シャ...)</option>
+                                <option value="kata_full">Tất cả Katakana</option>
+                            </optgroup>
+
+                            <optgroup label="Tổng hợp (Mix)">
+                                <option value="mix_full">Trộn cả 2 bảng (Siêu khó)</option>
+                            </optgroup>
+                        </select>
+                    </div>
+
+                    <label style="margin-top:15px">2. Tốc độ chuyển</label>
+                    <div class="select-wrapper">
+                        <select id="reflexSpeed">
+                            <option value="3000">Siêu chậm (3 giây)</option>
+                            <option value="2000">Chậm (2 giây)</option>
+                            <option value="1000" selected>Bình thường (1 giây)</option>
+                            <option value="800">Nhanh (0.8 giây)</option>
+                            <option value="500">Siêu tốc (0.5 giây)</option>
+                        </select>
+                    </div>
+
+                    <button class="btn-start" onclick="startReflexGame()">
+                        <i class="fas fa-bolt"></i> Bắt đầu luyện
+                    </button>
+                </div>
+
+                <div id="reflexPlay" style="display:none; text-align:center;">
+                    <div class="reflex-card">
+                        <div id="reflexChar" class="reflex-char">あ</div>
+                        <div id="reflexRomaji" class="reflex-romaji">a</div>
+                    </div>
+
+                    <button class="btn-stop" onclick="stopReflexGame()">
+                        <i class="fas fa-stop"></i> Dừng lại
+                    </button>
+                </div>
             </div>
         </div>
 
