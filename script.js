@@ -634,24 +634,19 @@ const grammarData = {
 const exercisesData = {
     '1': [
         {
-            // Cũ: わたし
-            // Mới: わたし(私)
-            q: 'わたし(私) ＿ マイク・ミラーです。', 
+            q: 'わたし(私) ＿ マイク・ミラーです。(Tôi là Mike Miller.)', 
             opts: ['は', 'の', 'も'],
             ans: 0 
         },
         {
-            // Cũ: あの人
-            q: 'あのひと(あの人) ＿ どなたですか。',
+            q: 'あのひと(あの人) ＿ どなたですか。(Người kia là ai?)',
             opts: ['わ', 'は', 'が'],
             ans: 1 
         },
         {
-            // Cũ: しゃいん
-            q: 'IMCの しゃいん(社員) ＿ です。',
-            opts: ['は', 'の', 'も'], // Ở đây đáp án là trợ từ nên không có Kanji
-            ans: 1 // Đáp án: の (Nhân viên CỦA IMC - Xin lỗi code trước tôi để nhầm câu hỏi, đây là câu sửa lại cho đúng ngữ pháp)
-            // Hoặc nếu câu gốc là "IMC _ 社員です" (Là nhân viên IMC) thì đáp án là の
+            q: 'ゆたさん ＿ がくせい(学生)です。(Yuta cũng là sinh viên.)',
+            opts: ['は', 'の', 'も'], 
+            ans: 2 
         },
         {
             q: 'A: わたし(私)は ベトナムじん(人)です。<br>B: グプタさん ＿ ベトナムじん(人)ですか。',
@@ -695,7 +690,7 @@ const exercisesData = {
     ]
 };
 
-// --- Dữ liệu Sắp xếp câu (Thêm vào dưới exercisesData) ---
+// --- Dữ liệu Sắp xếp câu  ---
 const exerciseScrambleData = {
     '1': [
         { 
@@ -705,8 +700,8 @@ const exerciseScrambleData = {
         },
         { 
             question: "Anh Santos không phải là giáo viên.", 
-            parts: ["は", "教師", "じゃ", "ありません", "ですか", "です", "サントスさん", "いしゃ"],
-            correct: ["サントスさん", "は", "教師", "じゃ", "ありません"]
+            parts: ["は", "せんせい", "じゃ", "ありません", "ですか", "です", "サントスさん", "いしゃ"],
+            correct: ["サントスさん", "は", "せんせい", "じゃ", "ありません"]
         }
     ],
     '2': [
@@ -1512,138 +1507,48 @@ function formatText(text) {
 
 function renderExercises(lessonId) {
     const container = document.getElementById('exerciseContainer');
-    container.innerHTML = ''; // Xóa cũ
-    document.getElementById('exerciseScore').innerText = ''; // Xóa điểm cũ
-    
-    // Bật lại nút chấm điểm nếu bị disable
-    const checkBtn = document.querySelector('.btn-check-answer');
-    if(checkBtn) {
-        checkBtn.disabled = false;
-        checkBtn.style.opacity = '1';
-        checkBtn.innerHTML = '<i class="fas fa-check-circle"></i> Chấm điểm';
-    }
-
-    currentExerciseList = exercisesData[lessonId] || [];
-    
-    if (currentExerciseList.length === 0) {
-        container.innerHTML = '<div style="text-align:center;">Chưa có bài tập.</div>';
-        return;
-    }
-
-    currentExerciseList.forEach((item, index) => {
-        const exBox = document.createElement('div');
-        exBox.className = 'ex-item';
-        exBox.id = `ex-q-${index}`; // Đánh dấu ID để lát chấm điểm
-
-        // Tạo HTML các nút đáp án
-        let optionsHTML = '';
-        item.opts.forEach((opt, optIndex) => {
-            // Áp dụng formatText cho đáp án
-            optionsHTML += `
-                <div class="ex-opt-btn" onclick="selectOption(${index}, ${optIndex}, this)">
-                    ${formatText(opt)}
-                </div>
-            `;
-        });
-
-        exBox.innerHTML = `
-            <div class="ex-question-text">Câu ${index + 1}: ${formatText(item.q)}</div>
-            <div class="ex-options-grid" id="opts-${index}">
-                ${optionsHTML}
-            </div>
-        `;
-        container.appendChild(exBox);
-    });
-}
-
-/* --- 1. HÀM CHỌN ĐÁP ÁN TRẮC NGHIỆM (FIX LỖI KHÔNG CHỌN ĐƯỢC) --- */
-function selectOption(btn, optionIndex) {
-    // Tìm thẻ cha chứa các nút (class .ex-options)
-    const parent = btn.parentElement;
-    
-    // 1. Xóa class 'selected' của tất cả các nút trong câu này
-    const allBtns = parent.querySelectorAll('.ex-opt-btn');
-    allBtns.forEach(b => {
-        b.classList.remove('selected');
-        b.style.background = '#ffffff'; // Reset màu nền về trắng
-        b.style.color = '#555';         // Reset màu chữ
-        b.style.borderColor = '#e0e0e0'; // Reset viền
-    });
-
-    // 2. Add class 'selected' cho nút vừa bấm
-    btn.classList.add('selected');
-    
-    // 3. Đổi màu nút vừa chọn để người dùng biết (Màu tím nhạt)
-    btn.style.background = '#f3e5f5'; 
-    btn.style.color = '#8e44ad';
-    btn.style.borderColor = '#8e44ad';
-
-    // 4. Lưu chỉ số đáp án người dùng chọn vào data-attribute
-    parent.setAttribute('data-selected', optionIndex);
-}
-
-
-
-function switchExerciseTab(lessonId, event) {
-    const btn1 = document.getElementById('btn-bai-1');
-    const btn2 = document.getElementById('btn-bai-2');
-    
-    if(btn1) btn1.className = 'tab-btn'; 
-    if(btn2) btn2.className = 'tab-btn';
-
-    // Bật đèn nút được chọn
-    if (lessonId === '1' && btn1) {
-        btn1.className = 'tab-btn active';
-    } else if (lessonId === '2' && btn2) {
-        btn2.className = 'tab-btn active';
-    }
-    const container = document.getElementById('exerciseContainer');
     container.innerHTML = ""; 
     document.getElementById('exerciseScore').innerHTML = ""; 
 
-    // --- PHẦN 1: TRẮC NGHIỆM ĐIỀN TỪ (CŨ) ---
-    const fillData = exercisesData[lessonId]; // Chú ý: exercisesData là biến cũ của bạn
+    // --- PHẦN 1: TRẮC NGHIỆM ĐIỀN TỪ ---
+    const fillData = exercisesData[lessonId]; 
     if (fillData) {
         let html = `<h3 class="part-title">I. Chọn đáp án đúng</h3>`;
         fillData.forEach((item, index) => {
             let optionsHtml = '';
             item.opts.forEach((opt, i) => {
-                optionsHtml += `<button class="ex-opt-btn" onclick="selectOption(this, ${i})">${opt}</button>`;
+                optionsHtml += `<button class="exercise-opt-btn" onclick="selectOption(this, ${i})">${formatText(opt)}</button>`;
             });
 
             html += `
                 <div class="exercise-item">
-                    <p><strong>${index + 1}.</strong> ${item.q}</p>
-                    <div class="ex-options" id="opts-${index}" data-correct="${item.ans}">
+                    <p class="exercise-question-text" ><strong>${index + 1}.</strong> ${formatText(item.q)}</p>
+                    <div class="exercise-options" id="opts-${index}" data-correct="${item.ans}">
                         ${optionsHtml}
                     </div>
                 </div>
             `;
         });
         container.innerHTML += html;
-        // Lưu lại list bài tập hiện tại để hàm check dùng
         currentExerciseList = fillData; 
     }
 
-    // --- PHẦN 2: SẮP XẾP CÂU (MỚI) ---
+    // --- PHẦN 2: SẮP XẾP CÂU  ---
     const scrambleData = exerciseScrambleData[lessonId];
     if (scrambleData) {
         let html = `<h3 class="part-title" style="margin-top:30px; border-top:1px dashed #ccc; padding-top:20px;">II. Sắp xếp thành câu hoàn chỉnh</h3>`;
-        
         scrambleData.forEach((item, index) => {
             const qID = `scramble-${lessonId}-${index}`;
-            // Xáo trộn từ
             let shuffled = [...item.parts].sort(() => Math.random() - 0.5);
             let buttonsHtml = shuffled.map(word => 
                 `<button class="word-btn" onclick="moveWord(this)">${word}</button>`
             ).join('');
 
-            // Lưu đáp án đúng
             const correctAnswerStr = JSON.stringify(item.correct).replace(/"/g, '&quot;');
 
             html += `
                 <div class="scramble-item" id="${qID}">
-                    <p class="scramble-question"><strong>${index + 1}.</strong> ${item.question}</p>
+                    <p class="scramble-question"><strong>${index + 1}.</strong> ${formatText(item.question)}</p>
                     <div class="scramble-answer-box" id="${qID}-ans" data-correct="${correctAnswerStr}"></div>
                     <div class="scramble-source-box" id="${qID}-src">${buttonsHtml}</div>
                     <div class="scramble-feedback" style="margin-top:5px; font-weight:bold;"></div>
@@ -1654,20 +1559,53 @@ function switchExerciseTab(lessonId, event) {
     }
 }
 
-/* --- HÀM 2: CHẤM ĐIỂM (CHẤM CẢ 2 PHẦN) --- */
-// Tìm hàm checkExerciseResult cũ và thay bằng hàm này:
+function selectOption(btn, optionIndex) {
+    const parent = btn.parentElement;
+    
+    const allBtns = parent.querySelectorAll('.exercise-opt-btn');
+    allBtns.forEach(b => {
+        b.classList.remove('selected');
+        b.style.background = '#ffffff'; 
+        b.style.color = '#555';         
+        b.style.borderColor = '#e0e0e0'; 
+    });
+
+    btn.classList.add('selected');
+    
+    btn.style.background = '#f3e5f5'; 
+    btn.style.color = '#8e44ad';
+    btn.style.borderColor = '#8e44ad';
+
+
+    parent.setAttribute('data-selected', optionIndex);
+}
+
+function switchExerciseTab(lessonId, event) {
+    const btn1 = document.getElementById('btn-bai-1');
+    const btn2 = document.getElementById('btn-bai-2');
+    
+    if(btn1) btn1.className = 'tab-btn'; 
+    if(btn2) btn2.className = 'tab-btn';
+
+    if (lessonId === '1' && btn1) {
+        btn1.className = 'tab-btn active';
+    } else if (lessonId === '2' && btn2) {
+        btn2.className = 'tab-btn active';
+    }
+    renderExercises(lessonId);
+}
+
 function checkExerciseResult() {
     let score = 0;
     let total = 0;
 
-    // 1. Chấm phần Trắc nghiệm (Cũ)
     if (typeof currentExerciseList !== 'undefined' && currentExerciseList) {
         currentExerciseList.forEach((item, index) => {
             total++;
             const optsDiv = document.getElementById(`opts-${index}`);
             if(optsDiv) {
                 const userSelect = optsDiv.getAttribute('data-selected');
-                const allBtns = optsDiv.querySelectorAll('.ex-opt-btn');
+                const allBtns = optsDiv.querySelectorAll('.exercise-opt-btn');
                 
                 // Reset style cũ
                 allBtns.forEach(b => b.classList.remove('correct', 'wrong'));
@@ -1681,13 +1619,12 @@ function checkExerciseResult() {
                         allBtns[item.ans].classList.add('correct');
                     }
                 } else {
-                     allBtns[item.ans].classList.add('correct'); // Hiện đáp án nếu chưa làm
+                     allBtns[item.ans].classList.add('correct'); 
                 }
             }
         });
     }
 
-    // 2. Chấm phần Sắp xếp câu (Mới)
     const scrambleBoxes = document.querySelectorAll('.scramble-answer-box');
     scrambleBoxes.forEach(box => {
         total++;
@@ -1707,7 +1644,6 @@ function checkExerciseResult() {
         }
     });
 
-    // Hiển thị kết quả chung
     const resultDiv = document.getElementById('exerciseScore');
     resultDiv.innerHTML = `Kết quả: <strong>${score}/${total}</strong> câu đúng`;
 }
