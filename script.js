@@ -720,36 +720,26 @@ const exerciseScrambleData = {
 
 /* --- DỮ LIỆU BÀI TẬP NGHE HIỂU --- */
 const exerciseListeningData = {
-    '1': { // Bài 1 (Dùng Audio bài 1)
-        audio: 'Sound/01_Track_1.mp3', 
-        questions: [
-            { 
-                q: "Người nói chuyện với Yamada-san là ai?", 
-                opts: ["Miller-san", "Sato-san", "Watt-san"], 
-                ans: 1 // Đáp án là Sato (index 1)
-            },
-            { 
-                q: "Câu chào buổi sáng được nhắc đến là gì?", 
-                opts: ["Konnichiwa", "Konbanwa", "Ohayou gozaimasu"], 
-                ans: 2 
-            }
-        ]
-    },
-    '2': { // Bài 2 (Dùng Audio bài 2)
-        audio: 'Sound/05_Track_5.mp3',
-        questions: [
-            { 
-                q: "Santos-san ở phòng số mấy?", 
-                opts: ["408", "508", "401"], 
-                ans: 0 
-            },
-            { 
-                q: "Món quà Santos tặng là gì?", 
-                opts: ["Bánh kẹo", "Cà phê", "Đồng hồ"], 
-                ans: 1 
-            }
-        ]
-    }
+    '1': [
+        {
+            title: "Kaiwa 1: Hân hạn được gặp", // Tiêu đề bài con
+            audio: 'Sound/01_Track_1.mp3',      // File nghe 1
+            questions: [
+                { q: "Người đang được giới thiệu là ai?", opts: ["Yamada", "Miller", "Satou"], ans: 1 },
+                { q: "Họ đang ở đâu?", opts: ["Nhà", "Trường", "Công ty"], ans: 2 }
+            ]
+        }
+        //Thêm 1 cái tương tự nếu có nhiểu bài trong một phần
+    ],
+    '2': [
+        {
+            title: "Kaiwa 2: Từ giờ mong được giúp đỡ", // Tiêu đề bài con
+            audio: 'Sound/05_Track_5.mp3',      // File nghe 2 (Khác file trên)
+            questions: [
+                { q: "Số phòng của Santos là bao nhiêu?", opts: ["408", "407", "409"], ans: 0 }
+            ]
+        }
+    ]
 };
 
 const extraData = {
@@ -1594,34 +1584,44 @@ function renderExercises(lessonId) {
         });
         container.innerHTML += html;
     }
-    // --- PHẦN 3: NGHE HIỂU  ---
-    const listenData = (typeof exerciseListeningData !== 'undefined') ? exerciseListeningData[lessonId] : null;
-    if (listenData) {
-        let html = `<h3 class="part-title" style="margin-top:40px; border-top:2px dashed #ddd; padding-top:20px;">III. Nghe hiểu (mỗi câu đúng được 10 PTS)</h3>`;
+    // --- III. NGHE HIỂU (CHOUKAI) - HỖ TRỢ NHIỀU BÀI NGHE ---
+    const listenDataList = (typeof exerciseListeningData !== 'undefined') ? exerciseListeningData[lessonId] : null;
+    
+    if (listenDataList && Array.isArray(listenDataList)) {
+        let html = `<h3 class="part-title" style="margin-top:40px; border-top:2px dashed #ddd; padding-top:20px;">III. Nghe hiểu (Choukai)</h3>`;
         
-        html += `
-            <div class="audio-exercise-box">
-                <audio controls src="${listenData.audio}" style="width:100%"></audio>
-                <p style="margin-top:10px; color:#666; font-size:0.9rem;">
-                    <i class="fas fa-headphones"></i> Nghe và chọn đáp án đúng
-                </p>
-            </div>
-        `;
+        // Lặp qua từng bài nghe con (Mondai 1, Mondai 2...)
+        listenDataList.forEach((listenItem, subIndex) => {
+            // Tiêu đề nhỏ cho từng bài nghe
+            html += `<h4 style="margin: 20px 0 10px 0; color: #a18cd1;">${listenItem.title}</h4>`;
 
-        listenData.questions.forEach((item, index) => {
-            let opts = "";
-            item.opts.forEach((opt, i) => {
-                // ĐỔI TÊN Ở ĐÂY: exercise-opt-btn
-                opts += `<button class="exercise-opt-btn" onclick="selectOption(this, ${i})">${opt}</button>`;
-            });
-
+            // Player riêng cho bài nghe này
             html += `
-            <div class="exercise-item">
-                <p><strong>Câu ${index+1}:</strong> ${item.q}</p>
-                <div class="exercise-options" data-correct="${item.ans}">
-                    ${opts}
+                <div class="audio-exercise-box">
+                    <audio controls src="${listenItem.audio}" style="width:100%"></audio>
+                    <p style="margin-top:10px; color:#666; font-size:0.9rem;">
+                        <i class="fas fa-headphones"></i> Bấm nghe và trả lời
+                    </p>
                 </div>
-            </div>`;
+            `;
+
+            // Danh sách câu hỏi của bài nghe này
+            listenItem.questions.forEach((qItem, qIndex) => {
+                let opts = "";
+                qItem.opts.forEach((opt, i) => {
+                    // Tạo ID duy nhất để không bị trùng nút khi chọn
+                    // Ví dụ: ex-listen-0-0-1 (Bài nghe 0, Câu 0, Đáp án 1)
+                    opts += `<button class="exercise-opt-btn" onclick="selectOption(this, ${i})">${opt}</button>`;
+                });
+
+                html += `
+                <div class="exercise-item">
+                    <p><strong>Câu ${subIndex + 1}.${qIndex + 1}:</strong> ${qItem.q}</p>
+                    <div class="exercise-options" data-correct="${qItem.ans}">
+                        ${opts}
+                    </div>
+                </div>`;
+            });
         });
         
         container.innerHTML += html;
