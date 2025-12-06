@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Nihongo Cute - Học Tiếng Nhật N5</title>
+    <title>Nihongo Cute - Học Tiếng Nhật</title>
     <link href="https://fonts.googleapis.com/css2?family=M+PLUS+Rounded+1c:wght@400;700;800&family=Nunito:wght@600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="stylesheet" href="style.css">
@@ -17,7 +17,7 @@
         <nav>
             <ul>
                 <li><a href="#" onclick="closeSection()">Trang chủ</a></li>
-                <li><a href="#" onclick="alert('Chức năng đang phát triển!')">Bảng xếp hạng</a></li>
+                <li><a href="#" onclick="openLeaderboard()">🏆 Bảng xếp hạng</a></li>
             </ul>
         </nav>
     </header>
@@ -44,7 +44,7 @@
 
             <div class="card" onclick="openSection('vocabSection')">
                 <div class="card-icon"><i class="fas fa-book-open"></i></div>
-                <h3>Từ vựng N5</h3>
+                <h3>Từ vựng</h3>
                 <p>Từ vựng theo bài</p>
                 <div class="card-badge">Nền tảng</div>
             </div>
@@ -488,34 +488,34 @@
             <div id="kaiwaContainer" class="kaiwa-chat-box"></div>
         </div>
     </div>
+    <section id="leaderboardSection" class="section-content" style="display:none;">
+        <div class="section-header">
+            <h2><i class="fas fa-trophy" style="color: #f1c40f;"></i> Bảng vàng thành tích</h2>
+            <button class="btn-back" onclick="closeSection()"><i class="fas fa-arrow-left"></i> Quay lại</button>
+        </div>
 
+        <div class="leaderboard-container">
+            <div class="my-rank-card">
+                <div class="rank-avatar">🐰</div>
+                <div class="rank-info">
+                    <h3>Thứ hạng của bạn</h3>
+                    <p id="myRankName">Thỏ Tập Sự</p>
+                </div>
+                <div class="rank-score">
+                    <span id="myTotalScore">0</span> PTS
+                </div>
+                <button class="btn-reset-score" onclick="resetMyScore()" title="Xóa điểm về 0">
+                    <i class="fas fa-trash-alt"></i>
+                </button>
+            </div>
+
+            <div class="ranking-list" id="rankingList">
+                </div>
+        </div>
+    </section>
     <footer>
         <p>© 2025 Nihongo Cute. Học mỗi ngày nhé!</p>
     </footer>
-
-    <div id="charModal" class="modal-overlay">
-        <div class="modal-content">
-            <button class="modal-close" onclick="closeModal()">&times;</button>
-            
-            <div class="modal-body">
-                <div class="modal-left">
-                    <div class="big-char" id="modalChar">あ</div>
-                    <div class="romaji-tag" id="modalRomaji">a</div>
-                    
-                    <button onclick="playAudioFromModal()" class="btn-audio-large">
-                        <i class="fas fa-volume-up"></i> Nghe phát âm
-                    </button>
-                </div>
-
-                <div class="modal-right">
-                    <h3><i class="fas fa-lightbulb"></i> Từ vựng gợi ý:</h3>
-                    <ul class="example-list" id="modalExamples">
-                        </ul>
-                </div>
-            </div>
-        </div>
-    </div>
-
     <script src="script.js"></script>
 </body>
 </html>

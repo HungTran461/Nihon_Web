@@ -1516,7 +1516,7 @@ function renderExercises(lessonId) {
     // --- PHẦN 1: TRẮC NGHIỆM ĐIỀN TỪ ---
     const fillData = exercisesData[lessonId]; 
     if (fillData) {
-        let html = `<h3 class="part-title">I. Chọn đáp án đúng</h3>`;
+        let html = `<h3 class="part-title">I. Chọn đáp án đúng (mỗi câu đúng được 10 PTS)</h3>`;
         fillData.forEach((item, index) => {
             let optionsHtml = '';
             item.opts.forEach((opt, i) => {
@@ -1539,7 +1539,7 @@ function renderExercises(lessonId) {
     // --- PHẦN 2: SẮP XẾP CÂU  ---
     const scrambleData = exerciseScrambleData[lessonId];
     if (scrambleData) {
-        let html = `<h3 class="part-title" style="margin-top:30px; border-top:1px dashed #ccc; padding-top:20px;">II. Sắp xếp thành câu hoàn chỉnh</h3>`;
+        let html = `<h3 class="part-title" style="margin-top:30px; border-top:1px dashed #ccc; padding-top:20px;">II. Sắp xếp thành câu hoàn chỉnh(mỗi câu đúng được 20 PTS)</h3>`;
         scrambleData.forEach((item, index) => {
             const qID = `scramble-${lessonId}-${index}`;
             let shuffled = [...item.parts].sort(() => Math.random() - 0.5);
@@ -1617,12 +1617,13 @@ function checkExerciseResult() {
                     if (parseInt(userSelect) === item.ans) {
                         score++;
                         allBtns[userSelect].classList.add('correct');
+                        addScore(10); 
                     } else {
                         allBtns[userSelect].classList.add('wrong');
                         allBtns[item.ans].classList.add('correct');
                     }
                 } else {
-                     allBtns[item.ans].classList.add('correct'); 
+                     allBtns[item.ans].classList.add('correct');
                 }
             }
         });
@@ -1640,6 +1641,7 @@ function checkExerciseResult() {
             box.classList.add('correct');
             box.classList.remove('wrong');
             feedbackDiv.innerHTML = '<span style="color:#2ecc71"><i class="fas fa-check"></i> Chính xác!</span>';
+            addScore(20);
         } else {
             box.classList.add('wrong');
             box.classList.remove('correct');
@@ -1888,4 +1890,99 @@ function stopReflexGame() {
     clearInterval(reflexTimer);
     document.getElementById('reflexSetup').style.display = 'flex'; // Flex để căn giữa do CSS cũ
     document.getElementById('reflexPlay').style.display = 'none';
+}
+
+/* =========================================
+   LOGIC BẢNG XẾP HẠNG (LEADERBOARD)
+   ========================================= */
+
+// 1. Danh sách Bot Anime (Điểm số giả lập)
+const botsData = [
+    { name: "Conan Edogawa", score: 500, avatar: "🕵️‍♂️" },
+    { name: "Doraemon", score: 420, avatar: "🐱" },
+    { name: "Naruto Uzumaki", score: 350, avatar: "🍥" },
+    { name: "Luffy Mũ Rơm", score: 280, avatar: "👒" },
+    { name: "Suneo (Xeko)", score: 150, avatar: "🦊" },
+    { name: "Nobita Nobi", score: 50, avatar: "👓" }
+];
+
+// 2. Hàm mở Bảng xếp hạng
+function openLeaderboard() {
+    // Gọi hàm mở giao diện chung (để ẩn các cái khác)
+    openSection('leaderboardSection');
+
+    // Lấy điểm hiện tại của người dùng từ bộ nhớ
+    // Nếu chưa có thì mặc định là 0
+    let myScore = parseInt(localStorage.getItem('nihongoScore')) || 0;
+    let myName = "Bạn (Me)";
+
+    // Cập nhật thẻ hiển thị điểm cá nhân
+    document.getElementById('myTotalScore').innerText = myScore;
+    document.getElementById('myRankName').innerText = getRankTitle(myScore);
+
+    // Gộp danh sách Bot và Người chơi
+    let allPlayers = [
+        ...botsData,
+        { name: myName, score: myScore, avatar: "🐰", isMe: true }
+    ];
+
+    // Sắp xếp điểm từ cao xuống thấp
+    allPlayers.sort((a, b) => b.score - a.score);
+
+    // Render ra HTML
+    const listContainer = document.getElementById('rankingList');
+    listContainer.innerHTML = "";
+
+    allPlayers.forEach((player, index) => {
+        const rank = index + 1;
+        const isMeClass = player.isMe ? "is-me" : "";
+        
+        const html = `
+            <div class="ranking-item ${isMeClass}">
+                <div class="rank-number">#${rank}</div>
+                <div class="rank-user-info">
+                    <span style="font-size:1.2rem">${player.avatar}</span>
+                    <span>${player.name}</span>
+                </div>
+                <div class="rank-points">${player.score} pts</div>
+            </div>
+        `;
+        listContainer.innerHTML += html;
+    });
+}
+
+// 3. Hàm lấy danh hiệu dựa trên điểm số
+function getRankTitle(score) {
+    if (score < 100) return "Thỏ Tập Sự 🌱";
+    if (score < 300) return "Thỏ Chăm Chỉ 📚";
+    if (score < 500) return "Thỏ Tài Giỏi 🎖";
+    if (score < 700) return "Thỏ Thông Thái 🎓";
+    if (score < 1000) return "Thỏ Thiên Tài 🧩";
+    return "Thỏ Thần Thánh 🌟";
+}
+
+// 4. Hàm CỘNG ĐIỂM (Dùng để gọi khi làm bài tập xong)
+function addScore(points) {
+    let current = parseInt(localStorage.getItem('nihongoScore')) || 0;
+    let newScore = current + points;
+    localStorage.setItem('nihongoScore', newScore);
+    
+    // Hiệu ứng thông báo nhỏ (Console hoặc Alert tùy bạn)
+    console.log(`Đã cộng ${points} điểm! Tổng: ${newScore}`);
+}
+/* --- HÀM RESET ĐIỂM --- */
+function resetMyScore() {
+    // 1. Hỏi xác nhận để tránh bấm nhầm
+    const confirmAction = confirm("Bạn có chắc muốn xóa toàn bộ điểm về 0 không?");
+    
+    if (confirmAction) {
+        // 2. Đặt điểm về 0 trong bộ nhớ
+        localStorage.setItem('nihongoScore', 0);
+        
+        // 3. Thông báo
+        alert("Đã xóa điểm thành công! Cày lại từ đầu nhé! 🐰");
+        
+        // 4. Tải lại bảng xếp hạng để cập nhật giao diện ngay lập tức
+        openLeaderboard();
+    }
 }

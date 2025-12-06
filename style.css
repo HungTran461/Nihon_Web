@@ -1662,3 +1662,124 @@ footer { text-align: center; margin-top: 3rem; color: #aaa; font-size: 0.9rem; }
     100% { transform: scale(1); }
 }
 
+/* =========================================
+   BẢNG XẾP HẠNG (LEADERBOARD)
+   ========================================= */
+
+.leaderboard-container {
+    max-width: 600px;
+    margin: 0 auto;
+    padding: 10px;
+}
+
+/* Thẻ hiển thị rank của người chơi (Trên cùng) */
+.my-rank-card {
+    background: linear-gradient(135deg, #a18cd1 0%, #fbc2eb 100%);
+    border-radius: 20px;
+    padding: 20px;
+    display: flex;
+    align-items: center;
+    color: white;
+    box-shadow: 0 10px 20px rgba(161, 140, 209, 0.4);
+    margin-bottom: 30px;
+    position: relative;
+    overflow: hidden;
+}
+
+.my-rank-card .rank-avatar {
+    font-size: 3rem;
+    background: rgba(255,255,255,0.3);
+    width: 70px;
+    height: 70px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-right: 15px;
+}
+
+.my-rank-card h3 { font-size: 0.9rem; opacity: 0.9; }
+.my-rank-card p { font-size: 1.4rem; font-weight: 800; }
+.my-rank-card .rank-score {
+    margin-left: auto;
+    font-size: 1.5rem;
+    font-weight: 800;
+}
+
+/* Danh sách xếp hạng bên dưới */
+.ranking-item {
+    display: flex;
+    align-items: center;
+    background: white;
+    padding: 15px;
+    border-radius: 15px;
+    margin-bottom: 12px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.03);
+    transition: 0.3s;
+    border: 2px solid transparent;
+}
+
+/* Hiệu ứng khi là dòng của chính mình trong list */
+.ranking-item.is-me {
+    border-color: var(--primary);
+    background-color: #fff0f5;
+}
+
+.rank-number {
+    font-size: 1.2rem;
+    font-weight: 800;
+    width: 40px;
+    text-align: center;
+    color: #888;
+}
+
+.rank-user-info {
+    flex-grow: 1;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-weight: bold;
+    color: #555;
+}
+
+.rank-points {
+    font-weight: 800;
+    color: var(--primary);
+}
+
+/* --- MÀU SẮC CHO TOP 1, 2, 3 --- */
+.ranking-item:nth-child(1) .rank-number { color: #f1c40f; font-size: 1.5rem; } /* Vàng */
+.ranking-item:nth-child(2) .rank-number { color: #bdc3c7; font-size: 1.4rem; } /* Bạc */
+.ranking-item:nth-child(3) .rank-number { color: #cd7f32; font-size: 1.3rem; } /* Đồng */
+
+.ranking-item:nth-child(1) { border-left: 5px solid #f1c40f; }
+.ranking-item:nth-child(2) { border-left: 5px solid #bdc3c7; }
+.ranking-item:nth-child(3) { border-left: 5px solid #cd7f32; }
+
+/* --- NÚT RESET ĐIỂM --- */
+.my-rank-card {
+    position: relative; /* Để định vị nút reset */
+}
+
+.btn-reset-score {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background: rgba(255, 255, 255, 0.2);
+    border: 1px solid rgba(255, 255, 255, 0.5);
+    color: white;
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: 0.3s;
+}
+
+.btn-reset-score:hover {
+    background: #e74c3c; /* Màu đỏ báo hiệu nguy hiểm */
+    border-color: #e74c3c;
+    transform: scale(1.1);
+}
