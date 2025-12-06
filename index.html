@@ -130,7 +130,7 @@
                 
                 <div class="vocab-table-header">
                     <div class="col-header">Kanji</div>
-                    <div class="col-header">Cách đọc</div>
+                    <div class="col-header">Hiragana/Katakana</div>
                     <div class="col-header">Ý nghĩa</div>
                     <div class="col-header">Nghe</div>
                 </div>
@@ -446,8 +446,8 @@
             </div>
 
             <div class="kana-tabs">
-                <button class="tab-btn active" onclick="switchExerciseTab('1', event)">Bài 1</button>
-                <button class="tab-btn" onclick="switchExerciseTab('2', event)">Bài 2</button>
+                <button id="btn-bai-1" class="tab-btn" onclick="switchExerciseTab('1')">Bài 1</button>
+                <button id="btn-bai-2" class="tab-btn" onclick="switchExerciseTab('2')">Bài 2</button>
             </div>
 
             <div id="exerciseContainer" class="exercise-wrapper">
