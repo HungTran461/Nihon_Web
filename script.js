@@ -718,6 +718,40 @@ const exerciseScrambleData = {
     ]
 };
 
+/* --- DỮ LIỆU BÀI TẬP NGHE HIỂU --- */
+const exerciseListeningData = {
+    '1': { // Bài 1 (Dùng Audio bài 1)
+        audio: 'Sound/01_Track_1.mp3', 
+        questions: [
+            { 
+                q: "Người nói chuyện với Yamada-san là ai?", 
+                opts: ["Miller-san", "Sato-san", "Watt-san"], 
+                ans: 1 // Đáp án là Sato (index 1)
+            },
+            { 
+                q: "Câu chào buổi sáng được nhắc đến là gì?", 
+                opts: ["Konnichiwa", "Konbanwa", "Ohayou gozaimasu"], 
+                ans: 2 
+            }
+        ]
+    },
+    '2': { // Bài 2 (Dùng Audio bài 2)
+        audio: 'Sound/05_Track_5.mp3',
+        questions: [
+            { 
+                q: "Santos-san ở phòng số mấy?", 
+                opts: ["408", "508", "401"], 
+                ans: 0 
+            },
+            { 
+                q: "Món quà Santos tặng là gì?", 
+                opts: ["Bánh kẹo", "Cà phê", "Đồng hồ"], 
+                ans: 1 
+            }
+        ]
+    }
+};
+
 const extraData = {
     'school': [
         {k:'教室', r:'きょうしつ', m:'Lớp học'},
@@ -1560,6 +1594,38 @@ function renderExercises(lessonId) {
         });
         container.innerHTML += html;
     }
+    // --- PHẦN 3: NGHE HIỂU  ---
+    const listenData = (typeof exerciseListeningData !== 'undefined') ? exerciseListeningData[lessonId] : null;
+    if (listenData) {
+        let html = `<h3 class="part-title" style="margin-top:40px; border-top:2px dashed #ddd; padding-top:20px;">III. Nghe hiểu (mỗi câu đúng được 10 PTS)</h3>`;
+        
+        html += `
+            <div class="audio-exercise-box">
+                <audio controls src="${listenData.audio}" style="width:100%"></audio>
+                <p style="margin-top:10px; color:#666; font-size:0.9rem;">
+                    <i class="fas fa-headphones"></i> Nghe và chọn đáp án đúng
+                </p>
+            </div>
+        `;
+
+        listenData.questions.forEach((item, index) => {
+            let opts = "";
+            item.opts.forEach((opt, i) => {
+                // ĐỔI TÊN Ở ĐÂY: exercise-opt-btn
+                opts += `<button class="exercise-opt-btn" onclick="selectOption(this, ${i})">${opt}</button>`;
+            });
+
+            html += `
+            <div class="exercise-item">
+                <p><strong>Câu ${index+1}:</strong> ${item.q}</p>
+                <div class="exercise-options" data-correct="${item.ans}">
+                    ${opts}
+                </div>
+            </div>`;
+        });
+        
+        container.innerHTML += html;
+    }
 }
 
 function selectOption(btn, optionIndex) {
@@ -1598,38 +1664,45 @@ function switchExerciseTab(lessonId, event) {
     renderExercises(lessonId);
 }
 
+//* --- HÀM CHẤM ĐIỂM (CẬP NHẬT TÊN CLASS & FIX ĐẾM SỐ CÂU) --- */
 function checkExerciseResult() {
     let score = 0;
     let total = 0;
 
-    if (typeof currentExerciseList !== 'undefined' && currentExerciseList) {
-        currentExerciseList.forEach((item, index) => {
-            total++;
-            const optsDiv = document.getElementById(`opts-${index}`);
-            if(optsDiv) {
-                const userSelect = optsDiv.getAttribute('data-selected');
-                const allBtns = optsDiv.querySelectorAll('.exercise-opt-btn');
-                
-                // Reset style cũ
-                allBtns.forEach(b => b.classList.remove('correct', 'wrong'));
+    // 1. Chấm Trắc nghiệm (Tìm class mới: exercise-options)
+    const allMultipleChoice = document.querySelectorAll('.exercise-options');
+    
+    // Debug để xem tìm thấy bao nhiêu câu
+    console.log("Số câu trắc nghiệm tìm thấy:", allMultipleChoice.length);
 
-                if (userSelect !== null) {
-                    if (parseInt(userSelect) === item.ans) {
-                        score++;
-                        allBtns[userSelect].classList.add('correct');
-                        addScore(10); 
-                    } else {
-                        allBtns[userSelect].classList.add('wrong');
-                        allBtns[item.ans].classList.add('correct');
-                    }
-                } else {
-                     allBtns[item.ans].classList.add('correct');
-                }
+    allMultipleChoice.forEach(div => {
+        total++;
+        const correctAns = parseInt(div.getAttribute('data-correct'));
+        const selectedBtn = div.querySelector('.selected');
+        
+        // Tìm nút con với class mới: exercise-opt-btn
+        const allBtns = div.querySelectorAll('.exercise-opt-btn');
+
+        // Reset màu
+        allBtns.forEach(b => b.classList.remove('correct', 'wrong'));
+        
+        // Hiện đáp án đúng
+        if(allBtns[correctAns]) allBtns[correctAns].classList.add('correct');
+
+        if (selectedBtn) {
+            const userIndex = Array.from(allBtns).indexOf(selectedBtn);
+            if (userIndex === correctAns) {
+                score++;
+            } else {
+                selectedBtn.classList.add('wrong');
             }
-        });
-    }
+        }
+    });
 
+    // 2. Chấm Sắp xếp câu (Giữ nguyên)
     const scrambleBoxes = document.querySelectorAll('.scramble-answer-box');
+    console.log("Số câu sắp xếp tìm thấy:", scrambleBoxes.length);
+
     scrambleBoxes.forEach(box => {
         total++;
         const userWords = Array.from(box.querySelectorAll('.word-btn')).map(btn => btn.innerText);
@@ -1641,7 +1714,6 @@ function checkExerciseResult() {
             box.classList.add('correct');
             box.classList.remove('wrong');
             feedbackDiv.innerHTML = '<span style="color:#2ecc71"><i class="fas fa-check"></i> Chính xác!</span>';
-            addScore(20);
         } else {
             box.classList.add('wrong');
             box.classList.remove('correct');
@@ -1649,8 +1721,16 @@ function checkExerciseResult() {
         }
     });
 
+    // Hiển thị kết quả
     const resultDiv = document.getElementById('exerciseScore');
     resultDiv.innerHTML = `Kết quả: <strong>${score}/${total}</strong> câu đúng`;
+    
+    if (typeof addScore === 'function' && score > 0) {
+        addScore(score * 10); 
+    }
+    if(score === total && total > 0) {
+        resultDiv.innerHTML += " <br>🎉 Tuyệt vời! Bạn đã hoàn thành xuất sắc!";
+    }
 }
 
 

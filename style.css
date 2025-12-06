@@ -1077,7 +1077,24 @@ footer { text-align: center; margin-top: 3rem; color: #aaa; font-size: 0.9rem; }
     transform: translateY(2px); /* Nhấn xuống */
     box-shadow: 0 0 0 rgba(161, 140, 209, 0.3);
 }
+/* --- STYLE CHO BÀI TẬP NGHE HIỂU --- */
+.audio-exercise-box {
+    background: #fdfaff;
+    border: 2px dashed #a18cd1;
+    border-radius: 20px;
+    padding: 15px;
+    margin-bottom: 30px;
+    text-align: center;
+}
 
+/* Tùy chỉnh thanh audio mặc định của trình duyệt (Webkit only) */
+audio::-webkit-media-controls-panel {
+    background-color: #fff;
+}
+audio::-webkit-media-controls-play-button {
+    background-color: #fce4ec;
+    border-radius: 50%;
+}
 /* =========================================
    CUSTOM DROPDOWN (Giao diện chọn đẹp)
    ========================================= */
