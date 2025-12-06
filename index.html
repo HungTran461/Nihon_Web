@@ -243,6 +243,8 @@
                         <div class="config-item">
                             <label>Chủ đề:</label>
                             <select id="quizTopic">
+                                <option value="minna_1">Minna Bài 1</option>
+                                <option value="minna_2">Minna Bài 2</option>
                                 <optgroup label="Saiba (Từ vựng bổ sung)">
                                     <option value="extra_school">Đồ vật trong trường</option>
                                     <option value="extra_toilet">Đồ dùng nhà vệ sinh</option>
@@ -250,8 +252,6 @@
                                     <option value="extra_week">Thứ trong tuần</option>
                                     <option value="extra_number">Số đếm</option> <option value="extra_age">Tuổi tác</option>   
                                 </optgroup>
-                                <option value="minna_1">Minna Bài 1</option>
-                                <option value="minna_2">Minna Bài 2</option>
                                 <optgroup label="Hiragana">
                                     <option value="hira_basic">Hiragana (Cơ bản)</option>
                                     <option value="hira_daku">Hiragana (Biến âm)</option> 
@@ -476,6 +476,13 @@
 
             <div class="kaiwa-illustration">
                 <img id="kaiwaImage" src="" alt="Kaiwa Image">
+                <div class="audio-player-wrapper" id="kaiwaAudioPlayer">
+                    <audio id="kaiwaAudio"></audio> 
+                    <button id="btnKaiwaAudio" class="btn-audio-player" onclick="toggleKaiwaAudio()">
+                        <div class="icon-play"><i class="fas fa-play" id="kaiwaAudioIcon"></i></div>
+                        <span id="kaiwaAudioText">Nghe CD</span>
+                    </button>
+                </div>
             </div>
 
             <div id="kaiwaContainer" class="kaiwa-chat-box"></div>

@@ -1247,7 +1247,6 @@ footer { text-align: center; margin-top: 3rem; color: #aaa; font-size: 0.9rem; }
 }
 .chat-row.right .btn-chat-audio { color: white; }
 
-/* --- Thêm vào cuối file style.css --- */
 
 .kaiwa-sub-nav {
     display: flex;
@@ -1292,10 +1291,51 @@ footer { text-align: center; margin-top: 3rem; color: #aaa; font-size: 0.9rem; }
     background: #fff;      /* Màu nền dự phòng */
 }
 
-/* =========================================
-   FIX LỖI TRÀN CHỮ & CĂN LỀ (Responsive)
-   ========================================= */
+/* --- STYLE NÚT AUDIO KAIWA --- */
+.audio-player-wrapper {
+    display: flex;             /* QUAN TRỌNG: Để nút hiện ra */
+    justify-content: center;   /* Căn giữa nút */
+    margin: 15px 0 20px 0;     /* Khoảng cách trên dưới */
+    width: 100%;               /* Chiếm hết chiều rộng */
+}
 
+.btn-audio-player {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    background: #fff;
+    border: 2px solid #ff9a9e; /* Màu hồng */
+    padding: 8px 25px 8px 8px; 
+    border-radius: 50px;
+    cursor: pointer;
+    box-shadow: 0 4px 10px rgba(255, 154, 158, 0.3);
+    transition: 0.3s;
+}
+
+.btn-audio-player:hover {
+    transform: translateY(-2px);
+    background: #fff0f5;
+}
+
+.icon-play {
+    width: 35px; 
+    height: 35px;
+    background: #ff9a9e;
+    color: white;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.9rem;
+    padding-left: 3px;
+}
+
+.btn-audio-player span {
+    color: #555;
+    font-weight: 800;
+    font-size: 1rem;
+    text-transform: uppercase;
+}
 /* 1. Căn chỉnh Khung bao ngoài (Container) */
 .container {
     width: 100%;

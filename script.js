@@ -695,7 +695,7 @@ const exerciseScrambleData = {
     '1': [
         { 
             question: "Tôi là sinh viên.", 
-            parts: ["せんせい","わたし", "は", "がきせい", "けんきゅうしゃ", "です", "あなた"],
+            parts: ["せんせい","わたし", "は", "がくせい", "けんきゅうしゃ", "です", "あなた"],
             correct: ["わたし", "は", "がくせい", "です"] 
         },
         { 
@@ -796,7 +796,7 @@ const extraData = {
     ]
 };
 
-// --- 1.7 Dữ liệu Hội thoại (Kaiwa) ---
+// --- 1.7 Dữ liệu Hội thoại  ---
 
 const kaiwaData = {
     '1': [ // Bài 1 là một Mảng gồm nhiều hội thoại
@@ -804,6 +804,7 @@ const kaiwaData = {
             name: 'Kaiwa Chính', // Tên nút hiển thị
             title: '初めまして (Rất hân hạnh)',
             img: 'Image/Kaiwa_B1_1.png',
+            audio: 'Sound/01_Track_1.mp3',
             dialogue: [
                 { role: 'A', name: '佐藤 (Satou)', text: 'おはよう ございます。', mean: 'Chào buổi sáng.', icon: 'Image/Av_Girl_BlackHair.png', side: 'left', gender: 'female' },
                 { role: 'B', name: '山田 (Yamada)', text: 'おはよう ございます。\n佐藤さん、こちらは ミラーさんです。', mean: 'Chào buổi sáng. Chị Satou, đây là anh Miller.', icon: 'Image/Av_Boy_BlackHair.png', side: 'left', gender: 'male'  },
@@ -815,6 +816,7 @@ const kaiwaData = {
             name: 'Renshuu C-1', // Hội thoại phụ
             title: 'Hỏi tên (お名前は)',
             img: 'Image/Kaiwa_B1_2.png',
+            audio: '',
             dialogue: [
                 { role: 'A', name: 'A', text: '失礼ですが、お名前は？', mean: 'Xin lỗi, tên anh/chị là gì?', icon: 'Image/Av_Boy_BlackHair.png',side: 'left' , gender: 'male' },
                 { role: 'B', name: 'B', text: 'イーです。', mean: 'Tôi là Y.', icon: 'Image/Av_Girl_BlackHair.png',side: 'right', gender: 'female'  },
@@ -828,6 +830,7 @@ const kaiwaData = {
             name: 'Kaiwa Chính',
             title: 'ほんの気持ちです (Chút lòng thành)',
             img: 'Image/Kaiwa_B2_1.png',
+            audio: 'Sound/05_Track_5.mp3',
             dialogue: [
                 { role: 'A', name: '山田 (Yamada)', text: 'はい。どなたですか。', mean: 'Vâng. Ai đấy ạ?', icon: 'Image/Av_Boy_BlueHair.png',side: 'left', gender: 'male' },
                 { role: 'B', name: 'サントス (Santos)', text: '４０８の サントスです。', mean: 'Tôi là Santos ở phòng 408.', icon: 'Image/Av_Boy_BlackHair.png', side: 'right', gender: 'male' },
@@ -1670,7 +1673,29 @@ function switchKaiwaTab(lessonId, event) {
     }
     
     currentKaiwaLesson = lessonId;
+    // 1. Tải dữ liệu
+    const data = kaiwaData[lessonId];
     
+    // 2. Cập nhật Audio (ĐOẠN MỚI THÊM)
+    const audioPlayer = document.getElementById('kaiwaAudio');
+    const btnAudio = document.getElementById('btnKaiwaAudio');
+    
+    // Reset trình phát nhạc
+    audioPlayer.pause();
+    audioPlayer.currentTime = 0;
+    
+    // Reset giao diện nút
+    btnAudio.classList.remove('playing');
+    document.getElementById('kaiwaAudioIcon').className = 'fas fa-play';
+    document.getElementById('kaiwaAudioText').innerText = "Nghe CD";
+
+    // Kiểm tra xem bài này có file audio không
+    if (data.audio && data.audio !== "") {
+        audioPlayer.src = data.audio; // Gán link nhạc mới
+        document.querySelector('.audio-player-wrapper').style.display = 'flex'; // Hiện nút
+    } else {
+        document.querySelector('.audio-player-wrapper').style.display = 'none'; // Ẩn nút nếu không có nhạc
+    }
     // Gọi hàm tạo menu con
     renderKaiwaSubNav(lessonId);
 }
@@ -1744,6 +1769,40 @@ function renderKaiwaContent(lessonId, index) {
         container.appendChild(row);
     });
 }
+
+/* --- LOGIC AUDIO KAIWA --- */
+function toggleKaiwaAudio() {
+    const audio = document.getElementById('kaiwaAudio');
+    const btn = document.getElementById('btnKaiwaAudio');
+    const icon = document.getElementById('kaiwaAudioIcon');
+    const text = document.getElementById('kaiwaAudioText');
+
+    if (audio.paused) {
+        // Đang dừng -> Bấm để phát
+        audio.play();
+        btn.classList.add('playing');
+        icon.className = 'fas fa-pause';
+        text.innerText = "Đang phát...";
+    } else {
+        // Đang phát -> Bấm để dừng
+        audio.pause();
+        btn.classList.remove('playing');
+        icon.className = 'fas fa-play';
+        text.innerText = "Nghe CD";
+    }
+}
+
+// Khi nhạc chạy hết thì tự động reset nút về ban đầu
+document.getElementById('kaiwaAudio').addEventListener('ended', function() {
+    const btn = document.getElementById('btnKaiwaAudio');
+    const icon = document.getElementById('kaiwaAudioIcon');
+    const text = document.getElementById('kaiwaAudioText');
+    
+    btn.classList.remove('playing');
+    icon.className = 'fas fa-play';
+    text.innerText = "Nghe lại";
+});
+
 
 /* =========================================
    11. GAME PHẢN XẠ (REFLEX)
