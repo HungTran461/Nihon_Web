@@ -813,10 +813,10 @@ const kaiwaData = {
             ]
         },
         {
-            name: 'Renshuu C-1', // Hội thoại phụ
+            name: 'Renshyuu C-2', // Hội thoại phụ
             title: 'Hỏi tên (お名前は)',
             img: 'Image/Kaiwa_B1_2.png',
-            audio: '',
+            audio: '', // Không có audio
             dialogue: [
                 { role: 'A', name: 'A', text: '失礼ですが、お名前は？', mean: 'Xin lỗi, tên anh/chị là gì?', icon: 'Image/Av_Boy_BlackHair.png',side: 'left' , gender: 'male' },
                 { role: 'B', name: 'B', text: 'イーです。', mean: 'Tôi là Y.', icon: 'Image/Av_Girl_BlackHair.png',side: 'right', gender: 'female'  },
@@ -1673,30 +1673,7 @@ function switchKaiwaTab(lessonId, event) {
     }
     
     currentKaiwaLesson = lessonId;
-    // 1. Tải dữ liệu
-    const data = kaiwaData[lessonId];
     
-    // 2. Cập nhật Audio (ĐOẠN MỚI THÊM)
-    const audioPlayer = document.getElementById('kaiwaAudio');
-    const btnAudio = document.getElementById('btnKaiwaAudio');
-    
-    // Reset trình phát nhạc
-    audioPlayer.pause();
-    audioPlayer.currentTime = 0;
-    
-    // Reset giao diện nút
-    btnAudio.classList.remove('playing');
-    document.getElementById('kaiwaAudioIcon').className = 'fas fa-play';
-    document.getElementById('kaiwaAudioText').innerText = "Nghe CD";
-
-    // Kiểm tra xem bài này có file audio không
-    if (data.audio && data.audio !== "") {
-        audioPlayer.src = data.audio; // Gán link nhạc mới
-        document.querySelector('.audio-player-wrapper').style.display = 'flex'; // Hiện nút
-    } else {
-        document.querySelector('.audio-player-wrapper').style.display = 'none'; // Ẩn nút nếu không có nhạc
-    }
-    // Gọi hàm tạo menu con
     renderKaiwaSubNav(lessonId);
 }
 
@@ -1740,6 +1717,31 @@ function renderKaiwaContent(lessonId, index) {
     // Cập nhật ảnh
     if(data.img) imgEl.src = data.img;
     
+    const audioWrapper = document.getElementById('kaiwaAudioPlayer');
+    const audioEl = document.getElementById('kaiwaAudio');
+    const btnIcon = document.getElementById('kaiwaAudioIcon');
+    const btnText = document.getElementById('kaiwaAudioText');
+    const btnMain = document.getElementById('btnKaiwaAudio');
+
+    // Reset trạng thái
+    if (audioEl) {
+        audioEl.pause();
+        audioEl.currentTime = 0;
+    }
+    if (btnIcon) btnIcon.className = 'fas fa-play';
+    if (btnText) btnText.innerText = 'Nghe CD';
+    if (btnMain) btnMain.classList.remove('playing');
+
+    // Nạp file nhạc mới (Lấy từ data con)
+    if (audioWrapper && audioEl) {
+        if (data.audio && data.audio !== "") {
+            audioEl.src = data.audio;
+            audioWrapper.style.display = 'flex'; // Hiện nút
+        } else {
+            audioWrapper.style.display = 'none'; // Ẩn nút nếu bài này (vd: Renshuu C) không có tiếng
+        }
+    }
+
     container.innerHTML = ''; // Xóa chat cũ
 
     // Render từng dòng chat

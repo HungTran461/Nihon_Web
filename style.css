@@ -313,12 +313,7 @@ nav a:hover, nav a.active {
     .cell-mean { padding-left: 5px; font-size: 0.9rem; }
     .btn-vocab-speak { width: 30px; height: 30px; font-size: 0.8rem; }
 }
-/* =========================================
-   RESPONSIVE MOBILE (Dưới 600px) - FIX FULL WIDTH
-   ========================================= */
-/* =========================================
-   RESPONSIVE MOBILE (Dưới 600px) - FIX FINAL
-   ========================================= */
+
 @media (max-width: 600px) {
 
     /* 1. Reset Container để không bị tràn lề ngang */
@@ -432,6 +427,58 @@ nav a:hover, nav a.active {
     header { padding: 10px; flex-direction: column; gap: 10px; }
     nav ul { gap: 10px; flex-wrap: wrap; justify-content: center; }
     nav a { font-size: 0.85rem; padding: 6px 12px; }
+    .audio-player-wrapper {
+        position: fixed;        /* Cố định vị trí */
+        bottom: 20px;           /* Cách đáy 20px */
+        left: 50%;              /* Căn giữa */
+        transform: translateX(-50%); /* Căn giữa chuẩn xác */
+        z-index: 1000;          /* Nổi lên trên tất cả */
+        
+        margin: 0;
+        width: auto;
+        
+        /* Hiệu ứng mờ nền kính (Glassmorphism) */
+        background: rgba(255, 255, 255, 0.8);
+        backdrop-filter: blur(10px);
+        padding: 5px;
+        border-radius: 50px;
+        box-shadow: 0 5px 20px rgba(0,0,0,0.15);
+        border: 1px solid rgba(255, 255, 255, 0.5);
+    }
+
+    /* Nút bấm nổi bật hơn */
+    .btn-audio-player {
+        background: #ff9a9e; /* Đổi nền thành màu hồng luôn cho nổi */
+        border: none;
+        color: white;        /* Chữ trắng */
+        box-shadow: none;    /* Bỏ bóng cũ */
+        padding: 8px 20px 8px 8px;
+    }
+
+    /* Icon đổi màu cho hợp nền hồng */
+    .btn-audio-player .icon-play {
+        background: white;
+        color: #ff9a9e;
+    }
+
+    .btn-audio-player span {
+        color: white; /* Chữ trắng */
+        font-size: 0.9rem;
+    }
+
+    /* Trạng thái đang phát */
+    .btn-audio-player.playing {
+        background: #a18cd1; /* Đổi màu tím khi phát */
+    }
+    
+    .btn-audio-player.playing .icon-play {
+        color: #a18cd1;
+    }
+    
+    /* Đẩy nội dung chat lên một chút để không bị nút che mất dòng cuối */
+    .kaiwa-chat-box {
+        padding-bottom: 80px; 
+    }
 }
 
 footer { text-align: center; margin-top: 3rem; color: #aaa; font-size: 0.9rem; }
