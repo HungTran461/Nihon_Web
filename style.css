@@ -9,7 +9,9 @@
     --text: #555555;
     --shadow: 0 8px 20px rgba(255, 154, 158, 0.25);
     --radius: 25px;
-    --blue: #18a3ff;
+    --blue: #144bff;
+    --red: #ff2d2d;
+    --pink: #fd58aa;
 }
 
 * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -1285,7 +1287,7 @@ audio::-webkit-media-controls-play-button {
     margin-bottom: 4px;
     color: #888;
 }
-.chat-row.right .chat-name { text-align: right; color: var(--primary-dark); }
+.chat-row.right .chat-name { text-align: right; color: white; }
 
 .chat-jp {
     font-size: 1.1rem;

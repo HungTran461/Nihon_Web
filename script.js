@@ -722,21 +722,49 @@ const exerciseScrambleData = {
 const exerciseListeningData = {
     '1': [
         {
-            title: "Kaiwa 1: Hân hạn được gặp", // Tiêu đề bài con
-            audio: 'Sound/01_Track_1.mp3',      // File nghe 1
+            title: "Kaiwa 1: はじめまして。", // Tiêu đề bài
+            audio: 'Sound/01_Track_1.mp3',      // File nghe 
             questions: [
-                { q: "Người đang được giới thiệu là ai?", opts: ["Yamada", "Miller", "Satou"], ans: 1 },
-                { q: "Họ đang ở đâu?", opts: ["Nhà", "Trường", "Công ty"], ans: 2 }
+                { q: "Người đang được giới thiệu là ai?", opts: ["やまだ", "ミラー", "さとう"], ans: 1 },
+                { q: "Người đó đến từ nước nào?", opts: ["ドイツ", "イギリス", "アメリカ"], ans: 2 }
+            ]
+        },
+        {
+            title: "Mondai 1", 
+            audio: 'Sound/02_Track_2.mp3',     
+            questions: [
+                { q: "Câu hỏi thứ 1 là gì?", opts: ["あなたは サントスさんですか。", "あなたは サントンさんですか。", "あなたは ザントズさんですか。"], ans: 0 },
+                { q: "Câu hỏi thứ 2 là gì?", opts: ["どなたですか。", "あのひとは。", "おなまえは。"], ans: 2 },
+                { q: "Câu hỏi thứ 3 là gì?", opts: ["なんですか。", "なんさいですか。", "おいくつですか。"], ans: 1 },
+                { q: "Câu hỏi thứ 4 là gì?", opts: ["インドじんですか。", "ブラジルじんですか。", "アメリカじんですか。"], ans: 2 },
+                { q: "Câu hỏi thứ 5 là gì?", opts: ["かいしゃいんですか。", "しゃいんですか。", "ぎんこういんですか。"], ans: 0 },
+            ]
+        },
+        {
+            title: "Mondai 2", 
+            audio: 'Sound/03_Track_3.mp3',     
+            questions: [
+                { q: "Ai đang được giới thiệu ở câu 1?", opts: ["サントス", "シュミット", "ミラー"], ans: 1 },
+                { q: "Câu hỏi thứ 2, Wang bao nhiêu tuổi?", opts: ["28", "29", "21"], ans: 1 },
+            ]
+        },
+        {
+            title: "Mondai 3", 
+            audio: 'Sound/04_Track_4.mp3',     
+            questions: [
+                { q: "Câu thứ 1 đúng hay sai?", opts: ["ちがいます。", "ただしい"], ans: 1 },
+                { q: "Câu thứ 2 đúng hay sai?", opts: ["ちがいます。", "ただしい"], ans: 0 },
+                { q: "Câu thứ 3 đúng hay sai?", opts: ["ちがいます。", "ただしい"], ans: 1 },
             ]
         }
-        //Thêm 1 cái tương tự nếu có nhiểu bài trong một phần
     ],
     '2': [
         {
-            title: "Kaiwa 2: Từ giờ mong được giúp đỡ", // Tiêu đề bài con
+            title: "Kaiwa 2: これから あせわに なります。", // Tiêu đề bài con
             audio: 'Sound/05_Track_5.mp3',      // File nghe 2 (Khác file trên)
             questions: [
-                { q: "Số phòng của Santos là bao nhiêu?", opts: ["408", "407", "409"], ans: 0 }
+                { q: "Số phòng của Santos là bao nhiêu?", opts: ["408", "407", "409"], ans: 0 },
+                { q: "Santos đã tặng món quà gì ?", opts: ["クッキ", "おちゃ", "コーヒー"], ans: 2 }
             ]
         }
     ]
@@ -768,10 +796,10 @@ const extraData = {
         {k:'スクリーン', r:'スクリーン', m:'Màn chiếu'},
         {k:'プロジェクター', r:'プロジェクター', m:'Máy chiếu'},
         {k:'エアコン', r:'エアコン', m:'Máy lạnh'},
-        {k:'延長コード', r:'えんちょうコード', m:'Ổ điện'},
+        {k:'延長コード', r:'えんちょうコード', m:'Ổ cắm điện'},
         {k:'黒板消し', r:'こくばんけし', m:'Cục xóa bảng'},
         {k:'ブラインド', r:'ブラインド', m:'Rèm cuốn'},
-        {k:'窓口', r:'まど', m:'Cửa số'},
+        {k:'窓口', r:'まど', m:'Cửa sổ'},
         {k:'黒板', r:'こくばん', m:'Bảng đen'},
         {k:'教室', r:'きょうしつ', m:'Lớp học'},
         {k:'食堂', r:'しょくどう', m:'Nhà ăn'},
@@ -883,45 +911,67 @@ const extraData = {
 const kaiwaData = {
     '1': [ // Bài 1 là một Mảng gồm nhiều hội thoại
         {
-            name: 'Kaiwa Chính', // Tên nút hiển thị
+            name: 'Kaiwa', // Tên nút hiển thị
             title: '初めまして (Rất hân hạnh)',
-            img: 'Image/Kaiwa_B1_1.png',
+            img: 'Image/Kaiwa_B1_Main.png',
             audio: 'Sound/01_Track_1.mp3',
             dialogue: [
                 { role: 'A', name: '佐藤 (Satou)', text: 'おはよう ございます。', mean: 'Chào buổi sáng.', icon: 'Image/Av_Girl_BlackHair.png', side: 'left', gender: 'female' },
-                { role: 'B', name: '山田 (Yamada)', text: 'おはよう ございます。\n佐藤さん、こちらは ミラーさんです。', mean: 'Chào buổi sáng. Chị Satou, đây là anh Miller.', icon: 'Image/Av_Boy_BlackHair.png', side: 'left', gender: 'male'  },
-                { role: 'C', name: 'ミラー (Miller)', text: '初めまして。マイク ミラーです。\nアメリカから 来ました。\nどうぞ よろしく。', mean: 'Rất hân hạnh. Tôi là Mike Miller. Tôi đến từ Mỹ. Rất mong được giúp đỡ.', icon: 'Image/Av_Boy_YellowHair.png', side: 'right' , gender: 'male' },
-                { role: 'A', name: '佐藤 (Satou)', text: '佐藤けいこです。\nどうぞ よろしく。', mean: 'Tôi là Satou Keiko. Rất mong được giúp đỡ.', icon: 'Image/Av_Girl_BlackHair.png', side: 'left', gender: 'female'  }
+                { role: 'B', name: '山田 (Yamada)', text: 'おはよう ございます。\nさとう(佐藤)さん、こちらは ミラーさんです。', mean: 'Chào buổi sáng. Chị Satou, đây là anh Miller.', icon: 'Image/Av_Boy_BlackHair.png', side: 'left', gender: 'male'  },
+                { role: 'C', name: 'ミラー (Miller)', text: 'はじ(初)めまして。マイク ミラーです。\nアメリカから き(来)ました。\nどうぞ よろしく。', mean: 'Rất hân hạnh. Tôi là Mike Miller. Tôi đến từ Mỹ. Rất mong được giúp đỡ.', icon: 'Image/Av_Boy_YellowHair.png', side: 'right' , gender: 'male' },
+                { role: 'A', name: '佐藤 (Satou)', text: 'さとう(佐藤)けいこです。\nどうぞ よろしく。', mean: 'Tôi là Satou Keiko. Rất mong được giúp đỡ.', icon: 'Image/Av_Girl_BlackHair.png', side: 'left', gender: 'female'  }
+            ]
+        },
+        {
+            name: 'Renshyuu C-1', // Hội thoại phụ
+            title: 'Hỏi đáp',
+            img: 'Image/Kaiwa_B1_C1.png',
+            audio: '', // Không có audio
+            dialogue: [
+                { role: 'A', name: 'A', text: 'はじ(初)めまして。マイク ミラーです。\nアメリカから き(来)ました。どうぞ よろしく。', mean: 'Hân hạnh được gặp. Tôi là Mike Miller. Tôi đến từ Mỹ. Rất mong được giúp đỡ.', icon: 'Image/Av_Boy_YellowHair.png',side: 'left' , gender: 'male' },
+                { role: 'B', name: 'B', text: 'さとう(佐藤)です。\nどうぞ よろしく。', mean: 'Tôi là Satou Keiko. Rất mong được giúp đỡ.', icon: 'Image/Av_Girl_BlackHair.png', side: 'right', gender: 'female'  }
             ]
         },
         {
             name: 'Renshyuu C-2', // Hội thoại phụ
-            title: 'Hỏi tên (お名前は)',
-            img: 'Image/Kaiwa_B1_2.png',
+            title: 'Hỏi đáp',
+            img: 'Image/Kaiwa_B1_C2.png',
             audio: '', // Không có audio
             dialogue: [
                 { role: 'A', name: 'A', text: '失礼ですが、お名前は？', mean: 'Xin lỗi, tên anh/chị là gì?', icon: 'Image/Av_Boy_BlackHair.png',side: 'left' , gender: 'male' },
-                { role: 'B', name: 'B', text: 'イーです。', mean: 'Tôi là Y.', icon: 'Image/Av_Girl_BlackHair.png',side: 'right', gender: 'female'  },
+                { role: 'B', name: 'B', text: 'イーです。', mean: 'Tôi là Y.', icon: 'Image/Av_Girl_BrownHair.png',side: 'right', gender: 'female'  },
                 { role: 'A', name: 'A', text: 'リーさんですか。', mean: 'Bạn Lee phải không?', icon: 'Image/Av_Boy_BlackHair.png', side: 'left' , gender: 'male' },
-                { role: 'B', name: 'B', text: 'いいえ、イーです。', mean: 'Không, là Y.', icon: 'Image/Av_Girl_BlackHair.png', side: 'right', gender: 'female'  }
+                { role: 'B', name: 'B', text: 'いいえ、イーです。', mean: 'Không, là Y.', icon: 'Image/Av_Girl_BrownHair.png', side: 'right', gender: 'female'  }
+            ]
+        },
+        {
+            name: 'Renshyuu C-3', // Hội thoại phụ
+            title: 'Hỏi đáp',
+            img: 'Image/Kaiwa_B1_C3.png',
+            audio: '', // Không có audio
+            dialogue: [
+                { role: 'A', name: 'A', text: 'たなか(田中)さん、おはよう ございます。', mean: 'Anh Tanaka, chào buổi sáng.', icon: 'Image/Av_Boy_BlackHair.png',side: 'left' , gender: 'male' },
+                { role: 'B', name: 'B', text: 'おはよう ございます。', mean: 'Chào buổi sáng.', icon: 'Image/Av_Boy_BlackHair2.png',side: 'left', gender: 'male'  },
+                { role: 'A', name: 'A', text: 'こちらは ミラーさんです。', mean: 'Đây là anh Miller.', icon: 'Image/Av_Boy_BlackHair.png', side: 'left' , gender: 'male' },
+                { role: 'C', name: 'C', text: 'はじ(初)めまして。マイク ミラーです。\nIMCの しゃいん(社員)です。\nどうぞ よろしく おねが(願)いします。', mean: 'Hân hạnh được gặp. Tôi là Miller. Nhân viên của công ty IMC. Rất mong nhân được sự giúp đỡ.', icon: 'Image/Av_Boy_YellowHair.png', side: 'right' , gender: 'male' },
+                { role: 'B', name: 'B', text: 'たなか(田中)です。よろしく おねが(願)いします。', mean: 'Tôi là Tanaka. Mong dược giúp đỡ.', icon: 'Image/Av_Boy_BlackHair2.png', side: 'left', gender: 'male'  }
             ]
         }
     ],
     '2': [
         {
-            name: 'Kaiwa Chính',
+            name: 'Kaiwa',
             title: 'ほんの気持ちです (Chút lòng thành)',
-            img: 'Image/Kaiwa_B2_1.png',
+            img: 'Image/Kaiwa_B2_Main.png',
             audio: 'Sound/05_Track_5.mp3',
             dialogue: [
+                { role: 'B', name: 'サントス (Santos)', text: '。。。', mean: '(Nhấn chuông)', icon: 'Image/Av_Boy_BlackHair.png', side: 'right', gender: 'male' },
                 { role: 'A', name: '山田 (Yamada)', text: 'はい。どなたですか。', mean: 'Vâng. Ai đấy ạ?', icon: 'Image/Av_Boy_BlueHair.png',side: 'left', gender: 'male' },
                 { role: 'B', name: 'サントス (Santos)', text: '４０８の サントスです。', mean: 'Tôi là Santos ở phòng 408.', icon: 'Image/Av_Boy_BlackHair.png', side: 'right', gender: 'male' },
-                { role: 'A', name: '山田 (Yamada)', text: 'こんにちは。サントスさん。', mean: 'Chào anh Santos.', icon: 'Image/Av_Boy_BlueHair.png', side: 'left', gender: 'male' },
-                { role: 'B', name: 'サントス (Santos)', text: 'これから お世話に なります。\nどうぞ よろしく お願いします。', mean: 'Từ nay mong anh giúp đỡ. Rất mong được làm quen.', icon: 'Image/Av_Boy_BlackHair.png', side: 'right', gender: 'male' },
-                { role: 'A', name: '山田 (Yamada)', text: 'こちらこそ よろしく。', mean: 'Chính tôi mới cần anh giúp đỡ.', icon: 'Image/Av_Boy_BlueHair.png', side: 'left', gender: 'male' },
-                { role: 'B', name: 'サントス (Santos)', text: 'あのう、これ、ほんの気持ちです。', mean: 'À, cái này... là chút lòng thành.', icon: 'Image/Av_Boy_BlackHair.png', side: 'right', gender: 'male' },
-                { role: 'A', name: '山田 (Yamada)', text: 'あ、どうも……何ですか。', mean: 'Ái chà, cảm ơn... Cái gì thế?', icon: 'Image/Av_Boy_BlueHair.png', side: 'left', gender: 'male' },
-                { role: 'B', name: 'サントス (Santos)', text: 'コーヒーです。どうぞ。', mean: 'Là cà phê ạ. Xin mời.', icon: 'Image/Av_Boy_BlackHair.png', side: 'right', gender: 'male' },
+                { role: 'A', name: '山田 (Yamada)', text: '。。。', mean: '(Mở cửa)', icon: 'Image/Av_Boy_BlueHair.png',side: 'left', gender: 'male' },
+                { role: 'B', name: 'サントス (Santos)', text: 'こんにちは。サントスさん。\nこれから お世話に なります。\nどうぞ よろしく お願いします。', mean: 'Chào anh Santos. Từ nay mong anh giúp đỡ. Rất mong được làm quen.', icon: 'Image/Av_Boy_BlackHair.png', side: 'right', gender: 'male' },
+                { role: 'A', name: '山田 (Yamada)', text: 'こちらこそ よろしく おねが(願)いします。', mean: 'Chính tôi mới cần anh giúp đỡ.', icon: 'Image/Av_Boy_BlueHair.png', side: 'left', gender: 'male' },
+                { role: 'B', name: 'サントス (Santos)', text: 'あのう、これ、コーヒーです。どうぞ。', mean: 'À, cái này... Là cà phê ạ. Xin mời.', icon: 'Image/Av_Boy_BlackHair.png', side: 'right', gender: 'male' },
                 { role: 'A', name: '山田 (Yamada)', text: 'どうも ありがとうございます。', mean: 'Cảm ơn anh rất nhiều.', icon: 'Image/Av_Boy_BlueHair.png', side: 'left', gender: 'male' }
             ]
         }
@@ -1199,8 +1249,19 @@ if (window.speechSynthesis) {
 function speak(text, gender = 'female') {
     if (!('speechSynthesis' in window)) return;
 
+    // --- CẬP NHẬT MỚI: Xóa nội dung trong ngoặc đơn (...) ---
+    // /\(.*?\)/g : Tìm tất cả ký tự nằm giữa ( và )
+    // .replace(..., '') : Thay thế chúng bằng chuỗi rỗng
+    // .trim() : Xóa khoảng trắng thừa ở đầu/cuối câu sau khi cắt
+    const cleanText = text.replace(/\(.*?\)/g, '').trim();
+
+    // Nếu sau khi xóa mà không còn từ nào thì dừng lại, không đọc
+    if (!cleanText) return;
+
     window.speechSynthesis.cancel(); // Dừng câu đang nói dở
-    const u = new SpeechSynthesisUtterance(text);
+    
+    // Khởi tạo giọng nói với văn bản đã được làm sạch
+    const u = new SpeechSynthesisUtterance(cleanText);
     u.lang = 'ja-JP';
     
     // Cập nhật lại danh sách giọng nếu chưa có
@@ -1587,7 +1648,7 @@ function moveWord(btn) {
 
 function formatText(text) {
     // Tìm đoạn văn bản dạng "abc(xyz)" và bọc "xyz" vào thẻ span màu xám
-    return text.replace(/\(([^)]+)\)/g, '<span style="color:#999; font-size:0.9em; font-weight:normal">($1)</span>');
+    return text.replace(/\(([^)]+)\)/g, '<span style="color:#2f14e0; font-size:0.9em; font-weight:normal">($1)</span>');
 }
 
 function renderExercises(lessonId) {
@@ -1595,58 +1656,11 @@ function renderExercises(lessonId) {
     container.innerHTML = ""; 
     document.getElementById('exerciseScore').innerHTML = ""; 
 
-    // --- PHẦN 1: TRẮC NGHIỆM ĐIỀN TỪ ---
-    const fillData = exercisesData[lessonId]; 
-    if (fillData) {
-        let html = `<h3 class="part-title">I. Chọn đáp án đúng (mỗi câu đúng được 10 PTS)</h3>`;
-        fillData.forEach((item, index) => {
-            let optionsHtml = '';
-            item.opts.forEach((opt, i) => {
-                optionsHtml += `<button class="exercise-opt-btn" onclick="selectOption(this, ${i})">${formatText(opt)}</button>`;
-            });
-
-            html += `
-                <div class="exercise-item">
-                    <p class="exercise-question-text" ><strong>${index + 1}.</strong> ${formatText(item.q)}</p>
-                    <div class="exercise-options" id="opts-${index}" data-correct="${item.ans}">
-                        ${optionsHtml}
-                    </div>
-                </div>
-            `;
-        });
-        container.innerHTML += html;
-        currentExerciseList = fillData; 
-    }
-
-    // --- PHẦN 2: SẮP XẾP CÂU  ---
-    const scrambleData = exerciseScrambleData[lessonId];
-    if (scrambleData) {
-        let html = `<h3 class="part-title" style="margin-top:30px; border-top:1px dashed #ccc; padding-top:20px;">II. Sắp xếp thành câu hoàn chỉnh(mỗi câu đúng được 20 PTS)</h3>`;
-        scrambleData.forEach((item, index) => {
-            const qID = `scramble-${lessonId}-${index}`;
-            let shuffled = [...item.parts].sort(() => Math.random() - 0.5);
-            let buttonsHtml = shuffled.map(word => 
-                `<button class="word-btn" onclick="moveWord(this)">${word}</button>`
-            ).join('');
-
-            const correctAnswerStr = JSON.stringify(item.correct).replace(/"/g, '&quot;');
-
-            html += `
-                <div class="scramble-item" id="${qID}">
-                    <p class="scramble-question"><strong>${index + 1}.</strong> ${formatText(item.question)}</p>
-                    <div class="scramble-answer-box" id="${qID}-ans" data-correct="${correctAnswerStr}"></div>
-                    <div class="scramble-source-box" id="${qID}-src">${buttonsHtml}</div>
-                    <div class="scramble-feedback" style="margin-top:5px; font-weight:bold;"></div>
-                </div>
-            `;
-        });
-        container.innerHTML += html;
-    }
-    // --- III. NGHE HIỂU (CHOUKAI) - HỖ TRỢ NHIỀU BÀI NGHE ---
+    // --- PHẦN : NGHE HIỂU (CHOUKAI) - HỖ TRỢ NHIỀU BÀI NGHE ---
     const listenDataList = (typeof exerciseListeningData !== 'undefined') ? exerciseListeningData[lessonId] : null;
     
     if (listenDataList && Array.isArray(listenDataList)) {
-        let html = `<h3 class="part-title" style="margin-top:40px; border-top:2px dashed #ddd; padding-top:20px;">III. Nghe hiểu (Choukai)</h3>`;
+        let html = `<h3 class="part-title" style="margin-top:40px; border-top:2px dashed #ddd; padding-top:20px;">I. Nghe hiểu (mỗi câu đúng được 10 PTS)</h3>`;
         
         // Lặp qua từng bài nghe con (Mondai 1, Mondai 2...)
         listenDataList.forEach((listenItem, subIndex) => {
@@ -1684,6 +1698,55 @@ function renderExercises(lessonId) {
         
         container.innerHTML += html;
     }
+    // --- PHẦN : TRẮC NGHIỆM ĐIỀN TỪ ---
+    const fillData = exercisesData[lessonId]; 
+    if (fillData) {
+        let html = `<h3 class="part-title">II. Chọn đáp án đúng (mỗi câu đúng được 10 PTS)</h3>`;
+        fillData.forEach((item, index) => {
+            let optionsHtml = '';
+            item.opts.forEach((opt, i) => {
+                optionsHtml += `<button class="exercise-opt-btn" onclick="selectOption(this, ${i})">${formatText(opt)}</button>`;
+            });
+
+            html += `
+                <div class="exercise-item">
+                    <p class="exercise-question-text" ><strong>${index + 1}.</strong> ${formatText(item.q)}</p>
+                    <div class="exercise-options" id="opts-${index}" data-correct="${item.ans}">
+                        ${optionsHtml}
+                    </div>
+                </div>
+            `;
+        });
+        container.innerHTML += html;
+        currentExerciseList = fillData; 
+    }
+
+    // --- PHẦN : SẮP XẾP CÂU  ---
+    const scrambleData = exerciseScrambleData[lessonId];
+    if (scrambleData) {
+        let html = `<h3 class="part-title" style="margin-top:30px; border-top:1px dashed #ccc; padding-top:20px;">III. Sắp xếp thành câu hoàn chỉnh (mỗi câu đúng được 20 PTS)</h3>`;
+        scrambleData.forEach((item, index) => {
+            const qID = `scramble-${lessonId}-${index}`;
+            let shuffled = [...item.parts].sort(() => Math.random() - 0.5);
+            let buttonsHtml = shuffled.map(word => 
+                `<button class="word-btn" onclick="moveWord(this)">${word}</button>`
+            ).join('');
+
+            const correctAnswerStr = JSON.stringify(item.correct).replace(/"/g, '&quot;');
+
+            html += `
+                <div class="scramble-item" id="${qID}">
+                    <p class="scramble-question"><strong>${index + 1}.</strong> ${formatText(item.question)}</p>
+                    <div class="scramble-answer-box" id="${qID}-ans" data-correct="${correctAnswerStr}"></div>
+                    <div class="scramble-source-box" id="${qID}-src">${buttonsHtml}</div>
+                    <div class="scramble-feedback" style="margin-top:5px; font-weight:bold;"></div>
+                </div>
+            `;
+        });
+        container.innerHTML += html;
+    }
+    
+    
 }
 
 function selectOption(btn, optionIndex) {
@@ -1898,7 +1961,7 @@ function renderKaiwaContent(lessonId, index) {
             <div class="chat-bubble">
                 <div class="chat-name">${line.name}</div>
                 <div class="chat-jp">
-                    ${line.text.replace(/\n/g, '<br>')} 
+                    ${formatText(line.text.replace(/\n/g, '<br>'))} 
                     
                     <i class="fas fa-volume-up btn-chat-audio" 
                     onclick="speak('${line.text.replace(/\n/g, ' ')}', '${line.gender || 'female'}')">
@@ -2036,12 +2099,12 @@ function stopReflexGame() {
 
 // 1. Danh sách Bot Anime (Điểm số giả lập)
 const botsData = [
-    { name: "Conan Edogawa", score: 500, avatar: "🕵️‍♂️" },
+    { name: "Conan", score: 500, avatar: "🕵️‍♂️" },
     { name: "Doraemon", score: 420, avatar: "🐱" },
-    { name: "Naruto Uzumaki", score: 350, avatar: "🍥" },
-    { name: "Luffy Mũ Rơm", score: 280, avatar: "👒" },
-    { name: "Suneo (Xeko)", score: 150, avatar: "🦊" },
-    { name: "Nobita Nobi", score: 50, avatar: "👓" }
+    { name: "Naruto", score: 350, avatar: "🍥" },
+    { name: "Luffy", score: 280, avatar: "👒" },
+    { name: "Suneo", score: 150, avatar: "🦊" },
+    { name: "Nobita", score: 10, avatar: "👓" }
 ];
 
 // 2. Hàm mở Bảng xếp hạng
