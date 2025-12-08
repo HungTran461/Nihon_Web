@@ -974,6 +974,63 @@ const kaiwaData = {
                 { role: 'B', name: 'サントス (Santos)', text: 'あのう、これ、コーヒーです。どうぞ。', mean: 'À, cái này... Là cà phê ạ. Xin mời.', icon: 'Image/Av_Boy_BlackHair.png', side: 'right', gender: 'male' },
                 { role: 'A', name: '山田 (Yamada)', text: 'どうも ありがとうございます。', mean: 'Cảm ơn anh rất nhiều.', icon: 'Image/Av_Boy_BlueHair.png', side: 'left', gender: 'male' }
             ]
+        },
+        {
+            name: 'Renshyuu C-1',
+            title: 'Hỏi đáp',
+            img: 'Image/Kaiwa_B2_C1.png',
+            audio: '', // Không có audio
+            dialogue: [
+                { role: 'A', name: 'A', text: 'あのう、これ、おみやげ(土産)です。', mean: 'À..., cái này, là quà ạ.', icon: 'Image/Av_Boy_BlueHair.png',side: 'left' , gender: 'male' },
+                { role: 'B', name: 'B', text: 'えっ、なん(何)ですか。', mean: 'Hả? Nó là gì vậy?', icon: 'Image/Av_Girl_BrownHair.png',side: 'right', gender: 'female'  },
+                { role: 'A', name: 'A', text: 'コーヒーです。どうぞ。', mean: 'Là cà phê ạ. Xin mời.', icon: 'Image/Av_Boy_BlueHair.png', side: 'left' , gender: 'male' },
+                { role: 'B', name: 'B', text: 'どうも ありがとうございます。', mean: 'Cảm ơn bạn rất nhiều.', icon: 'Image/Av_Girl_BrownHair.png', side: 'right', gender: 'female'  }
+            ]
+        },
+        {
+            name: 'Renshyuu C-2',
+            title: 'Hỏi đáp',
+            img: 'Image/Kaiwa_B2_C2.png',
+            audio: '', // Không có audio
+            dialogue: [
+                { role: 'A', name: 'A', text: 'それは なん(何)ですか。', mean: 'Cái đó là gì vậy?', icon: 'Image/Av_Girl_BrownHair.png',side: 'left' , gender: 'female' },
+                { role: 'B', name: 'B', text: 'これですか。えいご(英語)の CDです。', mean: 'Là cái này phải không? Nó là CD Tiếng Anh.', icon: 'Image/Av_Boy_BlueHair.png',side: 'right', gender: 'male'  },
+                { role: 'A', name: 'A', text: 'そうですか。', mean: 'Vậy à.', icon: 'Image/Av_Girl_BrownHair.png', side: 'left' , gender: 'female' },
+            ]
+        },
+        {
+            name: 'Renshyuu C-3',
+            title: 'Hỏi đáp',
+            img: 'Image/Kaiwa_B2_C3.png',
+            audio: '', // Không có audio
+            dialogue: [
+                { role: 'A', name: 'A', text: 'この かさ(傘)は ミラーさんのですか。', mean: 'Cái ô này là của Miller đúng không?', icon: 'Image/Av_Boy_BlueHair.png',side: 'left' , gender: 'male' },
+                { role: 'B', name: 'B', text: 'いいえ、ちが(違)います。', mean: 'Không, không phải của tôi.', icon: 'Image/Av_Boy_YellowHair.png',side: 'right', gender: 'male'  },
+                { role: 'A', name: 'A', text: 'だれのですか。', mean: 'Nó là của ai vậy nhỉ?', icon: 'Image/Av_Boy_BlueHair.png', side: 'left' , gender: 'male' },
+                { role: 'C', name: 'C', text: 'あ、わたしのです。ありがとう ございます。', mean: 'A, nó là của tôi đó. Cảm ơn bạn nhiều.', icon: 'Image/Av_Boy_BlackHair.png', side: 'right', gender: 'male'  }
+            ]
+        }
+    ],
+    '3':[
+        {
+            name: 'Kaiwa',
+            title: 'こらを ください (Bán cho tôi cái này)',
+            img: 'Image/Kaiwa_B3_Main.png',
+            audio: 'Sound/09_Track_9.mp3',
+            dialogue: [
+                { role: 'A', name: 'てんいん(店員)A', text: 'いらっしゃいませ', mean: 'Kính chào quý khách.', icon: 'Image/Av_Girl_BlackHair.png', side: 'left', gender: 'female'},
+                { role: 'B', name: 'マリア', text: 'すみません。ワインう(売)りば(場)は どこですか。', mean: 'Xin lỗi. Quầy bán rượu vang ở đâu vậy?.', icon: 'Image/Av_Girl_BrownHair.png', side: 'right', gender: 'female'},
+                { role: 'A', name: 'てんいん(店員)A', text: 'ち(地)か１かい(階)です。', mean: 'Nó ở tầng hầm thứ 1 ạ.', icon: 'Image/Av_Girl_BlackHair.png', side: 'left', gender: 'female'},
+                { role: 'B', name: 'マリア', text: 'どうも。', mean: 'Xin cảm ơn.', icon: 'Image/Av_Girl_BrownHair.png', side: 'right', gender: 'female'},
+                { role: 'B', name: 'マリア', text: '。。。', mean: '(Đi đến quầy rượu vang)', icon: 'Image/Av_Girl_BrownHair.png', side: 'right', gender: 'female'},
+                { role: 'B', name: 'マリア', text: 'すみません。その ワインを み(見)せて ください。', mean: 'Xin lỗi. Xin cho tôi xem rượu vang đó.', icon: 'Image/Av_Girl_BrownHair.png', side: 'right', gender: 'female'},
+                { role: 'C', name: 'てんいん(店員)B', text: 'はい、どうぞ。', mean: 'Vâng. Xin mời.', icon: 'Image/Av_Girl_YellowHair.png', side: 'left', gender: 'female'},
+                { role: 'B', name: 'マリア', text: 'これは どこの ワインですか。', mean: 'Đây là rượu của nước nào vậy?', icon: 'Image/Av_Girl_BrownHair.png', side: 'right', gender: 'female'},
+                { role: 'C', name: 'てんいん(店員)B', text: 'にほん(日本)のです。', mean: 'Nó là của Nhật ạ.', icon: 'Image/Av_Girl_YellowHair.png', side: 'left', gender: 'female'},
+                { role: 'B', name: 'マリア', text: 'いくらですか。', mean: 'Giá bao nhiêu?', icon: 'Image/Av_Girl_BrownHair.png', side: 'right', gender: 'female'},
+                { role: 'C', name: 'てんいん(店員)B', text: '2,500えん(円)です。', mean: '2500 Yên ạ.', icon: 'Image/Av_Girl_YellowHair.png', side: 'left', gender: 'female'},
+                { role: 'B', name: 'マリア', text: 'じゃ、これを ください。', mean: 'Vậy thì, cho tôi chai này đi.', icon: 'Image/Av_Girl_BrownHair.png', side: 'right', gender: 'female'},
+            ]
         }
     ]
 };
