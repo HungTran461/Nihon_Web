@@ -12,6 +12,8 @@
     --blue: #144bff;
     --red: #ff2d2d;
     --pink: #fd58aa;
+    --box-my-rank: linear-gradient(135deg, #a18cd1 0%, #fbc2eb 100%);
+    --dd-search: rgb(205, 223, 226);
 }
 
 * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -47,8 +49,15 @@ header {
     color: var(--secondary); 
     display: flex; align-items: center; gap: 10px; 
     white-space: nowrap; /* Không xuống dòng logo */
+    min-width: 250px;
 }
-nav ul { list-style: none; display: flex; gap: 15px; margin: 0; padding: 0; }
+nav{
+    flex-shrink: 0;
+    gap: 15px;
+    margin-left: 15px;
+    margin-right: 15px;
+}
+nav ul { list-style: none; display: flex; gap: 15px; margin: 0; padding: 0; align-items: center;gap: 15px; }
 
 nav a { 
     text-decoration: none; 
@@ -113,7 +122,7 @@ nav a:hover, nav a.active {
 .card-badge { position: absolute; top: 15px; right: 15px; background: var(--primary); color: white; padding: 3px 10px; border-radius: 10px; font-size: 0.7rem; font-weight: bold; }
 
 /* --- 5. SECTIONS --- */
-.section-content { display: none; background: white; padding: 2rem; border-radius: var(--radius); box-shadow: var(--shadow); animation: slideUp 0.4s ease; min-height: 400px; }
+.section-content { display: none; background: var(--white); padding: 2rem; border-radius: var(--radius); box-shadow: var(--shadow); animation: slideUp 0.4s ease; min-height: 400px; }
 .section-content.active { display: block; }
 @keyframes slideUp { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
 
@@ -163,11 +172,11 @@ nav a:hover, nav a.active {
     text-align: center;
     cursor: pointer;
     transition: 0.2s;
-    border: 2px solid transparent;
+    border: 2px solid white;
     display: flex; flex-direction: column; align-items: center; justify-content: center;
     min-height: 80px;
 }
-.kana-box:hover { background: white; border-color: var(--primary); transform: translateY(-5px); box-shadow: 0 5px 15px rgba(255, 154, 158, 0.3); }
+.kana-box:hover { background: var(--white); border-color: var(--primary); transform: translateY(-5px); box-shadow: 0 5px 15px rgba(255, 154, 158, 0.3); }
 .kana-box.empty { visibility: hidden; pointer-events: none; }
 .kana-char { font-size: 1.8rem; font-weight: 800; color: var(--text); line-height: 1.2; }
 .kana-romaji { font-size: 0.85rem; color: var(--secondary); font-weight: bold; }
@@ -175,7 +184,7 @@ nav a:hover, nav a.active {
 /* --- 7. MODAL & STROKE ORDER (Đã bổ sung CSS thiếu) --- */
 .modal-overlay { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.5); z-index: 1000; justify-content: center; align-items: center; backdrop-filter: blur(4px); }
 .modal-overlay.show { display: flex; animation: fadeIn 0.3s; }
-.modal-content { background: white; width: 90%; max-width: 700px; border-radius: 30px; padding: 30px; position: relative; border: 4px solid #fff5f7; display: flex; flex-direction: column; }
+.modal-content { background: var(--white); width: 90%; max-width: 700px; border-radius: 30px; padding: 30px; position: relative; border: 4px solid #fff5f7; display: flex; flex-direction: column; }
 .modal-close { position: absolute; top: 15px; right: 20px; background: none; border: none; font-size: 2rem; color: #ccc; cursor: pointer; }
 .modal-close:hover { color: var(--primary); }
 
@@ -190,7 +199,7 @@ nav a:hover, nav a.active {
 .stroke-box-static {
     width: 160px;
     height: 160px;
-    background: #ffffff;
+    background: #fff;
     border: 3px solid var(--primary);
     border-radius: 20px;
     margin: 10px auto;
@@ -209,7 +218,7 @@ nav a:hover, nav a.active {
 /* --- 8. PHẦN TỪ VỰNG MINNA (VOCABULARY) --- */
 .lesson-control-bar {
     display: flex; flex-direction: column; align-items: center; gap: 10px;
-    margin-bottom: 20px; background: white; padding: 20px; 
+    margin-bottom: 20px; background: var(--white); padding: 20px; 
     border-radius: 20px; border: 2px dashed var(--accent);
 }
 .lesson-control-bar label { font-weight: bold; color: var(--secondary); }
@@ -221,7 +230,7 @@ nav a:hover, nav a.active {
     padding: 12px 20px;
     border-radius: 25px;       /* Bo tròn nhiều hơn cho cute */
     border: 2px solid var(--primary);
-    background-color: white;
+    background-color: var(--white);
     font-size: 1rem;
     font-weight: bold;
     color: var(--text);
@@ -261,7 +270,7 @@ nav a:hover, nav a.active {
 .vocab-row {
     display: grid;
     grid-template-columns: 1fr 1fr 1.5fr 50px;
-    background: white; border: 2px solid transparent; 
+    background: var(--white); border: 2px solid transparent; 
     border-radius: 15px; padding: 15px; align-items: center; 
     transition: 0.2s; position: relative;
     box-shadow: 0 2px 5px rgba(0,0,0,0.05);
@@ -275,12 +284,12 @@ nav a:hover, nav a.active {
 
 .cell-kanji { font-size: 1.4rem; font-weight: 800; color: var(--secondary); text-align: left;margin-bottom: 4px;line-height: 1.2;word-wrap: break-word; }
 .cell-reading { font-size: 1.1rem; color: var(--primary-dark); font-weight: bold; text-align: center; }
-.cell-mean { font-size: 1rem; color: #555; text-align: left; padding-left: 20px; border-left: 2px solid #eee; line-height: 1.4;}
+.cell-mean { font-size: 1rem; color: var(--text); text-align: left; padding-left: 20px; border-left: 2px solid #eee; line-height: 1.4;}
 .no-kanji { color: #eee; font-size: 2rem; line-height: 0; }
 
 .btn-vocab-speak {
     width: 40px; height: 40px; border-radius: 50%; border: none;
-    background: #fff0f5; color: var(--primary); cursor: pointer;
+    background: var(--white); color: var(--primary); cursor: pointer;
     display: flex; align-items: center; justify-content: center;
     transition: 0.2s; font-size: 1.1rem; margin: auto;
 }
@@ -343,7 +352,7 @@ nav a:hover, nav a.active {
         min-width: 0 !important;  /* Hủy bỏ min-width của PC */
         box-sizing: border-box;   /* QUAN TRỌNG: Để padding không làm vỡ khung */
         position: relative;
-        background: white;
+        background: var(--white);
         margin-bottom: 12px;
         padding: 15px;
         /* Chừa khoảng trống bên phải để nút loa không đè lên chữ */
@@ -356,7 +365,7 @@ nav a:hover, nav a.active {
     /* Hiệu ứng bấm vào thẻ */
     .vocab-row:active {
         border-color: var(--primary);
-        background-color: #fffbfc;
+        background-color: var(--white);
         transform: scale(0.98);
     }
 
@@ -464,7 +473,7 @@ nav a:hover, nav a.active {
     }
 
     .btn-audio-player span {
-        color: white; /* Chữ trắng */
+        color: var(--text); /* Chữ trắng */
         font-size: 0.9rem;
     }
 
@@ -537,7 +546,7 @@ footer { text-align: center; margin-top: 3rem; color: #aaa; font-size: 0.9rem; }
 }
 
 .kanji-card {
-    background: white;
+    background: var(--white);
     border-radius: 15px;
     padding: 10px;
     text-align: center;
@@ -607,7 +616,7 @@ footer { text-align: center; margin-top: 3rem; color: #aaa; font-size: 0.9rem; }
 .reading-content {
     font-size: 1rem;
     font-weight: bold;
-    color: #333;
+    color: var(--text);
 }
 
 
@@ -654,10 +663,10 @@ footer { text-align: center; margin-top: 3rem; color: #aaa; font-size: 0.9rem; }
     -webkit-backface-visibility: hidden; backface-visibility: hidden;
     border-radius: 20px;
     display: flex; flex-direction: column; align-items: center; justify-content: center;
-    background: white; border: 2px solid var(--primary);
+    background: var(--white); border: 2px solid var(--primary);
 }
 
-.flashcard-back { transform: rotateY(180deg); background: #fff5f7; }
+.flashcard-back { transform: rotateY(180deg); background: var(--white); }
 
 .fc-main { font-size: 3.5rem; font-weight: 800; color: var(--text); line-height: 1.2; padding: 0 10px; word-break: keep-all;}
 .fc-sub { font-size: 1.2rem; color: var(--primary); margin-top: 5px; font-weight: bold;}
@@ -676,9 +685,9 @@ footer { text-align: center; margin-top: 3rem; color: #aaa; font-size: 0.9rem; }
 #fcCounter { font-weight: bold; color: #777; }
 
 /* --- QUIZ (TRẮC NGHIỆM) --- */
-.quiz-setup-box { background: white; padding: 20px; border-radius: 20px; box-shadow: var(--shadow); max-width: 500px; margin: 0 auto; }
+.quiz-setup-box { background: var(--white); padding: 20px; border-radius: 20px; box-shadow: var(--shadow); max-width: 500px; margin: 0 auto; }
 .quiz-config-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 15px; margin: 20px 0; }
-.config-item label { display: block; margin-bottom: 5px; font-weight: bold; color: #555; }
+.config-item label { display: block; margin-bottom: 5px; font-weight: bold; color: var(--text); }
 .config-item select { width: 100%; padding: 8px; border-radius: 10px; border: 1px solid #ccc; }
 .btn-start-quiz { width: 100%; padding: 12px; background: var(--primary); color: white; border: none; border-radius: 15px; font-size: 1.1rem; font-weight: bold; cursor: pointer; }
 .btn-start-quiz:hover { background: var(--primary-dark); }
@@ -688,15 +697,15 @@ footer { text-align: center; margin-top: 3rem; color: #aaa; font-size: 0.9rem; }
 .timer-container { width: 100%; height: 8px; background: #eee; border-radius: 5px; overflow: hidden; margin-bottom: 20px; }
 .timer-bar { height: 100%; background: var(--primary); width: 100%; transition: width linear; }
 
-.question-box { background: white; padding: 30px; border-radius: 20px; text-align: center; margin-bottom: 20px; box-shadow: var(--shadow); border: 2px solid var(--accent); }
+.question-box { background: var(--white); padding: 30px; border-radius: 20px; text-align: center; margin-bottom: 20px; box-shadow: var(--shadow); border: 2px solid var(--accent); }
 .question-text { font-size: 2.5rem; font-weight: 800; color: var(--text); }
 
 .options-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 15px; }
 .quiz-option { 
-    padding: 15px; border: 2px solid #eee; border-radius: 15px; background: white; 
-    cursor: pointer; font-size: 1.1rem; transition: 0.2s; font-weight: bold; color: #555;
+    padding: 15px; border: 2px solid #eee; border-radius: 15px; background: var(--white); 
+    cursor: pointer; font-size: 1.1rem; transition: 0.2s; font-weight: bold; color: var(--text);
 }
-.quiz-option:hover { border-color: var(--secondary); background: #fdfdfd; }
+.quiz-option:hover { border-color: var(--secondary); background: var(--white); }
 .quiz-option.correct { background: #d4edda; border-color: #28a745; color: #155724; }
 .quiz-option.wrong { background: #f8d7da; border-color: #dc3545; color: #721c24; }
 
@@ -711,7 +720,7 @@ footer { text-align: center; margin-top: 3rem; color: #aaa; font-size: 0.9rem; }
 .btn-restart { padding: 10px 25px; background: var(--secondary); color: white; border: none; border-radius: 20px; cursor: pointer; margin-top: 10px; }
 
 .result-item { 
-    background: white; padding: 15px; margin-bottom: 10px; border-radius: 15px; 
+    background: var(--white); padding: 15px; margin-bottom: 10px; border-radius: 15px; 
     border-left: 5px solid #ccc; display: flex; justify-content: space-between; align-items: center; 
 }
 
@@ -721,7 +730,7 @@ footer { text-align: center; margin-top: 3rem; color: #aaa; font-size: 0.9rem; }
     display: block;
     margin: 20px auto 0; /* Căn giữa, cách trên 20px */
     padding: 10px 20px;
-    background: #fff;
+    background: var(--white);
     border: 2px solid #ff758c;
     color: #ff758c;
     border-radius: 20px;
@@ -761,7 +770,7 @@ footer { text-align: center; margin-top: 3rem; color: #aaa; font-size: 0.9rem; }
 
 /* Thẻ chứa 1 điểm ngữ pháp */
 .grammar-card {
-    background: white;
+    background: var(--white);
     border: 2px solid #fff0f5;
     border-radius: 20px;
     padding: 20px;
@@ -792,7 +801,7 @@ footer { text-align: center; margin-top: 3rem; color: #aaa; font-size: 0.9rem; }
     font-size: 1.3rem;
     font-weight: 800;
     color: var(--primary-dark);
-    background: #fff5f7;
+    background: var(--white);
     padding: 10px 15px;
     border-radius: 12px;
     display: inline-block;
@@ -803,14 +812,14 @@ footer { text-align: center; margin-top: 3rem; color: #aaa; font-size: 0.9rem; }
 .gp-mean {
     font-size: 1.1rem;
     font-weight: bold;
-    color: #555;
+    color: var(--text);
     margin-bottom: 10px;
 }
 
 /* Giải thích */
 .gp-note {
     font-size: 0.95rem;
-    color: #666;
+    color: var(--text);
     font-style: italic;
     margin-bottom: 15px;
     line-height: 1.5;
@@ -818,7 +827,7 @@ footer { text-align: center; margin-top: 3rem; color: #aaa; font-size: 0.9rem; }
 
 /* Khu vực ví dụ */
 .gp-examples {
-    background: #f9f9f9;
+    background: var(--white);
     border-radius: 12px;
     padding: 15px;
 }
@@ -853,7 +862,7 @@ footer { text-align: center; margin-top: 3rem; color: #aaa; font-size: 0.9rem; }
    ========================================= */
 
 .exercise-wrapper {
-    background: #ffffff;
+    background: var(--white);
     border-radius: 20px;
     padding: 25px;
     box-shadow: 0 10px 30px rgba(0,0,0,0.05); /* Bóng đổ mềm mại */
@@ -862,7 +871,7 @@ footer { text-align: center; margin-top: 3rem; color: #aaa; font-size: 0.9rem; }
 
 /* Khung một câu hỏi */
 .exercise-item {
-    background: white;
+    background: var(--white);
     border: 2px solid #f0f0f0;
     border-radius: 15px;
     padding: 20px;
@@ -901,9 +910,9 @@ footer { text-align: center; margin-top: 3rem; color: #aaa; font-size: 0.9rem; }
     padding: 10px 5px;
     font-size: 0.95rem;
     border-radius: 12px;
-    background: #fff;
+    background: var(--white);
     border: 2px solid #eee;
-    color: #555;
+    color: var(--text);
     cursor: pointer;
     transition: 0.2s;
     font-weight: 700;
@@ -1003,7 +1012,7 @@ footer { text-align: center; margin-top: 3rem; color: #aaa; font-size: 0.9rem; }
 
 /* 4. Game Sắp xếp câu (Scramble) */
 .scramble-item {
-    background: #fff;
+    background: var(--white);
     border: 2px solid #f5f5f5;
     border-radius: 18px;
     padding: 20px;
@@ -1024,7 +1033,7 @@ footer { text-align: center; margin-top: 3rem; color: #aaa; font-size: 0.9rem; }
 /* Khu vực thả đáp án */
 .scramble-answer-box {
     min-height: 65px;
-    background: #fdfdfd;
+    background: var(--white);
     border: 2px dashed #d1d1d1; /* Viền nét đứt rõ hơn */
     border-radius: 15px;
     padding: 15px;
@@ -1054,7 +1063,7 @@ footer { text-align: center; margin-top: 3rem; color: #aaa; font-size: 0.9rem; }
 
 /* 5. NÚT TỪ VỰNG (QUAN TRỌNG NHẤT ĐỂ ĐẸP) */
 .word-btn {
-    background: #fff;
+    background: var(--white);
     color: var(--secondary);
     border: 2px solid var(--secondary); /* Viền dày 2px */
     padding: 8px 18px;
@@ -1081,7 +1090,7 @@ footer { text-align: center; margin-top: 3rem; color: #aaa; font-size: 0.9rem; }
 }
 /* --- STYLE CHO BÀI TẬP NGHE HIỂU --- */
 .audio-exercise-box {
-    background: #fdfaff;
+    background: var(--white);
     border: 2px dashed #a18cd1;
     border-radius: 20px;
     padding: 15px;
@@ -1108,7 +1117,7 @@ audio::-webkit-media-controls-play-button {
     flex-direction: column;
     align-items: center;       /* Căn giữa theo chiều ngang */
     justify-content: center;   /* Căn giữa theo chiều dọc */
-    background: #fff;
+    background: var(--white);
     padding: 20px;
     border-radius: 20px;
     margin-bottom: 25px;
@@ -1146,7 +1155,7 @@ audio::-webkit-media-controls-play-button {
     font-weight: 700;
     color: var(--text);
     
-    background-color: white;
+    background-color: var(--white);
     border: 2px solid var(--primary); /* Viền hồng đậm */
     border-radius: 50px;              /* Bo tròn hình viên thuốc */
     
@@ -1269,7 +1278,7 @@ audio::-webkit-media-controls-play-button {
 }
 
 .chat-row.left .chat-bubble {
-    background: white;
+    background: var(--white);
     border-top-left-radius: 0;
     border: 1px solid #eee;
 }
@@ -1325,7 +1334,7 @@ audio::-webkit-media-controls-play-button {
 .btn-sub-kaiwa {
     padding: 8px 16px;
     border: 1px solid var(--secondary);
-    background: white;
+    background: var(--white);
     color: var(--secondary);
     border-radius: 15px;
     cursor: pointer;
@@ -1354,7 +1363,7 @@ audio::-webkit-media-controls-play-button {
     border: 3px solid white;
     box-shadow: 0 3px 6px rgba(0,0,0,0.15);
     flex-shrink: 0;        /* Không bị co lại khi màn hình nhỏ */
-    background: #fff;      /* Màu nền dự phòng */
+    background: var(--white);      /* Màu nền dự phòng */
 }
 
 /* --- STYLE NÚT AUDIO KAIWA --- */
@@ -1369,7 +1378,7 @@ audio::-webkit-media-controls-play-button {
     display: flex;
     align-items: center;
     gap: 15px;
-    background: #fff;
+    background: var(--white);
     border: 2px solid #ff9a9e; /* Màu hồng */
     padding: 8px 25px 8px 8px; 
     border-radius: 50px;
@@ -1397,7 +1406,7 @@ audio::-webkit-media-controls-play-button {
 }
 
 .btn-audio-player span {
-    color: #555;
+    color: var(--text);
     font-weight: 800;
     font-size: 1rem;
     text-transform: uppercase;
@@ -1505,7 +1514,7 @@ audio::-webkit-media-controls-play-button {
         display: flex;
         flex-direction: column; /* Xếp chồng lên nhau */
         align-items: flex-start; /* Căn trái */
-        background: #fff;
+        background: var(--white);
         margin-bottom: 10px;
         border-radius: 10px;
         box-shadow: 0 2px 5px rgba(0,0,0,0.05);
@@ -1556,7 +1565,7 @@ audio::-webkit-media-controls-play-button {
    ========================================= */
 
 .reflex-card {
-    background: white;
+    background: var(--white);
     border-radius: 30px;
     box-shadow: 0 10px 30px rgba(0,0,0,0.1);
     width: 100%;
@@ -1582,7 +1591,7 @@ audio::-webkit-media-controls-play-button {
 
 .reflex-romaji {
     font-size: 2rem;
-    color: #999;
+    color: var(--text);
     font-weight: bold;
     margin-top: 10px;
     opacity: 0.6;
@@ -1693,7 +1702,7 @@ audio::-webkit-media-controls-play-button {
 
 /* Thẻ hiển thị rank của người chơi (Trên cùng) */
 .my-rank-card {
-    background: linear-gradient(135deg, #a18cd1 0%, #fbc2eb 100%);
+    background: var(--box-my-rank);
     border-radius: 20px;
     padding: 20px;
     display: flex;
@@ -1729,7 +1738,7 @@ audio::-webkit-media-controls-play-button {
 .ranking-item {
     display: flex;
     align-items: center;
-    background: white;
+    background: var(--white);
     padding: 15px;
     border-radius: 15px;
     margin-bottom: 12px;
@@ -1741,7 +1750,7 @@ audio::-webkit-media-controls-play-button {
 /* Hiệu ứng khi là dòng của chính mình trong list */
 .ranking-item.is-me {
     border-color: var(--primary);
-    background-color: #fff0f5;
+    background-color: var(--bg-color);
 }
 
 .rank-number {
@@ -1758,7 +1767,7 @@ audio::-webkit-media-controls-play-button {
     align-items: center;
     gap: 10px;
     font-weight: bold;
-    color: #555;
+    color: var(--text);
 }
 
 .rank-points {
@@ -1803,7 +1812,7 @@ audio::-webkit-media-controls-play-button {
     transform: scale(1.1);
 }
 /* --- SEARCH BAR --- */
-.search-container { position: relative; width: 300px; max-width: 95%; }
+.search-container { position: relative; width: 300px; max-width: 95%; flex-grow: 1;}
 .search-box {
     display: flex; align-items: center; background: #fff;
     border: 2px solid var(--accent); border-radius: 50px;
@@ -1815,8 +1824,8 @@ audio::-webkit-media-controls-play-button {
     background: white; border-radius: 15px; box-shadow: 0 10px 30px rgba(0,0,0,0.15);
     max-height: 400px; overflow-y: auto; display: none; z-index: 9999; border: 1px solid #eee;
 }
-.result-item { padding: 12px 15px; border-bottom: 1px solid #f5f5f5; cursor: pointer; display: flex; align-items: center; gap: 10px; }
-.result-item:hover { background: #fff0f5; }
+.result-item { padding: 12px 15px; border-bottom: 1px solid #f5f5f5; cursor: pointer; display: flex; align-items: center; gap: 10px;margin-bottom: 1px; }
+.result-item:hover { background: var(--dd-search); }
 .result-tag { font-size: 0.7rem; padding: 4px 8px; border-radius: 6px; color: white; font-weight: bold; min-width: 70px; text-align: center; }
 .tag-vocab { background: #ff9a9e; }
 .tag-kanji { background: #a18cd1; }
@@ -1827,4 +1836,67 @@ audio::-webkit-media-controls-play-button {
 @media (max-width: 768px) {
     header { flex-direction: column; gap: 10px; padding: 10px; }
     .search-container { width: 100%; }
+}
+
+
+
+/* -- GIAO DIỆN TỐI (Dark Mode) -- */
+body.dark-mode {
+    /* Đổi sang tông màu tối dịu mắt (kiểu Dracula/Nord theme) */
+    --primary: #ff9a9e;          /* Giữ nguyên hồng làm điểm nhấn */
+    --primary-dark: #ff758c;
+    --secondary: #b39ddb;
+    --accent: #44475a;           /* Màu nhấn chuyển thành xám tối */
+    --bg-color: #282a36;         /* Nền web tối */
+    --card-bg: #44475a;          /* Nền thẻ sáng hơn nền web 1 chút */
+    --text: #f8f8f2;             /* Chữ chuyển sang trắng ngà */
+    --text-light: #bdc3c7;
+    --shadow: 0 8px 20px rgba(0, 0, 0, 0.3); /* Bóng đổ đen */
+    --border: #6272a4;
+    --white: #282a36; 
+    --box-my-rank: #373a4d;
+}
+
+/* --- Style cho nút chuyển theme --- */
+#themeToggle {
+    background: var(--card-bg);
+    border: 2px solid var(--primary);
+    color: var(--primary);
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    cursor: pointer;
+    font-size: 1.2rem;
+    transition: 0.3s;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+#themeToggle:hover {
+    background: var(--primary);
+    color: white;
+    transform: rotate(15deg);
+}
+
+/* Cập nhật màu nền cho các thành phần dùng màu cứng (Hardcode) trước đây */
+body.dark-mode .search-box, .search-dropdown {
+    background: var(--bg-color) !important; /* Dùng biến để đổi màu theo theme */
+    border-color: var(--border) !important;
+}
+header{
+    background: var(--card-bg) !important;
+    border-bottom: 2px solid var(--border) !important;
+}
+.search-box input {
+    background: transparent;
+    color: var(--text);
+}
+
+/* Fix màu chữ trong bảng kết quả tìm kiếm khi ở Dark Mode */
+body.dark-mode .result-item:hover {
+    background-color: var(--accent);
+}
+body.dark-mode .result-content div:first-child {
+    color: var(--text);
 }

@@ -14,12 +14,6 @@
         <div class="logo">
             <i class="fas fa-torii-gate"></i> Nihongo<span style="color:var(--primary)">Cute</span>
         </div>
-        <nav>
-            <ul>
-                <li><a href="#" onclick="closeSection()">Trang chủ</a></li>
-                <li><a href="#" onclick="openLeaderboard()">🏆 Bảng xếp hạng</a></li>
-            </ul>
-        </nav>
         <div class="search-container">
             <div class="search-box">
                 <i class="fas fa-search search-icon"></i>
@@ -28,6 +22,15 @@
             </div>
             <div id="searchResults" class="search-dropdown"></div>
         </div>
+        <nav>
+            <ul>
+                <li><a href="#" onclick="closeSection()">🏠︎ Trang chủ</a></li>
+                <li><a href="#" onclick="openLeaderboard()">🏆 Bảng xếp hạng</a></li>
+            </ul>
+        </nav>
+        <button id="themeToggle" onclick="toggleTheme()" title="Chế độ tối/sáng">
+            <i class="fas fa-moon"></i>
+        </button>
     </header>
 
     <section class="hero" id="heroSection">

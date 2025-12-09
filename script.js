@@ -80,6 +80,7 @@ async function loadAllData() {
 
         console.log("Tải dữ liệu thành công!");
         initSearchFeature();
+        initTheme();
 
     } catch (error) {
         console.error("❌ LỖI TẢI DỮ LIỆU:", error);
@@ -873,8 +874,8 @@ function selectOption(btn, optionIndex) {
     const allBtns = parent.querySelectorAll('.exercise-opt-btn');
     allBtns.forEach(b => {
         b.classList.remove('selected');
-        b.style.background = '#ffffff'; 
-        b.style.color = '#555';         
+        b.style.background = 'var(--white)'; 
+        b.style.color = 'var(--text)';         
         b.style.borderColor = '#e0e0e0'; 
     });
 
@@ -1201,7 +1202,7 @@ function showRandomReflexChar() {
     charEl.classList.add('animate-pop');
     
     // Đổi màu ngẫu nhiên cho sinh động (Optional)
-    const colors = ['#ff9a9e', '#a18cd1', '#333', '#fbc2eb', '#4facfe'];
+    const colors = ['#ff9a9e', '#a18cd1', '#3ddb3dff', '#fbc2eb', '#4facfe'];
     charEl.style.color = colors[Math.floor(Math.random() * colors.length)];
 }
 
@@ -1495,10 +1496,10 @@ function renderSearchResults(results, container) {
         div.innerHTML = `
             <div class="result-tag ${tagClass}">${tagName}</div>
             <div style="flex:1">
-                <div style="font-weight:bold; color:#333; font-size:1rem;">${item.jp}</div>
-                <div style="font-size:0.9rem; color:#666; margin-top:2px;">
+                <div style="font-weight:bold; color:var(--text); font-size:1rem;">${item.jp}</div>
+                <div style="font-size:0.9rem; color:var(--text); margin-top:2px;">
                     ${item.vn} 
-                    <span style="font-size:0.75rem; color:#aaa; margin-left:5px;">(${item.src})</span>
+                    <span style="font-size:0.75rem; color:var(--text); margin-left:5px;">(${item.src})</span>
                 </div>
             </div>
         `;
@@ -1524,3 +1525,49 @@ window.addEventListener('click', (e) => {
         if(box) box.style.display = 'none';
     }
 });
+
+/* =========================================
+   CHỨC NĂNG DARK MODE (TỐI ƯU & CHÍNH XÁC)
+   ========================================= */
+
+// 1. Hàm Bật/Tắt chế độ tối (Gán vào nút bấm)
+function toggleTheme() {
+    const body = document.body;
+    const btn = document.getElementById('themeToggle');
+    
+    // Nếu không tìm thấy nút thì dừng (tránh lỗi)
+    if (!btn) return;
+
+    const icon = btn.querySelector('i');
+
+    // Thêm hoặc xóa class 'dark-mode'
+    body.classList.toggle('dark-mode');
+
+    // Kiểm tra trạng thái hiện tại để lưu và đổi icon
+    if (body.classList.contains('dark-mode')) {
+        // Đang ở chế độ Tối
+        localStorage.setItem('theme', 'dark'); // Lưu vào bộ nhớ
+        if(icon) icon.className = 'fas fa-sun'; // Đổi thành mặt trời
+    } else {
+        // Đang ở chế độ Sáng
+        localStorage.setItem('theme', 'light'); // Lưu vào bộ nhớ
+        if(icon) icon.className = 'fas fa-moon'; // Đổi về mặt trăng
+    }
+}
+
+// 2. Hàm Khởi tạo (Chạy 1 lần khi load web)
+function initTheme() {
+    const savedTheme = localStorage.getItem('theme'); // Lấy chế độ đã lưu
+    const btn = document.getElementById('themeToggle');
+    
+    // Nếu người dùng trước đó chọn Dark Mode
+    if (savedTheme === 'dark') {
+        document.body.classList.add('dark-mode'); // Bật chế độ tối lên
+        
+        // Cập nhật icon thành mặt trời
+        if (btn) {
+            const icon = btn.querySelector('i');
+            if(icon) icon.className = 'fas fa-sun';
+        }
+    }
+}
