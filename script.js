@@ -1571,3 +1571,175 @@ function initTheme() {
         }
     }
 }
+
+/* =========================================
+   CHỨC NĂNG: PHÒNG LUYỆN VIẾT (STANDALONE WRITING)
+   ========================================= */
+
+let practiceWriter = null; // Biến quản lý nét viết riêng cho phần này
+
+// 1. Mở màn hình luyện viết
+function openWritingSection() {
+    const mainMenu = document.getElementById('mainMenu');
+    const heroSection = document.getElementById('heroSection');
+    if (mainMenu) mainMenu.style.display = 'none';
+    if (heroSection) heroSection.style.display = 'none';
+    
+    document.querySelectorAll('.section-content').forEach(s => {
+        s.classList.remove('active');
+        s.style.display = 'none';
+    });
+    const section = document.getElementById('writingSection');
+    if(section) {
+        section.style.display = 'block';
+        document.getElementById('inputChar').focus();
+    }
+
+    // Tự động focus vào ô nhập
+    document.getElementById('inputChar').focus();
+    
+    // Animation hiện ra
+    section.style.opacity = 0;
+    section.style.transform = 'translateY(20px)';
+    setTimeout(() => {
+        section.style.transition = 'all 0.5s ease';
+        section.style.opacity = 1;
+        section.style.transform = 'translateY(0)';
+    }, 10);
+}
+
+function loadCharToPractice() {
+    const input = document.getElementById('inputChar').value.trim();
+    const target = document.getElementById('practice-target');
+    const status = document.getElementById('practiceStatus');
+    
+    if (!input) {
+        status.innerText = "Bạn chưa nhập chữ nào cả! 😅";
+        status.style.color = "var(--red, red)";
+        return;
+    }
+
+    const char = input.charAt(0);
+    
+    // 1. Dọn dẹp khung vẽ cũ
+    target.innerHTML = ''; 
+    status.innerText = "Đang tìm dữ liệu...";
+    status.style.color = "#666";
+
+    // 2. Định nghĩa hàm tải dữ liệu thông minh (Smart Loader)
+    const customCharDataLoader = function(char, onComplete) {
+        // Kiểm tra xem chữ cái là Kana (Hiragana/Katakana) hay Kanji
+        const isKana = /[\u3040-\u309F\u30A0-\u30FF]/.test(char);
+        
+        // Nếu là Kana thì dùng kho 'kana-json', nếu là Kanji thì dùng 'hanzi-writer-data-jp'
+        const baseUrl = isKana
+            ? 'https://cdn.jsdelivr.net/gh/ailectra/kana-json@master/data/'
+            : 'https://cdn.jsdelivr.net/npm/hanzi-writer-data-jp@latest/data/';
+
+        const url = baseUrl + char + '.json';
+
+        console.log("Đang tải từ:", url); // Xem log để debug nếu cần
+
+        fetch(url)
+            .then(res => {
+                if (!res.ok) throw new Error('File not found');
+                return res.json();
+            })
+            .then(data => onComplete(data))
+            .catch(err => {
+                console.error("Lỗi tải:", err);
+                // Nếu tải tiếng Nhật lỗi, thử fallback về kho tiếng Trung (cho Kanji hiếm)
+                if (!isKana) {
+                    console.log("Thử tìm trong kho dữ liệu gốc...");
+                    fetch('https://cdn.jsdelivr.net/npm/hanzi-writer-data@latest/' + char + '.json')
+                        .then(res => res.json())
+                        .then(data => onComplete(data))
+                        .catch(e => onComplete(null)); // Chịu thua
+                } else {
+                    onComplete(null);
+                }
+            });
+    };
+
+    // 3. Khởi tạo Hanzi Writer
+    practiceWriter = HanziWriter.create('practice-target', char, {
+        width: 240,
+        height: 240,
+        padding: 5,
+        showOutline: true,          // Hiện nét mờ
+        strokeColor: '#ff9a9e',     // Màu tô
+        radicalColor: '#a18cd1',    // Màu bộ thủ
+        outlineColor: '#d1d1d1',    // Màu nét mờ
+        charDataLoader: customCharDataLoader, // Sử dụng hàm tải mới
+        
+        onLoadCharDataSuccess: function(data) {
+            status.innerText = "Sẵn sàng! Hãy chọn Xem mẫu hoặc Tự viết.";
+            status.style.color = "var(--green, green)";
+            
+            // Ép render lại để tránh lỗi khung trắng
+            setTimeout(() => {
+                practiceWriter.showOutline();
+                // Chạy thử animation ngắn để "mồi" hình ảnh
+                practiceWriter.animateCharacter({ 
+                    onComplete: () => practiceWriter.showOutline() 
+                }); 
+            }, 100);
+        },
+        onLoadCharDataError: function(err) {
+            status.innerText = "Không tìm thấy dữ liệu cho chữ này 😢";
+            status.style.color = "var(--red, red)";
+        }
+    });
+}
+
+// 3. Xem mẫu (Animate)
+function practiceAnimate() {
+    if (practiceWriter) {
+        document.getElementById('practiceStatus').innerText = "Đang viết mẫu...";
+        practiceWriter.animateCharacter();
+    } else {
+        document.getElementById('practiceStatus').innerText = "Hãy nhập chữ và bấm Tải nét trước!";
+    }
+}
+
+// 4. Tự viết (Quiz)
+function practiceQuiz() {
+    if (practiceWriter) {
+        const status = document.getElementById('practiceStatus');
+        status.innerText = "Hãy viết theo nét mờ!";
+        status.style.color = "var(--primary)";
+        
+        practiceWriter.quiz({
+            onMistake: function() {
+                status.innerText = "Sai nét rồi! Cố lên!";
+                status.style.color = "var(--red)";
+                // Rung nhẹ
+                const box = document.querySelector('.practice-container');
+                box.style.animation = 'shake 0.3s';
+                setTimeout(() => box.style.animation = '', 300);
+            },
+            onCorrectStroke: function() {
+                status.innerText = "Đúng nét! Tiếp tục nào!";
+                status.style.color = "var(--blue)";
+            },
+            onComplete: function() {
+                status.innerText = "TUYỆT VỜI! BẠN ĐÃ VIẾT ĐÚNG! 🎉";
+                status.style.color = "var(--green)";
+                speak(document.getElementById('inputChar').value.charAt(0));
+            }
+        });
+    }
+}
+
+// 5. Hàm hỗ trợ gợi ý nhanh
+function setInputAndLoad(char) {
+    document.getElementById('inputChar').value = char;
+    loadCharToPractice();
+}
+
+// Xử lý khi nhấn Enter trong ô input
+document.getElementById('inputChar').addEventListener('keypress', function (e) {
+    if (e.key === 'Enter') {
+        loadCharToPractice();
+    }
+});

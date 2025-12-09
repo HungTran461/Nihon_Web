@@ -88,6 +88,13 @@
                 <div class="card-badge">Hay</div>
             </div>
 
+            <div class="card" onclick="openWritingSection()">
+                <div class="card-icon"><i class="fas fa-pen-nib"></i></div>
+                <h3>Luyện Viết</h3>
+                <p>Tập viết </p>
+                <div class="card-badge">Thử nghiệm</div>
+            </div>
+
             <div class="card" onclick="openSection('gameSection')">
                 <div class="card-icon"><i class="fas fa-book"></i></div>
                 <h3>Luyện Tập</h3>
@@ -499,6 +506,7 @@
 
             <div id="kaiwaContainer" class="kaiwa-chat-box"></div>
         </div>
+        
     </div>
     <section id="leaderboardSection" class="section-content" style="display:none;">
         <div class="section-header">
@@ -525,9 +533,56 @@
                 </div>
         </div>
     </section>
+
+    <section id="writingSection" class="section-content" style="display:none;">
+        <div class="section-header">
+            <h2><i class="fas fa-pen-nib" style="color:var(--secondary)"></i> Phòng Luyện Viết</h2>
+            <button class="btn-back" onclick="closeSection()"><i class="fas fa-arrow-left"></i> Quay lại</button>
+        </div>
+
+        <div class="writing-workspace">
+            <div class="input-area">
+                <input type="text" id="inputChar" placeholder="Nhập chữ (あ, ア, 愛)..." maxlength="1">
+                <button class="btn-load" onclick="loadCharToPractice()">
+                    <i class="fas fa-search"></i> Tải nét
+                </button>
+            </div>
+
+            <div class="practice-container">
+                <div class="grid-line-x"></div>
+                <div class="grid-line-y"></div>
+                <div id="practice-target"></div>
+            </div>
+            
+            <p id="practiceStatus" style="margin-top: 15px; font-weight: bold; min-height: 24px;">Hãy nhập chữ và bấm tải nét!</p>
+
+            <div class="control-panel">
+                <button class="ctrl-btn btn-watch" onclick="practiceAnimate()">
+                    <i class="fas fa-play"></i> Xem mẫu
+                </button>
+                <button class="ctrl-btn btn-try" onclick="practiceQuiz()">
+                    <i class="fas fa-pencil-alt"></i> Tự viết
+                </button>
+                <button class="ctrl-btn btn-clear" onclick="loadCharToPractice()">
+                    <i class="fas fa-eraser"></i> Xóa / Vẽ lại
+                </button>
+            </div>
+
+            <div class="quick-suggest">
+                <p>Gợi ý thử:</p>
+                <span onclick="setInputAndLoad('あ')" style="cursor:pointer; margin:0 5px; padding: 5px; background:#eee; border-radius:4px;">あ</span>
+                <span onclick="setInputAndLoad('す')" style="cursor:pointer; margin:0 5px; padding: 5px; background:#eee; border-radius:4px;">す</span>
+                <span onclick="setInputAndLoad('ア')" style="cursor:pointer; margin:0 5px; padding: 5px; background:#eee; border-radius:4px;">ア</span>
+                <span onclick="setInputAndLoad('愛')" style="cursor:pointer; margin:0 5px; padding: 5px; background:#eee; border-radius:4px;">愛</span>
+                <span onclick="setInputAndLoad('猫')" style="cursor:pointer; margin:0 5px; padding: 5px; background:#eee; border-radius:4px;">猫</span>
+            </div>
+        </div>
+    </section>
     <footer>
         <p>© 2025 Nihongo Cute. Học mỗi ngày nhé!</p>
     </footer>
+    <script src="https://cdn.jsdelivr.net/npm/hanzi-writer@3.5/dist/hanzi-writer.min.js"></script>
     <script src="script.js"></script>
+</div>
 </body>
 </html>
