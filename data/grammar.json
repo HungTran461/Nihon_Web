@@ -1,0 +1,87 @@
+{
+  "1": [
+        {
+            "title": "N1 は N2 です。",
+            "mean": "N1 là N2",
+            "note": "Dùng để giới thiệu tên, nghề nghiệp, quốc tịch. 'は' đọc là 'wa'.",
+            "ex": [
+                { "j": "わたしは マイク・ミラーです。", "v": "Tôi là Mike Miller." },
+                { "j": "わたしは かいしゃいんです。", "v": "Tôi là nhân viên công ty." }
+            ]
+        },
+        {
+            "title": "N1 は N2 じゃありません / ではありません。",
+            "mean": "N1 không phải là N2",
+            "note": "Phủ định của 'desu'. Văn nói thường dùng 'ja arimasen', Văn viết dùng 'Dewa arimasen'.",
+            "ex": [
+                { "j": "サントスさんは がくせいじゃありません。", "v": "Anh Santos không phải là sinh viên." },
+                { "j": "わたしは いしゃじゃありません。", "v": "Tôi không phải là bác sĩ." }
+            ]
+        },
+        {
+            "title": "N1 は N2 ですか。",
+            "mean": "N1 là N2 phải không?",
+            "note": "Thêm 'ka' vào cuối câu khẳng định để tạo thành câu hỏi. Lên giọng ở cuối câu.",
+            "ex": [
+                { "j": "ミラーさんは かいしゃいんですか。", "v": "Anh Miller có phải là nhân viên công ty không?" },
+                { "j": "...はい、かいしゃいんです。", "v": "...Vâng, là nhân viên công ty." }
+            ]
+        },
+        {
+            "title": "N も",
+            "mean": "N cũng...",
+            "note": "Dùng trợ từ 'mo' thay cho 'wa' khi chủ đề giống với câu trước đó.",
+            "ex": [
+                { "j": "ミラーさんは かいしゃいんです。", "v": "Anh Miller là nhân viên công ty." },
+                { "j": "グプタさんも かいしゃいんです。", "v": "Anh Gupta cũng là nhân viên công ty." }
+            ]
+        },
+        {
+            "title": "N1 の N2",
+            "mean": "N2 của N1",
+            "note": "Trợ từ 'no' nối 2 danh từ. N1 bổ nghĩa cho N2 để chỉ sự sỡ hữu.",
+            "ex": [
+                { "j": "グプタさんは IMCのしゃいんです。", "v": "Anh Gupta là nhân viên của công ty AKC." },
+                { "j": "ワンさんは こうべびょういんのいしゃです。", "v": "Chị Y là bác sĩ của bệnh viện Kobe." }
+            ]
+        }
+    ],
+    "2": [
+        {
+            "title": "これ / それ / あれ",
+            "mean": "Cái này / Cái đó / Cái kia",
+            "note": "Đại từ chỉ định, đóng vai trò là chủ ngữ. <br>これ (Gần người nói), それ (Gần người nghe), あれ (Xa cả hai).",
+            "ex": [
+                { "j": "これは じしょです。", "v": "Cái này là từ điển." },
+                { "j": "それは わたしの かさです。", "v": "Cái đó là cái ô của tôi." }
+            ]
+        },
+        {
+            "title": "この N / その N / あの N",
+            "mean": "Cái N này / Cái N đó / Cái N kia",
+            "note": "Bổ nghĩa cho danh từ đi ngay sau nó.",
+            "ex": [
+                { "j": "このほんは わたしのです。", "v": "Quyển sách này là của tôi." },
+                { "j": "あのかたは どなたですか。", "v": "Vị kia là ai vvậy?" }
+            ]
+        },
+        {
+            "title": "そうです / そうじゃありません",
+            "mean": "Đúng vậy / Không phải vậy",
+            "note": "Dùng để trả lời câu hỏi xác nhận danh từ.",
+            "ex": [
+                { "j": "それは テレホンカードですか。", "v": "Đó là thẻ điện thoại phải không?" },
+                { "j": "...はい、そうです。", "v": "...Vâng, đúng vậy." }
+            ]
+        },
+        {
+            "title": "N1 の N2",
+            "mean": "N2 thuộc về N1",
+            "note": "Trợ từ 'no' nối 2 danh từ. N1 bổ nghĩa cho N2 để chỉ xuất xứ, nội dung...",
+            "ex": [
+                { "j": "これは コンピューターのほんです。", "v": "Đây là sách về máy tính." },
+                { "j": "これは わたしのほんです。", "v": "Đây là sách của tôi." }
+            ]
+        }
+    ]
+}

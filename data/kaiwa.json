@@ -1,0 +1,126 @@
+{
+  "1": [
+    {
+      "name": "Kaiwa",
+      "title": "初めまして (Rất hân hạnh)",
+      "img": "Image/Kaiwa_B1_Main.png",
+      "audio": "Sound/01_Track_1.mp3",
+      "dialogue": [
+        { "role": "A", "name": "佐藤 (Satou)", "text": "おはよう ございます。", "mean": "Chào buổi sáng.", "icon": "Image/Av_Girl_BlackHair.png", "side": "left", "gender": "female" },
+        { "role": "B", "name": "山田 (Yamada)", "text": "おはよう ございます。\nさとう(佐藤)さん、こちらは ミラーさんです。", "mean": "Chào buổi sáng. Chị Satou, đây là anh Miller.", "icon": "Image/Av_Boy_BlackHair.png", "side": "left", "gender": "male" },
+        { "role": "C", "name": "ミラー (Miller)", "text": "はじ(初)めまして。マイク ミラーです。\nアメリカから き(来)ました。\nどうぞ よろしく。", "mean": "Rất hân hạnh. Tôi là Mike Miller. Tôi đến từ Mỹ. Rất mong được giúp đỡ.", "icon": "Image/Av_Boy_YellowHair.png", "side": "right", "gender": "male" },
+        { "role": "A", "name": "佐藤 (Satou)", "text": "さとう(佐藤)けいこです。\nどうぞ よろしく。", "mean": "Tôi là Satou Keiko. Rất mong được giúp đỡ.", "icon": "Image/Av_Girl_BlackHair.png", "side": "left", "gender": "female" }
+      ]
+    },
+    {
+      "name": "Renshyuu C-1",
+      "title": "Hỏi đáp",
+      "img": "Image/Kaiwa_B1_C1.png",
+      "audio": "",
+      "dialogue": [
+        { "role": "A", "name": "A", "text": "はじ(初)めまして。マイク ミラーです。\nアメリカから き(来)ました。どうぞ よろしく。", "mean": "Hân hạnh được gặp. Tôi là Mike Miller. Tôi đến từ Mỹ. Rất mong được giúp đỡ.", "icon": "Image/Av_Boy_YellowHair.png", "side": "left", "gender": "male" },
+        { "role": "B", "name": "B", "text": "さとう(佐藤)です。\nどうぞ よろしく。", "mean": "Tôi là Satou Keiko. Rất mong được giúp đỡ.", "icon": "Image/Av_Girl_BlackHair.png", "side": "right", "gender": "female" }
+      ]
+    },
+    {
+      "name": "Renshyuu C-2",
+      "title": "Hỏi đáp",
+      "img": "Image/Kaiwa_B1_C2.png",
+      "audio": "",
+      "dialogue": [
+        { "role": "A", "name": "A", "text": "失礼ですが、お名前は？", "mean": "Xin lỗi, tên anh/chị là gì?", "icon": "Image/Av_Boy_BlackHair.png", "side": "left", "gender": "male" },
+        { "role": "B", "name": "B", "text": "イーです。", "mean": "Tôi là Y.", "icon": "Image/Av_Girl_BrownHair.png", "side": "right", "gender": "female" },
+        { "role": "A", "name": "A", "text": "リーさんですか。", "mean": "Bạn Lee phải không?", "icon": "Image/Av_Boy_BlackHair.png", "side": "left", "gender": "male" },
+        { "role": "B", "name": "B", "text": "いいえ、イーです。", "mean": "Không, là Y.", "icon": "Image/Av_Girl_BrownHair.png", "side": "right", "gender": "female" }
+      ]
+    },
+    {
+      "name": "Renshyuu C-3",
+      "title": "Hỏi đáp",
+      "img": "Image/Kaiwa_B1_C3.png",
+      "audio": "",
+      "dialogue": [
+        { "role": "A", "name": "A", "text": "たなか(田中)さん、おはよう ございます。", "mean": "Anh Tanaka, chào buổi sáng.", "icon": "Image/Av_Boy_BlackHair.png", "side": "left", "gender": "male" },
+        { "role": "B", "name": "B", "text": "おはよう ございます。", "mean": "Chào buổi sáng.", "icon": "Image/Av_Boy_BlackHair2.png", "side": "left", "gender": "male" },
+        { "role": "A", "name": "A", "text": "こちらは ミラーさんです。", "mean": "Đây là anh Miller.", "icon": "Image/Av_Boy_BlackHair.png", "side": "left", "gender": "male" },
+        { "role": "C", "name": "C", "text": "はじ(初)めまして。マイク ミラーです。\nIMCの しゃいん(社員)です。\nどうぞ よろしく おねが(願)いします。", "mean": "Hân hạnh được gặp. Tôi là Miller. Nhân viên của công ty IMC. Rất mong nhân được sự giúp đỡ.", "icon": "Image/Av_Boy_YellowHair.png", "side": "right", "gender": "male" },
+        { "role": "B", "name": "B", "text": "たなか(田中)です。よろしく おねが(願)いします。", "mean": "Tôi là Tanaka. Mong dược giúp đỡ.", "icon": "Image/Av_Boy_BlackHair2.png", "side": "left", "gender": "male" }
+      ]
+    }
+  ],
+  "2": [
+    {
+      "name": "Kaiwa",
+      "title": "ほんの気持ちです (Chút lòng thành)",
+      "img": "Image/Kaiwa_B2_Main.png",
+      "audio": "Sound/05_Track_5.mp3",
+      "dialogue": [
+        { "role": "B", "name": "サントス (Santos)", "text": "。。。", "mean": "(Nhấn chuông)", "icon": "Image/Av_Boy_BlackHair.png", "side": "right", "gender": "male" },
+        { "role": "A", "name": "山田 (Yamada)", "text": "はい。どなたですか。", "mean": "Vâng. Ai đấy ạ?", "icon": "Image/Av_Boy_BlueHair.png", "side": "left", "gender": "male" },
+        { "role": "B", "name": "サントス (Santos)", "text": "４０８の サントスです。", "mean": "Tôi là Santos ở phòng 408.", "icon": "Image/Av_Boy_BlackHair.png", "side": "right", "gender": "male" },
+        { "role": "A", "name": "山田 (Yamada)", "text": "。。。", "mean": "(Mở cửa)", "icon": "Image/Av_Boy_BlueHair.png", "side": "left", "gender": "male" },
+        { "role": "B", "name": "サントス (Santos)", "text": "こんにちは。サントスさん。\nこれから お世話に なります。\nどうぞ よろしく お願いします。", "mean": "Chào anh Santos. Từ nay mong anh giúp đỡ. Rất mong được làm quen.", "icon": "Image/Av_Boy_BlackHair.png", "side": "right", "gender": "male" },
+        { "role": "A", "name": "山田 (Yamada)", "text": "こちらこそ よろしく おねが(願)いします。", "mean": "Chính tôi mới cần anh giúp đỡ.", "icon": "Image/Av_Boy_BlueHair.png", "side": "left", "gender": "male" },
+        { "role": "B", "name": "サントス (Santos)", "text": "あのう、これ、コーヒーです。どうぞ。", "mean": "À, cái này... Là cà phê ạ. Xin mời.", "icon": "Image/Av_Boy_BlackHair.png", "side": "right", "gender": "male" },
+        { "role": "A", "name": "山田 (Yamada)", "text": "どうも ありがとうございます。", "mean": "Cảm ơn anh rất nhiều.", "icon": "Image/Av_Boy_BlueHair.png", "side": "left", "gender": "male" }
+      ]
+    },
+    {
+      "name": "Renshyuu C-1",
+      "title": "Hỏi đáp",
+      "img": "Image/Kaiwa_B2_C1.png",
+      "audio": "",
+      "dialogue": [
+        { "role": "A", "name": "A", "text": "あのう、これ、おみやげ(土産)です。", "mean": "À..., cái này, là quà ạ.", "icon": "Image/Av_Boy_BlueHair.png", "side": "left", "gender": "male" },
+        { "role": "B", "name": "B", "text": "えっ、なん(何)ですか。", "mean": "Hả? Nó là gì vậy?", "icon": "Image/Av_Girl_BrownHair.png", "side": "right", "gender": "female" },
+        { "role": "A", "name": "A", "text": "コーヒーです。どうぞ。", "mean": "Là cà phê ạ. Xin mời.", "icon": "Image/Av_Boy_BlueHair.png", "side": "left", "gender": "male" },
+        { "role": "B", "name": "B", "text": "どうも ありがとうございます。", "mean": "Cảm ơn bạn rất nhiều.", "icon": "Image/Av_Girl_BrownHair.png", "side": "right", "gender": "female" }
+      ]
+    },
+    {
+      "name": "Renshyuu C-2",
+      "title": "Hỏi đáp",
+      "img": "Image/Kaiwa_B2_C2.png",
+      "audio": "",
+      "dialogue": [
+        { "role": "A", "name": "A", "text": "それは なん(何)ですか。", "mean": "Cái đó là gì vậy?", "icon": "Image/Av_Girl_BrownHair.png", "side": "left", "gender": "female" },
+        { "role": "B", "name": "B", "text": "これですか。えいご(英語)の CDです。", "mean": "Là cái này phải không? Nó là CD Tiếng Anh.", "icon": "Image/Av_Boy_BlueHair.png", "side": "right", "gender": "male" },
+        { "role": "A", "name": "A", "text": "そうですか。", "mean": "Vậy à.", "icon": "Image/Av_Girl_BrownHair.png", "side": "left", "gender": "female" }
+      ]
+    },
+    {
+      "name": "Renshyuu C-3",
+      "title": "Hỏi đáp",
+      "img": "Image/Kaiwa_B2_C3.png",
+      "audio": "",
+      "dialogue": [
+        { "role": "A", "name": "A", "text": "この かさ(傘)は ミラーさんのですか。", "mean": "Cái ô này là của Miller đúng không?", "icon": "Image/Av_Boy_BlueHair.png", "side": "left", "gender": "male" },
+        { "role": "B", "name": "B", "text": "いいえ、ちが(違)います。", "mean": "Không, không phải của tôi.", "icon": "Image/Av_Boy_YellowHair.png", "side": "right", "gender": "male" },
+        { "role": "A", "name": "A", "text": "だれのですか。", "mean": "Nó là của ai vậy nhỉ?", "icon": "Image/Av_Boy_BlueHair.png", "side": "left", "gender": "male" },
+        { "role": "C", "name": "C", "text": "あ、わたしのです。ありがとう ございます。", "mean": "A, nó là của tôi đó. Cảm ơn bạn nhiều.", "icon": "Image/Av_Boy_BlackHair.png", "side": "right", "gender": "male" }
+      ]
+    }
+  ],
+  "3": [
+    {
+      "name": "Kaiwa",
+      "title": "こらを ください (Bán cho tôi cái này)",
+      "img": "Image/Kaiwa_B3_Main.png",
+      "audio": "Sound/09_Track_9.mp3",
+      "dialogue": [
+        { "role": "A", "name": "てんいん(店員)A", "text": "いらっしゃいませ", "mean": "Kính chào quý khách.", "icon": "Image/Av_Girl_BlackHair.png", "side": "left", "gender": "female" },
+        { "role": "B", "name": "マリア", "text": "すみません。ワインう(売)りば(場)は どこですか。", "mean": "Xin lỗi. Quầy bán rượu vang ở đâu vậy?.", "icon": "Image/Av_Girl_BrownHair.png", "side": "right", "gender": "female" },
+        { "role": "A", "name": "てんいん(店員)A", "text": "ち(地)か１かい(階)です。", "mean": "Nó ở tầng hầm thứ 1 ạ.", "icon": "Image/Av_Girl_BlackHair.png", "side": "left", "gender": "female" },
+        { "role": "B", "name": "マリア", "text": "どうも。", "mean": "Xin cảm ơn.", "icon": "Image/Av_Girl_BrownHair.png", "side": "right", "gender": "female" },
+        { "role": "B", "name": "マリア", "text": "。。。", "mean": "(Đi đến quầy rượu vang)", "icon": "Image/Av_Girl_BrownHair.png", "side": "right", "gender": "female" },
+        { "role": "B", "name": "マリア", "text": "すみません。その ワインを み(見)せて ください。", "mean": "Xin lỗi. Xin cho tôi xem rượu vang đó.", "icon": "Image/Av_Girl_BrownHair.png", "side": "right", "gender": "female" },
+        { "role": "C", "name": "てんいん(店員)B", "text": "はい、どうぞ。", "mean": "Vâng. Xin mời.", "icon": "Image/Av_Girl_YellowHair.png", "side": "left", "gender": "female" },
+        { "role": "B", "name": "マリア", "text": "これは どこの ワインですか。", "mean": "Đây là rượu của nước nào vậy?", "icon": "Image/Av_Girl_BrownHair.png", "side": "right", "gender": "female" },
+        { "role": "C", "name": "てんいん(店員)B", "text": "にほん(日本)のです。", "mean": "Nó là của Nhật ạ.", "icon": "Image/Av_Girl_YellowHair.png", "side": "left", "gender": "female" },
+        { "role": "B", "name": "マリア", "text": "いくらですか。", "mean": "Giá bao nhiêu?", "icon": "Image/Av_Girl_BrownHair.png", "side": "right", "gender": "female" },
+        { "role": "C", "name": "てんいん(店員)B", "text": "2,500えん(円)です。", "mean": "2500 Yên ạ.", "icon": "Image/Av_Girl_YellowHair.png", "side": "left", "gender": "female" },
+        { "role": "B", "name": "マリア", "text": "じゃ、これを ください。", "mean": "Vậy thì, cho tôi chai này đi.", "icon": "Image/Av_Girl_BrownHair.png", "side": "right", "gender": "female" }
+      ]
+    }
+  ]
+}

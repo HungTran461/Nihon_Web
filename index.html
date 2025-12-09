@@ -20,6 +20,14 @@
                 <li><a href="#" onclick="openLeaderboard()">🏆 Bảng xếp hạng</a></li>
             </ul>
         </nav>
+        <div class="search-container">
+            <div class="search-box">
+                <i class="fas fa-search search-icon"></i>
+                <input type="text" id="globalSearch" placeholder="Tìm từ vựng, Kanji, Ngữ pháp..." autocomplete="off">
+                <i class="fas fa-times clear-icon" onclick="clearSearch()" style="display:none;"></i>
+            </div>
+            <div id="searchResults" class="search-dropdown"></div>
+        </div>
     </header>
 
     <section class="hero" id="heroSection">

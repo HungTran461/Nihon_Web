@@ -1,0 +1,50 @@
+{
+  "1": [
+    {
+      "title": "Kaiwa 1: はじめまして。",
+      "audio": "Sound/01_Track_1.mp3",
+      "questions": [
+        { "q": "Người đang được giới thiệu là ai?", "opts": ["やまだ", "ミラー", "さとう"], "ans": 1 },
+        { "q": "Người đó đến từ nước nào?", "opts": ["ドイツ", "イギリス", "アメリカ"], "ans": 2 }
+      ]
+    },
+    {
+      "title": "Mondai 1",
+      "audio": "Sound/02_Track_2.mp3",
+      "questions": [
+        { "q": "Câu hỏi thứ 1 là gì?", "opts": ["あなたは サントスさんですか。", "あなたは サントンさんですか。", "あなたは ザントズさんですか。"], "ans": 0 },
+        { "q": "Câu hỏi thứ 2 là gì?", "opts": ["どなたですか。", "あのひとは。", "おなまえは。"], "ans": 2 },
+        { "q": "Câu hỏi thứ 3 là gì?", "opts": ["なんですか。", "なんさいですか。", "おいくつですか。"], "ans": 1 },
+        { "q": "Câu hỏi thứ 4 là gì?", "opts": ["インドじんですか。", "ブラジルじんですか。", "アメリカじんですか。"], "ans": 2 },
+        { "q": "Câu hỏi thứ 5 là gì?", "opts": ["かいしゃいんですか。", "しゃいんですか。", "ぎんこういんですか。"], "ans": 0 }
+      ]
+    },
+    {
+      "title": "Mondai 2",
+      "audio": "Sound/03_Track_3.mp3",
+      "questions": [
+        { "q": "Ai đang được giới thiệu ở câu 1?", "opts": ["サントス", "シュミット", "ミラー"], "ans": 1 },
+        { "q": "Câu hỏi thứ 2, Wang bao nhiêu tuổi?", "opts": ["28", "29", "21"], "ans": 1 }
+      ]
+    },
+    {
+      "title": "Mondai 3",
+      "audio": "Sound/04_Track_4.mp3",
+      "questions": [
+        { "q": "Câu thứ 1 đúng hay sai?", "opts": ["ちがいます。", "ただしい"], "ans": 1 },
+        { "q": "Câu thứ 2 đúng hay sai?", "opts": ["ちがいます。", "ただしい"], "ans": 0 },
+        { "q": "Câu thứ 3 đúng hay sai?", "opts": ["ちがいます。", "ただしい"], "ans": 1 }
+      ]
+    }
+  ],
+  "2": [
+    {
+      "title": "Kaiwa 2: これから あせわに なります。",
+      "audio": "Sound/05_Track_5.mp3",
+      "questions": [
+        { "q": "Số phòng của Santos là bao nhiêu?", "opts": ["408", "407", "409"], "ans": 0 },
+        { "q": "Santos đã tặng món quà gì ?", "opts": ["クッキ", "おちゃ", "コーヒー"], "ans": 2 }
+      ]
+    }
+  ]
+}

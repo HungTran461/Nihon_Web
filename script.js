@@ -7,1033 +7,94 @@
    1. KHO DỮ LIỆU (DATABASE)
    ========================================= */
 
-// --- 1.1 Dữ liệu Bảng chữ cái (Hiragana/Katakana) ---
-const charMaps = {
-    hiragana: {
-        a:'あ', i:'い', u:'う', e:'え', o:'お',
-        ka:'か', ki:'き', ku:'く', ke:'け', ko:'こ',
-        sa:'さ', shi:'し', su:'す', se:'せ', so:'そ',
-        ta:'た', chi:'ち', tsu:'つ', te:'て', to:'と',
-        na:'な', ni:'に', nu:'ぬ', ne:'ね', no:'の',
-        ha:'は', hi:'ひ', fu:'ふ', he:'へ', ho:'ほ',
-        ma:'ま', mi:'み', mu:'む', me:'め', mo:'も',
-        ya:'や', yu:'ゆ', yo:'よ',
-        ra:'ら', ri:'り', ru:'る', re:'れ', ro:'ろ',
-        wa:'わ', wo:'を', n:'ん',
-        ga:'が', gi:'ぎ', gu:'ぐ', ge:'げ', go:'ご',
-        za:'ざ', ji:'じ', zu:'ず', ze:'ぜ', zo:'ぞ',
-        da:'だ', ji_d:'ぢ', zu_d:'づ', de:'で', do:'ど',
-        ba:'ば', bi:'び', bu:'ぶ', be:'べ', bo:'ぼ',
-        pa:'ぱ', pi:'ぴ', pu:'ぷ', pe:'ぺ', po:'ぽ',
-        kya:'きゃ', kyu:'きゅ', kyo:'きょ', sha:'しゃ', shu:'しゅ', sho:'しょ',
-        cha:'ちゃ', chu:'ちゅ', cho:'ちょ', nya:'にゃ', nyu:'にゅ', nyo:'にょ',
-        hya:'ひゃ', hyu:'ひゅ', hyo:'ひょ', mya:'みゃ', myu:'みゅ', myo:'みょ',
-        rya:'りゃ', ryu:'りゅ', ryo:'りょ', gya:'ぎゃ', gyu:'ぎゅ', gyo:'ぎょ',
-        ja:'じゃ', ju:'じゅ', jo:'じょ', bya:'びゃ', byu:'びゅ', byo:'びょ',
-        pya:'ぴゃ', pyu:'ぴゅ', pyo:'ぴょ'
-    },
-    katakana: {
-        a:'ア', i:'イ', u:'ウ', e:'エ', o:'オ',
-        ka:'カ', ki:'キ', ku:'ク', ke:'ケ', ko:'コ',
-        sa:'サ', shi:'シ', su:'ス', se:'セ', so:'ソ',
-        ta:'タ', chi:'チ', tsu:'ツ', te:'テ', to:'ト',
-        na:'ナ', ni:'ニ', nu:'ヌ', ne:'ネ', no:'ノ',
-        ha:'ハ', hi:'ヒ', fu:'フ', he:'ヘ', ho:'ホ',
-        ma:'マ', mi:'ミ', mu:'ム', me:'メ', mo:'モ',
-        ya:'ヤ', yu:'ユ', yo:'ヨ',
-        ra:'ラ', ri:'リ', ru:'ル', re:'レ', ro:'ロ',
-        wa:'ワ', wo:'ヲ', n:'ン',
-        ga:'ガ', gi:'ギ', gu:'グ', ge:'ゲ', go:'ゴ',
-        za:'ザ', ji:'ジ', zu:'ズ', ze:'ゼ', zo:'ゾ',
-        da:'ダ', ji_d:'ヂ', zu_d:'ヅ', de:'デ', do:'ド',
-        ba:'バ', bi:'ビ', bu:'ブ', be:'ベ', bo:'ボ',
-        pa:'パ', pi:'ピ', pu:'プ', pe:'ペ', po:'ポ',
-        kya:'キャ', kyu:'キュ', kyo:'キョ', sha:'シャ', shu:'シュ', sho:'ショ',
-        cha:'チャ', chu:'チュ', cho:'チョ', nya:'ニャ', nyu:'ニュ', nyo:'ニョ',
-        hya:'ヒャ', hyu:'ヒュ', hyo:'ヒョ', mya:'ミャ', myu:'ミュ', myo:'ミョ',
-        rya:'リャ', ryu:'リュ', ryo:'リョ', gya:'ギャ', gyu:'ギュ', gyo:'ギョ',
-        ja:'ジャ', ju:'ジュ', jo:'ジョ', bya:'ビャ', byu:'ビュ', byo:'ビョ',
-        pya:'ピャ', pyu:'ピュ', pyo:'ピョ'
-    }
-};
+
 
 const basicRows = [['a','i','u','e','o'],['ka','ki','ku','ke','ko'],['sa','shi','su','se','so'],['ta','chi','tsu','te','to'],['na','ni','nu','ne','no'],['ha','hi','fu','he','ho'],['ma','mi','mu','me','mo'],['ya','','yu','','yo'],['ra','ri','ru','re','ro'],['wa','','','','wo'],['n','','','','']];
 const dakutenRows = [['ga','gi','gu','ge','go'],['za','ji','zu','ze','zo'],['da','ji_d','zu_d','de','do'],['ba','bi','bu','be','bo'],['pa','pi','pu','pe','po']];
 const yoonRows = [['kya','kyu','kyo'],['sha','shu','sho'],['cha','chu','cho'],['nya','nyu','nyo'],['hya','hyu','hyo'],['mya','myu','myo'],['rya','ryu','ryo'],['gya','gyu','gyo'],['ja','ju','jo'],['bya','byu','byo'],['pya','pyu','pyo']];
-
-// --- 1.2 Dữ liệu Từ vựng gợi ý (Hiragana & Katakana) ---
-const hiraganaVocab = {
-    'a': {j:'あめ',v:'🍬 Kẹo/Mưa'}, 'i': {j:'いぬ',v:'🐕 Chó'}, 'u': {j:'うみ',v:'🌊 Biển'}, 'e': {j:'えき',v:'🚉 Nhà ga'}, 'o': {j:'おにぎり',v:'🍙 Cơm nắm'},
-    'ka':{j:'かさ',v:'☂️ Ô'}, 'ki':{j:'き',v:'🌳 Cây'}, 'ku':{j:'くつ',v:'👟 Giày'}, 'ke':{j:'けさ',v:'☀️ Sáng nay'}, 'ko':{j:'こども',v:'👶 Trẻ em'},
-    'sa':{j:'さくら',v:'🌸 Hoa anh đào'}, 'shi':{j:'しお',v:'🧂 Muối'}, 'su':{j:'すし',v:'🍣 Sushi'}, 'se':{j:'せんせい',v:'👩‍🏫 Giáo viên'}, 'so':{j:'そら',v:'☁️ Bầu trời'},
-    'ta':{j:'たこ',v:'🐙 Bạch tuộc'}, 'chi':{j:'ちかてつ',v:'🚇 Tàu điện'}, 'tsu':{j:'つくえ',v:'🪑 Bàn'}, 'te':{j:'てがみ',v:'✉️ Thư'}, 'to':{j:'とけい',v:'⏰ Đồng hồ'},
-    'na':{j:'なつ',v:'☀️ Mùa hè'}, 'ni':{j:'にく',v:'🥩 Thịt'}, 'nu':{j:'ぬいぐるみ',v:'🧸 Thú bông'}, 'ne':{j:'ねこ',v:'🐱 Mèo'}, 'no':{j:'のみもの',v:'🥤 Đồ uống'},
-    'ha':{j:'はな',v:'🌺 Hoa'}, 'hi':{j:'ひと',v:'🧑 Người'}, 'fu':{j:'ふね',v:'🚢 Thuyền'}, 'he':{j:'へや',v:'🏠 Phòng'}, 'ho':{j:'ほし',v:'⭐ Sao'},
-    'ma':{j:'まど',v:'🪟 Cửa sổ'}, 'mi':{j:'みず',v:'💧 Nước'}, 'mu':{j:'むし',v:'🐛 Côn trùng'}, 'me':{j:'め',v:'👁️ Mắt'}, 'mo':{j:'もも',v:'🍑 Đào'},
-    'ya':{j:'やま',v:'⛰️ Núi'}, 'yu':{j:'ゆき',v:'❄️ Tuyết'}, 'yo':{j:'よる',v:'🌃 Tối'},
-    'ra':{j:'らいしゅう',v:'📅 Tuần sau'}, 'ri':{j:'りんご',v:'🍎 Táo'}, 'ru':{j:'るす',v:'🚪 Vắng nhà'}, 're':{j:'れいぞうこ',v:'🧊 Tủ lạnh'}, 'ro':{j:'ろうそく',v:'🕯️ Nến'},
-    'wa':{j:'わたし',v:'🙋 Tôi'}, 'wo':{j:'を',v:'(Trợ từ)'}, 'n':{j:'ほん',v:'📚 Sách'},
-    'ga':{j:'がっこう',v:'🏫 Trường học'}, 'za':{j:'ざっし',v:'📖 Tạp chí'}, 'da':{j:'だいがく',v:'🎓 Đại học'}, 'ba':{j:'ばら',v:'🌹 Hoa hồng'}, 'pa':{j:'ぱん',v:'🍞 Bánh mì'},
-    'kya':{j:'きゃく',v:'👥 Khách'}, 'sha':{j:'しゃしん',v:'📸 Ảnh'}, 'cha':{j:'ちゃわん',v:'🍚 Bát cơm'}, 'nya':{j:'にゃんこ',v:'🐈 Mèo con'}
-};
-
-const katakanaVocab = {
-    'a':{j:'アイス',v:'🍦 Kem'}, 'i':{j:'インク',v:'✒️ Mực'}, 'u':{j:'ウイスキー',v:'🥃 Whiskey'}, 'e':{j:'エレベーター',v:'🛗 Thang máy'}, 'o':{j:'オレンジ',v:'🍊 Cam'},
-    'ka':{j:'カメラ',v:'📷 Camera'}, 'ki':{j:'キウイ',v:'🥝 Kiwi'}, 'ku':{j:'クラス',v:'🏫 Lớp'}, 'ke':{j:'ケーキ',v:'🍰 Bánh kem'}, 'ko':{j:'コーヒー',v:'☕ Cà phê'},
-    'sa':{j:'サッカー',v:'⚽ Bóng đá'}, 'shi':{j:'シャツ',v:'👕 Sơ mi'}, 'su':{j:'スポーツ',v:'🏅 Thể thao'}, 'se':{j:'セーター',v:'🧶 Áo len'}, 'so':{j:'ソファー',v:'🛋️ Sofa'},
-    'ta':{j:'タクシー',v:'🚕 Taxi'}, 'chi':{j:'チーズ',v:'🧀 Phô mai'}, 'tsu':{j:'ツアー',v:'🚩 Tour'}, 'te':{j:'テニス',v:'🎾 Tennis'}, 'to':{j:'トイレ',v:'🚽 Toilet'},
-    'na':{j:'ナイフ',v:'🍴 Dao'}, 'ni':{j:'ニュース',v:'📰 Tin tức'}, 'nu':{j:'ヌードル',v:'🍜 Mì'}, 'ne':{j:'ネクタイ',v:'👔 Cà vạt'}, 'no':{j:'ノート',v:'📓 Vở'},
-    'ha':{j:'ハンバーガー',v:'🍔 Burger'}, 'hi':{j:'ヒーター',v:'🔥 Lò sưởi'}, 'fu':{j:'フランス',v:'🇫🇷 Pháp'}, 'he':{j:'ヘルメット',v:'⛑️ Mũ BH'}, 'ho':{j:'ホテル',v:'🏨 Khách sạn'},
-    'ma':{j:'マスク',v:'😷 Khẩu trang'}, 'mi':{j:'ミルク',v:'🥛 Sữa'}, 'mu':{j:'ムード',v:'✨ Mood'}, 'me':{j:'メロン',v:'🍈 Dưa lưới'}, 'mo':{j:'モデル',v:'💃 Người mẫu'},
-    'ya':{j:'ヤング',v:'👶 Trẻ'}, 'yu':{j:'ユーザー',v:'👤 User'}, 'yo':{j:'ヨーグルト',v:'🥣 Sữa chua'},
-    'ra':{j:'ライオン',v:'🦁 Sư tử'}, 'ri':{j:'リボン',v:'🎀 Nơ'}, 'ru':{j:'ルール',v:'📏 Rule'}, 're':{j:'レストラン',v:'🍽️ Nhà hàng'}, 'ro':{j:'ロボット',v:'🤖 Robot'},
-    'wa':{j:'ワイン',v:'🍷 Rượu vang'}, 'wo':{j:'ヲタク',v:'🤓 Otaku'}, 'n':{j:'パン',v:'🍞 Bánh mì'},
-    'ga':{j:'ガラス',v:'🪟 Kính'}, 'za':{j:'ゼロ',v:'0️⃣ Số 0'}, 'da':{j:'ダンス',v:'💃 Dance'}, 'ba':{j:'バス',v:'🚌 Bus'}, 'pa':{j:'パーティー',v:'🎉 Tiệc'}
-};
-
-// --- 1.3 Dữ liệu Minna no Nihongo (Bài 1 & 2) ---
-const minnaData = {
-    '1': [
-        // --- Đại từ & Con người ---
-        { k: '私', r: 'わたし', m: 'Tôi' },
-        { k: '私たち', r: 'わたしたち', m: 'Chúng tôi' },
-        { k: 'あなた', r: 'あなた', m: 'Bạn / Anh / Chị' },
-        { k: 'あの人', r: 'あのひと', m: 'Người kia' },
-        { k: 'あの方', r: 'あのかた', m: 'Vị kia (Lịch sự)' },
-        { k: '～さん', r: '～さん', m: 'Ông/Bà/Anh/Chị (Hậu tố)' },
-        { k: '～ちゃん', r: '～ちゃん', m: 'Bé (gái)' },
-        { k: '～くん', r: '～くん', m: 'Bé (trai)' },
-        { k: '～人', r: '～じん', m: 'Người nước ~' },
-
-        // --- Nghề nghiệp ---
-        { k: '先生', r: 'せんせい', m: 'Giáo viên (Gọi người khác)' },
-        { k: '教師', r: 'きょうし', m: 'Giáo viên (Nói về mình)' },
-        { k: '学生', r: 'がくせい', m: 'Học sinh, Sinh viên' },
-        { k: '会社員', r: 'かいしゃいん', m: 'Nhân viên công ty' },
-        { k: '社員', r: 'しゃいん', m: 'Nhân viên công ty' },
-        { k: '銀行員', r: 'ぎんこういん', m: 'Nhân viên ngân hàng' },
-        { k: '医者', r: 'いしゃ', m: 'Bác sĩ' },
-        { k: '研究者', r: 'けんきゅうしゃ', m: 'Nhà nghiên cứu' },
-        { k: 'エンジニア', r: 'エンジニア', m: 'Kỹ sư' },
-
-        // --- Địa điểm & Khác ---
-        { k: '大学', r: 'だいがく', m: 'Trường đại học' },
-        { k: '病院', r: 'びょういん', m: 'Bệnh viện' },
-        { k: '電気', r: 'でんき', m: 'Điện / Đèn điện' },
-
-        // --- Từ để hỏi & Tuổi ---
-        { k: 'だれ', r: 'だれ', m: 'Ai?' },
-        { k: 'どなた', r: 'どなた', m: 'Vị nào? (Lịch sự)' },
-        { k: '歳', r: '～さい', m: '～ tuổi' },
-        { k: '何歳', r: 'なんさい', m: 'Mấy tuổi?' },
-        { k: 'おいくつ', r: 'おいくつ', m: 'Bao nhiêu tuổi? (Lịch sự)' },
-
-        // --- Chào hỏi & Giao tiếp (Rất quan trọng) ---
-        { k: 'はい', r: 'はい', m: 'Vâng / Dạ' },
-        { k: 'いいえ', r: 'いいえ', m: 'Không' },
-        { k: '失礼ですが', r: 'しつれいですが', m: 'Xin cho hỏi' },
-        { k: 'お名前は？', r: 'おなまえは', m: 'Tên bạn là gì?' },
-        { k: '初めまして', r: 'はじめまして', m: 'Chào lần đầu gặp' },
-        { k: '～から来ました', r: '～からきました', m: 'Đến từ ～' },
-        { k: 'どうぞよろしく', r: 'どうぞ よろしく', m: 'Rất mong được giúp đỡ' },
-        { k: 'お願いします', r: 'おねがいします', m: 'Làm ơn / Nhờ bạn' },
-
-        // --- Tên các nước (Katakana) ---
-        { k: 'アメリカ', r: 'アメリカ', m: 'Mỹ' },
-        { k: 'イギリス', r: 'イギリス', m: 'Anh' },
-        { k: 'インド', r: 'インド', m: 'Ấn Độ' },
-        { k: 'インドネシア', r: 'インドネシア', m: 'Indonesia' },
-        { k: '韓国', r: 'かんこく', m: 'Hàn Quốc' },
-        { k: 'タイ', r: 'タイ', m: 'Thái Lan' },
-        { k: '中国', r: 'ちゅうごく', m: 'Trung Quốc' },
-        { k: 'ドイツ', r: 'ドイツ', m: 'Đức' },
-        { k: '日本', r: 'にほん', m: 'Nhật Bản' },
-        { k: 'フランス', r: 'フランス', m: 'Pháp' },
-        { k: 'ブラジル', r: 'ブラジル', m: 'Brazil' },
-        { k: 'ベトナム', r: 'ベトナム', m: 'Việt Nam' }
-    ],
-    '2': [
-        { k: 'これ', r: 'これ', m: 'Cái này (gần người nói)' },
-        { k: 'それ', r: 'それ', m: 'Cái đó (gần người nghe)' },
-        { k: 'あれ', r: 'あれ', m: 'Cái kia (xa cả hai)' },
-        { k: 'この～', r: 'この', m: '～ này' },
-        { k: 'その～', r: 'その', m: '～ đó' },
-        { k: 'あの～', r: 'あの', m: '～ kia' },
-        { k: '本', r: 'ほん', m: 'Sách' },
-        { k: '辞書', r: 'じしょ', m: 'Từ điển' },
-        { k: '雑誌', r: 'ざっし', m: 'Tạp chí' },
-        { k: '新聞', r: 'しんぶん', m: 'Báo' },
-        { k: 'ノート', r: 'ノート', m: 'Vở' },
-        { k: '手帳', r: 'てちょう', m: 'Sổ tay' },
-        { k: '名刺', r: 'めいし', m: 'Danh thiếp' },
-        { k: 'カード', r: 'カード', m: 'Thẻ (Card)' },
-        { k: '鉛筆', r: 'えんぴつ', m: 'Bút chì' },
-        { k: 'ボールペン', r: 'ボールペン', m: 'Bút bi' },
-        { k: '時計', r: 'とけい', m: 'Đồng hồ' },
-        { k: '傘', r: 'かさ', m: 'Cái ô' },
-        { k: '鞄', r: 'かばん', m: 'Cặp sách, túi xách' },
-        { k: 'テープ', r: 'テープ', m: 'Băng cassette/Băng dính' },
-        { k: 'レコーダー', r: 'レコーダー', m: 'Máy ghi âm' },
-        { k: 'テレビ', r: 'テレビ', m: 'Tivi' },
-        { k: 'ラジオ', r: 'ラジオ', m: 'Radio' },
-        { k: 'カメラ', r: 'カメラ', m: 'Máy ảnh' },
-        { k: 'コンピューター', r: 'コンピューター', m: 'Máy vi tính' },
-        { k: '自動車', r: 'じどうしゃ', m: 'Ô tô' },
-        { k: '机', r: 'つくえ', m: 'Cái bàn' },
-        { k: '椅子', r: 'いす', m: 'Cái ghế' },
-        { k: 'チョコレート', r: 'チョコレート', m: 'Sô cô la' },
-        { k: 'コーヒー', r: 'コーヒー', m: 'Cà phê' },
-        { k: '英語', r: 'えいご', m: 'Tiếng Anh' },
-        { k: '日本語', r: 'にほんご', m: 'Tiếng Nhật' },
-        { k: '～語', r: '～ご', m: 'Tiếng ～' },
-        { k: '何', r: 'なん', m: 'Cái gì' },
-        { k: 'そうです', r: 'そうです', m: 'Đúng rồi / Vậy đó' }
-    ]
-};
-
-const n5KanjiData = [
-    // --- 1. SỐ ĐẾM & TIỀN TỆ (14 chữ) ---
-    {c:'一',h:'NHẤT',m:'Một',on:'ICHI',kun:'hito'},
-    {c:'二',h:'NHỊ',m:'Hai',on:'NI',kun:'futa'},
-    {c:'三',h:'TAM',m:'Ba',on:'SAN',kun:'mit'},
-    {c:'四',h:'TỨ',m:'Bốn',on:'SHI',kun:'yon'},
-    {c:'五',h:'NGŨ',m:'Năm',on:'GO',kun:'itsu'},
-    {c:'六',h:'LỤC',m:'Sáu',on:'ROKU',kun:'mut'},
-    {c:'七',h:'THẤT',m:'Bảy',on:'SHICHI',kun:'nana'},
-    {c:'八',h:'BÁT',m:'Tám',on:'HACHI',kun:'yat'},
-    {c:'九',h:'CỬU',m:'Chín',on:'KYUU',kun:'kokono'},
-    {c:'十',h:'THẬP',m:'Mười',on:'JUU',kun:'tou'},
-    {c:'百',h:'BÁCH',m:'Trăm',on:'HYAKU',kun:'-'},
-    {c:'千',h:'THIÊN',m:'Nghìn',on:'SEN',kun:'chi'},
-    {c:'万',h:'VẠN',m:'Mười nghìn',on:'MAN',kun:'-'},
-    {c:'円',h:'YÊN',m:'Yên / Tròn',on:'EN',kun:'maru'},
-
-    // --- 2. THỜI GIAN (13 chữ) ---
-    {c:'日',h:'NHẬT',m:'Ngày / Mặt trời',on:'NICHI',kun:'hi'},
-    {c:'月',h:'NGUYỆT',m:'Tháng / Mặt trăng',on:'GETSU',kun:'tsuki'},
-    {c:'火',h:'HỎA',m:'Lửa / Thứ 3',on:'KA',kun:'hi'},
-    {c:'水',h:'THỦY',m:'Nước / Thứ 4',on:'SUI',kun:'mizu'},
-    {c:'木',h:'MỘC',m:'Cây / Thứ 5',on:'MOKU',kun:'ki'},
-    {c:'金',h:'KIM',m:'Vàng / Tiền / Thứ 6',on:'KIN',kun:'kane'},
-    {c:'土',h:'THỔ',m:'Đất / Thứ 7',on:'DO',kun:'tsuchi'},
-    {c:'年',h:'NIÊN',m:'Năm',on:'NEN',kun:'toshi'},
-    {c:'時',h:'THỜI',m:'Giờ',on:'JI',kun:'toki'},
-    {c:'分',h:'PHÂN',m:'Phút / Phân chia',on:'FUN',kun:'wa'},
-    {c:'午',h:'NGỌ',m:'Trưa',on:'GO',kun:'-'},
-    {c:'今',h:'KIM',m:'Bây giờ',on:'KON',kun:'ima'},
-    {c:'半',h:'BÁN',m:'Một nửa',on:'HAN',kun:'naka'},
-
-    // --- 3. CON NGƯỜI & CƠ THỂ (11 chữ) ---
-    {c:'人',h:'NHÂN',m:'Người',on:'JIN',kun:'hito'},
-    {c:'男',h:'NAM',m:'Nam giới',on:'DAN',kun:'otoko'},
-    {c:'女',h:'NỮ',m:'Nữ giới',on:'JO',kun:'onna'},
-    {c:'子',h:'TỬ',m:'Trẻ con',on:'SHI',kun:'ko'},
-    {c:'父',h:'PHỤ',m:'Bố',on:'FU',kun:'chichi'},
-    {c:'母',h:'MẪU',m:'Mẹ',on:'BO',kun:'haha'},
-    {c:'友',h:'HỮU',m:'Bạn bè',on:'YUU',kun:'tomo'},
-    {c:'口',h:'KHẨU',m:'Miệng',on:'KOU',kun:'kuchi'},
-    {c:'目',h:'MỤC',m:'Mắt',on:'MOKU',kun:'me'},
-    {c:'耳',h:'NHĨ',m:'Tai',on:'JI',kun:'mimi'},
-    {c:'手',h:'THỦ',m:'Tay',on:'SHU',kun:'te'},
-    {c:'足',h:'TÚC',m:'Chân',on:'SOKU',kun:'ashi'}, // Bổ sung cho đủ bộ phận
-
-    // --- 4. PHƯƠNG HƯỚNG & VỊ TRÍ (10 chữ) ---
-    {c:'上',h:'THƯỢNG',m:'Trên',on:'JOU',kun:'ue'},
-    {c:'下',h:'HẠ',m:'Dưới',on:'KA',kun:'shita'},
-    {c:'左',h:'TẢ',m:'Trái',on:'SA',kun:'hidari'},
-    {c:'右',h:'HỮU',m:'Phải',on:'U',kun:'migi'},
-    {c:'中',h:'TRUNG',m:'Trong / Giữa',on:'CHUU',kun:'naka'},
-    {c:'外',h:'NGOẠI',m:'Ngoài',on:'GAI',kun:'soto'},
-    {c:'東',h:'ĐÔNG',m:'Phía Đông',on:'TOU',kun:'higashi'},
-    {c:'西',h:'TÂY',m:'Phía Tây',on:'SEI',kun:'nishi'},
-    {c:'南',h:'NAM',m:'Phía Nam',on:'NAN',kun:'minami'},
-    {c:'北',h:'BẮC',m:'Phía Bắc',on:'HOKU',kun:'kita'},
-
-    // --- 5. ĐỘNG TỪ CĂN BẢN (10 chữ) ---
-    {c:'行',h:'HÀNH',m:'Đi',on:'KOU',kun:'i'},
-    {c:'来',h:'LAI',m:'Đến',on:'RAI',kun:'ku'},
-    {c:'食',h:'THỰC',m:'Ăn',on:'SHOKU',kun:'ta'},
-    {c:'飲',h:'ẨM',m:'Uống',on:'IN',kun:'no'},
-    {c:'見',h:'KIẾN',m:'Nhìn',on:'KEN',kun:'mi'},
-    {c:'聞',h:'VĂN',m:'Nghe',on:'BUN',kun:'ki'},
-    {c:'読',h:'ĐỘC',m:'Đọc',on:'DOKU',kun:'yo'},
-    {c:'書',h:'THƯ',m:'Viết',on:'SHO',kun:'ka'},
-    {c:'話',h:'THOẠI',m:'Nói chuyện',on:'WA',kun:'hana'},
-    {c:'買',h:'MÃI',m:'Mua',on:'BAI',kun:'ka'},
-
-    // --- 6. TÍNH TỪ CĂN BẢN (8 chữ) ---
-    {c:'大',h:'ĐẠI',m:'To lớn',on:'DAI',kun:'oo'},
-    {c:'小',h:'TIỂU',m:'Nhỏ bé',on:'SHOU',kun:'chii'},
-    {c:'高',h:'CAO',m:'Cao / Đắt',on:'KOU',kun:'taka'},
-    {c:'安',h:'AN',m:'Rẻ / An toàn',on:'AN',kun:'yasu'},
-    {c:'新',h:'TÂN',m:'Mới',on:'SHIN',kun:'atara'},
-    {c:'古',h:'CỔ',m:'Cũ',on:'KO',kun:'furu'},
-    {c:'多',h:'ĐA',m:'Nhiều',on:'TA',kun:'oo'},
-    {c:'少',h:'THIỂU',m:'Ít',on:'SHOU',kun:'suku'},
-
-    // --- 7. THIÊN NHIÊN & ĐỜI SỐNG (14 chữ) ---
-    {c:'山',h:'SƠN',m:'Núi',on:'SAN',kun:'yama'},
-    {c:'川',h:'XUYÊN',m:'Sông',on:'SEN',kun:'kawa'},
-    {c:'雨',h:'VŨ',m:'Mưa',on:'U',kun:'ame'},
-    {c:'花',h:'HOA',m:'Hoa',on:'KA',kun:'hana'},
-    {c:'天',h:'THIÊN',m:'Trời',on:'TEN',kun:'ama'}, // Thay cho Khí
-    {c:'気',h:'KHÍ',m:'Tinh thần/Khí',on:'KI',kun:'-'},
-    {c:'学',h:'HỌC',m:'Học',on:'GAKU',kun:'mana'},
-    {c:'校',h:'HIỆU',m:'Trường học',on:'KOU',kun:'-'},
-    {c:'本',h:'BẢN',m:'Sách / Gốc',on:'HON',kun:'moto'},
-    {c:'名',h:'DANH',m:'Tên',on:'MEI',kun:'na'},
-    {c:'店',h:'ĐIẾM',m:'Cửa hàng',on:'TEN',kun:'mise'},
-    {c:'駅',h:'DỊCH',m:'Nhà ga',on:'EKI',kun:'-'},
-    {c:'電',h:'ĐIỆN',m:'Điện',on:'DEN',kun:'-'},
-    {c:'車',h:'XA',m:'Xe cộ',on:'SHA',kun:'kuruma'},
-    {c:'国',h:'QUỐC',m:'Đất nước',on:'KOKU',kun:'kuni'},
-    {c:'道',h:'ĐẠO',m:'Đường',on:'DOU',kun:'michi'}, // Bổ sung cho đủ 80
-    {c:'白',h:'BẠCH',m:'Màu trắng',on:'HAKU',kun:'shiro'},
-    {c:'長',h:'TRƯỜNG',m:'Dài',on:'CHOU',kun:'naga'}
-];
-
-const radicalsData = [
-    // --- 1 NÉT (6 bộ) ---
-    {c:'一', h:'NHẤT', m:'Số một'},
-    {c:'丨', h:'CỔN', m:'Nét sổ thẳng'},
-    {c:'丶', h:'CHỦ', m:'Điểm, chấm'},
-    {c:'丿', h:'PHIỆT', m:'Nét phẩy, xiên trái'},
-    {c:'乙', h:'ẤT', m:'Can Ất, nét cong'},
-    {c:'亅', h:'QUYẾT', m:'Nét móc'},
-
-    // --- 2 NÉT (23 bộ) ---
-    {c:'二', h:'NHỊ', m:'Số hai'},
-    {c:'亠', h:'ĐẦU', m:'Đầu, nắp, mái'},
-    {c:'人', h:'NHÂN', m:'Người'},
-    {c:'儿', h:'NHI', m:'Trẻ con, đi bằng 2 chân'},
-    {c:'入', h:'NHẬP', m:'Vào'},
-    {c:'八', h:'BÁT', m:'Số tám'},
-    {c:'冂', h:'QUYNH', m:'Vùng biên giới, hoang địa'},
-    {c:'冖', h:'MỊCH', m:'Trùm khăn lên'},
-    {c:'冫', h:'BĂNG', m:'Nước đá, lạnh'},
-    {c:'几', h:'KỶ', m:'Cái ghế'},
-    {c:'凵', h:'KHẢM', m:'Há miệng, hố sâu'},
-    {c:'刀', h:'ĐAO', m:'Con dao, vũ khí'},
-    {c:'力', h:'LỰC', m:'Sức lực'},
-    {c:'勹', h:'BAO', m:'Bao bọc'},
-    {c:'匕', h:'CHỦY', m:'Cái thìa (muỗng)'},
-    {c:'匚', h:'PHƯƠNG', m:'Tủ đựng, vật vuông'},
-    {c:'匸', h:'HỆ', m:'Che đậy, giấu giếm'},
-    {c:'十', h:'THẬP', m:'Số mười'},
-    {c:'卜', h:'BỐC', m:'Xem bói'},
-    {c:'卩', h:'TIẾT', m:'Đốt tre'},
-    {c:'厂', h:'HÁN', m:'Sườn núi'},
-    {c:'厶', h:'KHƯ', m:'Riêng tư'},
-    {c:'又', h:'HỰU', m:'Lại nữa, cái tay'},
-
-    // --- 3 NÉT (31 bộ) ---
-    {c:'口', h:'KHẨU', m:'Cái miệng'},
-    {c:'囗', h:'VI', m:'Vây quanh (bức tường)'},
-    {c:'土', h:'THỔ', m:'Đất'},
-    {c:'士', h:'SĨ', m:'Kẻ sĩ, người có học'},
-    {c:'夂', h:'TRUY', m:'Đến sau'},
-    {c:'夊', h:'TUY', m:'Đi chậm'},
-    {c:'夕', h:'TỊCH', m:'Đêm tối'},
-    {c:'大', h:'ĐẠI', m:'To lớn'},
-    {c:'女', h:'NỮ', m:'Phụ nữ'},
-    {c:'子', h:'TỬ', m:'Con cái'},
-    {c:'宀', h:'MIÊN', m:'Mái nhà'},
-    {c:'寸', h:'THỐN', m:'Tấc (đo lường), một chút'},
-    {c:'小', h:'TIỂU', m:'Nhỏ bé'},
-    {c:'尢', h:'UÔNG', m:'Yếu đuối, què'},
-    {c:'尸', h:'THI', m:'Xác chết'},
-    {c:'屮', h:'TRIỆT', m:'Mầm non, cỏ'},
-    {c:'山', h:'SƠN', m:'Núi'},
-    {c:'巛', h:'XUYÊN', m:'Sông ngòi'},
-    {c:'工', h:'CÔNG', m:'Thợ, công việc'},
-    {c:'己', h:'KỶ', m:'Bản thân'},
-    {c:'巾', h:'CÂN', m:'Cái khăn'},
-    {c:'干', h:'CAN', m:'Can thiệp, khô, thiên can'},
-    {c:'幺', h:'YÊU', m:'Nhỏ nhắn, yêu ớt'},
-    {c:'广', h:'NGHIỄM', m:'Mái nhà rộng, sườn núi'},
-    {c:'廴', h:'DẪN', m:'Bước dài'},
-    {c:'廾', h:'CỦNG', m:'Chắp tay (nâng vật)'},
-    {c:'弋', h:'DẶC', m:'Bắn tên, cọc gỗ'},
-    {c:'弓', h:'CUNG', m:'Cái cung'},
-    {c:'彐', h:'KỆ', m:'Đầu con heo'},
-    {c:'彡', h:'SAM', m:'Lông tóc, vằn'},
-    {c:'彳', h:'XÍCH', m:'Bước chân trái'},
-
-    // --- 4 NÉT (34 bộ) ---
-    {c:'心', h:'TÂM', m:'Tim, tấm lòng'},
-    {c:'戈', h:'QUA', m:'Cây giáo, mác'},
-    {c:'戶', h:'HỘ', m:'Cửa một cánh'},
-    {c:'手', h:'THỦ', m:'Tay'},
-    {c:'支', h:'CHI', m:'Cành cây'},
-    {c:'攴', h:'PHỘC', m:'Đánh khẽ'},
-    {c:'文', h:'VĂN', m:'Văn chương, vẻ đẹp'},
-    {c:'斗', h:'ĐẨU', m:'Cái đấu (đo lường)'},
-    {c:'斤', h:'CÂN', m:'Cái rìu'},
-    {c:'方', h:'PHƯƠNG', m:'Vuông, phương hướng'},
-    {c:'无', h:'VÔ', m:'Không có'},
-    {c:'日', h:'NHẬT', m:'Mặt trời, ngày'},
-    {c:'曰', h:'VIẾT', m:'Nói rằng'},
-    {c:'月', h:'NGUYỆT', m:'Mặt trăng, tháng'},
-    {c:'木', h:'MỘC', m:'Cây, gỗ'},
-    {c:'欠', h:'KHIẾM', m:'Thiếu, nợ, khiếm khuyết'},
-    {c:'止', h:'CHỈ', m:'Dừng lại'},
-    {c:'歹', h:'ĐÃI', m:'Xấu xa, tệ hại, chết'},
-    {c:'殳', h:'THÙ', m:'Binh khí dài'},
-    {c:'毋', h:'VÔ', m:'Chớ, đừng (ngăn cấm)'},
-    {c:'比', h:'TỶ', m:'So sánh'},
-    {c:'毛', h:'MAO', m:'Lông'},
-    {c:'氏', h:'THỊ', m:'Họ tên, dòng họ'},
-    {c:'气', h:'KHÍ', m:'Không khí, hơi nước'},
-    {c:'水', h:'THỦY', m:'Nước'},
-    {c:'火', h:'HỎA', m:'Lửa'},
-    {c:'爪', h:'TRẢO', m:'Móng vuốt'},
-    {c:'父', h:'PHỤ', m:'Cha'},
-    {c:'爻', h:'HÀO', m:'Hào (trong bát quái)'},
-    {c:'爿', h:'TƯỜNG', m:'Mảnh gỗ (bên trái)'},
-    {c:'片', h:'PHIẾN', m:'Mảnh, tấm (bên phải)'},
-    {c:'牛', h:'NGƯU', m:'Con trâu'},
-    {c:'犬', h:'KHUYỂN', m:'Con chó'},
-
-    // --- 5 NÉT (23 bộ) ---
-    {c:'玄', h:'HUYỀN', m:'Màu đen, huyền bí'},
-    {c:'玉', h:'NGỌC', m:'Đá quý'},
-    {c:'瓜', h:'QUA', m:'Quả dưa'},
-    {c:'瓦', h:'NGÕI', m:'Viên ngói'},
-    {c:'甘', h:'CAM', m:'Ngọt'},
-    {c:'生', h:'SINH', m:'Sinh đẻ, sống'},
-    {c:'用', h:'DỤNG', m:'Dùng'},
-    {c:'田', h:'ĐIỀN', m:'Ruộng'},
-    {c:'疋', h:'SƠ', m:'Đơn vị đo vải, cái chân'},
-    {c:'疒', h:'NẠCH', m:'Bệnh tật'},
-    {c:'癶', h:'BÁT', m:'Gạt ra, bước đi'},
-    {c:'白', h:'BẠCH', m:'Màu trắng'},
-    {c:'皮', h:'BÌ', m:'Da'},
-    {c:'皿', h:'MÃNH', m:'Bát đĩa'},
-    {c:'目', h:'MỤC', m:'Mắt'},
-    {c:'矛', h:'MÂU', m:'Cây giáo'},
-    {c:'矢', h:'THỈ', m:'Mũi tên'},
-    {c:'石', h:'THẠCH', m:'Đá'},
-    {c:'示', h:'THỊ', m:'Chỉ thị, thần đất'},
-    {c:'禸', h:'NHỰU', m:'Vết chân thú'},
-    {c:'禾', h:'HÒA', m:'Lúa'},
-    {c:'穴', h:'HUYỆT', m:'Hang lỗ'},
-    {c:'立', h:'LẬP', m:'Đứng'},
-
-    // --- 6 NÉT (29 bộ) ---
-    {c:'竹', h:'TRÚC', m:'Tre trúc'},
-    {c:'米', h:'MỄ', m:'Gạo'},
-    {c:'糸', h:'MỊCH', m:'Sợi tơ'},
-    {c:'缶', h:'PHẪU', m:'Đồ sành'},
-    {c:'网', h:'VÕNG', m:'Cái lưới'},
-    {c:'羊', h:'DƯƠNG', m:'Con dê'},
-    {c:'羽', h:'VŨ', m:'Lông vũ'},
-    {c:'老', h:'LÃO', m:'Già'},
-    {c:'而', h:'NHI', m:'Mà, râu'},
-    {c:'耒', h:'LỖI', m:'Cái cày'},
-    {c:'耳', h:'NHĨ', m:'Tai'},
-    {c:'聿', h:'DUẬT', m:'Cây bút'},
-    {c:'肉', h:'NHỤC', m:'Thịt'},
-    {c:'臣', h:'THẦN', m:'Bề tôi'},
-    {c:'自', h:'TỰ', m:'Tự mình'},
-    {c:'至', h:'CHÍ', m:'Đến'},
-    {c:'臼', h:'CỐI', m:'Cái cối'},
-    {c:'舌', h:'THIỆT', m:'Cái lưỡi'},
-    {c:'舛', h:'SUYỄN', m:'Sai lầm, trái ngược'},
-    {c:'舟', h:'CHU', m:'Cái thuyền'},
-    {c:'艮', h:'CẤN', m:'Bền cứng, quẻ Cấn'},
-    {c:'色', h:'SẮC', m:'Màu sắc'},
-    {c:'艸', h:'THẢO', m:'Cỏ'},
-    {c:'虍', h:'HÔ', m:'Vằn hổ'},
-    {c:'虫', h:'TRÙNG', m:'Côn trùng, sâu bọ'},
-    {c:'血', h:'HUYẾT', m:'Máu'},
-    {c:'行', h:'HÀNH', m:'Đi, thi hành'},
-    {c:'衣', h:'Y', m:'Áo'},
-    {c:'襾', h:'Á', m:'Che đậy'},
-
-    // --- 7 NÉT (20 bộ) ---
-    {c:'見', h:'KIẾN', m:'Nhìn thấy'},
-    {c:'角', h:'GIÁC', m:'Sừng, góc'},
-    {c:'言', h:'NGÔN', m:'Lời nói'},
-    {c:'谷', h:'CỐC', m:'Khe suối, thung lũng'},
-    {c:'豆', h:'ĐẬU', m:'Hạt đậu, cái bát'},
-    {c:'豕', h:'THỈ', m:'Con heo'},
-    {c:'豸', h:'TRÃI', m:'Loài sâu không chân'},
-    {c:'貝', h:'BỐI', m:'Vỏ sò, bảo bối, tiền'},
-    {c:'赤', h:'XÍCH', m:'Màu đỏ'},
-    {c:'走', h:'TẨU', m:'Chạy'},
-    {c:'足', h:'TÚC', m:'Chân'},
-    {c:'身', h:'THÂN', m:'Thân thể'},
-    {c:'車', h:'XA', m:'Xe'},
-    {c:'辛', h:'TÂN', m:'Cay, vất vả'},
-    {c:'辰', h:'THẦN', m:'Can Thần, thời gian'},
-    {c:'辵', h:'SƯỚC', m:'Bước đi, chợt đi chợt dừng'},
-    {c:'邑', h:'ẤP', m:'Vùng đất, ấp'},
-    {c:'酉', h:'DẬU', m:'Men rượu, can Dậu'},
-    {c:'釆', h:'BIỆN', m:'Phân biệt'},
-    {c:'里', h:'LÝ', m:'Dặm, làng xóm'},
-
-    // --- 8 NÉT (9 bộ) ---
-    {c:'金', h:'KIM', m:'Vàng, kim loại'},
-    {c:'長', h:'TRƯỜNG', m:'Dài, lớn'},
-    {c:'門', h:'MÔN', m:'Cửa 2 cánh'},
-    {c:'阜', h:'PHỤ', m:'Đống đất, gò'},
-    {c:'隶', h:'ĐÃI', m:'Kịp, theo kịp'},
-    {c:'隹', h:'CHUY', m:'Chim đuôi ngắn'},
-    {c:'雨', h:'VŨ', m:'Mưa'},
-    {c:'青', h:'THANH', m:'Màu xanh'},
-    {c:'非', h:'PHI', m:'Không phải'},
-
-    // --- 9 NÉT (11 bộ) ---
-    {c:'面', h:'DIỆN', m:'Mặt'},
-    {c:'革', h:'CÁCH', m:'Da thú (đã thuộc)'},
-    {c:'韋', h:'VI', m:'Da thuộc (mềm)'},
-    {c:'韭', h:'CỬU', m:'Rau hẹ'},
-    {c:'音', h:'ÂM', m:'Âm thanh'},
-    {c:'頁', h:'HIỆT', m:'Trang giấy, cái đầu'},
-    {c:'風', h:'PHONG', m:'Gió'},
-    {c:'飛', h:'PHI', m:'Bay'},
-    {c:'食', h:'THỰC', m:'Ăn'},
-    {c:'首', h:'THỦ', m:'Đầu'},
-    {c:'香', h:'HƯƠNG', m:'Mùi thơm'},
-
-    // --- 10 NÉT (8 bộ) ---
-    {c:'馬', h:'MÃ', m:'Con ngựa'},
-    {c:'骨', h:'CỐT', m:'Xương'},
-    {c:'高', h:'CAO', m:'Cao'},
-    {c:'髟', h:'TIÊU', m:'Tóc dài'},
-    {c:'鬥', h:'ĐẤU', m:'Đánh nhau'},
-    {c:'鬯', h:'SƯỞNG', m:'Rượu nếp'},
-    {c:'鬲', h:'CÁCH', m:'Nồi, đỉnh (nấu ăn)'},
-    {c:'鬼', h:'QUỶ', m:'Con ma'},
-
-    // --- 11 NÉT (6 bộ) ---
-    {c:'魚', h:'NGƯ', m:'Con cá'},
-    {c:'鳥', h:'ĐIỂU', m:'Con chim (đuôi dài)'},
-    {c:'鹵', h:'LỖ', m:'Đất mặn'},
-    {c:'鹿', h:'LỘC', m:'Con hươu'},
-    {c:'麥', h:'MẠCH', m:'Lúa mạch'},
-    {c:'麻', h:'MA', m:'Cây gai'},
-
-    // --- 12 NÉT (4 bộ) ---
-    {c:'黃', h:'HOÀNG', m:'Màu vàng'},
-    {c:'黍', h:'THỬ', m:'Lúa nếp'},
-    {c:'黑', h:'HẮC', m:'Màu đen'},
-    {c:'黹', h:'CHỈ', m:'May vá'},
-
-    // --- 13 NÉT (4 bộ) ---
-    {c:'黽', h:'MÃNH', m:'Con ếch'},
-    {c:'鼎', h:'ĐỈNH', m:'Cái đỉnh (vạc)'},
-    {c:'鼓', h:'CỔ', m:'Cái trống'},
-    {c:'鼠', h:'THỬ', m:'Con chuột'},
-
-    // --- 14 NÉT (2 bộ) ---
-    {c:'鼻', h:'TỴ', m:'Cái mũi'},
-    {c:'齊', h:'TỀ', m:'Ngang bằng, tề chỉnh'},
-
-    // --- 15 NÉT (1 bộ) ---
-    {c:'齒', h:'XỈ', m:'Răng'},
-
-    // --- 16 NÉT (2 bộ) ---
-    {c:'龍', h:'LONG', m:'Con rồng'},
-    {c:'龜', h:'QUY', m:'Con rùa'},
-
-    // --- 17 NÉT (1 bộ) ---
-    {c:'龠', h:'DƯỢC', m:'Sáo 3 lỗ'}
-];
-
-const grammarData = {
-    '1': [
-        {
-            title: 'N1 は N2 です。',
-            mean: 'N1 là N2',
-            note: 'Dùng để giới thiệu tên, nghề nghiệp, quốc tịch. "は" đọc là "wa".',
-            ex: [
-                { j: 'わたしは マイク・ミラーです。', v: 'Tôi là Mike Miller.' },
-                { j: 'わたしは かいしゃいんです。', v: 'Tôi là nhân viên công ty.' }
-            ]
-        },
-        {
-            title: 'N1 は N2 じゃありません / ではありません。',
-            mean: 'N1 không phải là N2',
-            note: 'Phủ định của "desu". Văn nói thường dùng "Ja arimasen", văn viết dùng "Dewa arimasen".',
-            ex: [
-                { j: 'サントスさんは がくせいじゃありません。', v: 'Anh Santos không phải là sinh viên.' },
-                { j: 'わたしは いしゃじゃありません。', v: 'Tôi không phải là bác sĩ.' }
-            ]
-        },
-        {
-            title: 'N1 は N2 ですか。',
-            mean: 'N1 là N2 phải không?',
-            note: 'Thêm "ka" vào cuối câu khẳng định để tạo thành câu hỏi. Lên giọng ở cuối câu.',
-            ex: [
-                { j: 'ミラーさんは かいしゃいんですか。', v: 'Anh Miller có phải là nhân viên công ty không?' },
-                { j: '...はい、かいしゃいんです。', v: '...Vâng, là nhân viên công ty.' }
-            ]
-        },
-        {
-            title: 'N も',
-            mean: 'N cũng...',
-            note: 'Dùng trợ từ "mo" thay cho "wa" khi chủ đề giống với câu trước đó.',
-            ex: [
-                { j: 'ミラーさんは かいしゃいんです。', v: 'Anh Miller là nhân viên công ty.' },
-                { j: 'グプタさんも かいしゃいんです。', v: 'Anh Gupta cũng là nhân viên công ty.' }
-            ]
-        },
-        {
-            title: 'N1 の N2',
-            mean: 'N2 của N1',
-            note: 'Trợ từ "no" nối 2 danh từ. N1 bổ nghĩa cho N2 để chỉ sự sỡ hữu.',
-            ex: [
-                { j: 'グプタさんは IMCのしゃいんです。', v: 'Anh Gupta là nhân viên của công ty AKC.' },
-                { j: 'ワンさんは こうべびょういんのいしゃです。', v: 'Chị Y là bác sĩ của bệnh viện Kobe.' }
-            ]
-        }
-    ],
-    '2': [
-        {
-            title: 'これ / それ / あれ',
-            mean: 'Cái này / Cái đó / Cái kia',
-            note: 'Đại từ chỉ định, đóng vai trò là chủ ngữ. <br>これ (Gần người nói), それ (Gần người nghe), あれ (Xa cả hai).',
-            ex: [
-                { j: 'これは じしょです。', v: 'Cái này là từ điển.' },
-                { j: 'それは わたしの かさです。', v: 'Cái đó là cái ô của tôi.' }
-            ]
-        },
-        {
-            title: 'この N / その N / あの N',
-            mean: 'Cái N này / Cái N đó / Cái N kia',
-            note: 'Bổ nghĩa cho danh từ đi ngay sau nó.',
-            ex: [
-                { j: 'このほんは わたしのです。', v: 'Quyển sách này là của tôi.' },
-                { j: 'あのかたは どなたですか。', v: 'Vị kia là ai vậy?' }
-            ]
-        },
-        {
-            title: 'そうです / そうじゃありません',
-            mean: 'Đúng vậy / Không phải vậy',
-            note: 'Dùng để trả lời câu hỏi xác nhận danh từ.',
-            ex: [
-                { j: 'それは テレホンカードですか。', v: 'Đó là thẻ điện thoại phải không?' },
-                { j: '...はい、そうです。', v: '...Vâng, đúng vậy.' }
-            ]
-        },
-        {
-            title: 'N1 の N2',
-            mean: 'N2 thuộc về N1',
-            note: 'Trợ từ "no" nối 2 danh từ. N1 bổ nghĩa cho N2 để chỉ xuất xứ, nội dung...',
-            ex: [
-                { j: 'これは コンピューターのほんです。', v: 'Đây là sách về máy tính.' },
-                { j: 'これは わたしのほんです。', v: 'Đây là sách của tôi.' }
-            ]
-        }
-    ]
-};
+// --- Dữ liệu Bảng chữ cái (Hiragana/Katakana) -kana.json
+let charMaps = {};
+// Ví dụ Hiragana - vocab_hiragana.json
+let hiraganaVocab = {};
+// Ví dụ Katakan - vocab_katakana.json
+let katakanaVocab = {};
+// ---  Dữ liệu Minna no Nihongo (Bài 1 & 2) - vocab_minna.json
+let minnaData = {};
+//KanjiN5 - kanjin5.json
+let n5KanjiData = [];
+//Dữ liệu Grammar - grammar.json
+let grammarData = {};
+// ---  Dữ liệu Bài tập (Exercises) - exercises.json ---
+let exercisesData = {};
+// --- Dữ liệu Sắp xếp câu  - exercise_scramble.json ---
+let exerciseScrambleData = {};
+// --- DỮ LIỆU BÀI TẬP NGHE HIỂU - exercises_listening.json ---
+let exerciseListeningData = {};
+//Từ vựng Sabai - vocab_sabai.json
+let extraData = {};
+// --- Dữ liệu Hội thoại - kaiwa.json ---
+let kaiwaData = {};
+// ---  Dữ liệu Bộ Thủ - radicals.json ---
+let radicalsData = [];
 
 
-// --- 1.6 Dữ liệu Bài tập (Exercises) - Đã cập nhật định dạng "Kana(Kanji)" ---
-const exercisesData = {
-    '1': [
-        {
-            q: 'わたし(私) ＿ マイク・ミラーです。(Tôi là Mike Miller.)', 
-            opts: ['は', 'の', 'も'],
-            ans: 0 
-        },
-        {
-            q: 'あのひと(あの人) ＿ どなたですか。(Người kia là ai?)',
-            opts: ['わ', 'は', 'が'],
-            ans: 1 
-        },
-        {
-            q: 'ゆたさん ＿ がくせい(学生)です。(Yuta cũng là sinh viên.)',
-            opts: ['は', 'の', 'も'], 
-            ans: 2 
-        },
-        {
-            q: 'A: わたし(私)は ベトナムじん(人)です。<br>B: グプタさん ＿ ベトナムじん(人)ですか。',
-            opts: ['は', 'の', 'も'],
-            ans: 2 
-        },
-        {
+/* =========================================
+   HÀM TẢI DỮ LIỆU (DATA LOADER)
+   ========================================= */
 
-            q: 'はじめまして(初めまして)。どうぞ ＿。',
-            opts: ['おねがいします(お願いします)', 'よろしく', 'しつれいします(失礼します)'],
-            ans: 1 
-        }
-    ],
-    '2': [
-        {
-            q: '＿ は じしょ(辞書)です。(Cái này là từ điển.)',
-            opts: ['これ', 'それ', 'あれ'],
-            ans: 0
-        },
-        {
-            q: 'それは ＿ の かさ(傘)ですか。',
-            opts: ['だれ(誰)', 'なん(何)', 'どなた'],
-            ans: 0
-        },
-        {
-            q: 'この ＿ は わたし(私)のです。',
-            opts: ['ほん(本)', 'これ', 'それ'],
-            ans: 0 
-        },
-        {
+async function loadAllData() {
+    try {
+        console.log("Đang tải dữ liệu...");
 
-            q: 'そうです ＿。(Vậy hả?)',
-            opts: ['か', 'ね', 'じゃありません'],
-            ans: 0
-        },
-        {
-            q: 'これは 「9」ですか、「7」ですか。<br>...＿ です。',
-            opts: ['はい、9', 'いいえ、7', '9'],
-            ans: 2 
-        }
-    ]
-};
+        // Sử dụng Promise.all để tải tất cả các file cùng lúc cho nhanh
+        const [resKana, resVocabHira, resVocabKata, resVocabMinna, resKanjiN5, resGrammar, resExer, resExerScram, resExerListen, resVocabSabai, resKaiwa,resRadical] = await Promise.all([
+            fetch('data/kana.json'),
+            fetch('data/vocab_hiragana.json'),
+            fetch('data/vocab_katakana.json'),
+            fetch('data/vocab_minna.json'),
+            fetch('data/kanjin5.json'),
+            fetch('data/grammar.json'),
+            fetch('data/exercises.json'),
+            fetch('data/exercises_scramble.json'),
+            fetch('data/exercises_listening.json'),
+            fetch('data/vocab_sabai.json'),
+            fetch('data/kaiwa.json'),
+            fetch('data/radicals.json'),
+        ]);
 
-// --- Dữ liệu Sắp xếp câu  ---
-const exerciseScrambleData = {
-    '1': [
-        { 
-            question: "Tôi là sinh viên.", 
-            parts: ["せんせい","わたし", "は", "がくせい", "けんきゅうしゃ", "です", "あなた"],
-            correct: ["わたし", "は", "がくせい", "です"] 
-        },
-        { 
-            question: "Anh Santos không phải là giáo viên.", 
-            parts: ["は", "せんせい", "じゃ", "ありません", "ですか", "です", "サントスさん", "いしゃ"],
-            correct: ["サントスさん", "は", "せんせい", "じゃ", "ありません"]
-        }
-    ],
-    '2': [
-        { 
-            question: "Cái này là quyển sách.", 
-            parts: ["これ", "は", "本", "です"],
-            correct: ["これ", "は", "本", "です"]
-        },
-        { 
-            question: "Đó là cái gì?", 
-            parts: ["それ", "は", "何", "ですか"],
-            correct: ["それ", "は", "何", "ですか"]
-        }
-    ]
-};
+        if (!resKana.ok) throw new Error("Không tìm thấy file kana.json");
+        if (!resKanjiN5.ok) throw new Error("Không tìm thấy file kanji.json (hoặc kanjin5.json)");
+        // Chuyển đổi kết quả về dạng JSON và gán vào biến
+        charMaps = await resKana.json();
+        hiraganaVocab = await resVocabHira.json();
+        katakanaVocab = await resVocabKata.json();
+        minnaData = await resVocabMinna.json();
+        n5KanjiData = await resKanjiN5.json();
+        grammarData = await resGrammar.json();
+        exercisesData = await resExer.json();
+        exerciseScrambleData = await resExerScram.json();
+        exerciseListeningData = await resExerListen.json();
+        extraData = await resVocabSabai.json();
+        kaiwaData = await resKaiwa.json();
+        radicalsData = await resRadical.json();
 
-/* --- DỮ LIỆU BÀI TẬP NGHE HIỂU --- */
-const exerciseListeningData = {
-    '1': [
-        {
-            title: "Kaiwa 1: はじめまして。", // Tiêu đề bài
-            audio: 'Sound/01_Track_1.mp3',      // File nghe 
-            questions: [
-                { q: "Người đang được giới thiệu là ai?", opts: ["やまだ", "ミラー", "さとう"], ans: 1 },
-                { q: "Người đó đến từ nước nào?", opts: ["ドイツ", "イギリス", "アメリカ"], ans: 2 }
-            ]
-        },
-        {
-            title: "Mondai 1", 
-            audio: 'Sound/02_Track_2.mp3',     
-            questions: [
-                { q: "Câu hỏi thứ 1 là gì?", opts: ["あなたは サントスさんですか。", "あなたは サントンさんですか。", "あなたは ザントズさんですか。"], ans: 0 },
-                { q: "Câu hỏi thứ 2 là gì?", opts: ["どなたですか。", "あのひとは。", "おなまえは。"], ans: 2 },
-                { q: "Câu hỏi thứ 3 là gì?", opts: ["なんですか。", "なんさいですか。", "おいくつですか。"], ans: 1 },
-                { q: "Câu hỏi thứ 4 là gì?", opts: ["インドじんですか。", "ブラジルじんですか。", "アメリカじんですか。"], ans: 2 },
-                { q: "Câu hỏi thứ 5 là gì?", opts: ["かいしゃいんですか。", "しゃいんですか。", "ぎんこういんですか。"], ans: 0 },
-            ]
-        },
-        {
-            title: "Mondai 2", 
-            audio: 'Sound/03_Track_3.mp3',     
-            questions: [
-                { q: "Ai đang được giới thiệu ở câu 1?", opts: ["サントス", "シュミット", "ミラー"], ans: 1 },
-                { q: "Câu hỏi thứ 2, Wang bao nhiêu tuổi?", opts: ["28", "29", "21"], ans: 1 },
-            ]
-        },
-        {
-            title: "Mondai 3", 
-            audio: 'Sound/04_Track_4.mp3',     
-            questions: [
-                { q: "Câu thứ 1 đúng hay sai?", opts: ["ちがいます。", "ただしい"], ans: 1 },
-                { q: "Câu thứ 2 đúng hay sai?", opts: ["ちがいます。", "ただしい"], ans: 0 },
-                { q: "Câu thứ 3 đúng hay sai?", opts: ["ちがいます。", "ただしい"], ans: 1 },
-            ]
-        }
-    ],
-    '2': [
-        {
-            title: "Kaiwa 2: これから あせわに なります。", // Tiêu đề bài con
-            audio: 'Sound/05_Track_5.mp3',      // File nghe 2 (Khác file trên)
-            questions: [
-                { q: "Số phòng của Santos là bao nhiêu?", opts: ["408", "407", "409"], ans: 0 },
-                { q: "Santos đã tặng món quà gì ?", opts: ["クッキ", "おちゃ", "コーヒー"], ans: 2 }
-            ]
-        }
-    ]
-};
+        console.log("Tải dữ liệu thành công!");
+        initSearchFeature();
 
-const extraData = {
-    'school': [
-        {k:'机', r:'つくえ', m:'Cái bàn'},
-        {k:'椅子', r:'いす', m:'Cái ghế'},
-        {k:'扇風機', r:'せんぷうき', m:'Quạt máy'},
-        {k:'水ボトル', r:'みずボトル', m:'Quạt máy'},
-        {k:'携帯電話', r:'けいたいでんわ', m:'Điện thoại di động'},
-        {k:'時計', r:'とけい', m:'Đồng hồ'},
-        {k:'廊下', r:'ろうか', m:'Hành lang'},
-        {k:'階段', r:'かいだん', m:'Cầu thang'},
-        {k:'鞄', r:'かばん', m:'Cái cặp'},
-        {k:'ペン', r:'ペン', m:'Bút (nói chung)'},
-        {k:'鉛筆', r:'えんぴつ', m:'Bút chì'},
-        {k:'消しゴム', r:'けしゴム', m:'Cục tẩy'},
-        {k:'ボールペン', r:'ボールペン', m:'Bút bi'},
-        {k:'シャープペンシル', r:'シャープペンシル', m:'Bút chì kim'},
-        {k:'ホワイトボード', r:'ホワイトボード', m:'Tấm bảng trắng'},
-        {k:'マーカー', r:'マーカー', m:'Bút lông'},
-        {k:'ドア', r:'ドア', m:'Cửa'},
-        {k:'エレベーター', r:'エレベーター', m:'Thang máy'},
-        {k:'辞書', r:'じしょ', m:'Từ điển'},
-        {k:'ノート', r:'ノート', m:'Cuốn tập'},
-        {k:'シーディープレーヤー', r:'シーディープレーヤー', m:'Máy CD'},
-        {k:'スクリーン', r:'スクリーン', m:'Màn chiếu'},
-        {k:'プロジェクター', r:'プロジェクター', m:'Máy chiếu'},
-        {k:'エアコン', r:'エアコン', m:'Máy lạnh'},
-        {k:'延長コード', r:'えんちょうコード', m:'Ổ cắm điện'},
-        {k:'黒板消し', r:'こくばんけし', m:'Cục xóa bảng'},
-        {k:'ブラインド', r:'ブラインド', m:'Rèm cuốn'},
-        {k:'窓口', r:'まど', m:'Cửa sổ'},
-        {k:'黒板', r:'こくばん', m:'Bảng đen'},
-        {k:'教室', r:'きょうしつ', m:'Lớp học'},
-        {k:'食堂', r:'しょくどう', m:'Nhà ăn'},
-        {k:'事務所', r:'じむしょ', m:'Văn phòng'},
-        {k:'会議室', r:'かいぎしつ', m:'Phòng họp'},
-        {k:'受付', r:'うけつけ', m:'Quầy lễ tân'},
-        {k:'自動販売機', r:'じどうはんばいき', m:'Máy bán hàng tự động'},
-    ],
-    'toilet': [
-        {k:'お手洗い', r:'おてあらい', m:'Nhà vệ sinh (Lịch sự)'},
-        {k:'トイレ', r:'トイレ', m:'Nhà vệ sinh'},
-        {k:'洗面台', r:'せんめんだい', m:'Bồn rửa mặt'},
-        {k:'ほうき', r:'ほうき', m:'Cây chổi'},
-        {k:'塵取り', r:'ちりとり', m:'Đồ hốt rác'},
-        {k:'ごみぷくろ', r:'ごみぷくろ', m:'Bọc đựng rác'},
-        {k:'ごみ箱', r:'ごみばこ', m:'Thùng rác'},
-        {k:'雑巾', r:'ぞうきん', m:'Giẻ lau'},
-        {k:'鏡', r:'かがみ', m:'Gương'},
-        {k:'石鹸', r:'せっけん', m:'Xà phòng'},
-        {k:'洗剤', r:'せんざい', m:'Chất tẩy rửa'},
-        {k:'芳香剤', r:'ほうこうざい', m:'Sáp thơm'},
-        {k:'ハンドソープ', r:'ハンドソープ', m:'Nước rửa tay'},
-        {k:'ブラシ', r:'ブラシ', m:'Bàn chải chà sàn'},
-        {k:'モップ', r:'モップ', m:'Cây lau nhà'},
-        {k:'バケツ', r:'バケツ', m:'Cái xô'},
-        {k:'スリッパ', r:'スリッパ', m:'Dép đi trong nhà'},
-        {k:'マット', r:'マット', m:'Thảm chùi chân'},
-        {k:'トング', r:'トング', m:'Cái kẹp gắp'},
-        {k:'トイレットペーパー', r:'トイレットペーパー', m:'Giấy vệ sinh'},
-        {k:'シャワー', r:'シャワー', m:'Vòi hoa sen'},
-        {k:'お風呂', r:'おふろ', m:'Bồn tắm'},
-        {k:'シャンプー', r:'シャンプー', m:'Dầu gội'},
-        {k:'タオル', r:'タオル', m:'Khăn tắm'},
-        {k:'便器', r:'べんき', m:'Bồn cầu'},
-        {k:'便座', r:'べんざ', m:'Bệ ngồi bồn cầu'},
-        {k:'タンク', r:'タンク', m:'Bình chứa nước'},
-        {k:'石鹸置き', r:'せっけんおき', m:'Khay đựng xà phòng'},
-        {k:'ペーパーホルダー', r:'ペーパーホルダー', m:'Giá đựng giấy'},
-    ],
-    'time': [
-        {k:'今', r:'いま', m:'Bây giờ'},
-        {k:'～時', r:'～じ', m:'～ Giờ'},
-        {k:'一時', r:'いちじ', m:'1 Giờ'},
-        {k:'二時', r:'にじ', m:'2 Giờ'},
-        {k:'三時', r:'さんじ', m:'3 Giờ'},
-        {k:'四時', r:'よじ', m:'4 Giờ'},
-        {k:'五時', r:'ごじ', m:'5 Giờ'},
-        {k:'六時', r:'ろくじ', m:'6 Giờ'},
-        {k:'七時', r:'しちじ', m:'7 Giờ'},
-        {k:'八時', r:'はちじ', m:'8 Giờ'},
-        {k:'九時', r:'くじ', m:'9 Giờ'},
-        {k:'十時', r:'じゅうじ', m:'10 Giờ'},
-        {k:'十一時', r:'じゅういちじ', m:'11 Giờ'},
-        {k:'十二時', r:'じゅうにじ', m:'12 Giờ'},
-        {k:'～分', r:'～ふん', m:'～ Phút'},
-        {k:'一分', r:'いっぷん', m:'1 Phút'},
-        {k:'五分', r:'ごふん', m:'5 Phút'},
-        {k:'十分', r:'じゅっぷん', m:'10 phút'},
-        {k:'半', r:'はん', m:'Rưỡi (30 phút)'},
-        {k:'午前', r:'ごぜん', m:'Buổi sáng (AM)'},
-        {k:'午後', r:'ごご', m:'Buổi chiều (PM)'},
-        {k:'朝', r:'あさ', m:'Sáng'},
-        {k:'昼', r:'ひる', m:'Trưa'},
-        {k:'晩', r:'ばん', m:'Tối'},
-        {k:'昨日', r:'きのう', m:'Hôm qua'},
-        {k:'今日', r:'きょう', m:'Hôm nay'},
-        {k:'明日', r:'あした', m:'Ngày mai'},
-        {k:'何時', r:'なんじ', m:'Mấy giờ'}
-    ],
-    'week': [
-        {k:'月曜日', r:'げつようび', m:'Thứ 2'},
-        {k:'火曜日', r:'かようび', m:'Thứ 3'},
-        {k:'水曜日', r:'すいようび', m:'Thứ 4'},
-        {k:'木曜日', r:'もくようび', m:'Thứ 5'},
-        {k:'金曜日', r:'きんようび', m:'Thứ 6'},
-        {k:'土曜日', r:'どようび', m:'Thứ 7'},
-        {k:'日曜日', r:'にちようび', m:'Chủ nhật'},
-        {k:'何曜日', r:'なんようび', m:'Thứ mấy'}
-    ],
-    'number': [ // Nhóm Số đếm
-        {k:'零', r:'ゼロ', m:'Số 0'},
-        {k:'一', r:'いち', m:'Số 1'},
-        {k:'二', r:'に', m:'Số 2'},
-        {k:'三', r:'さん', m:'Số 3'},
-        {k:'四', r:'よん', m:'Số 4'},
-        {k:'五', r:'ご', m:'Số 5'},
-        {k:'六', r:'ろく', m:'Số 6'},
-        {k:'七', r:'なな', m:'Số 7'},
-        {k:'八', r:'はち', m:'Số 8'},
-        {k:'九', r:'きゅう', m:'Số 9'},
-        {k:'十', r:'じゅう', m:'Số 10'},
-        {k:'百', r:'ひゃく', m:'Số 100 (Trăm)'},
-        {k:'千', r:'せん', m:'Số 1000 (Nghìn)'},
-        {k:'一万', r:'いちまん', m:'Số 10.000 (Vạn)'}
-    ],
+    } catch (error) {
+        console.error("❌ LỖI TẢI DỮ LIỆU:", error);
+        alert("Lỗi tải dữ liệu! Hãy nhấn F12 -> Console để xem chi tiết file nào bị thiếu.");
+    }
+}
 
-    'age': [ // Nhóm Tuổi tác
-        {k:'一歳', r:'いっさい', m:'1 tuổi'},
-        {k:'八歳', r:'はっさい', m:'8 tuổi'},
-        {k:'十歳', r:'じゅっさい', m:'10 tuổi'},
-        {k:'二十歳', r:'はたち', m:'20 tuổi (Đặc biệt)'},
-        {k:'何歳', r:'なんさい', m:'Mấy tuổi?'},
-        {k:'おいくつ', r:'おいくつ', m:'Bao nhiêu tuổi (Lịch sự)'}
-    ]
-};
+/* =========================================
+    KHỞI TẠO ỨNG DỤNG
+   ========================================= */
+document.addEventListener('DOMContentLoaded', () => {
+    loadAllData();
+});
 
-// --- 1.7 Dữ liệu Hội thoại  ---
 
-const kaiwaData = {
-    '1': [ // Bài 1 là một Mảng gồm nhiều hội thoại
-        {
-            name: 'Kaiwa', // Tên nút hiển thị
-            title: '初めまして (Rất hân hạnh)',
-            img: 'Image/Kaiwa_B1_Main.png',
-            audio: 'Sound/01_Track_1.mp3',
-            dialogue: [
-                { role: 'A', name: '佐藤 (Satou)', text: 'おはよう ございます。', mean: 'Chào buổi sáng.', icon: 'Image/Av_Girl_BlackHair.png', side: 'left', gender: 'female' },
-                { role: 'B', name: '山田 (Yamada)', text: 'おはよう ございます。\nさとう(佐藤)さん、こちらは ミラーさんです。', mean: 'Chào buổi sáng. Chị Satou, đây là anh Miller.', icon: 'Image/Av_Boy_BlackHair.png', side: 'left', gender: 'male'  },
-                { role: 'C', name: 'ミラー (Miller)', text: 'はじ(初)めまして。マイク ミラーです。\nアメリカから き(来)ました。\nどうぞ よろしく。', mean: 'Rất hân hạnh. Tôi là Mike Miller. Tôi đến từ Mỹ. Rất mong được giúp đỡ.', icon: 'Image/Av_Boy_YellowHair.png', side: 'right' , gender: 'male' },
-                { role: 'A', name: '佐藤 (Satou)', text: 'さとう(佐藤)けいこです。\nどうぞ よろしく。', mean: 'Tôi là Satou Keiko. Rất mong được giúp đỡ.', icon: 'Image/Av_Girl_BlackHair.png', side: 'left', gender: 'female'  }
-            ]
-        },
-        {
-            name: 'Renshyuu C-1', // Hội thoại phụ
-            title: 'Hỏi đáp',
-            img: 'Image/Kaiwa_B1_C1.png',
-            audio: '', // Không có audio
-            dialogue: [
-                { role: 'A', name: 'A', text: 'はじ(初)めまして。マイク ミラーです。\nアメリカから き(来)ました。どうぞ よろしく。', mean: 'Hân hạnh được gặp. Tôi là Mike Miller. Tôi đến từ Mỹ. Rất mong được giúp đỡ.', icon: 'Image/Av_Boy_YellowHair.png',side: 'left' , gender: 'male' },
-                { role: 'B', name: 'B', text: 'さとう(佐藤)です。\nどうぞ よろしく。', mean: 'Tôi là Satou Keiko. Rất mong được giúp đỡ.', icon: 'Image/Av_Girl_BlackHair.png', side: 'right', gender: 'female'  }
-            ]
-        },
-        {
-            name: 'Renshyuu C-2', // Hội thoại phụ
-            title: 'Hỏi đáp',
-            img: 'Image/Kaiwa_B1_C2.png',
-            audio: '', // Không có audio
-            dialogue: [
-                { role: 'A', name: 'A', text: '失礼ですが、お名前は？', mean: 'Xin lỗi, tên anh/chị là gì?', icon: 'Image/Av_Boy_BlackHair.png',side: 'left' , gender: 'male' },
-                { role: 'B', name: 'B', text: 'イーです。', mean: 'Tôi là Y.', icon: 'Image/Av_Girl_BrownHair.png',side: 'right', gender: 'female'  },
-                { role: 'A', name: 'A', text: 'リーさんですか。', mean: 'Bạn Lee phải không?', icon: 'Image/Av_Boy_BlackHair.png', side: 'left' , gender: 'male' },
-                { role: 'B', name: 'B', text: 'いいえ、イーです。', mean: 'Không, là Y.', icon: 'Image/Av_Girl_BrownHair.png', side: 'right', gender: 'female'  }
-            ]
-        },
-        {
-            name: 'Renshyuu C-3', // Hội thoại phụ
-            title: 'Hỏi đáp',
-            img: 'Image/Kaiwa_B1_C3.png',
-            audio: '', // Không có audio
-            dialogue: [
-                { role: 'A', name: 'A', text: 'たなか(田中)さん、おはよう ございます。', mean: 'Anh Tanaka, chào buổi sáng.', icon: 'Image/Av_Boy_BlackHair.png',side: 'left' , gender: 'male' },
-                { role: 'B', name: 'B', text: 'おはよう ございます。', mean: 'Chào buổi sáng.', icon: 'Image/Av_Boy_BlackHair2.png',side: 'left', gender: 'male'  },
-                { role: 'A', name: 'A', text: 'こちらは ミラーさんです。', mean: 'Đây là anh Miller.', icon: 'Image/Av_Boy_BlackHair.png', side: 'left' , gender: 'male' },
-                { role: 'C', name: 'C', text: 'はじ(初)めまして。マイク ミラーです。\nIMCの しゃいん(社員)です。\nどうぞ よろしく おねが(願)いします。', mean: 'Hân hạnh được gặp. Tôi là Miller. Nhân viên của công ty IMC. Rất mong nhân được sự giúp đỡ.', icon: 'Image/Av_Boy_YellowHair.png', side: 'right' , gender: 'male' },
-                { role: 'B', name: 'B', text: 'たなか(田中)です。よろしく おねが(願)いします。', mean: 'Tôi là Tanaka. Mong dược giúp đỡ.', icon: 'Image/Av_Boy_BlackHair2.png', side: 'left', gender: 'male'  }
-            ]
-        }
-    ],
-    '2': [
-        {
-            name: 'Kaiwa',
-            title: 'ほんの気持ちです (Chút lòng thành)',
-            img: 'Image/Kaiwa_B2_Main.png',
-            audio: 'Sound/05_Track_5.mp3',
-            dialogue: [
-                { role: 'B', name: 'サントス (Santos)', text: '。。。', mean: '(Nhấn chuông)', icon: 'Image/Av_Boy_BlackHair.png', side: 'right', gender: 'male' },
-                { role: 'A', name: '山田 (Yamada)', text: 'はい。どなたですか。', mean: 'Vâng. Ai đấy ạ?', icon: 'Image/Av_Boy_BlueHair.png',side: 'left', gender: 'male' },
-                { role: 'B', name: 'サントス (Santos)', text: '４０８の サントスです。', mean: 'Tôi là Santos ở phòng 408.', icon: 'Image/Av_Boy_BlackHair.png', side: 'right', gender: 'male' },
-                { role: 'A', name: '山田 (Yamada)', text: '。。。', mean: '(Mở cửa)', icon: 'Image/Av_Boy_BlueHair.png',side: 'left', gender: 'male' },
-                { role: 'B', name: 'サントス (Santos)', text: 'こんにちは。サントスさん。\nこれから お世話に なります。\nどうぞ よろしく お願いします。', mean: 'Chào anh Santos. Từ nay mong anh giúp đỡ. Rất mong được làm quen.', icon: 'Image/Av_Boy_BlackHair.png', side: 'right', gender: 'male' },
-                { role: 'A', name: '山田 (Yamada)', text: 'こちらこそ よろしく おねが(願)いします。', mean: 'Chính tôi mới cần anh giúp đỡ.', icon: 'Image/Av_Boy_BlueHair.png', side: 'left', gender: 'male' },
-                { role: 'B', name: 'サントス (Santos)', text: 'あのう、これ、コーヒーです。どうぞ。', mean: 'À, cái này... Là cà phê ạ. Xin mời.', icon: 'Image/Av_Boy_BlackHair.png', side: 'right', gender: 'male' },
-                { role: 'A', name: '山田 (Yamada)', text: 'どうも ありがとうございます。', mean: 'Cảm ơn anh rất nhiều.', icon: 'Image/Av_Boy_BlueHair.png', side: 'left', gender: 'male' }
-            ]
-        },
-        {
-            name: 'Renshyuu C-1',
-            title: 'Hỏi đáp',
-            img: 'Image/Kaiwa_B2_C1.png',
-            audio: '', // Không có audio
-            dialogue: [
-                { role: 'A', name: 'A', text: 'あのう、これ、おみやげ(土産)です。', mean: 'À..., cái này, là quà ạ.', icon: 'Image/Av_Boy_BlueHair.png',side: 'left' , gender: 'male' },
-                { role: 'B', name: 'B', text: 'えっ、なん(何)ですか。', mean: 'Hả? Nó là gì vậy?', icon: 'Image/Av_Girl_BrownHair.png',side: 'right', gender: 'female'  },
-                { role: 'A', name: 'A', text: 'コーヒーです。どうぞ。', mean: 'Là cà phê ạ. Xin mời.', icon: 'Image/Av_Boy_BlueHair.png', side: 'left' , gender: 'male' },
-                { role: 'B', name: 'B', text: 'どうも ありがとうございます。', mean: 'Cảm ơn bạn rất nhiều.', icon: 'Image/Av_Girl_BrownHair.png', side: 'right', gender: 'female'  }
-            ]
-        },
-        {
-            name: 'Renshyuu C-2',
-            title: 'Hỏi đáp',
-            img: 'Image/Kaiwa_B2_C2.png',
-            audio: '', // Không có audio
-            dialogue: [
-                { role: 'A', name: 'A', text: 'それは なん(何)ですか。', mean: 'Cái đó là gì vậy?', icon: 'Image/Av_Girl_BrownHair.png',side: 'left' , gender: 'female' },
-                { role: 'B', name: 'B', text: 'これですか。えいご(英語)の CDです。', mean: 'Là cái này phải không? Nó là CD Tiếng Anh.', icon: 'Image/Av_Boy_BlueHair.png',side: 'right', gender: 'male'  },
-                { role: 'A', name: 'A', text: 'そうですか。', mean: 'Vậy à.', icon: 'Image/Av_Girl_BrownHair.png', side: 'left' , gender: 'female' },
-            ]
-        },
-        {
-            name: 'Renshyuu C-3',
-            title: 'Hỏi đáp',
-            img: 'Image/Kaiwa_B2_C3.png',
-            audio: '', // Không có audio
-            dialogue: [
-                { role: 'A', name: 'A', text: 'この かさ(傘)は ミラーさんのですか。', mean: 'Cái ô này là của Miller đúng không?', icon: 'Image/Av_Boy_BlueHair.png',side: 'left' , gender: 'male' },
-                { role: 'B', name: 'B', text: 'いいえ、ちが(違)います。', mean: 'Không, không phải của tôi.', icon: 'Image/Av_Boy_YellowHair.png',side: 'right', gender: 'male'  },
-                { role: 'A', name: 'A', text: 'だれのですか。', mean: 'Nó là của ai vậy nhỉ?', icon: 'Image/Av_Boy_BlueHair.png', side: 'left' , gender: 'male' },
-                { role: 'C', name: 'C', text: 'あ、わたしのです。ありがとう ございます。', mean: 'A, nó là của tôi đó. Cảm ơn bạn nhiều.', icon: 'Image/Av_Boy_BlackHair.png', side: 'right', gender: 'male'  }
-            ]
-        }
-    ],
-    '3':[
-        {
-            name: 'Kaiwa',
-            title: 'こらを ください (Bán cho tôi cái này)',
-            img: 'Image/Kaiwa_B3_Main.png',
-            audio: 'Sound/09_Track_9.mp3',
-            dialogue: [
-                { role: 'A', name: 'てんいん(店員)A', text: 'いらっしゃいませ', mean: 'Kính chào quý khách.', icon: 'Image/Av_Girl_BlackHair.png', side: 'left', gender: 'female'},
-                { role: 'B', name: 'マリア', text: 'すみません。ワインう(売)りば(場)は どこですか。', mean: 'Xin lỗi. Quầy bán rượu vang ở đâu vậy?.', icon: 'Image/Av_Girl_BrownHair.png', side: 'right', gender: 'female'},
-                { role: 'A', name: 'てんいん(店員)A', text: 'ち(地)か１かい(階)です。', mean: 'Nó ở tầng hầm thứ 1 ạ.', icon: 'Image/Av_Girl_BlackHair.png', side: 'left', gender: 'female'},
-                { role: 'B', name: 'マリア', text: 'どうも。', mean: 'Xin cảm ơn.', icon: 'Image/Av_Girl_BrownHair.png', side: 'right', gender: 'female'},
-                { role: 'B', name: 'マリア', text: '。。。', mean: '(Đi đến quầy rượu vang)', icon: 'Image/Av_Girl_BrownHair.png', side: 'right', gender: 'female'},
-                { role: 'B', name: 'マリア', text: 'すみません。その ワインを み(見)せて ください。', mean: 'Xin lỗi. Xin cho tôi xem rượu vang đó.', icon: 'Image/Av_Girl_BrownHair.png', side: 'right', gender: 'female'},
-                { role: 'C', name: 'てんいん(店員)B', text: 'はい、どうぞ。', mean: 'Vâng. Xin mời.', icon: 'Image/Av_Girl_YellowHair.png', side: 'left', gender: 'female'},
-                { role: 'B', name: 'マリア', text: 'これは どこの ワインですか。', mean: 'Đây là rượu của nước nào vậy?', icon: 'Image/Av_Girl_BrownHair.png', side: 'right', gender: 'female'},
-                { role: 'C', name: 'てんいん(店員)B', text: 'にほん(日本)のです。', mean: 'Nó là của Nhật ạ.', icon: 'Image/Av_Girl_YellowHair.png', side: 'left', gender: 'female'},
-                { role: 'B', name: 'マリア', text: 'いくらですか。', mean: 'Giá bao nhiêu?', icon: 'Image/Av_Girl_BrownHair.png', side: 'right', gender: 'female'},
-                { role: 'C', name: 'てんいん(店員)B', text: '2,500えん(円)です。', mean: '2500 Yên ạ.', icon: 'Image/Av_Girl_YellowHair.png', side: 'left', gender: 'female'},
-                { role: 'B', name: 'マリア', text: 'じゃ、これを ください。', mean: 'Vậy thì, cho tôi chai này đi.', icon: 'Image/Av_Girl_BrownHair.png', side: 'right', gender: 'female'},
-            ]
-        }
-    ]
-};
 /* =========================================
    2. TRẠNG THÁI & LOGIC ĐIỀU HƯỚNG
    ========================================= */
@@ -2244,3 +1305,222 @@ function resetMyScore() {
         openLeaderboard();
     }
 }
+
+/* =========================================
+   3. LOGIC TÌM KIẾM THÔNG MINH
+   ========================================= */
+
+// Hàm xóa dấu Tiếng Việt (Để tìm kiếm không dấu)
+function removeVietnameseTones(str) {
+    if (!str) return '';
+    str = str.toString().toLowerCase();
+    str = str.replace(/à|á|ạ|ả|ã|â|ầ|ấ|ậ|ẩ|ẫ|ă|ằ|ắ|ặ|ẳ|ẵ/g, "a");
+    str = str.replace(/è|é|ẹ|ẻ|ẽ|ê|ề|ế|ệ|ể|ễ/g, "e");
+    str = str.replace(/ì|í|ị|ỉ|ĩ/g, "i");
+    str = str.replace(/ò|ó|ọ|ỏ|õ|ô|ồ|ố|ộ|ổ|ỗ|ơ|ờ|ớ|ợ|ở|ỡ/g, "o");
+    str = str.replace(/ù|ú|ụ|ủ|ũ|ư|ừ|ứ|ự|ử|ữ/g, "u");
+    str = str.replace(/ỳ|ý|ỵ|ỷ|ỹ/g, "y");
+    str = str.replace(/đ/g, "d");
+    return str;
+}
+
+// Hàm tính điểm độ khớp (Scoring)
+function calculateScore(sourceText, keyword) {
+    if (!sourceText) return 0;
+    
+    const text = sourceText.toString().toLowerCase();
+    const textNoTone = removeVietnameseTones(text);
+    const key = keyword.toLowerCase();
+    const keyNoTone = removeVietnameseTones(key);
+
+    // 1. Khớp tuyệt đối (100đ) - VD: "mèo" == "mèo"
+    if (text === key) return 100;
+    
+    // 2. Bắt đầu bằng (80đ) - VD: "mèo" startsWith "mè"
+    if (text.startsWith(key)) return 80;
+    
+    // 3. Chứa từ khóa (60đ) - VD: "con mèo" includes "mèo"
+    if (text.includes(key)) return 60;
+    
+    // 4. Khớp không dấu (50đ) - VD: "cái bàn" == "cai ban"
+    if (textNoTone === keyNoTone) return 50;
+    
+    // 5. Chứa không dấu (40đ) - VD: "cái bàn" includes "ban"
+    if (textNoTone.includes(keyNoTone)) return 40;
+
+    return 0;
+}
+
+// Hàm khởi tạo sự kiện tìm kiếm
+function initSearchFeature() {
+    const searchInput = document.getElementById('globalSearch');
+    const resultBox = document.getElementById('searchResults');
+    const clearBtn = document.querySelector('.clear-icon');
+
+    if(!searchInput) return;
+
+    searchInput.addEventListener('input', function(e) {
+        const keyword = e.target.value.trim();
+
+        // Ẩn/Hiện nút X
+        if(clearBtn) clearBtn.style.display = keyword.length > 0 ? 'block' : 'none';
+
+        if (keyword.length < 1) {
+            resultBox.style.display = 'none';
+            return;
+        }
+
+        let results = [];
+
+        // --- A. TÌM TRONG MINNA ---
+        if (minnaData) {
+            Object.keys(minnaData).forEach(lesson => {
+                minnaData[lesson].forEach(w => {
+                    // Tìm trong: Romaji, Nghĩa Việt, Kanji
+                    let score = Math.max(
+                        calculateScore(w.r, keyword), 
+                        calculateScore(w.m, keyword), 
+                        calculateScore(w.k, keyword)
+                    );
+                    if (score > 0) {
+                        results.push({ 
+                            type: 'vocab', score, 
+                            jp: w.k ? `${w.k} (${w.r})` : w.r, 
+                            vn: w.m, 
+                            src: `Minna Bài ${lesson}`, 
+                            speak: w.r 
+                        });
+                    }
+                });
+            });
+        }
+
+        // --- B. TÌM TRONG KANJI ---
+        if (Array.isArray(n5KanjiData)) {
+            n5KanjiData.forEach(k => {
+                // Tìm trong: Chữ Hán, Hán Việt, Nghĩa, On, Kun
+                let score = Math.max(
+                    calculateScore(k.c, keyword), 
+                    calculateScore(k.h, keyword), 
+                    calculateScore(k.m, keyword),
+                    calculateScore(k.on, keyword), 
+                    calculateScore(k.kun, keyword)
+                );
+                if (score > 0) {
+                    results.push({ 
+                        type: 'kanji', score, 
+                        jp: k.c, 
+                        vn: `${k.h} - ${k.m}`, 
+                        src: `On: ${k.on} | Kun: ${k.kun}`, 
+                        speak: k.kun !== '-' ? k.kun : k.on 
+                    });
+                }
+            });
+        }
+
+        // --- C. TÌM TRONG CHỦ ĐỀ (SABAI) ---
+        if (extraData) {
+            Object.keys(extraData).forEach(topic => {
+                extraData[topic].forEach(w => {
+                    let score = Math.max(
+                        calculateScore(w.r, keyword), 
+                        calculateScore(w.m, keyword), 
+                        calculateScore(w.k, keyword)
+                    );
+                    if (score > 0) {
+                        results.push({ 
+                            type: 'vocab', score, 
+                            jp: w.k ? `${w.k} (${w.r})` : w.r, 
+                            vn: w.m, 
+                            src: `Chủ đề: ${topic}`, 
+                            speak: w.r 
+                        });
+                    }
+                });
+            });
+        }
+
+        // --- D. TÌM TRONG NGỮ PHÁP ---
+        if (grammarData) {
+            Object.keys(grammarData).forEach(lesson => {
+                grammarData[lesson].forEach(g => {
+                    let score = Math.max(
+                        calculateScore(g.title, keyword), 
+                        calculateScore(g.mean, keyword)
+                    );
+                    if (score > 0) {
+                        results.push({ 
+                            type: 'grammar', score, 
+                            jp: g.title, 
+                            vn: g.mean, 
+                            src: `Ngữ pháp Bài ${lesson}`, 
+                            speak: '' 
+                        });
+                    }
+                });
+            });
+        }
+
+        // Sắp xếp: Điểm cao lên đầu -> Từ ngắn lên đầu
+        results.sort((a, b) => {
+            if (b.score !== a.score) return b.score - a.score;
+            return a.jp.length - b.jp.length;
+        });
+
+        renderSearchResults(results, resultBox);
+    });
+}
+
+// Hàm hiển thị kết quả ra màn hình
+function renderSearchResults(results, container) {
+    container.innerHTML = '';
+
+    if (results.length === 0) {
+        container.style.display = 'block';
+        container.innerHTML = '<div style="padding:20px; text-align:center; color:#999">Không tìm thấy kết quả 😢</div>';
+        return;
+    }
+
+    // Lấy 10 kết quả đầu
+    results.slice(0, 10).forEach(item => {
+        let tagClass = 'tag-vocab';
+        let tagName = 'Từ vựng';
+        if (item.type === 'kanji') { tagClass = 'tag-kanji'; tagName = 'Kanji'; }
+        if (item.type === 'grammar') { tagClass = 'tag-grammar'; tagName = 'Ngữ pháp'; }
+
+        const div = document.createElement('div');
+        div.className = 'result-item';
+        div.onclick = () => { if(item.speak && typeof speak === 'function') speak(item.speak); };
+        
+        div.innerHTML = `
+            <div class="result-tag ${tagClass}">${tagName}</div>
+            <div style="flex:1">
+                <div style="font-weight:bold; color:#333; font-size:1rem;">${item.jp}</div>
+                <div style="font-size:0.9rem; color:#666; margin-top:2px;">
+                    ${item.vn} 
+                    <span style="font-size:0.75rem; color:#aaa; margin-left:5px;">(${item.src})</span>
+                </div>
+            </div>
+        `;
+        container.appendChild(div);
+    });
+    container.style.display = 'block';
+}
+
+// Hàm xóa tìm kiếm
+function clearSearch() {
+    const input = document.getElementById('globalSearch');
+    const box = document.getElementById('searchResults');
+    const btn = document.querySelector('.clear-icon');
+    if(input) input.value = '';
+    if(box) box.style.display = 'none';
+    if(btn) btn.style.display = 'none';
+}
+
+// Ẩn kết quả khi click ra ngoài
+window.addEventListener('click', (e) => {
+    if (!e.target.closest('.search-container')) {
+        const box = document.getElementById('searchResults');
+        if(box) box.style.display = 'none';
+    }
+});
