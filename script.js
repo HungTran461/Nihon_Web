@@ -1690,7 +1690,7 @@ function loadCharToPractice() {
     // Gọi setup canvas ngay lần đầu
     setupCanvas();
     clearCanvas(); // Xóa nét vẽ cũ
-    const canvas = document.getElementById('drawing-canvas').style.display = 'none'; // Ẩn canvas lúc mới tải chữ
+    const canvas = document.getElementById('drawing-canvas').style.display = 'none'; // Ẩn canvas lúc mới tải
     const input = document.getElementById('inputChar').value.trim();
     const target = document.getElementById('practice-target');
     const status = document.getElementById('practiceStatus');
