@@ -1690,7 +1690,7 @@ function loadCharToPractice() {
     // Gọi setup canvas ngay lần đầu
     setupCanvas();
     clearCanvas(); // Xóa nét vẽ cũ
-
+    const canvas = document.getElementById('drawing-canvas').style.display = 'none'; // Ẩn canvas lúc mới tải chữ
     const input = document.getElementById('inputChar').value.trim();
     const target = document.getElementById('practice-target');
     const status = document.getElementById('practiceStatus');
@@ -1781,6 +1781,7 @@ function runVivusAnimation() {
 // 3. Nút chức năng
 function practiceAnimate() {
     clearCanvas(); // Xóa nét vẽ tay của người dùng để xem mẫu
+    const canvas = document.getElementById('drawing-canvas').style.display = 'none'; // Ẩn canvas khi xem mẫu
     if (vivusInstance) {
         // Reset màu về đậm để nhìn rõ
         const svg = document.getElementById('kanji-svg');
@@ -1794,6 +1795,7 @@ function practiceAnimate() {
 function practiceQuiz() {
     // Chế độ tự viết: Xóa canvas, reset màu nền SVG về mờ
     clearCanvas();
+    document.getElementById('drawing-canvas').style.display = 'block'; // Hiện canvas để vẽ
     const svg = document.getElementById('kanji-svg');
     if (svg) {
         const paths = svg.querySelectorAll('path');
