@@ -1748,7 +1748,7 @@ function loadCharToPractice() {
             texts.forEach(t => t.style.display = 'none');
 
             target.appendChild(svg);
-            status.innerText = "Sẵn sàng! Hãy vẽ đồ lên nét mờ.";
+            status.innerText = "Sẵn sàng!";
             status.style.color = "var(--green, green)";
 
             // Animation ban đầu
@@ -1763,7 +1763,7 @@ function loadCharToPractice() {
 function runVivusAnimation() {
     vivusInstance = new Vivus('kanji-svg', {
         type: 'oneByOne',
-        duration: 100,
+        duration: 150,
         start: 'autostart',
         animTimingFunction: Vivus.EASE,
         selfDestroy: false 
@@ -1782,6 +1782,7 @@ function runVivusAnimation() {
 function practiceAnimate() {
     clearCanvas(); // Xóa nét vẽ tay của người dùng để xem mẫu
     const canvas = document.getElementById('drawing-canvas').style.display = 'none'; // Ẩn canvas khi xem mẫu
+    const status = document.getElementById('practiceStatus');
     if (vivusInstance) {
         // Reset màu về đậm để nhìn rõ
         const svg = document.getElementById('kanji-svg');
@@ -1789,6 +1790,7 @@ function practiceAnimate() {
         paths.forEach(p => p.style.stroke = 'var(--write1)'); // Màu đậm lại
         
         vivusInstance.reset().play();
+        status.innerText = "Cùng xem mẫu nhé!";
     }
 }
 
@@ -1802,17 +1804,93 @@ function practiceQuiz() {
         paths.forEach(p => p.style.stroke = 'var(--write2)'); // Nét mờ
         vivusInstance.finish(); // Dừng chạy
     }
-    document.getElementById('practiceStatus').innerText = "Đã xóa bảng. Hãy vẽ lại!";
+    document.getElementById('practiceStatus').innerText = "Bắt đầu viết thôi!";
 }
 
 // Gắn hàm xóa vào nút Xóa luôn
 // (Bạn gán onclick="loadCharToPractice()" ở nút xóa trong HTML cũng được, nó sẽ reset lại từ đầu)
 
-// 5. Hàm hỗ trợ gợi ý nhanh
-function setInputAndLoad(char) {
-    document.getElementById('inputChar').value = char;
-    loadCharToPractice();
+function getFormattedData(category) {
+    let list = [];
+
+    if (category === 'hiragana') {
+        // Lấy values từ Object hiragana
+        list = Object.values(charMaps.hiragana).map(char => ({ char: char, mean: '' }));
+    } 
+    else if (category === 'katakana') {
+        // Lấy values từ Object katakana
+        list = Object.values(charMaps.katakana).map(char => ({ char: char, mean: '' }));
+    } 
+    else if (category === 'kanji') {
+        // Map mảng Kanji: lấy thuộc tính 'c' và 'm'
+        list = n5KanjiData.map(item => ({ char: item.c, mean: item.m }));
+    } 
+    else if (category === 'vocab') {
+        // Gộp tất cả các bài học (Key 1, 2...) thành 1 mảng duy nhất
+        Object.values(minnaData).forEach(lesson => {
+            lesson.forEach(word => {
+                list.push({ char: word.k, mean: word.m });
+            });
+        });
+    }
+
+    return list;
 }
+
+// Hàm chuyển Tab và Render
+function switchTab(category) {
+    // 1. Highlight nút Tab active
+    document.querySelectorAll('.tab-btn').forEach(btn => {
+        if (btn.getAttribute('onclick').includes(category)) {
+            btn.classList.add('active');
+        } else {
+            btn.classList.remove('active');
+        }
+    });
+
+    // 2. Lấy dữ liệu và Render
+    const container = document.getElementById('suggestion-content');
+    container.innerHTML = ''; // Xóa cũ
+
+    const dataList = getFormattedData(category);
+
+    if (dataList.length === 0) {
+        container.innerHTML = '<p style="color:#999; width:100%; text-align:center;">Chưa có dữ liệu</p>';
+        return;
+    }
+
+    dataList.forEach(item => {
+        const btn = document.createElement('button');
+        btn.className = 'chip-btn';
+        
+        // Hiển thị chữ
+        btn.innerText = item.char;
+        
+        // Nếu có nghĩa (Kanji/Vocab), hiện tooltip khi di chuột
+        if (item.mean) {
+            btn.setAttribute('title', item.mean);
+        }
+
+        // Sự kiện Click
+        btn.onclick = () => {
+            // Đưa vào ô input
+            document.getElementById('inputChar').value = item.char;
+            
+            // Gọi hàm vẽ (Hàm loadCharToPractice ở bước trước)
+            loadCharToPractice();
+
+            // Hiển thị nghĩa lên dòng trạng thái (UX tốt hơn)
+            if (item.mean) {
+                const status = document.getElementById('practiceStatus');
+                status.innerText = `Đang tập: ${item.char} (${item.mean})`;
+                status.style.color = "var(--primary, #6c5ce7)";
+            }
+        };
+
+        container.appendChild(btn);
+    });
+}
+
 
 // Xử lý khi nhấn Enter trong ô input
 const inputEl = document.getElementById('inputChar');

@@ -89,7 +89,7 @@
             </div>
 
             <div class="card" onclick="openWritingSection()">
-                <div class="card-icon"><i class="fas fa-pen-nib"></i></div>
+                <div class="card-icon"><i class="fas fa-pen-to-square"></i></div>
                 <h3>Luyện Viết</h3>
                 <p>Tập viết </p>
                 <div class="card-badge">Thử nghiệm</div>
@@ -507,7 +507,7 @@
         </div>
         <div id="writingSection" class="section-content" style="display:none;">
             <div class="section-header">
-                <h2><i class="fas fa-pen-nib" style="color:var(--secondary)"></i> Phòng Luyện Viết</h2>
+                <h2><i class="fas fa-pen-to-square" style="color:var(--secondary)"></i> Phòng Luyện Viết</h2>
                 <button class="btn-back" onclick="closeSection()"><i class="fas fa-arrow-left"></i> Quay lại</button>
             </div>
 
@@ -540,17 +540,17 @@
                     </button>
                 </div>
 
-                <div class="quick-suggest">
-                    <p style="margin-bottom: 5px;">Gợi ý thử:</p>
-                    <div class="suggest-items">
-                        <span onclick="setInputAndLoad('あ')">あ</span>
-                        <span onclick="setInputAndLoad('す')">す</span>
-                        <span onclick="setInputAndLoad('ア')">ア</span>
-                        <span onclick="setInputAndLoad('愛')">愛</span>
-                    </div>
-                </div>
-
             </div>
+            <div class="suggestion-box">
+                    <div class="tab-header">
+                        <button class="tab-btn" onclick="switchTab('hiragana')">Hiragana</button>
+                        <button class="tab-btn" onclick="switchTab('katakana')">Katakana</button>
+                        <button class="tab-btn" onclick="switchTab('kanji')">Kanji N5</button>
+                        <button class="tab-btn" onclick="switchTab('vocab')">Từ vựng</button>
+                    </div>
+                    <div id="suggestion-content" class="suggestion-content">
+                        </div>
+                </div>
         </div>
     </div>
     <section id="leaderboardSection" class="section-content" style="display:none;">

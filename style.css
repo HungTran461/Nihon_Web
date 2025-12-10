@@ -1822,30 +1822,77 @@ body.dark-mode .input-area input{
 .btn-try { background: var(--primary); }
 .btn-clear { background: var(--text-light); }
 
-/* Gợi ý nhanh */
-.quick-suggest {
-    margin-top: 10px;
-    padding-top: 20px;
-    border-top: 1px solid var(--border-color);
+/* Container chính */
+.suggestion-box {
+    margin-top: 25px;
+    width: 100%;
+    background: var(--white);
+    border-radius: 12px;
+    padding: 15px;
 }
-.quick-suggest p { color: var(--text-light); margin-bottom: 10px; font-size: 0.9rem; }
-.quick-suggest span {
-    display: inline-block;
-    padding: 5px 15px;
-    margin: 0 5px;
-    background: var(--bg-color);
-    border-radius: 10px;
-    cursor: pointer;
+
+/* Thanh Tab */
+.tab-header {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 15px;
+    padding-bottom: 5px;
+    justify-content: center;
+}
+
+.tab-btn {
+    padding: 8px 16px;
+    border: none;
+    background: transparent;
     font-weight: bold;
     color: var(--text);
-    border: 1px solid var(--border-color);
+    cursor: pointer;
+    border-bottom: 3px solid var(--text);
+    white-space: nowrap;
+    transition: 0.3s;
 }
-.quick-suggest span:hover {
-    background: var(--primary); color: white; border-color: var(--primary);
+
+.tab-btn:hover { color: var(--text); }
+
+.tab-btn.active {
+    color: var(--white); /* Màu chủ đạo */
+    border-bottom: 3px solid var(--accent);
 }
-body.dark-mode .quick-suggest span {
-    border: white 1px solid;
+
+/* Khu vực nội dung nút */
+.suggestion-content {
+    display: flex;
+    flex-wrap: wrap; /* Tự động xuống dòng */
+    gap: 8px;
+    max-height: 200px; /* Giới hạn chiều cao */
+    overflow-y: auto;  /* Cho phép cuộn dọc */
+    padding-right: 5px;
 }
+
+/* Style cho từng nút gợi ý */
+.chip-btn {
+    padding: 8px 15px;
+    background: var(--white);
+    color: var(--text);
+    border: 1px solid #eee;
+    border-radius: 20px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: all 0.2s;
+    user-select: none;
+}
+
+.chip-btn:hover {
+    background: #ff9a9e;
+    color: white;
+    transform: translateY(-2px);
+    border-color: #ff9a9e;
+    box-shadow: 0 3px 8px rgba(255, 154, 158, 0.4);
+}
+
+/* Tùy chỉnh thanh cuộn cho đẹp */
+.suggestion-content::-webkit-scrollbar { width: 6px; }
+.suggestion-content::-webkit-scrollbar-thumb { background: #ddd; border-radius: 3px; }
 /* Respone Mobile */
 @media (max-width: 650px) {
     /* Modal responsive */
@@ -2053,5 +2100,13 @@ body.dark-mode .quick-suggest span {
     .ctrl-btn {
         width: 100%;            /* Chiếm hết chiều ngang */
         flex: none;             /* Bỏ co giãn tự động */
+    }
+    .tab-header {
+        gap: 10px; /* Giảm khoảng cách */
+    }
+    
+    .tab-btn {
+        font-size: 15px; /* Chữ nhỏ lại xíu */
+        padding: 8px 5px;
     }
 }
