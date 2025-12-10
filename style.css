@@ -1,6 +1,7 @@
 /* --- 1. CẤU HÌNH BIẾN MÀU SẮC --- */
 :root {
     --primary: #ff9a9e;
+    --bubble-chat-right:#ff9a9e;
     --primary-dark: #ff758c;
     --secondary: #a18cd1;
     --accent: #fad0c4;
@@ -15,6 +16,9 @@
     --pink: #fd58aa;
     --box-my-rank: linear-gradient(135deg, #a18cd1 0%, #fbc2eb 100%);
     --dd-search: rgb(205, 223, 226);
+    --format-text:#6149ff;
+    --write1:#525252ff;
+    --write2:#e0e0e0;
 }
 
 * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -303,200 +307,7 @@ nav a:hover, nav a.active {
 .kanji-main { font-size: 2.5rem; font-weight: bold; }
 .kanji-mean { font-size: 0.8rem; margin-top: 5px; }
 
-/* --- 9. RESPONSIVE MEDIA QUERIES (Gộp chung lại) --- */
-@media (max-width: 650px) {
-    /* Modal responsive */
-    .modal-body { flex-direction: column; }
-    .modal-left { border-right: none; border-bottom: 2px dashed #eee; padding-bottom: 20px; padding-right: 0; }
-    .modal-content { padding: 20px; width: 95%; }
 
-    /* Kana Grid responsive */
-    .grid-5, .grid-3 { gap: 8px; }
-    .kana-char { font-size: 1.4rem; }
-    .kana-box { min-height: 70px; padding: 5px; }
-
-    /* Vocab Table responsive (Thêm mới để không vỡ bảng) */
-    .vocab-table-header, .vocab-row {
-        grid-template-columns: 0.8fr 1fr 1.2fr 45px; /* Thu nhỏ cột để vừa màn hình */
-        font-size: 0.9rem;
-        padding: 10px 5px;
-    }
-    .cell-kanji { font-size: 1.2rem; }
-    .cell-mean { padding-left: 5px; font-size: 0.9rem; }
-    .btn-vocab-speak { width: 30px; height: 30px; font-size: 0.8rem; }
-    .logo{
-        max-width: 0px;
-    }
-}
-
-@media (max-width: 600px) {
-
-    /* 1. Reset Container để không bị tràn lề ngang */
-    body, html {
-        overflow-x: hidden; /* Chặn cuộn ngang toàn trang */
-    }
-    .logo{
-        min-width: 200px;
-    }
-    .container {
-        padding: 0 12px; /* Lề màn hình nhỏ lại cho thoáng */
-        width: 100%;
-        overflow: hidden;
-    }
-
-    /* 2. Reset các thuộc tính của bảng máy tính */
-    .table-scroll-wrapper { width: 100%; overflow: visible; }
-    
-    /* Ẩn tiêu đề bảng (Vì dùng giao diện Thẻ) */
-    .vocab-table-header { display: none !important; }
-
-    /* 3. STYLE CHO CARD (THẺ TỪ VỰNG) */
-    .vocab-row {
-        display: flex !important; /* Bắt buộc dùng Flex */
-        flex-direction: column;
-        width: 100% !important;   /* Chiếm 100% chiều ngang container */
-        min-width: 0 !important;  /* Hủy bỏ min-width của PC */
-        box-sizing: border-box;   /* QUAN TRỌNG: Để padding không làm vỡ khung */
-        position: relative;
-        background: var(--white);
-        margin-bottom: 12px;
-        padding: 15px;
-        /* Chừa khoảng trống bên phải để nút loa không đè lên chữ */
-        padding-right: 60px;    
-        border: 2px solid #fff0f5;
-        border-radius: 18px;
-        box-shadow: 0 4px 8px rgba(0,0,0,0.03);
-    }
-
-    /* Hiệu ứng bấm vào thẻ */
-    .vocab-row:active {
-        border-color: var(--primary);
-        background-color: var(--white);
-        transform: scale(0.98);
-    }
-
-    /* 4. Định dạng nội dung bên trong */
-    .cell-kanji {
-        width: 100%;
-        text-align: left;
-        font-size: 1.6rem;
-        font-weight: 800;
-        color: var(--secondary);
-        margin-bottom: 5px;
-        line-height: 1.2;
-    }
-
-    .cell-reading {
-        width: 100%;
-        text-align: left;
-        font-size: 1.2rem;
-        font-weight: 700;
-        color: var(--primary-dark);
-        margin-bottom: 8px;
-    }
-
-    .cell-mean {
-        width: 100%;
-        text-align: left;
-        font-size: 1rem;
-        color: #555;
-        padding-left: 0;
-        border-left: none;
-        border-top: 1px dashed #eee; /* Kẻ ngang ngăn cách */
-        padding-top: 8px;
-        line-height: 1.4;
-    }
-
-    /* 5. NÚT ĐỌC (LOA) - Treo lơ lửng bên phải */
-    .cell-audio {
-        position: absolute;
-        top: 50%;           /* Căn giữa dọc */
-        right: 15px;        /* Cách lề phải 15px */
-        transform: translateY(-50%);
-        width: 45px;
-        height: 45px;
-        display: block;
-        padding: 0;
-        border: none;
-    }
-
-    .btn-vocab-speak {
-        width: 100%;
-        height: 100%;
-        border-radius: 50%;
-        background: var(--accent);
-        color: white;
-        border: none;
-        font-size: 1.2rem;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        box-shadow: 0 4px 10px rgba(255, 154, 158, 0.4);
-        cursor: pointer;
-    }
-
-    .btn-vocab-speak:active {
-        background: var(--primary);
-        transform: scale(0.9);
-    }
-
-    /* 6. Fix Header Mobile */
-    header { padding: 10px; flex-direction: column; gap: 10px; }
-    nav ul { gap: 10px; flex-wrap: wrap; justify-content: center; }
-    nav a { font-size: 0.85rem; padding: 6px 12px; }
-    .audio-player-wrapper {
-        position: fixed;        /* Cố định vị trí */
-        bottom: 20px;           /* Cách đáy 20px */
-        left: 50%;              /* Căn giữa */
-        transform: translateX(-50%); /* Căn giữa chuẩn xác */
-        z-index: 1000;          /* Nổi lên trên tất cả */
-        
-        margin: 0;
-        width: auto;
-        
-        /* Hiệu ứng mờ nền kính (Glassmorphism) */
-        background: rgba(255, 255, 255, 0.8);
-        backdrop-filter: blur(10px);
-        padding: 5px;
-        border-radius: 50px;
-        box-shadow: 0 5px 20px rgba(0,0,0,0.15);
-        border: 1px solid rgba(255, 255, 255, 0.5);
-    }
-
-    /* Nút bấm nổi bật hơn */
-    .btn-audio-player {
-        background: #ff9a9e; /* Đổi nền thành màu hồng luôn cho nổi */
-        border: none;
-        color: white;        /* Chữ trắng */
-        box-shadow: none;    /* Bỏ bóng cũ */
-        padding: 8px 20px 8px 8px;
-    }
-
-    /* Icon đổi màu cho hợp nền hồng */
-    .btn-audio-player .icon-play {
-        background: white;
-        color: #ff9a9e;
-    }
-
-    .btn-audio-player span {
-        color: var(--text); /* Chữ trắng */
-        font-size: 0.9rem;
-    }
-
-    /* Trạng thái đang phát */
-    .btn-audio-player.playing {
-        background: #a18cd1; /* Đổi màu tím khi phát */
-    }
-    
-    .btn-audio-player.playing .icon-play {
-        color: #a18cd1;
-    }
-    
-    /* Đẩy nội dung chat lên một chút để không bị nút che mất dòng cuối */
-    .kaiwa-chat-box {
-        padding-bottom: 80px; 
-    }
-}
 
 footer { text-align: center; margin-top: 3rem; color: #aaa; font-size: 0.9rem; }
 
@@ -1290,7 +1101,7 @@ audio::-webkit-media-controls-play-button {
 }
 
 .chat-row.right .chat-bubble {
-    background: var(--primary); /* Màu hồng chủ đạo */
+    background: var(--bubble-chat-right); /* Màu hồng chủ đạo */
     color: white;
     border-top-right-radius: 0;
 }
@@ -1314,10 +1125,10 @@ audio::-webkit-media-controls-play-button {
     font-size: 0.9rem;
     font-style: italic;
     opacity: 0.9;
-    border-top: 1px dashed rgba(0,0,0,0.1);
+    border-top: 1px dashed #7f85dd;
     padding-top: 5px;
 }
-.chat-row.right .chat-vn { border-top-color: rgba(255,255,255,0.3); }
+.chat-row.right .chat-vn { border-top-color: rgba(87, 146, 214, 0.822); }
 
 /* Nút loa nhỏ trong chat */
 .btn-chat-audio {
@@ -1851,6 +1662,7 @@ body.dark-mode {
     /* Đổi sang tông màu tối dịu mắt (kiểu Dracula/Nord theme) */
     --primary: #ff9a9e;          /* Giữ nguyên hồng làm điểm nhấn */
     --primary-dark: #ff758c;
+    --bubble-chat-right:#012a68e5;
     --secondary: #b39ddb;
     --accent: #44475a;           /* Màu nhấn chuyển thành xám tối */
     --bg-color: #282a36;         /* Nền web tối */
@@ -1861,6 +1673,8 @@ body.dark-mode {
     --border: #6272a4;
     --white: #282a36; 
     --box-my-rank: #373a4d;
+    --write1:#e0e0e0;
+    --write2:#525252ff;
 }
 
 /* --- Style cho nút chuyển theme --- */
@@ -1909,25 +1723,30 @@ body.dark-mode .result-content div:first-child {
 
 /* --- PHÒNG LUYỆN VIẾT (WRITING SECTION) --- */
 .writing-workspace {
-    max-width: 600px;
-    margin: 0 auto;
-    text-align: center;
-    background: var(--card-bg);
-    padding: 30px;
-    border-radius: 25px;
-    box-shadow: var(--shadow);
+    max-width: 100%; /* Đảm bảo không bị tràn trên mobile */
+    width: 400px;    /* Kích thước lý tưởng trên PC */
+    margin: 20px auto; /* Căn giữa màn hình */
+    background: var(--white);
+    padding: 20px;
+    border-radius: 15px;
+    box-shadow: 0 5px 20px rgba(0,0,0,0.05);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 15px;
 }
 
 /* Ô nhập liệu */
 .input-area {
     display: flex;
-    justify-content: center;
+    width: 100%;
     gap: 10px;
-    margin-bottom: 20px;
+    justify-content: center;
+    align-items: center;
 }
 
 .input-area input {
-    width: 250px;
+    width: 120px;
     padding: 12px 20px;
     font-size: 1.2rem;
     border: 2px solid var(--border-color);
@@ -1938,6 +1757,9 @@ body.dark-mode .result-content div:first-child {
     color: var(--text);
 }
 
+body.dark-mode .input-area input{
+    border: white 1px solid;
+}
 .input-area input:focus {
     border-color: var(--primary);
 }
@@ -1951,6 +1773,7 @@ body.dark-mode .result-content div:first-child {
     cursor: pointer;
     font-weight: bold;
     transition: 0.3s;
+    height: 50px;
 }
 .btn-load:hover { transform: scale(1.05); box-shadow: 0 5px 15px rgba(0,0,0,0.1); }
 
@@ -1958,7 +1781,7 @@ body.dark-mode .result-content div:first-child {
 .practice-container {
     width: 260px;
     height: 260px;
-    margin: 0 auto 20px;
+    margin: 0 auto 10px;
     background: var(--white); /* Nền giấy */
     border: 4px solid var(--secondary);
     border-radius: 20px;
@@ -1973,7 +1796,7 @@ body.dark-mode .result-content div:first-child {
 #practiceStatus {
     font-weight: bold;
     color: var(--text-light);
-    margin-bottom: 20px;
+    margin-bottom: 5px;
     min-height: 25px;
 }
 
@@ -1982,7 +1805,7 @@ body.dark-mode .result-content div:first-child {
     display: flex;
     justify-content: center;
     gap: 15px;
-    margin-bottom: 25px;
+    margin-bottom: 15px;
 }
 
 .ctrl-btn {
@@ -1992,6 +1815,7 @@ body.dark-mode .result-content div:first-child {
     display: flex; align-items: center; gap: 8px;
     transition: 0.3s;
 }
+
 .ctrl-btn:hover { transform: translateY(-3px); }
 
 .btn-watch { background: var(--secondary); }
@@ -2000,7 +1824,7 @@ body.dark-mode .result-content div:first-child {
 
 /* Gợi ý nhanh */
 .quick-suggest {
-    margin-top: 20px;
+    margin-top: 10px;
     padding-top: 20px;
     border-top: 1px solid var(--border-color);
 }
@@ -2019,4 +1843,215 @@ body.dark-mode .result-content div:first-child {
 .quick-suggest span:hover {
     background: var(--primary); color: white; border-color: var(--primary);
 }
+body.dark-mode .quick-suggest span {
+    border: white 1px solid;
+}
+/* Respone Mobile */
+@media (max-width: 650px) {
+    /* Modal responsive */
+    .modal-body { flex-direction: column; }
+    .modal-left { border-right: none; border-bottom: 2px dashed #eee; padding-bottom: 20px; padding-right: 0; }
+    .modal-content { padding: 20px; width: 95%; }
 
+    /* Kana Grid responsive */
+    .grid-5, .grid-3 { gap: 8px; }
+    .kana-char { font-size: 1.4rem; }
+    .kana-box { min-height: 70px; padding: 5px; }
+
+    /* Vocab Table responsive (Thêm mới để không vỡ bảng) */
+    .vocab-table-header, .vocab-row {
+        grid-template-columns: 0.8fr 1fr 1.2fr 45px; /* Thu nhỏ cột để vừa màn hình */
+        font-size: 0.9rem;
+        padding: 10px 5px;
+    }
+    .cell-kanji { font-size: 1.2rem; }
+    .cell-mean { padding-left: 5px; font-size: 0.9rem; }
+    .btn-vocab-speak { width: 30px; height: 30px; font-size: 0.8rem; }
+    .logo{
+        max-width: 0px;
+    }
+}
+
+@media (max-width: 600px) {
+
+    /* 1. Reset Container để không bị tràn lề ngang */
+    body, html {
+        overflow-x: hidden; /* Chặn cuộn ngang toàn trang */
+    }
+    .logo{
+        min-width: 200px;
+    }
+    .container {
+        padding: 0 12px; /* Lề màn hình nhỏ lại cho thoáng */
+        width: 100%;
+        overflow: hidden;
+    }
+
+    /* 2. Reset các thuộc tính của bảng máy tính */
+    .table-scroll-wrapper { width: 100%; overflow: visible; }
+    
+    /* Ẩn tiêu đề bảng (Vì dùng giao diện Thẻ) */
+    .vocab-table-header { display: none !important; }
+
+    /* 3. STYLE CHO CARD (THẺ TỪ VỰNG) */
+    .vocab-row {
+        display: flex !important; /* Bắt buộc dùng Flex */
+        flex-direction: column;
+        width: 100% !important;   /* Chiếm 100% chiều ngang container */
+        min-width: 0 !important;  /* Hủy bỏ min-width của PC */
+        box-sizing: border-box;   /* QUAN TRỌNG: Để padding không làm vỡ khung */
+        position: relative;
+        background: var(--white);
+        margin-bottom: 12px;
+        padding: 15px;
+        /* Chừa khoảng trống bên phải để nút loa không đè lên chữ */
+        padding-right: 60px;    
+        border: 2px solid #fff0f5;
+        border-radius: 18px;
+        box-shadow: 0 4px 8px rgba(0,0,0,0.03);
+    }
+
+    /* Hiệu ứng bấm vào thẻ */
+    .vocab-row:active {
+        border-color: var(--primary);
+        background-color: var(--white);
+        transform: scale(0.98);
+    }
+
+    /* 4. Định dạng nội dung bên trong */
+    .cell-kanji {
+        width: 100%;
+        text-align: left;
+        font-size: 1.6rem;
+        font-weight: 800;
+        color: var(--secondary);
+        margin-bottom: 5px;
+        line-height: 1.2;
+    }
+
+    .cell-reading {
+        width: 100%;
+        text-align: left;
+        font-size: 1.2rem;
+        font-weight: 700;
+        color: var(--primary-dark);
+        margin-bottom: 8px;
+    }
+
+    .cell-mean {
+        width: 100%;
+        text-align: left;
+        font-size: 1rem;
+        color: #555;
+        padding-left: 0;
+        border-left: none;
+        border-top: 1px dashed #eee; /* Kẻ ngang ngăn cách */
+        padding-top: 8px;
+        line-height: 1.4;
+    }
+
+    /* 5. NÚT ĐỌC (LOA) - Treo lơ lửng bên phải */
+    .cell-audio {
+        position: absolute;
+        top: 50%;           /* Căn giữa dọc */
+        right: 15px;        /* Cách lề phải 15px */
+        transform: translateY(-50%);
+        width: 45px;
+        height: 45px;
+        display: block;
+        padding: 0;
+        border: none;
+    }
+
+    .btn-vocab-speak {
+        width: 100%;
+        height: 100%;
+        border-radius: 50%;
+        background: var(--accent);
+        color: white;
+        border: none;
+        font-size: 1.2rem;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        box-shadow: 0 4px 10px rgba(255, 154, 158, 0.4);
+        cursor: pointer;
+    }
+
+    .btn-vocab-speak:active {
+        background: var(--primary);
+        transform: scale(0.9);
+    }
+
+    /* 6. Fix Header Mobile */
+    header { padding: 10px; flex-direction: column; gap: 10px; }
+    nav ul { gap: 10px; flex-wrap: wrap; justify-content: center; }
+    nav a { font-size: 0.85rem; padding: 6px 12px; }
+    .audio-player-wrapper {
+        position: fixed;        /* Cố định vị trí */
+        bottom: 20px;           /* Cách đáy 20px */
+        left: 50%;              /* Căn giữa */
+        transform: translateX(-50%); /* Căn giữa chuẩn xác */
+        z-index: 1000;          /* Nổi lên trên tất cả */
+        
+        margin: 0;
+        width: auto;
+        
+        /* Hiệu ứng mờ nền kính (Glassmorphism) */
+        background: rgba(255, 255, 255, 0.8);
+        backdrop-filter: blur(10px);
+        padding: 5px;
+        border-radius: 50px;
+        box-shadow: 0 5px 20px rgba(0,0,0,0.15);
+        border: 1px solid rgba(255, 255, 255, 0.5);
+    }
+
+    /* Nút bấm nổi bật hơn */
+    .btn-audio-player {
+        background: #ff9a9e; /* Đổi nền thành màu hồng luôn cho nổi */
+        border: none;
+        color: white;        /* Chữ trắng */
+        box-shadow: none;    /* Bỏ bóng cũ */
+        padding: 8px 20px 8px 8px;
+    }
+
+    /* Icon đổi màu cho hợp nền hồng */
+    .btn-audio-player .icon-play {
+        background: white;
+        color: #ff9a9e;
+    }
+
+    .btn-audio-player span {
+        color: var(--text); /* Chữ trắng */
+        font-size: 0.9rem;
+    }
+
+    /* Trạng thái đang phát */
+    .btn-audio-player.playing {
+        background: #a18cd1; /* Đổi màu tím khi phát */
+    }
+    
+    .btn-audio-player.playing .icon-play {
+        color: #a18cd1;
+    }
+    
+    /* Đẩy nội dung chat lên một chút để không bị nút che mất dòng cuối */
+    .kaiwa-chat-box {
+        padding-bottom: 80px; 
+    }
+    .writing-workspace {
+        width: 100%;
+        margin: 0;
+        border-radius: 0;      /* Full màn hình không cần bo góc ngoài */
+        box-shadow: none;      /* Bỏ bóng cho nhẹ */
+        padding: 15px;
+    }
+    .control-panel {
+        flex-direction: column; /* Xếp dọc */
+    }
+    
+    .ctrl-btn {
+        width: 100%;            /* Chiếm hết chiều ngang */
+        flex: none;             /* Bỏ co giãn tự động */
+    }
+}

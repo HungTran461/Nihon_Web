@@ -767,7 +767,7 @@ function moveWord(btn) {
 
 function formatText(text) {
     // Tìm đoạn văn bản dạng "abc(xyz)" và bọc "xyz" vào thẻ span màu xám
-    return text.replace(/\(([^)]+)\)/g, '<span style="color:#2f14e0; font-size:0.9em; font-weight:normal">($1)</span>');
+    return text.replace(/\(([^)]+)\)/g, '<span style="color:var(--format-text); font-size:0.9em; font-weight:normal">($1)</span>');
 }
 
 function renderExercises(lessonId) {
@@ -1573,12 +1573,10 @@ function initTheme() {
 }
 
 /* =========================================
-   CHỨC NĂNG: PHÒNG LUYỆN VIẾT (STANDALONE WRITING)
+   CHỨC NĂNG: PHÒNG LUYỆN VIẾT (CHUẨN NHẬT - DMAK.JS)
    ========================================= */
 
-let practiceWriter = null; // Biến quản lý nét viết riêng cho phần này
-
-// 1. Mở màn hình luyện viết
+// 1. Mở màn hình luyện viết (Giữ nguyên logic của bạn)
 function openWritingSection() {
     const mainMenu = document.getElementById('mainMenu');
     const heroSection = document.getElementById('heroSection');
@@ -1592,144 +1590,221 @@ function openWritingSection() {
     const section = document.getElementById('writingSection');
     if(section) {
         section.style.display = 'block';
-        document.getElementById('inputChar').focus();
+        // Animation hiện ra
+        section.style.opacity = 0;
+        section.style.transform = 'translateY(20px)';
+        setTimeout(() => {
+            section.style.transition = 'all 0.5s ease';
+            section.style.opacity = 1;
+            section.style.transform = 'translateY(0)';
+        }, 10);
+        
+        // Focus ô nhập
+        setTimeout(() => document.getElementById('inputChar').focus(), 100);
     }
-
-    // Tự động focus vào ô nhập
-    document.getElementById('inputChar').focus();
-    
-    // Animation hiện ra
-    section.style.opacity = 0;
-    section.style.transform = 'translateY(20px)';
-    setTimeout(() => {
-        section.style.transition = 'all 0.5s ease';
-        section.style.opacity = 1;
-        section.style.transform = 'translateY(0)';
-    }, 10);
 }
 
+/* =========================================
+   CHỨC NĂNG: LUYỆN VIẾT (VIVUS + VẼ TAY CANVAS)
+   ========================================= */
+
+let vivusInstance = null;
+let isDrawing = false;
+let lastX = 0;
+let lastY = 0;
+
+// Hàm chuyển đổi ký tự
+function charToHex(char) {
+    let code = char.charCodeAt(0).toString(16).toLowerCase();
+    while (code.length < 5) code = "0" + code;
+    return code;
+}
+
+// Hàm khởi tạo sự kiện vẽ cho Canvas
+function setupCanvas() {
+    const canvas = document.getElementById('drawing-canvas');
+    const ctx = canvas.getContext('2d');
+    
+    // Cấu hình nét vẽ của người dùng
+    ctx.strokeStyle = "#ff9a9e"; // Màu vẽ (Hồng)
+    ctx.lineJoin = "round";
+    ctx.lineCap = "round";
+    ctx.lineWidth = 8; // Độ dày nét vẽ
+
+    // Xử lý vẽ chuột (PC)
+    canvas.addEventListener('mousedown', (e) => {
+        isDrawing = true;
+        [lastX, lastY] = [e.offsetX, e.offsetY];
+    });
+    canvas.addEventListener('mousemove', (e) => draw(e, ctx, canvas));
+    canvas.addEventListener('mouseup', () => isDrawing = false);
+    canvas.addEventListener('mouseout', () => isDrawing = false);
+
+    // Xử lý vẽ cảm ứng (Mobile)
+    canvas.addEventListener('touchstart', (e) => {
+        isDrawing = true;
+        const rect = canvas.getBoundingClientRect();
+        lastX = e.touches[0].clientX - rect.left;
+        lastY = e.touches[0].clientY - rect.top;
+        e.preventDefault(); // Chặn cuộn trang
+    });
+    canvas.addEventListener('touchmove', (e) => {
+        const rect = canvas.getBoundingClientRect();
+        const touchX = e.touches[0].clientX - rect.left;
+        const touchY = e.touches[0].clientY - rect.top;
+        drawTouch(touchX, touchY, ctx);
+        e.preventDefault();
+    });
+    canvas.addEventListener('touchend', () => isDrawing = false);
+}
+
+// Hàm vẽ chính
+function draw(e, ctx, canvas) {
+    if (!isDrawing) return;
+    ctx.beginPath();
+    ctx.moveTo(lastX, lastY);
+    ctx.lineTo(e.offsetX, e.offsetY);
+    ctx.stroke();
+    [lastX, lastY] = [e.offsetX, e.offsetY];
+}
+
+function drawTouch(x, y, ctx) {
+    if (!isDrawing) return;
+    ctx.beginPath();
+    ctx.moveTo(lastX, lastY);
+    ctx.lineTo(x, y);
+    ctx.stroke();
+    [lastX, lastY] = [x, y];
+}
+
+// Hàm xóa bảng vẽ tay
+function clearCanvas() {
+    const canvas = document.getElementById('drawing-canvas');
+    const ctx = canvas.getContext('2d');
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+}
+
+// --- LOGIC CHÍNH ---
+
 function loadCharToPractice() {
+    // Gọi setup canvas ngay lần đầu
+    setupCanvas();
+    clearCanvas(); // Xóa nét vẽ cũ
+
     const input = document.getElementById('inputChar').value.trim();
     const target = document.getElementById('practice-target');
     const status = document.getElementById('practiceStatus');
     
-    if (!input) {
-        status.innerText = "Bạn chưa nhập chữ nào cả! 😅";
-        status.style.color = "var(--red, red)";
+    if (!input) return;
+
+    let char = input.charAt(0);
+
+    // Sửa lỗi số Latin -> Kanji
+    const numToKanji = {'0':'零', '1':'一', '2':'二', '3':'三', '4':'四', '5':'五', '6':'六', '7':'七', '8':'八', '9':'九', '10':'十'};
+    if (numToKanji[char]) {
+        char = numToKanji[char];
+        document.getElementById('inputChar').value = char;
+    }
+
+    if (/[a-zA-Z]/.test(char)) {
+        status.innerText = "Vui lòng nhập Kanji/Kana (Ví dụ: あ, 愛)";
         return;
     }
 
-    const char = input.charAt(0);
-    
-    // 1. Dọn dẹp khung vẽ cũ
+    const hexCode = charToHex(char);
     target.innerHTML = ''; 
-    status.innerText = "Đang tìm dữ liệu...";
-    status.style.color = "#666";
+    vivusInstance = null;
+    status.innerText = "Đang tải...";
 
-    // 2. Định nghĩa hàm tải dữ liệu thông minh (Smart Loader)
-    const customCharDataLoader = function(char, onComplete) {
-        // Kiểm tra xem chữ cái là Kana (Hiragana/Katakana) hay Kanji
-        const isKana = /[\u3040-\u309F\u30A0-\u30FF]/.test(char);
-        
-        // Nếu là Kana thì dùng kho 'kana-json', nếu là Kanji thì dùng 'hanzi-writer-data-jp'
-        const baseUrl = isKana
-            ? 'https://cdn.jsdelivr.net/gh/ailectra/kana-json@master/data/'
-            : 'https://cdn.jsdelivr.net/npm/hanzi-writer-data-jp@latest/data/';
+    const svgUrl = `https://kanjivg.tagaini.net/kanjivg/kanji/${hexCode}.svg`;
 
-        const url = baseUrl + char + '.json';
-
-        console.log("Đang tải từ:", url); // Xem log để debug nếu cần
-
-        fetch(url)
-            .then(res => {
-                if (!res.ok) throw new Error('File not found');
-                return res.json();
-            })
-            .then(data => onComplete(data))
-            .catch(err => {
-                console.error("Lỗi tải:", err);
-                // Nếu tải tiếng Nhật lỗi, thử fallback về kho tiếng Trung (cho Kanji hiếm)
-                if (!isKana) {
-                    console.log("Thử tìm trong kho dữ liệu gốc...");
-                    fetch('https://cdn.jsdelivr.net/npm/hanzi-writer-data@latest/' + char + '.json')
-                        .then(res => res.json())
-                        .then(data => onComplete(data))
-                        .catch(e => onComplete(null)); // Chịu thua
-                } else {
-                    onComplete(null);
-                }
-            });
-    };
-
-    // 3. Khởi tạo Hanzi Writer
-    practiceWriter = HanziWriter.create('practice-target', char, {
-        width: 240,
-        height: 240,
-        padding: 5,
-        showOutline: true,          // Hiện nét mờ
-        strokeColor: '#ff9a9e',     // Màu tô
-        radicalColor: '#a18cd1',    // Màu bộ thủ
-        outlineColor: '#d1d1d1',    // Màu nét mờ
-        charDataLoader: customCharDataLoader, // Sử dụng hàm tải mới
-        
-        onLoadCharDataSuccess: function(data) {
-            status.innerText = "Sẵn sàng! Hãy chọn Xem mẫu hoặc Tự viết.";
-            status.style.color = "var(--green, green)";
+    fetch(svgUrl)
+        .then(res => {
+            if (!res.ok) throw new Error("File not found");
+            return res.text();
+        })
+        .then(svgData => {
+            // Xử lý SVG
+            const div = document.createElement('div');
+            div.innerHTML = svgData;
+            const svg = div.querySelector('svg');
             
-            // Ép render lại để tránh lỗi khung trắng
-            setTimeout(() => {
-                practiceWriter.showOutline();
-                // Chạy thử animation ngắn để "mồi" hình ảnh
-                practiceWriter.animateCharacter({ 
-                    onComplete: () => practiceWriter.showOutline() 
-                }); 
-            }, 100);
-        },
-        onLoadCharDataError: function(err) {
-            status.innerText = "Không tìm thấy dữ liệu cho chữ này 😢";
-            status.style.color = "var(--red, red)";
-        }
+            svg.setAttribute('id', 'kanji-svg');
+            svg.setAttribute('width', '100%');
+            svg.setAttribute('height', '100%');
+            
+            // Làm mờ nét gốc để làm mẫu tô
+            const paths = svg.querySelectorAll('path');
+            paths.forEach(p => {
+                p.style.fill = 'none';
+                p.style.stroke = 'var(--write1)'; // Màu xám nhạt làm nền
+                p.style.strokeWidth = '3px'; 
+                p.style.strokeLinecap = 'round';
+                p.style.strokeLinejoin = 'round';
+            });
+
+            // Ẩn số thứ tự cho đỡ rối khi vẽ
+            const texts = svg.querySelectorAll('text');
+            texts.forEach(t => t.style.display = 'none');
+
+            target.appendChild(svg);
+            status.innerText = "Sẵn sàng! Hãy vẽ đồ lên nét mờ.";
+            status.style.color = "var(--green, green)";
+
+            // Animation ban đầu
+            runVivusAnimation();
+        })
+        .catch(err => {
+            status.innerText = "Không tìm thấy dữ liệu.";
+            console.error(err);
+        });
+}
+
+function runVivusAnimation() {
+    vivusInstance = new Vivus('kanji-svg', {
+        type: 'oneByOne',
+        duration: 100,
+        start: 'autostart',
+        animTimingFunction: Vivus.EASE,
+        selfDestroy: false 
+    }, function() {
+        // Sau khi chạy xong mẫu, làm mờ đi để người dùng tô đè lên
+        const svg = document.getElementById('kanji-svg');
+        const paths = svg.querySelectorAll('path');
+        paths.forEach(p => {
+            p.style.stroke = 'var(--write2)'; // Màu rất nhạt
+            p.style.transition = 'stroke 0.5s';
+        });
     });
 }
 
-// 3. Xem mẫu (Animate)
+// 3. Nút chức năng
 function practiceAnimate() {
-    if (practiceWriter) {
-        document.getElementById('practiceStatus').innerText = "Đang viết mẫu...";
-        practiceWriter.animateCharacter();
-    } else {
-        document.getElementById('practiceStatus').innerText = "Hãy nhập chữ và bấm Tải nét trước!";
+    clearCanvas(); // Xóa nét vẽ tay của người dùng để xem mẫu
+    if (vivusInstance) {
+        // Reset màu về đậm để nhìn rõ
+        const svg = document.getElementById('kanji-svg');
+        const paths = svg.querySelectorAll('path');
+        paths.forEach(p => p.style.stroke = 'var(--write1)'); // Màu đậm lại
+        
+        vivusInstance.reset().play();
     }
 }
 
-// 4. Tự viết (Quiz)
 function practiceQuiz() {
-    if (practiceWriter) {
-        const status = document.getElementById('practiceStatus');
-        status.innerText = "Hãy viết theo nét mờ!";
-        status.style.color = "var(--primary)";
-        
-        practiceWriter.quiz({
-            onMistake: function() {
-                status.innerText = "Sai nét rồi! Cố lên!";
-                status.style.color = "var(--red)";
-                // Rung nhẹ
-                const box = document.querySelector('.practice-container');
-                box.style.animation = 'shake 0.3s';
-                setTimeout(() => box.style.animation = '', 300);
-            },
-            onCorrectStroke: function() {
-                status.innerText = "Đúng nét! Tiếp tục nào!";
-                status.style.color = "var(--blue)";
-            },
-            onComplete: function() {
-                status.innerText = "TUYỆT VỜI! BẠN ĐÃ VIẾT ĐÚNG! 🎉";
-                status.style.color = "var(--green)";
-                speak(document.getElementById('inputChar').value.charAt(0));
-            }
-        });
+    // Chế độ tự viết: Xóa canvas, reset màu nền SVG về mờ
+    clearCanvas();
+    const svg = document.getElementById('kanji-svg');
+    if (svg) {
+        const paths = svg.querySelectorAll('path');
+        paths.forEach(p => p.style.stroke = 'var(--write2)'); // Nét mờ
+        vivusInstance.finish(); // Dừng chạy
     }
+    document.getElementById('practiceStatus').innerText = "Đã xóa bảng. Hãy vẽ lại!";
 }
+
+// Gắn hàm xóa vào nút Xóa luôn
+// (Bạn gán onclick="loadCharToPractice()" ở nút xóa trong HTML cũng được, nó sẽ reset lại từ đầu)
 
 // 5. Hàm hỗ trợ gợi ý nhanh
 function setInputAndLoad(char) {
@@ -1738,8 +1813,11 @@ function setInputAndLoad(char) {
 }
 
 // Xử lý khi nhấn Enter trong ô input
-document.getElementById('inputChar').addEventListener('keypress', function (e) {
-    if (e.key === 'Enter') {
-        loadCharToPractice();
-    }
-});
+const inputEl = document.getElementById('inputChar');
+if (inputEl) {
+    inputEl.addEventListener('keypress', function (e) {
+        if (e.key === 'Enter') {
+            loadCharToPractice();
+        }
+    });
+}
