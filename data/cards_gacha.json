@@ -4,8 +4,8 @@
     "type": "UR",
     "name": "VŨ TRỤ KHỞI NGUYÊN",
     "desc": "Thực thể tối cao kiến tạo nên mọi vì sao. Sức mạnh vượt qua mọi giới hạn.",
-    "atk": 999,
-    "def": 999,
+    "atk": 4000,
+    "def": 2300,
     "url": "Image_Gacha/Vu_Tru_Khoi_Nguyen.png"
   },
   {
@@ -13,8 +13,8 @@
     "type": "SSR",
     "name": "Hỏa Thần Ifrit",
     "desc": "Chúa tể của ngọn lửa vĩnh cửu. Thiêu rụi mọi kẻ thù cản đường.",
-    "atk": 99,
-    "def": 80,
+    "atk": 145,
+    "def": 110,
     "url": "Image_Gacha/Hoa_Than_Ifrit.png"
   },
   {
@@ -22,8 +22,8 @@
     "type": "SSR",
     "name": "Thủy Long Leviathan",
     "desc": "Rồng thần ngủ sâu dưới đáy đại dương. Cơn giận của nó tạo ra sóng thần.",
-    "atk": 85,
-    "def": 98,
+    "atk": 150,
+    "def": 95,
     "url": "Image_Gacha/Thuy_Long_Leviathan.png"
   },
   {
@@ -31,8 +31,8 @@
     "type": "SSR",
     "name": "Thiên Sứ Michael",
     "desc": "Sứ giả của ánh sáng. Đôi cánh trắng mang lại phán quyết cuối cùng.",
-    "atk": 92,
-    "def": 92,
+    "atk": 140,
+    "def": 100,
     "url": "Image_Gacha/Thien_Su_Michael.png"
   },
   {
@@ -288,6 +288,15 @@
     "url": "Image_Gacha/Chua_Te_Thoi_Gian.png"
   },
   {
+    "id": 1001,
+    "type": "SE",
+    "name": "CHÚA TỂ KHÔNG GIAN",
+    "desc": "Kẻ nắm giữ toàn bộ khogn6 gian, có thể thay đổi và làm méo mó không gian.",
+    "atk": 8888,
+    "def": 8888,
+    "url": "Image_Gacha/Chua_Te_Khong_Gian.png"
+  },
+  {
     "id": 201,
     "type": "UR",
     "name": "Hư Không Đại Đế",
@@ -304,6 +313,15 @@
     "atk": 1500,
     "def": 3000,
     "url": "Image_Gacha/Me_Thien_Nhien_Gaia.png"
+  },
+  {
+    "id": 203,
+    "type": "UR",
+    "name": "Thần Thiên Không Aether",
+    "desc": "Sinh ra trên tầng không, chi phối gió bão và mây trời.",
+    "atk": 2500,
+    "def": 3000,
+    "url": "Image_Gacha/Than_Thien_Khong_Aether.png"
   },
   {
     "id": 301,

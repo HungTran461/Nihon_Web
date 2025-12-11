@@ -231,7 +231,17 @@ function showDetail(item) {
     document.getElementById('dRarity').style.color = color; document.getElementById('dName').style.color = color;
     openModal('detailModal');
     setTimeout(() => {
-        let max = item.type==='UR'?999:100;
+        // 1. Cấu hình thang điểm tối đa cho từng loại (để thanh hiển thị đẹp)
+        const maxStats = {
+            'SE': 10000, // SE chỉ số rất cao nên max phải lớn
+            'UR': 5000,
+            'SSR': 200,
+            'SR': 150,
+            'R': 100
+        };
+
+        // 2. Lấy giá trị max dựa trên loại thẻ (Mặc định 100 nếu không tìm thấy)
+        let max = maxStats[item.type] || 100;
         document.getElementById('valAtk').innerText = item.atk; document.getElementById('barAtk').style.width = (item.atk/max)*100+'%';
         document.getElementById('valDef').innerText = item.def; document.getElementById('barDef').style.width = (item.def/max)*100+'%';
     }, 300);
