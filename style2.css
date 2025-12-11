@@ -152,7 +152,6 @@ header {
 
 /* --- CẬP NHẬT TRẠNG THÁI KHI TRIỆU HỒI (.summoning) --- */
 /* Thêm hiệu ứng cho chữ khi đang quay gacha */
-
 .summon-stage.summoning .mc-text-layer {
     animation-duration: 1.5s !important; /* Chữ xoay siêu nhanh */
 }
@@ -190,7 +189,6 @@ header {
 }
 
 /* --- ORB COLOR VARIATIONS (HIỆU ỨNG ĐỔI MÀU KHI QUAY) --- */
-
 /* 1. Orb UR (Đỏ rực) */
 .crystal-orb.orb-UR {
     background: radial-gradient(circle at 30% 30%, #fff, var(--neon-red) 40%, #3a0000 100%) !important;
@@ -225,7 +223,6 @@ header {
 @keyframes orbFloat { 0%,100% {transform:translateY(0) scale(1)} 50% {transform:translateY(-30px) scale(1.02)} }
 
 /* --- SUMMONING STATE (TRẠNG THÁI KHI QUAY) --- */
-
 /* 3. Quả cầu rung lắc dữ dội và phát sáng trắng */
 .summon-stage.summoning .crystal-orb {
     animation: orbShake 0.05s infinite !important;
