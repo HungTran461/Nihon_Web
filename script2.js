@@ -10,7 +10,8 @@ let state = {
     history: [], 
     purchases: {}, 
     nextGuaranteed: null, 
-    isFinished: false // <--- BIẾN MỚI
+    isFinished: false,
+    usedCodes: []
 };
 
 async function initGame() {
@@ -182,32 +183,59 @@ function rollItem() {
     return item;
 }
 
-// --- UTILS ---
 function redeemCode() {
-    const input = document.getElementById('codeIdx').value.trim().toUpperCase();
-    const found = giftcodes.find(gc => gc.code === input);
-    if(found) {
-        if (found.type === 'unlock_all') {
-            // Thêm toàn bộ thẻ vào túi
-            pool.forEach(c => { 
-                if(!state.inventory.includes(c.id)) state.inventory.push(c.id); 
-            });
+    try {
+        const inputEl = document.getElementById('codeIdx');
+        if (!inputEl) return;
+        const code = inputEl.value.trim().toUpperCase();
+        if (!code) {
+            alert("Vui lòng nhập mã!");
+            return;
+        }
+        if (!state.usedCodes) state.usedCodes = [];
+        if (state.usedCodes.includes(code) && code !== 'RESET') {
+            alert("Mã này bạn đã sử dụng rồi!");
+            inputEl.value = ""; 
+            return;
+        }
+        const found = giftcodes.find(gc => gc.code === code);
+        if (found) {
             
+            if (found.type === 'unlock_all') {
+                pool.forEach(c => { 
+                    if(!state.inventory.includes(c.id)) state.inventory.push(c.id); 
+                });
+                if (typeof checkCompletion === 'function') {
+                    checkCompletion(); 
+                }
+            } 
+            else if (found.type === 'add_coin') {
+                state.coins += found.value;
+            } 
+            else if (found.type === 'force_next') {
+                state.nextGuaranteed = found.value;
+            }
+            else if (found.type === 'reset_data') {
+                resetData(); 
+                return; 
+            }
+            if (code !== 'RESET') {
+                state.usedCodes.push(code);
+            }
             saveData();
-            
-            // --- THÊM DÒNG NÀY ĐỂ KÍCH HOẠT MÀN HÌNH CHIẾN THẮNG ---
-            checkCompletion(); 
-            // --------------------------------------------------------
-            
+            updateUI(); 
+            inputEl.value = ""; 
+            closeModal('giftcodeModal'); 
+            playSound('sfx-win'); 
             alert(`Thành công! ${found.reward}`);
+        } else {
+            alert("Mã không đúng hoặc không tồn tại!");
+            inputEl.value = "";
         }
-        else if(found.type === 'add_coin') { state.coins += found.value; }
-        else if(found.type === 'reset_data') { resetData(); return; }
-        else if (found.type === 'force_next') {
-            state.nextGuaranteed = found.value; // Lưu lại loại thẻ (ví dụ: 'SE')
-        }
-        saveData(); alert(`Thành công! Nhận: ${found.reward}`); closeModal('giftcodeModal'); playSound('sfx-win');
-    } else { alert("Mã không đúng!"); }
+    } catch (err) {
+        console.error("Lỗi Giftcode:", err);
+        alert("Có lỗi xảy ra, vui lòng thử lại!");
+    }
 }
 
 function resetData() {

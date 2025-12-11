@@ -11,6 +11,12 @@
     "reward": "100.000 Xu" 
   },
   { 
+    "code": "COIN200K", 
+    "type": "add_coin", 
+    "value": 200000, 
+    "reward": "200.000 Xu" 
+  },
+  { 
     "code": "COINMAX", 
     "type": "add_coin", 
     "value": 999999, 
@@ -22,13 +28,37 @@
     "reward": "Xóa toàn bộ dữ liệu"
   },
   {
-    "code": "NEXT_UR",
+    "code": "NEXTUR",
     "type": "force_next",
     "value": "UR",
     "reward": "Lần quay kế tiếp CHẮC CHẮN ra UR!"
   },
   {
-    "code": "NEXT_SE",
+    "code": "NEXTUR555",
+    "type": "force_next",
+    "value": "UR",
+    "reward": "Lần quay kế tiếp CHẮC CHẮN ra UR!"
+  },
+  {
+    "code": "NEXTUR999",
+    "type": "force_next",
+    "value": "UR",
+    "reward": "Lần quay kế tiếp CHẮC CHẮN ra UR!"
+  },
+  {
+    "code": "NEXTSE",
+    "type": "force_next",
+    "value": "SE",
+    "reward": "Lần quay kế tiếp CHẮC CHẮN ra SE!"
+  },
+  {
+    "code": "NEXTSE222",
+    "type": "force_next",
+    "value": "SE",
+    "reward": "Lần quay kế tiếp CHẮC CHẮN ra SE!"
+  },
+  {
+    "code": "NEXTSE888",
     "type": "force_next",
     "value": "SE",
     "reward": "Lần quay kế tiếp CHẮC CHẮN ra SE!"
