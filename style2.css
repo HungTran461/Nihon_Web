@@ -546,14 +546,11 @@ header {
     opacity: 0.9;
 }
 
-/* --- KHI ĐANG TRIỆU HỒI (.summoning) --- */
-/* Cả 2 vòng đều xoay tít mù */
-
 .summon-stage.summoning .mc-text-outer {
     animation-duration: 2s !important;
 }
 .summon-stage.summoning .mc-text-inner {
-    animation-duration: 1.5s !important; /* Vòng trong xoay nhanh hơn vòng ngoài */
+    animation-duration: 1.5s !important; 
 }
 
 .summon-stage.summoning .rune-char {
