@@ -514,7 +514,6 @@ header {
 @keyframes confettiFall { 0% { background-position: 0 0, 20px 20px, 10px 10px; } 100% { background-position: 0 600px, 20px 620px, 10px 610px; } }
 
 /* --- MAGIC TEXT LAYER (2 VÒNG CHỮ) --- */
-
 /* Style chung cho lớp chữ */
 .mc-text-layer {
     width: 100%; height: 100%;
@@ -533,7 +532,6 @@ header {
     animation: spinMagic 60s linear infinite;
 }
 
-/* Style cho từng ký tự */
 .rune-char {
     position: absolute;
     top: 50%; left: 50%;
