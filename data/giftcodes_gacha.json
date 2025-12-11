@@ -22,6 +22,18 @@
     "value": 999999, 
     "reward": "999.999 Xu" 
   },
+  { 
+    "code": "COINMAX2", 
+    "type": "add_coin", 
+    "value": 999999, 
+    "reward": "999.999 Xu" 
+  },
+  { 
+    "code": "COINMAX3", 
+    "type": "add_coin", 
+    "value": 999999, 
+    "reward": "999.999 Xu" 
+  },
   {
     "code": "RESET",
     "type": "reset_data",

@@ -1,5 +1,5 @@
 const PRICE = 1000;
-const PITY_CAP = 150;
+const PITY_CAP = 80;
 let soundOn = false;
 let pool = [];
 let giftcodes = [];
@@ -237,6 +237,7 @@ function calculateStats() {
         const total = pool.filter(i => i.type === t).length;
         const owned = pool.filter(i => i.type === t && state.inventory.includes(i.id)).length;
         let c = '#fff'; 
+        
         if(t === 'SE') c = '#fff; text-shadow: 0 0 5px #fff; font-weight: 900;'; 
         if(t === 'UR') c = 'var(--neon-red)'; 
         if(t === 'SSR') c = 'var(--neon-gold)'; 
@@ -255,8 +256,13 @@ function openCollection() {
     types.forEach(t => {
         const total = pool.filter(i => i.type === t).length;
         const owned = pool.filter(i => i.type === t && state.inventory.includes(i.id)).length;
-        let c = '#fff'; if(t === 'SE') c = '#fff; text-shadow: 0 0 5px #fff; font-weight: 900;';if(t==='UR')c='var(--neon-red)'; if(t==='SSR')c='var(--neon-gold)'; if(t==='SR')c='var(--neon-purple)'; if(t==='R')c='var(--neon-blue)';
-        html += `<div class="stat-item" style="color:${c}">${t} <br> ${owned}/${total}</div>`;
+        let rate = '';
+        let c = '#fff'; if(t === 'SE') {c = '#fff; text-shadow: 0 0 5px #fff; font-weight: 900;', rate = '0.00001%'};
+        if(t==='UR') {c='var(--neon-red)', rate = '0.0005%'}; 
+        if(t==='SSR') {c='var(--neon-gold)', rate = '3%'}; 
+        if(t==='SR') {c='var(--neon-purple)', rate = '20%'}; 
+        if(t==='R') {c='var(--neon-blue)', rate = '~77%'};
+        html += `<div class="stat-item" style="color:${c}">${t} <br>${rate}<br> ${owned}/${total}</div>`;
     });
     stats.innerHTML = html;
     filterCollection('ALL');

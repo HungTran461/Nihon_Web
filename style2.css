@@ -548,3 +548,20 @@ header {
     text-shadow: 0 0 10px #fff, 0 0 30px var(--neon-gold) !important;
     filter: brightness(2);
 }
+/* --- STYLE MỚI CHO TỶ LỆ % --- */
+.stat-rate {
+    font-size: 0.75rem;
+    font-family: 'Arial', sans-serif; /* Font số đơn giản dễ đọc */
+    font-weight: bold;
+    color: #fff;
+    
+    padding: 3px 8px;
+    border-radius: 12px; /* Bo tròn như viên thuốc */
+    border: 1px solid rgba(255,255,255,0.2); /* Viền mờ */
+    
+    display: inline-block; /* Để khung co giãn theo nội dung số */
+    min-width: 60px; /* Độ rộng tối thiểu cho đều */
+    
+    box-shadow: 0 2px 5px rgba(0,0,0,0.2); /* Bóng đổ nhẹ */
+    text-shadow: 1px 1px 2px rgba(0,0,0,0.8); /* Bóng chữ để nổi trên nền sáng */
+}
