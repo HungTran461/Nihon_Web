@@ -311,7 +311,7 @@
     "name": "Mẹ Thiên Nhiên Gaia",
     "desc": "Nguồn gốc của sự sống, hơi thở của hành tinh.",
     "atk": 1500,
-    "def": 3500,
+    "def": 4200,
     "url": "Image_Gacha/Me_Thien_Nhien_Gaia.png"
   },
   {
@@ -319,7 +319,7 @@
     "type": "UR",
     "name": "Thần Thiên Không Aether",
     "desc": "Sinh ra trên tầng không, chi phối gió bão và mây trời.",
-    "atk": 3200,
+    "atk": 3800,
     "def": 3000,
     "url": "Image_Gacha/Than_Thien_Khong_Aether.png"
   },
