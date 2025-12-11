@@ -377,7 +377,6 @@ header {
 @keyframes pulseRed { 0% { box-shadow: 0 0 10px var(--neon-red); } 50% { box-shadow: 0 0 25px var(--neon-red); } 100% { box-shadow: 0 0 10px var(--neon-red); } }
 
 /* --- STYLE CHO THẺ SE (Secret Rare) --- */
-
 /* 1. Animation Cầu Vồng */
 @keyframes rainbowGlow {
     0% { border-color: #ff0000; box-shadow: 0 0 15px #ff0000; color: #ff0000; }
