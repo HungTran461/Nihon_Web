@@ -66,8 +66,8 @@ header {
 /* --- 1. COMPLEX MAGIC CIRCLES (Vòng tròn họa tiết) --- */
 .magic-circle-wrapper {
     position: absolute; top: 50%; left: 50%;
-    transform: translate(-50%, -50%) rotateX(65deg); /* Nghiêng nhiều hơn để tạo mặt phẳng */
-    width: 700px; height: 700px; /* Rộng hơn */
+    transform: translate(-50%, -50%) rotateX(65deg); 
+    width: 700px; height: 700px; 
     pointer-events: none;
     display: flex; justify-content: center; align-items: center;
     transform-style: preserve-3d;
@@ -124,9 +124,8 @@ header {
 /* Container chứa toàn bộ chữ, xoay chậm */
 .mc-text-layer {
     width: 100%; height: 100%;
-    /* Xoay ngược chiều kim đồng hồ cho ảo diệu */
     animation: spinMagic 80s reverse linear infinite; 
-    border: none !important; /* Không cần viền cho lớp này */
+    border: none !important; 
     box-shadow: none !important;
 }
 
@@ -134,17 +133,15 @@ header {
 .rune-char {
     position: absolute;
     top: 50%; left: 50%;
-    font-family: 'Cinzel Decorative', cursive; /* Font ma thuật */
-    font-size: 28px; /* Kích thước chữ */
+    font-family: 'Cinzel Decorative', cursive; 
+    font-size: 28px; 
     font-weight: 700;
     color: var(--neon-blue);
-    /* Hiệu ứng phát sáng xanh tím */
     text-shadow: 
         0 0 5px var(--neon-blue),
         0 0 15px var(--neon-purple),
         0 0 30px var(--neon-blue);
     white-space: nowrap;
-    /* Quan trọng: Đặt tâm xoay về gốc để lát nữa JS đẩy nó ra xa */
     transform-origin: 0 0; 
     opacity: 0.8;
 }
