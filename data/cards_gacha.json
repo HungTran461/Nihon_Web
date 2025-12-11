@@ -301,8 +301,8 @@
     "type": "UR",
     "name": "Hư Không Đại Đế",
     "desc": "Sinh ra từ lỗ đen vũ trụ, nuốt chửng mọi vật chất.",
-    "atk": 2500,
-    "def": 2000,
+    "atk": 4000,
+    "def": 3500,
     "url": "Image_Gacha/Hu_Khong_Dai_De.png"
   },
   {
@@ -311,7 +311,7 @@
     "name": "Mẹ Thiên Nhiên Gaia",
     "desc": "Nguồn gốc của sự sống, hơi thở của hành tinh.",
     "atk": 1500,
-    "def": 3000,
+    "def": 3500,
     "url": "Image_Gacha/Me_Thien_Nhien_Gaia.png"
   },
   {
@@ -319,7 +319,7 @@
     "type": "UR",
     "name": "Thần Thiên Không Aether",
     "desc": "Sinh ra trên tầng không, chi phối gió bão và mây trời.",
-    "atk": 2500,
+    "atk": 3200,
     "def": 3000,
     "url": "Image_Gacha/Than_Thien_Khong_Aether.png"
   },
@@ -328,7 +328,7 @@
     "type": "UR",
     "name": "Thần Idol",
     "desc": "Nỗ lực không ngừng để trở thành ngôi sao hàng đầu.",
-    "atk": 2500,
+    "atk": 3500,
     "def": 3000,
     "url": "Image_Gacha/Than_Idol.png"
   },
