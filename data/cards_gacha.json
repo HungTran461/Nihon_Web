@@ -324,6 +324,15 @@
     "url": "Image_Gacha/Than_Thien_Khong_Aether.png"
   },
   {
+    "id": 204,
+    "type": "UR",
+    "name": "Thần Idol",
+    "desc": "Nỗ lực không ngừng để trở thành ngôi sao hàng đầu.",
+    "atk": 2500,
+    "def": 3000,
+    "url": "Image_Gacha/Than_Idol.png"
+  },
+  {
     "id": 301,
     "type": "SSR",
     "name": "Phượng Hoàng Lửa",
