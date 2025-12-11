@@ -121,7 +121,6 @@ header {
 }
 
 /* --- MAGIC TEXT LAYER (LỚP CHỮ PHÉP THUẬT) --- */
-
 /* Container chứa toàn bộ chữ, xoay chậm */
 .mc-text-layer {
     width: 100%; height: 100%;
