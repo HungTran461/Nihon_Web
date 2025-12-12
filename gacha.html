@@ -22,6 +22,8 @@
             <button class="menu-btn" onclick="openCollection()">📖 <span>Bộ Sưu Tập</span></button>
             <button class="menu-btn" onclick="openHistory()">📜 <span>Lịch Sử</span></button>
             <button class="menu-btn" onclick="openModal('giftcodeModal')">🎁 <span>Giftcode</span></button>
+            <a href="battle.html" class="menu-btn">⚔️<span>Battle</span></a>
+            <a href="raid.html" class="menu-btn">⚔️<span>Raid</span></a>
         </div>
         <div class="currency-wrapper">
             <span class="coin-text">💎 <span id="coin-display">...</span></span>
@@ -70,8 +72,12 @@
                     <div class="detail-visual"><img src="" id="dImg"></div>
                     <div class="detail-info" style="padding:20px">
                         <div class="d-rarity" id="dRarity"></div>
+                        
+                        <div id="dElement" style="margin-bottom: 10px; min-height: 25px;"></div>
+
                         <div class="d-name" id="dName"></div>
                         <div class="d-desc" id="dDesc"></div>
+
                         <div class="stat-row">
                             <div class="stat-label"><span>ATK </span><span id="valAtk"></span></div>
                             <div class="progress-bg"><div class="progress-fill fill-atk" id="barAtk"></div></div>
@@ -79,6 +85,15 @@
                         <div class="stat-row">
                             <div class="stat-label"><span>DEF </span><span id="valDef"></span></div>
                             <div class="progress-bg"><div class="progress-fill fill-def" id="barDef"></div></div>
+                        </div>
+
+                        <div class="stat-row">
+                            <div class="stat-label"><span>HP </span><span id="valHp"></span></div>
+                            <div class="progress-bg"><div class="progress-fill fill-hp" id="barHp"></div></div>
+                        </div>
+                        <div class="stat-row">
+                            <div class="stat-label"><span>SPEED </span><span id="valSpd"></span></div>
+                            <div class="progress-bg"><div class="progress-fill fill-spd" id="barSpd"></div></div>
                         </div>
                         <button class="action-btn" onclick="closeModal('detailModal')">QUAY LẠI</button>
                     </div>

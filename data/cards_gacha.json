@@ -6,6 +6,9 @@
     "desc": "Thực thể tối cao kiến tạo nên mọi vì sao. Sức mạnh vượt qua mọi giới hạn.",
     "atk": 4000,
     "def": 2300,
+    "hp": 30000,
+    "speed":2000,
+    "element": "void",
     "url": "Image_Gacha/Vu_Tru_Khoi_Nguyen.png"
   },
   {
@@ -15,6 +18,9 @@
     "desc": "Chúa tể của ngọn lửa vĩnh cửu. Thiêu rụi mọi kẻ thù cản đường.",
     "atk": 145,
     "def": 110,
+    "hp": 1500,
+    "speed":225,
+    "element": "fire",
     "url": "Image_Gacha/Hoa_Than_Ifrit.png"
   },
   {
@@ -24,6 +30,9 @@
     "desc": "Rồng thần ngủ sâu dưới đáy đại dương. Cơn giận của nó tạo ra sóng thần.",
     "atk": 150,
     "def": 95,
+    "hp": 1600,
+    "speed":321,
+    "element": "water",
     "url": "Image_Gacha/Thuy_Long_Leviathan.png"
   },
   {
@@ -33,6 +42,9 @@
     "desc": "Sứ giả của ánh sáng. Đôi cánh trắng mang lại phán quyết cuối cùng.",
     "atk": 140,
     "def": 100,
+    "hp": 2000,
+    "speed":400,
+    "element": "light",
     "url": "Image_Gacha/Thien_Su_Michael.png"
   },
   {
@@ -42,6 +54,9 @@
     "desc": "Một chiến binh sa ngã tìm kiếm sự cứu rỗi trong bóng tối vô tận.",
     "atk": 75,
     "def": 65,
+    "hp": 1200,
+    "speed":410,
+    "element": "dark",
     "url": "Image_Gacha/Ky_Si_Bong_Dem.png"
   },
   {
@@ -51,6 +66,9 @@
     "desc": "Bậc thầy điều khiển các luồng khí quyển, tạo ra những cơn bão chết người.",
     "atk": 80,
     "def": 40,
+    "hp": 1000,
+    "speed":450,
+    "element": "wind",
     "url": "Image_Gacha/Phap_Su_Gio.png"
   },
   {
@@ -60,6 +78,9 @@
     "desc": "Không ai nhìn thấy hắn, chỉ thấy lưỡi dao lạnh lẽo kề cổ.",
     "atk": 85,
     "def": 30,
+    "hp": 1050,
+    "speed":500,
+    "element": "dark",
     "url": "Image_Gacha/Sat_Thu.png"
   },
   {
@@ -69,6 +90,9 @@
     "desc": "Sinh vật khổng lồ được tạo ra từ đá núi lửa. Lớp giáp bất hoại.",
     "atk": 50,
     "def": 90,
+    "hp": 1500,
+    "speed":150,
+    "element": "earth",
     "url": "Image_Gacha/Nguoi_Da_Golem.png"
   },
   {
@@ -78,6 +102,9 @@
     "desc": "Bảo vệ khu rừng thiêng bằng cung tên tẩm phép thuật.",
     "atk": 65,
     "def": 55,
+    "hp": 1250,
+    "speed":360,
+    "element": "wind",
     "url": "Image_Gacha/Tien_Rung_Elf.png"
   },
   {
@@ -87,6 +114,9 @@
     "desc": "Yêu quái quyến rũ với khả năng thao túng tâm trí con người.",
     "atk": 70,
     "def": 60,
+    "hp": 1400,
+    "speed":380,
+    "element": "fire",
     "url": "Image_Gacha/Ho_Ly_Chin_Duoi.png"
   },
   {
@@ -96,6 +126,9 @@
     "desc": "Kiếm khách lang thang với đường kiếm nhanh như chớp.",
     "atk": 78,
     "def": 50,
+    "hp": 1200,
+    "speed":420,
+    "element": "dark",
     "url": "Image_Gacha/Kiem_Si_Samurai.png"
   },
   {
@@ -105,6 +138,9 @@
     "desc": "Sử dụng cây búa sấm sét để trừng phạt kẻ ác.",
     "atk": 82,
     "def": 45,
+    "hp": 1300,
+    "speed":450,
+    "element": "light",
     "url": "Image_Gacha/Loi_Than_Thor.png"
   },
   {
@@ -114,6 +150,9 @@
     "desc": "Sinh ra từ dung nham địa ngục, luôn khao khát thiêu đốt.",
     "atk": 76,
     "def": 58,
+    "hp": 1070,
+    "speed":390,
+    "element": "fire",
     "url": "Image_Gacha/Quy_Lua.png"
   },
   {
@@ -123,6 +162,9 @@
     "desc": "Người lính làm nhiệm vụ canh gác bảo vệ cổng thành.",
     "atk": 30,
     "def": 30,
+    "hp": 1050,
+    "speed":280,
+    "element": "dark",
     "url": "Image_Gacha/Linh_Gac_Cong.png"
   },
   {
@@ -132,6 +174,9 @@
     "desc": "Sống trong rừng sâu, thành thạo việc đặt bẫy.",
     "atk": 35,
     "def": 20,
+    "hp": 1000,
+    "speed":230,
+    "element": "normal",
     "url": "Image_Gacha/Tho_San.png"
   },
   {
@@ -141,6 +186,9 @@
     "desc": "Người dân chăm chỉ, vũ khí là chiếc cuốc.",
     "atk": 10,
     "def": 10,
+    "hp": 900,
+    "speed":210,
+    "element": "normalvoid",
     "url": "Image_Gacha/Nong_Dan.png"
   },
   {
@@ -150,6 +198,9 @@
     "desc": "Sinh vật nhỏ bé tham lam, thích trộm vặt.",
     "atk": 25,
     "def": 15,
+    "hp": 1100,
+    "speed":275,
+    "element": "dark",
     "url": "Image_Gacha/Tieu_Yeu_Goblin.png"
   },
   {
@@ -159,6 +210,9 @@
     "desc": "Một cây nấm biết đi, đừng chạm vào nó.",
     "atk": 15,
     "def": 40,
+    "hp": 950,
+    "speed":190,
+    "element": "dark",
     "url": "Image_Gacha/Nam_Doc.png"
   },
   {
@@ -168,6 +222,9 @@
     "desc": "Loài thú săn mồi theo bầy đàn.",
     "atk": 40,
     "def": 20,
+    "hp": 1150,
+    "speed":300,
+    "element": "earth",
     "url": "Image_Gacha/Soi_Xam.png"
   },
   {
@@ -177,6 +234,9 @@
     "desc": "Nhìn dễ thương nhưng móng vuốt rất sắc bén.",
     "atk": 45,
     "def": 45,
+    "hp": 1200,
+    "speed":320,
+    "element": "earth",
     "url": "Image_Gacha/Gau_Meo.png"
   },
   {
@@ -186,6 +246,9 @@
     "desc": "Lênh đênh trên biển cả tìm kho báu.",
     "atk": 38,
     "def": 28,
+    "hp": 1100,
+    "speed":290,          
+    "element": "water",
     "url": "Image_Gacha/Cuop_Bien.png"
   },
   {
@@ -195,6 +258,9 @@
     "desc": "Chiến đấu vì tiền thưởng, không quan tâm chính nghĩa.",
     "atk": 36,
     "def": 32,
+    "hp": 1080,
+    "speed":310,
+    "element": "normal",
     "url": "Image_Gacha/Linh_Danh_Thue.png"
   },
   {
@@ -204,6 +270,9 @@
     "desc": "Đang học cách bắn tên sao cho trúng đích.",
     "atk": 32,
     "def": 15,
+    "hp": 950,
+    "speed":330,
+    "element": "wind",
     "url": "Image_Gacha/Cung_Thu_Tap_Su.png"
   },
   {
@@ -213,6 +282,9 @@
     "desc": "Cây cổ thụ bị nguyền rủa biết di chuyển.",
     "atk": 20,
     "def": 50,
+    "hp": 1300,
+    "speed":180,
+    "element": "earth",
     "url": "Image_Gacha/Quai_Cay.png"
   },
   {
@@ -222,6 +294,9 @@
     "desc": "Nấp trong bụi cỏ chờ đợi con mồi.",
     "atk": 42,
     "def": 10,
+    "hp": 1000,
+    "speed":250,
+    "element": "dark",
     "url": "Image_Gacha/Ran_Doc.png"
   },
   {
@@ -231,6 +306,9 @@
     "desc": "Giăng tơ bắt mồi trong các hang động tối.",
     "atk": 35,
     "def": 25,
+    "hp": 1050,
+    "speed":240,
+    "element": "dark",
     "url": "Image_Gacha/Nhen_Khong_Lo.png"
   },
   {
@@ -240,6 +318,9 @@
     "desc": "Hoạt động về đêm, thích bóng tối.",
     "atk": 25,
     "def": 20,
+    "hp": 950,
+    "speed":300,
+    "element": "dark",
     "url": "Image_Gacha/Doi_Hut_Mau.png"
   },
   {
@@ -249,6 +330,9 @@
     "desc": "Sinh vật bẩn thỉu sống dưới lòng đất.",
     "atk": 12,
     "def": 10,
+    "hp": 900,
+    "speed":220,
+    "element": "dark",
     "url": "Image_Gacha/Chuot_Cong.png"
   },
   {
@@ -258,6 +342,9 @@
     "desc": "Vỏ cứng như thép và cái đuôi đầy độc.",
     "atk": 30,
     "def": 55,
+    "hp": 1100,
+    "speed":260,
+    "element": "earth",
     "url": "Image_Gacha/Bo_Cap_Sa_Mac.png"
   },
   {
@@ -267,6 +354,9 @@
     "desc": "Xác chết được hồi sinh bởi ma thuật hắc ám.",
     "atk": 28,
     "def": 20,
+    "hp": 1000,
+    "speed":240,
+    "element": "dark",
     "url": "Image_Gacha/Bo_Xuong_Kho.png"
   },
   {
@@ -276,6 +366,9 @@
     "desc": "Thực thể vượt trên cả vũ trụ, nắm giữ sức mạnh vô song.",
     "atk": 9999,
     "def": 9999,
+    "hp": 50000,
+    "speed":3000,
+    "element": "void",
     "url": "Image_Gacha/Dang_Sang_Tao.png"
   },
   {
@@ -285,6 +378,9 @@
     "desc": "Kẻ nắm giữ dòng chảy thời gian, có thể thay đổi quá khứ và tương lai.",
     "atk": 8888,
     "def": 8888,
+    "hp": 48000,
+    "speed":2800,
+    "element": "void",
     "url": "Image_Gacha/Chua_Te_Thoi_Gian.png"
   },
   {
@@ -294,6 +390,9 @@
     "desc": "Kẻ nắm giữ toàn bộ khogn6 gian, có thể thay đổi và làm méo mó không gian.",
     "atk": 8888,
     "def": 8888,
+    "hp": 48000,
+    "speed":2800,
+    "element": "void",
     "url": "Image_Gacha/Chua_Te_Khong_Gian.png"
   },
   {
@@ -303,6 +402,9 @@
     "desc": "Sinh ra từ lỗ đen vũ trụ, nuốt chửng mọi vật chất.",
     "atk": 4000,
     "def": 3500,
+    "hp": 25000,
+    "speed":1800,
+    "element": "void",
     "url": "Image_Gacha/Hu_Khong_Dai_De.png"
   },
   {
@@ -312,6 +414,9 @@
     "desc": "Nguồn gốc của sự sống, hơi thở của hành tinh.",
     "atk": 1500,
     "def": 4200,
+    "hp": 28000,
+    "speed":1600,
+    "element": "earth",
     "url": "Image_Gacha/Me_Thien_Nhien_Gaia.png"
   },
   {
@@ -321,6 +426,9 @@
     "desc": "Sinh ra trên tầng không, chi phối gió bão và mây trời.",
     "atk": 3800,
     "def": 3000,
+    "hp": 22000,
+    "speed":2100,
+    "element": "wind",
     "url": "Image_Gacha/Than_Thien_Khong_Aether.png"
   },
   {
@@ -330,6 +438,9 @@
     "desc": "Nỗ lực không ngừng để trở thành ngôi sao hàng đầu.",
     "atk": 3500,
     "def": 3000,
+    "hp": 20000,
+    "speed":2100,
+    "element": "light",
     "url": "Image_Gacha/Than_Idol.png"
   },
   {
@@ -339,6 +450,9 @@
     "desc": "Tái sinh từ tro tàn, ngọn lửa bất diệt.",
     "atk": 150,
     "def": 120,
+    "hp": 1600,
+    "speed":450,
+    "element": "fire",
     "url": "Image_Gacha/Phuong_Hoang_Lua.png"
   },
   {
@@ -348,6 +462,9 @@
     "desc": "Đóng băng vạn vật chỉ bằng một ánh nhìn.",
     "atk": 140,
     "def": 140,
+    "hp": 1700,
+    "speed":360,
+    "element": "water",
     "url": "Image_Gacha/Nu_Than_Bang_Gia.png"
   },
   {
@@ -357,6 +474,9 @@
     "desc": "Con rồng gặm nhấm rễ cây thế giới.",
     "atk": 160,
     "def": 110,
+    "hp": 1800,
+    "speed":400,
+    "element": "dark",
     "url": "Image_Gacha/Hac_Long_Nidhogg.png"
   },
   {
@@ -366,6 +486,9 @@
     "desc": "Người nắm giữ thanh gươm Excalibur huyền thoại.",
     "atk": 130,
     "def": 150,
+    "hp": 1900,
+    "speed":350,
+    "element": "light",
     "url": "Image_Gacha/Vua_Arthur.png"
   },
   {
@@ -375,6 +498,9 @@
     "desc": "Người phán xét linh hồn nơi Ai Cập cổ đại.",
     "atk": 145,
     "def": 135,
+    "hp": 1750,
+    "speed":370,
+    "element": "dark",
     "url": "Image_Gacha/Than_Chet_Anubis.png"
   },
   {
@@ -384,6 +510,9 @@
     "desc": "Biến hình dưới ánh trăng tròn, sức mạnh hoang dã.",
     "atk": 90,
     "def": 70,
+    "hp": 1350,
+    "speed":410,
+    "element": "earth",
     "url": "Image_Gacha/Nguoi_Soi.png"
   },
   {
@@ -393,6 +522,9 @@
     "desc": "Sử dụng ma thuật cổ xưa từ mặt trăng.",
     "atk": 85,
     "def": 60,
+    "hp": 1400,
+    "speed":390,
+    "element": "light",
     "url": "Image_Gacha/Phu_Thuy_Anh_Trang.png"
   },
   {
@@ -402,6 +534,9 @@
     "desc": "Thoắt ẩn thoắt hiện, bậc thầy ám sát.",
     "atk": 95,
     "def": 40,
+    "hp": 1250,
+    "speed":500,
+    "element": "dark",
     "url": "Image_Gacha/Ninja_Bong_Toi.png"
   },
   {
@@ -411,6 +546,9 @@
     "desc": "Chiến binh cưỡi trên lưng rồng bay lượn.",
     "atk": 88,
     "def": 80,
+    "hp": 1300,
+    "speed":460,
+    "element": "fire",
     "url": "Image_Gacha/Ky_Si_Rong.png"
   },
   {
@@ -420,6 +558,9 @@
     "desc": "Chiến binh Cyborg đến từ tương lai.",
     "atk": 92,
     "def": 85,
+    "hp": 1280,
+    "speed":480,
+    "element": "earth",
     "url": "Image_Gacha/Nguoi_May_2077.png"
   },
   {
@@ -429,6 +570,9 @@
     "desc": "Nửa người nửa ngựa, thiện xạ bách phát bách trúng.",
     "atk": 80,
     "def": 70,
+    "hp": 1320,
+    "speed":430,
+    "element": "wind",
     "url": "Image_Gacha/Nhan_Ma.png"
   },
   {
@@ -438,6 +582,9 @@
     "desc": "Bá tước ma cà rồng sống hàng thế kỷ.",
     "atk": 85,
     "def": 85,
+    "hp": 1290,
+    "speed":440,
+    "element": "dark",
     "url": "Image_Gacha/Vampire_Quy_Toc.png"
   },
   {
@@ -447,6 +594,9 @@
     "desc": "Hóa thân của dòng sông, chữa lành mọi vết thương.",
     "atk": 50,
     "def": 95,
+    "hp": 1400,
+    "speed":350,
+    "element": "water",
     "url": "Image_Gacha/Tinh_Linh_Nuoc.png"
   },
   {
@@ -456,6 +606,9 @@
     "desc": "Sức mạnh dời non lấp biển.",
     "atk": 98,
     "def": 90,
+    "hp": 1500,
+    "speed":200,
+    "element": "earth",
     "url": "Image_Gacha/Nguoi_Khong_Lo_Titan.png"
   },
   {
@@ -465,6 +618,9 @@
     "desc": "Mái tóc rắn và ánh mắt hóa đá.",
     "atk": 92,
     "def": 65,
+    "hp": 1380,
+    "speed":370,
+    "element": "dark",
     "url": "Image_Gacha/Nu_Quai_Medusa.png"
   },
   {
@@ -474,6 +630,9 @@
     "desc": "Chế tạo vũ khí cho quân đội.",
     "atk": 35,
     "def": 40,
+    "hp": 1100,
+    "speed":230,
+    "element": "normal",
     "url": "Image_Gacha/Tho_Ren.png"
   },
   {
@@ -483,6 +642,9 @@
     "desc": "Mang theo nhiều hàng hóa quý hiếm.",
     "atk": 10,
     "def": 20,
+    "hp": 900,
+    "speed":220,
+    "element": "normal",
     "url": "Image_Gacha/Thuong_Nhan.png"
   },
   {
@@ -492,6 +654,9 @@
     "desc": "Thợ săn hung dữ của đại dương.",
     "atk": 45,
     "def": 25,
+    "hp": 1200,
+    "speed":320,
+    "element": "water",
     "url": "Image_Gacha/Ca_Map.png"
   },
   {
@@ -501,6 +666,9 @@
     "desc": "Chúa tể bầu trời.",
     "atk": 40,
     "def": 15,
+    "hp": 1150,
+    "speed":410,
+    "element": "wind",
     "url": "Image_Gacha/Dai_Bang.png"
   },
   {
@@ -510,6 +678,9 @@
     "desc": "Bảo vệ tổ bằng nọc độc.",
     "atk": 30,
     "def": 10,
+    "hp": 950,
+    "speed":380,
+    "element": "earth",
     "url": "Image_Gacha/Ong_Chien_Binh.png"
   },
   {
@@ -519,6 +690,9 @@
     "desc": "Húc bay mọi chướng ngại vật.",
     "atk": 38,
     "def": 35,
+    "hp": 1100,
+    "speed":270,
+    "element": "earth",
     "url": "Image_Gacha/Heo_Rung.png"
   },
   {
@@ -528,6 +702,9 @@
     "desc": "Đứng canh gác ngoài đồng ruộng.",
     "atk": 5,
     "def": 5,
+    "hp": 800,
+    "speed":150,
+    "element": "normal",
     "url": "Image_Gacha/Bu_Nhin_Rom.png"
   },
   {
@@ -537,6 +714,9 @@
     "desc": "Xác chết quấn băng vải từ kim tự tháp.",
     "atk": 25,
     "def": 30,
+    "hp": 1000,
+    "speed":200,
+    "element": "dark",
     "url": "Image_Gacha/Xac_Uop.png"
   },
   {
@@ -546,6 +726,9 @@
     "desc": "Nhiều xúc tu trơn trượt.",
     "atk": 30,
     "def": 30,
+    "hp": 1050,
+    "speed":310,
+    "element": "water",
     "url": "Image_Gacha/Bach_Tuoc.png"
   },
   {
@@ -555,6 +738,9 @@
     "desc": "Sống gần miệng núi lửa.",
     "atk": 35,
     "def": 25,
+    "hp": 1000,
+    "speed":370,
+    "element": "fire",
     "url": "Image_Gacha/Than_Lan_Lua.png"
   },
   {
@@ -564,6 +750,9 @@
     "desc": "Được tạo ra từ tuyết lạnh giá.",
     "atk": 20,
     "def": 20,
+    "hp": 1100,
+    "speed":210,
+    "element": "water",
     "url": "Image_Gacha/Nguoi_Tuyet.png"
   },
   {
@@ -573,6 +762,9 @@
     "desc": "Linh hồn vất vưởng không siêu thoát.",
     "atk": 15,
     "def": 50,
+    "hp": 950,
+    "speed":400,
+    "element": "dark",
     "url": "Image_Gacha/Hon_Ma.png"
   },
   {
@@ -582,6 +774,9 @@
     "desc": "Làm việc chăm chỉ dưới lòng đất.",
     "atk": 25,
     "def": 35,
+    "hp": 1050,
+    "speed":220,
+    "element": "earth",
     "url": "Image_Gacha/Tho_Mo.png"
   },
   {
@@ -591,6 +786,9 @@
     "desc": "Trượt băng rất giỏi.",
     "atk": 15,
     "def": 15,
+    "hp": 1000,
+    "speed":260,
+    "element": "water",
     "url": "Image_Gacha/Chim_Canh_Cut.png"
   },
   {
@@ -600,6 +798,9 @@
     "desc": "Màu sắc sặc sỡ cảnh báo nguy hiểm.",
     "atk": 20,
     "def": 10,
+    "hp": 950,
+    "speed":240,
+    "element": "dark",
     "url": "Image_Gacha/Ech_Doc.png"
   },
   {
@@ -609,6 +810,9 @@
     "desc": "Loài thực vật nguy hiểm trong rừng già.",
     "atk": 40,
     "def": 20,
+    "hp": 1100,
+    "speed":190,
+    "element": "earth",
     "url": "Image_Gacha/Hoa_An_Thit.png"
   },
   {
@@ -618,6 +822,9 @@
     "desc": "Gây tê liệt đối phương bằng dòng điện.",
     "atk": 30,
     "def": 15,
+    "hp": 1000,
+    "speed":310,
+    "element": "water",
     "url": "Image_Gacha/Sua_Dien.png"
   },
   {
@@ -627,6 +834,9 @@
     "desc": "Đừng coi thường cú mổ của nó.",
     "atk": 25,
     "def": 10,
+    "hp": 950,
+    "speed":390,
+    "element": "normal",
     "url": "Image_Gacha/Ga_Chien.png"
   },
   {
@@ -636,6 +846,9 @@
     "desc": "Lớp mai cứng như đá tảng.",
     "atk": 10,
     "def": 60,
+    "hp": 1200,
+    "speed":100,
+    "element": "earth",
     "url": "Image_Gacha/Rua_Da.png"
   },
   {
@@ -645,6 +858,9 @@
     "desc": "Cặp càng to khỏe có thể cắt đôi mọi thứ.",
     "atk": 35,
     "def": 45,
+    "hp": 1150,
+    "speed":220,
+    "element": "water",
     "url": "Image_Gacha/Cua_Khong_Lo.png"
   }
 ]

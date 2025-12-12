@@ -194,29 +194,84 @@ function resetData() {
     }
 }
 
+// --- Sửa lại hàm showDetail trong script2.js ---
+
 function showDetail(item) {
-    document.getElementById('dImg').src = item.url;
-    document.getElementById('dName').innerText = item.name;
-    document.getElementById('dRarity').innerText = item.type;
-    document.getElementById('dDesc').innerText = item.desc;
-    let color = '#5eeeff'; if(item.type === 'SE') {
-        color = '#fff'; 
-        document.getElementById('dRarity').style.textShadow = "0 0 10px red, 0 0 20px blue"; 
+    // 1. Điền thông tin cơ bản (Code cũ)
+    const imgEl = document.getElementById('dImg');
+    if(imgEl) imgEl.src = item.url;
+    
+    const nameEl = document.getElementById('dName');
+    if(nameEl) nameEl.innerText = item.name;
+    
+    const descEl = document.getElementById('dDesc');
+    if(descEl) descEl.innerText = item.desc || "Chưa có mô tả.";
+
+    const rarityEl = document.getElementById('dRarity');
+    if(rarityEl) rarityEl.innerText = item.type;
+
+    // 2. Điền thông tin HỆ (Code mới - có kiểm tra lỗi)
+    const elDiv = document.getElementById('dElement');
+    if (elDiv) {
+        // Lấy thông tin hệ từ hàm helper
+        const elInfo = typeof getElemData === 'function' ? getElemData(item.element) : { icon: '', name: '', class: '' };
+        elDiv.innerHTML = `<span class="elem-badge ${elInfo.class}">${elInfo.icon} Hệ ${elInfo.name}</span>`;
     }
-    else if(item.type === 'UR') color = 'var(--neon-red)';else if(item.type==='SSR')color='var(--neon-gold)';else if(item.type==='SR')color='var(--neon-purple)';
-    document.getElementById('dRarity').style.color = color; document.getElementById('dName').style.color = color;
+
+    // 3. Xử lý màu sắc
+    let color = '#5eeeff'; 
+    if(item.type === 'SE') color = '#fff';
+    else if(item.type === 'UR') color = 'var(--neon-red)';
+    else if(item.type === 'SSR') color = 'var(--neon-gold)';
+    else if(item.type === 'SR') color = 'var(--neon-purple)';
+    
+    if(rarityEl) rarityEl.style.color = color;
+    if(nameEl) nameEl.style.color = color;
+    
+    // 4. MỞ CỬA SỔ (Quan trọng: Lệnh này phải chạy được)
     openModal('detailModal');
+    
+    // 5. Chạy hiệu ứng thanh chỉ số
     setTimeout(() => {
-        const maxStats = {
-            'SE': 10000, 
-            'UR': 5000,
-            'SSR': 200,
-            'SR': 150,
-            'R': 100
-        };
+        const maxStats = { 'SE': 10000, 'UR': 5000, 'SSR': 200, 'SR': 150, 'R': 100 };
         let max = maxStats[item.type] || 100;
-        document.getElementById('valAtk').innerText = item.atk; document.getElementById('barAtk').style.width = (item.atk/max)*100+'%';
-        document.getElementById('valDef').innerText = item.def; document.getElementById('barDef').style.width = (item.def/max)*100+'%';
+        const maxStatsSpeed = { 'SE': 4000, 'UR': 2400, 'SSR': 800, 'SR': 600, 'R': 400 };
+        let maxSp = maxStatsSpeed[item.type] || 400;
+        
+        // Cập nhật ATK
+        const valAtk = document.getElementById('valAtk');
+        const barAtk = document.getElementById('barAtk');
+        if(valAtk) valAtk.innerText = item.atk;
+        if(barAtk) barAtk.style.width = (item.atk/max)*100+'%';
+        
+        // Cập nhật DEF
+        const valDef = document.getElementById('valDef');
+        const barDef = document.getElementById('barDef');
+        if(valDef) valDef.innerText = item.def;
+        if(barDef) barDef.style.width = (item.def/max)*100+'%';
+
+        // Cập nhật HP (Code mới - có kiểm tra lỗi)
+        const valHp = document.getElementById('valHp');
+        const barHp = document.getElementById('barHp');
+        
+        // Tính HP giả định nếu chưa có dữ liệu thật
+        const hpValue = item.hp || (item.def * 12);
+        const maxHp = max * 12;
+
+        if(valHp) valHp.innerText = hpValue;
+        if(barHp) barHp.style.width = (hpValue/maxHp)*100+'%';
+
+        // Cập nhật SPD (Code mới - có kiểm tra lỗi)
+        const valSpd = document.getElementById('valSpd');
+        const barSpd = document.getElementById('barSpd');
+        
+        // Tính SPD giả định nếu chưa có dữ liệu thật
+        const spdValue = item.speed || Math.min(100, Math.floor(item.atk / 10));
+        const maxSpd = maxSp;
+
+        if(valSpd) valSpd.innerText = spdValue;
+        if(barSpd) barSpd.style.width = (spdValue/maxSpd)*100+'%';
+
     }, 300);
 }
 
@@ -307,9 +362,23 @@ function openHistory() {
 
 function createThumb(item, isLocked) {
     const div = document.createElement('div');
+    // Giữ nguyên class cũ của bạn
     div.className = `card-thumb ${isLocked ? 'locked' : 'bd-'+item.type}`;
-    div.innerHTML = `<img src="${item.url}">`;
-    if(!isLocked) div.onclick = () => showDetail(item);
+    
+    // Lấy thông tin hệ
+    const el = getElemData(item.element);
+
+    if (isLocked) {
+         div.innerHTML = `<img src="${item.url}" style="filter: grayscale(100%); opacity: 0.5;">`;
+    } else {
+        // --- CHỈ SỬA ĐOẠN NÀY: Thêm div card-elem-icon trước img ---
+        div.innerHTML = `
+            <div class="card-elem-icon" title="${el.name}">${el.icon}</div>
+            <img src="${item.url}">
+        `;
+        // -------------------------------------------------------------
+        div.onclick = () => showDetail(item);
+    }
     return div;
 }
 
@@ -389,6 +458,23 @@ function createRuneRing(elementId, radius, textContent, charSpacing) {
         span.style.transform = `rotate(${i * angleStep}deg) translateY(-${radius}px) rotate(90deg)`;
         container.appendChild(span);
     }
+}
+
+// --- Helper: Lấy thông tin hệ ---
+function getElemData(code) {
+    // Map tên hệ trong JSON sang Icon và Class CSS
+    // Nếu JSON của bạn ghi "fire", code sẽ lấy icon Lửa.
+    const map = {
+        'fire': { icon: '🔥', name: 'Hỏa', class: 'el-fire' },
+        'water': { icon: '💧', name: 'Thủy', class: 'el-water' },
+        'earth': { icon: '⛰️', name: 'Thổ', class: 'el-earth' },
+        'wind': { icon: '🌪️', name: 'Phong', class: 'el-wind' },
+        'light': { icon: '✨', name: 'Quang', class: 'el-light' },
+        'dark': { icon: '🌑', name: 'Ám', class: 'el-dark' },
+        'void': { icon: '🌌', name: 'Hư Không', class: 'el-void' }
+    };
+    // Mặc định nếu không tìm thấy
+    return map[code] || { icon: '⚪', name: 'Thường', class: 'el-normal' };
 }
 
 createRuneRing('runeOuter', 340, "• SUMMONING • THE • ANCIENT • SPIRITS • OF • THE • COSMOS • ", 10); 

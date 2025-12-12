@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Đấu Trường Tốc Độ</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@700;900&family=Quicksand:wght@500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="battle.css">
+</head>
+<body>
+
+    <header>
+        <a href="gacha.html" class="back-btn">⬅ Về Gacha</a>
+        <h1 class="page-title">CHIẾN TRƯỜNG TINH VÂN</h1>
+    </header>
+
+    <main>
+        <section id="selection-screen" class="screen active">
+            <div class="selection-layout">
+                <div class="inventory-panel">
+                    <h2 class="section-title">KHO CHIẾN BINH</h2>
+                    <div id="inventory-grid" class="card-grid"></div>
+                </div>
+
+                <div class="preview-panel">
+                    <div id="preview-placeholder"><p>Chọn tướng để xem thông tin</p></div>
+                    <div id="preview-content" class="hidden">
+                        <h2 id="prev-name" class="glow-text">Name</h2>
+                        <div class="prev-card-img">
+                            <img id="prev-img" src="">
+                            <div id="prev-rarity" class="prev-rarity">SSR</div>
+                        </div>
+                        <div class="prev-badges"><span id="prev-elem" class="elem-badge">Hệ</span></div>
+
+                        <div class="prev-stats">
+                            <div class="stat-row"><span>⚔️ ATK:</span> <span id="prev-atk" class="val-atk">0</span></div>
+                            <div class="stat-row"><span>🛡️ DEF:</span> <span id="prev-def" class="val-def">0</span></div>
+                            <div class="stat-row"><span>❤️ HP:</span> <span id="prev-hp" class="val-hp">0</span></div>
+                            <div class="stat-row"><span>⚡ SPD:</span> <span id="prev-spd" class="val-spd">0</span></div>
+                        </div>
+
+                        <div class="prev-skill">
+                            <div class="skill-title">⚡ KỸ NĂNG: <span id="skill-name">...</span></div>
+                            <p id="skill-desc">...</p>
+                        </div>
+                        <button class="confirm-btn" onclick="confirmBattle()">🚀 RA TRẬN</button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="arena-screen" class="screen hidden">
+            <div class="arena-container">
+                
+                <div class="fighter-box" id="player-box">
+                    <div class="bars-container">
+                        <div class="bar-bg"><div class="hp-fill" id="p-hp-bar" style="width: 100%;"></div></div>
+                        <div class="bar-bg mp-bg"><div class="mp-fill" id="p-mp-bar" style="width: 0%;"></div></div>
+                        <div class="bar-bg ap-bg"><div class="ap-fill" id="p-ap-bar" style="width: 0%;"></div></div>
+                    </div>
+                    <div class="hp-text" id="p-hp-text">1000/1000</div>
+                    
+                    <div class="card-visual" id="p-visual">
+                        <img src="" id="p-img">
+                        <div class="damage-number" id="p-dmg"></div>
+                        <div class="skill-popup" id="p-skill-pop">ULTIMATE!</div>
+                        <div id="p-result" class="battle-result"></div>
+                    </div>
+                    
+                    <h3 id="p-name">Bạn</h3>
+                    <div class="stats-mini" id="p-spd-text">SPD: 0</div>
+                    <div id="p-elem-badge" class="elem-badge">Hệ</div>
+                </div>
+
+                <div class="vs-center">
+                    <span>VS</span>
+                    <div id="turn-indicator" class="turn-loading">Đang chờ lượt...</div>
+                </div>
+
+                <div class="fighter-box" id="enemy-box">
+                    <div class="bars-container">
+                        <div class="bar-bg"><div class="hp-fill enemy-fill" id="e-hp-bar" style="width: 100%;"></div></div>
+                        <div class="bar-bg mp-bg"><div class="mp-fill" id="e-mp-bar" style="width: 0%;"></div></div>
+                        <div class="bar-bg ap-bg"><div class="ap-fill" id="e-ap-bar" style="width: 0%;"></div></div>
+                    </div>
+                    <div class="hp-text" id="e-hp-text">1000/1000</div>
+                    
+                    <div class="card-visual" id="e-visual">
+                        <img src="" id="e-img">
+                        <div class="damage-number" id="e-dmg"></div>
+                        <div class="skill-popup" id="e-skill-pop">ULTIMATE!</div>
+                        <div id="e-result" class="battle-result"></div>
+                    </div>
+                    
+                    <h3 id="e-name">Kẻ Địch</h3>
+                    <div class="stats-mini" id="e-spd-text">SPD: 0</div>
+                    <div id="e-elem-badge" class="elem-badge">Hệ</div>
+                </div>
+            </div>
+
+            <div class="control-panel">
+                <div class="battle-log" id="battle-log"></div>
+                <button id="btn-back" class="fight-btn hidden" onclick="location.reload()">TRẬN MỚI</button>
+            </div>
+        </section>
+    </main>
+
+    <script src="battle.js"></script>
+</body>
+</html>
