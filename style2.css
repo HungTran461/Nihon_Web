@@ -633,3 +633,8 @@ header {
 .el-dark   { background: linear-gradient(135deg, #232526, #414345); border-color: #666; }
 .el-void   { background: linear-gradient(135deg, #000000, #434343); color: #e085ff; border-color: #e085ff; }
 .el-normal { background: #666; color: #ccc; }
+
+@media screen and (max-width: 768px) 
+{
+    header .header-left #galactic{display: none;}
+}
